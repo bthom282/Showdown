@@ -38,21 +38,24 @@ int main(){
 	plot_bitmap_16(base, 96, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
 	plot_bitmap_16(base, 112, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
 
-  /*Plotted out charcaters for "LIVES"*/
+  /*Plotted out charcaters for "LIVES", can be done with a loop and an array of charcaters if necessary
+    but hardcoding it was easiest at the time.*/
 	plot_char(base, 32, 328, 'L');
 	plot_char(base, 40, 328, 'I');
 	plot_char(base, 48, 328, 'V');
 	plot_char(base, 56, 328, 'E');
 	plot_char(base, 64, 328, 'S');
 
-  /*Plotted out charcaters for "SCORE"*/
+  /*Plotted out charcaters for "SCORE", can be done with a loop and an array of charcaters if necessary
+    but hardcoding it was easiest at the time.*/
 	plot_char(base, 32, 300, 'S');
 	plot_char(base, 40, 300, 'C');
 	plot_char(base, 48, 300, 'O');
 	plot_char(base, 56, 300, 'R');
 	plot_char(base, 64, 300, 'E');
 
-  /*Plotted out score digits. Can be modified depending on scoring methos.*/
+  /*Plotted out score digits. Can be modified depending on scoring methods. During actual gameplay,
+    this will probably be updated and printed from a stored score variable in memory.*/
 	plot_char(base, 80, 300, '0');
 	plot_char(base, 88, 300, '0');
 	plot_char(base, 96, 300, '0');
