@@ -1,0 +1,63 @@
+int main(){
+
+	char *base = Physbase();
+	int i,j,k;
+	UINT16 *loc = base;
+
+  /*Cowboys initial position*/
+	plot_bitmap_32(base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+
+  /*Printing out the cactus boarder*/
+	for(i = 0; i < 128; i += 32){
+		plot_bitmap_32(base, 256, i, cactus_32, BITMAP_32_HEIGHT);
+		plot_bitmap_32(base, 608, i, cactus_32, BITMAP_32_HEIGHT);
+	}
+	for(i = 256; i < SCREEN_HEIGHT-32; i += 32){
+		plot_bitmap_32(base, 256, i, cactus_32, BITMAP_32_HEIGHT);
+		plot_bitmap_32(base, 608, i, cactus_32, BITMAP_32_HEIGHT);
+	}
+	for(i = 256; i < 384; i += 32){
+		plot_bitmap_32(base, i, 0, cactus_32, BITMAP_32_HEIGHT);
+		plot_bitmap_32(base, i, 352, cactus_32, BITMAP_32_HEIGHT);
+	}
+	for(i = 512; i < 640; i += 32){
+		plot_bitmap_32(base, i, 0, cactus_32, BITMAP_32_HEIGHT);
+		plot_bitmap_32(base, i, 352, cactus_32, BITMAP_32_HEIGHT);
+	}
+
+  /*blacking out side panel*/
+	for (k = 0; k < SCREEN_HEIGHT; k++){ 
+		for (j = 0; j < 16; j++) {
+			*(loc++) = -1;
+		}
+		loc += 24;
+	}
+
+  /*The three lives tokens, can be changed for hats or number changed.*/
+	plot_bitmap_16(base, 80, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+	plot_bitmap_16(base, 96, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+	plot_bitmap_16(base, 112, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+
+  /*Plotted out charcaters for "LIVES"*/
+	plot_char(base, 32, 328, 'L');
+	plot_char(base, 40, 328, 'I');
+	plot_char(base, 48, 328, 'V');
+	plot_char(base, 56, 328, 'E');
+	plot_char(base, 64, 328, 'S');
+
+  /*Plotted out charcaters for "SCORE"*/
+	plot_char(base, 32, 300, 'S');
+	plot_char(base, 40, 300, 'C');
+	plot_char(base, 48, 300, 'O');
+	plot_char(base, 56, 300, 'R');
+	plot_char(base, 64, 300, 'E');
+
+  /*Plotted out score digits. Can be modified depending on scoring methos.*/
+	plot_char(base, 80, 300, '0');
+	plot_char(base, 88, 300, '0');
+	plot_char(base, 96, 300, '0');
+	plot_char(base, 104, 300, '0');
+	plot_char(base, 112, 300, '0');
+
+	return 0;
+}
