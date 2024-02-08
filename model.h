@@ -17,6 +17,17 @@ Position position;
 Size size; 
 } BoundingBox;
 
+typedef struct
+{
+int score;
+BoundingBox boundingBox;
+} Score;
+
+typedef struct
+{
+BoundingBox boundingBox;
+} Cactus;
+
 typedef struct             /* type definition for bullet object */
 {
 Position position;         /* position coordinates */
