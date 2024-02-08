@@ -17,6 +17,13 @@ Position position;
 Size size; 
 } BoundingBox;
 
+typedef struct            /* type definition for lives object */
+{
+int lives;
+Position position;        /* position coordinates */
+BoundingBox boundingBox;
+} Lives;
+
 typedef struct            /* type definition for score object */
 {
 int score;
