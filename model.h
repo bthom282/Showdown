@@ -21,6 +21,7 @@ typedef struct             /* type definition for bullet object */
 {
 Position position;         /* position coordinates */
 int delta_x, delta_y;      /* horiz. & vert. displacement per clock tick */
+BoundingBox boundingBox;
 } Bullet;
 
 typedef struct             /* type definition for cowboy object */
@@ -35,6 +36,7 @@ bool isMoving;
 bool isFiring;
 int verticalFiringDirection;
 int horizontalFiringDirection;
+BoundingBox boundingBox;
 } Cowboy;
 
 typedef struct 
@@ -46,4 +48,5 @@ int verticalDirection;
 int horizontalVelocity;
 int verticalVelocity;
 Position target;
+BoundingBox boundingBox;
 } Snake;
