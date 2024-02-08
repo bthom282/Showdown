@@ -39,13 +39,13 @@ int horizontalFiringDirection;
 BoundingBox boundingBox;
 } Cowboy;
 
-typedef struct 
+typedef struct             /* type definition for snake object */
 {
-Position position;
+Position position;          /* position coordinates */
 Size size;
-int horizontalDirection;
+int horizontalDirection;    /* direction the snake is facing*/
 int verticalDirection;
-int horizontalVelocity;
+int horizontalVelocity;    /* horiz. & vert. displacement per clock tick */
 int verticalVelocity;
 Position target;
 BoundingBox boundingBox;
