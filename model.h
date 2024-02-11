@@ -1,6 +1,14 @@
 
 void move_bullet(Bullet *bullet);
 
+void move_snake();
+
+void move_cowboy();
+
+void game_over();
+
+void game_quit();
+
 typedef struct 
 {
 unsigned int x;
