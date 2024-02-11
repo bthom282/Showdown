@@ -2,6 +2,6 @@
 
 void move_bullet(Bullet *bullet)
 {
-  ball->x += ball->delta_x;
-  ball->y += ball->delta_y;
+  bullet->x += bullet->delta_x;
+  bullet->y += bullet->delta_y;
 }
