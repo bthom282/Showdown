@@ -77,6 +77,28 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned
 }
 
 /********************************************************************************************
+Function Name: clear_bitmap_32
+Details: This function is used to clear a size 32 bitmap from the screen by XORing over the 
+previously plotted bitmap.
+
+*********************************************************************************************/
+
+void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
+{
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+		int i;
+		base += (x/32) + y * 20;
+		for(i = 0; i < height; i++)
+		{
+			*base ^= bitmap32[i] >> x % 32;
+			*(base + 1) ^= bitmap32[i] << 32 - (x % 32);
+			base += 20;
+		}
+	}
+	return;
+}
+
+/********************************************************************************************
 Function Name: plot_char
 Details: 
 
