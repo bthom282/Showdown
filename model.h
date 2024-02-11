@@ -1,4 +1,6 @@
 
+void move_bullet(Bullet *bullet);
+
 typedef struct 
 {
 unsigned int x;
