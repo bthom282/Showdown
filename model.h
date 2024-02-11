@@ -77,4 +77,5 @@ int horizontalVelocity;    /* horiz. & vert. displacement per clock tick */
 int verticalVelocity;
 Position target;
 BoundingBox boundingBox;
+int isDead;
 } Snake;
