@@ -38,7 +38,6 @@ typedef struct            /* type definition for score object */
 {
 int score;
 Position position;        /* position coordinates */
-BoundingBox boundingBox;
 } Score;
 
 typedef struct            /* type definition for cactus object */
