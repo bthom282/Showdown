@@ -1,9 +1,9 @@
 
 void move_bullet(Bullet *bullet);
 
-void move_snake();
+void move_snake(Snake *snake);
 
-void move_cowboy();
+void move_cowboy(Cowboy *cowboy);
 
 void game_over();
 
