@@ -9,6 +9,8 @@ void game_over();
 
 void game_quit();
 
+void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
+
 typedef struct 
 {
 unsigned int x;
