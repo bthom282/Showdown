@@ -9,21 +9,23 @@ const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
 const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
 const int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
 
-int 1p_x_start;
-int 1p_y_start;
-int 2p_x_start;
-int 2p_y_start;
+int 1st_x_start;
+int 1st_y_start;
+int 2nd_x_start;
+int 2nd_y_start;
 int player_num;
-int lives_count;
-int score_value;
+int 1st_lives_count;
+int 2nd_lives_count;
+int 1st_score_value;
+int 2nd_score_value;
 
 bool isPlaying = TRUE;
 
 while (isPlaying) {
 
 	if(player_num == 1) {
-		1p_x_start = 424;
-		1p_y_start = 184;
+		1st_x_start = 424;
+		1st_y_start = 184;
 	
   	game_start();
 
