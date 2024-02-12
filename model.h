@@ -1,9 +1,19 @@
+#define X_MIN 288
+#define X_MAX 576
+#define Y_MIN 32
+#define Y_MAX 320
 
 void move_bullet(Bullet *bullet);
 
 void move_snake(Snake *snake);
 
 void move_cowboy(Cowboy *cowboy);
+
+void cowboy_death (int *lives);
+
+void update_lives(int *lives);
+
+void respawn();
 
 void game_over();
 
