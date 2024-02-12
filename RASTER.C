@@ -56,6 +56,25 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned
 }
 
 /********************************************************************************************
+Function Name: clear_bitmap_16
+Details: This function clearing a 16x16 bitmap with OR to specifically clear white bitmaps
+(cowboy lives) on our black side panel for lives and possibly other deatils. It can be 
+modified to clear black text on white background by changing the "|=" to "^=" if we need 
+to clear any 16x16 bitmaps in our play area.
+
+*********************************************************************************************/
+
+void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned int height)
+{ 
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+		int i;
+		for (i = 0; i < height; i++) {
+			*(base + (y*40) + (x >> 4) + (i*40)) |= bitmap16[i];
+		}
+	}
+}
+
+/********************************************************************************************
 Function Name: plot_bitmap_32
 Details: 
 
