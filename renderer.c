@@ -18,7 +18,7 @@ while (isPlaying) {
 
 }
 
-game_start() {
+void game_start() {
 
   char *base = Physbase();
 	int i,j,k;
