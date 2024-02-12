@@ -11,7 +11,7 @@ void move_cowboy(Cowboy *cowboy);
 
 void cowboy_death (int *lives);
 
-void update_lives(int *lives);
+void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
 
