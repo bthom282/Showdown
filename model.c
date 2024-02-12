@@ -68,8 +68,18 @@ void cowboy_death (int *lives) {
 		respawn();
 	}
 	
-void update_lives(int *lives) {
-	
+void update_lives (UINT8 *base, int lives_count) {
+	int i, x;
+	x = 80;
+	for (i = 0; i < (lives_count+1); i++) {
+		clear_bitmap_16((UINT16 *) base, x, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+		x += 16;
+	}
+	x = 80;
+	for (i = 0; i < lives_count; i++) {
+		plot_bitmap_16((UINT16 *) base, x, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+		x += 16;
+	}
 }
 
 void respawn() {
