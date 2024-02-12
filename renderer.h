@@ -1,1 +1,3 @@
 
+
+void game_start();
