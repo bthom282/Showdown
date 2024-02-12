@@ -17,7 +17,7 @@ void respawn();
 
 void game_over();
 
-void game_quit();
+void game_quit(bool *isPlaying);
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
