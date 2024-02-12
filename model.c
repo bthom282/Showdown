@@ -86,9 +86,31 @@ void respawn() {
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	/* invulnerability frames code here, asking Marc */
 
-void game_over()
-{
-
+void game_over((UINT8 *)base, bool isPlaying) {
+	int i,j;
+	for (i = 0; i < 284; i += 12) {
+		for (j = 0; j < 200; j += 80) {
+			print_message((UINT8 *) base, gameover, j, i);
+		}
+	}
+	
+	/* flash score a few times (clear, print, 5-times)*/
+	
+	/* clear screen */
+	
+	/* wait a few seconds */
+	
+	/* print message based on score */
+	
+	/* Ask player if they want to continue */
+	
+	print_message((UINT8 *) base, continue, [x], [y]);
+	if (y pressed) {
+		game_start();
+	}
+	if (n pressed) {
+		game_quit(isPlaying)
+	}
 }
 
 void game_quit(bool *isPlaying)
