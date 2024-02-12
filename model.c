@@ -55,15 +55,15 @@ void move_cowboy(Cowboy *cowboy)
 
 }
 
-void cowboy_death (int *lives) {
+void cowboy_death (int *lives_count) {
 	/* possible death animation here */
-	if (lives == 1) {
-		lives--;
+	if (lives_count == 1) {
+		lives_count--;
 		update_lives(lives);
 		gameover();
 	}
 	else {
-		lives--;
+		lives_count--;
 		update_lives(lives);
 		respawn();
 	}
