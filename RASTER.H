@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+#define INVADER_HEIGHT 16
+#define BITMAP_HEIGHT 16
+#define BITMAP_8_HEIGHT 8
+#define BITMAP_32_HEIGHT 32
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
+
 /* [TO DO] the functions below are examples. Replace them! */
 
 void plot_something_1(UINT16 *base, int x, int y, ...);
