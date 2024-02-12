@@ -1,14 +1,31 @@
 #include "renderer.h"
 
+/*arrays of messages to be print in game*/
 const UINT8 score[] = {'S','C','O','R','E','\0'};
 const UINT8 lives[] = {'L','I','V','E','S','\0'};
 const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
+
+/*arrays of spawn positions for snake enemies*/
+const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
+const int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
+
+int 1p_x_start;
+int 1p_y_start;
+int 2p_x_start;
+int 2p_y_start;
+int player_num;
+int lives_count;
+int score_value;
 
 bool isPlaying = TRUE;
 
 while (isPlaying) {
 
-  game_start();
+	if(player_num == 1) {
+		1p_x_start = 424;
+		1p_y_start = 184;
+	
+  	game_start();
 
 
 
