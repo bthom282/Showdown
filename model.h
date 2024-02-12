@@ -9,7 +9,7 @@ void move_snake(Snake *snake);
 
 void move_cowboy(Cowboy *cowboy);
 
-void cowboy_death (int *lives);
+void cowboy_death (int *lives_count);
 
 void update_lives (UINT8 *base, int lives_count);
 
