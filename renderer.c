@@ -20,7 +20,7 @@ while (isPlaying) {
 
 void game_start() {
 
-  char *base = Physbase();
+  	char *base = Physbase();
 	int i,j,k;
 	unsigned long seed = 300;
 	UINT16 *loc = (UINT16 *) base;
@@ -28,7 +28,7 @@ void game_start() {
 	int x;
 	int lives_count;
 	int score_value;
-  lives_count = 3;
+  	lives_count = 3;
 	
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
@@ -56,14 +56,14 @@ void game_start() {
 		loc += 24;
 	}
   
-  print_message((UINT8 *) base, lives, 32, 328);
+  	print_message((UINT8 *) base, lives, 32, 328);
 	print_message((UINT8 *) base, score, 32, 300);
   
-  plot_bitmap_16((UINT16 *) base, 80, 320, cowboy_bitmap_16, BITMAP_HEIGHT);  
+  	plot_bitmap_16((UINT16 *) base, 80, 320, cowboy_bitmap_16, BITMAP_HEIGHT);  
 	plot_bitmap_16((UINT16 *) base, 96, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
 	plot_bitmap_16((UINT16 *) base, 112, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
 
-  plot_char((UINT8 *) base, 80, 300, '0');
+  	plot_char((UINT8 *) base, 80, 300, '0');
 	plot_char((UINT8 *) base, 88, 300, '0');
 	plot_char((UINT8 *) base, 96, 300, '0');
 	plot_char((UINT8 *) base, 104, 300, '0');
