@@ -71,7 +71,9 @@ void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigne
 
 /********************************************************************************************
 Function Name: plot_bitmap_32
-Details: 
+Details: This function is used to plot a size 32 bitmap to the screen by ORing. 
+This will be used for the cowboy, snakes, and cactus in the game as they appear and travel across
+the screen.
 
 *********************************************************************************************/
 
