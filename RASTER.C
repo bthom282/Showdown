@@ -1,7 +1,7 @@
 #include "raster.h"
 /*******************************************************************************************
-Purpose: A library containing routines for plotting static images like lines, shapes, and 
-bitmaps to the frame buffer
+Purpose: A library containing routines for plotting or clearing static images to the 
+frame buffer.
 ____________________________________________________________________________________________
 
 Function Name: plot_bitmap_16
