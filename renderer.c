@@ -4,7 +4,7 @@
 /*arrays of messages to be print in game*/
 const UINT8 score[] = {'S','C','O','R','E','\0'};
 const UINT8 lives[] = {'L','I','V','E','S','\0'};
-const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
+const UINT8 gameOver[] = {'G','A','M','E',' ','O','V','E','R','\0'};
 
 /*arrays of spawn positions for snake enemies*/
 const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
