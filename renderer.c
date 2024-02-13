@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "BITMAPS.H"
 
 /*arrays of messages to be print in game*/
 const UINT8 score[] = {'S','C','O','R','E','\0'};
