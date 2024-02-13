@@ -33,10 +33,8 @@ void plot_vline(char *base, int x, int s_y, int e_y)
 /********************************************************************************************
 Function Name: plot_bitmap_16
 Details: This function plots a 16x16 bitmap with XOR to specifically print white onto our black
-side panel for lives and possibly other deatils. It can be modified to print white onto black 
+side panel for lives and possibly other details. It can be modified to print black onto white 
 by changing the "^=" to "=" if we need any 16x16 bitmaps in our play area.
-
-
 
 *********************************************************************************************/
 
@@ -53,7 +51,7 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned
 /********************************************************************************************
 Function Name: clear_bitmap_16
 Details: This function clearing a 16x16 bitmap with OR to specifically clear white bitmaps
-(cowboy lives) on our black side panel for lives and possibly other deatils. It can be 
+(cowboy lives) on our black side panel for lives and possibly other details. It can be 
 modified to clear black text on white background by changing the "|=" to "^=" if we need 
 to clear any 16x16 bitmaps in our play area.
 
@@ -162,7 +160,8 @@ void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned in
 
 /********************************************************************************************
 Function Name: plot_char
-Details: 
+Details: This function is used to plot white text to the black side panel. It can be modified to print 
+black onto white by changing the "^=" to "=" if we need any text bitmaps in our play area.
 
 *********************************************************************************************/
 
