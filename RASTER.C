@@ -4,36 +4,6 @@ Purpose: A library containing routines for plotting static images like lines, sh
 bitmaps to the frame buffer
 ____________________________________________________________________________________________
 
-Function Name: plot_pixel
-Details: 
-
-*********************************************************************************************/
-
-void plot_pixel(char *base, int x, int y)
-{
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
-		*(base + y * 80 + (x >> 3)) |= 1 << 7 - (x & 7);
-}
-		
-/********************************************************************************************
-Function Name: plot_vline
-Details: This function plots a vertical line
-
-*********************************************************************************************/
-
-void plot_vline(char *base, int x, int s_y, int e_y)
-{
-	int i; 
-	for (i = s_y; i < (e_y - s_y); i--) {
-		if (x >= 0 && x < SCREEN_WIDTH && s_y >= 0 && e_y >= 0 && s_y < SCREEN_HEIGHT && e_y < SCREEN_HEIGHT) {
-			*(base + s_y * 80 + (x >> 3)) ^= 1 << 7 - (x & 7);
-			base += 80;
-		}
-	}
-	return;
-}
-
-/********************************************************************************************
 Function Name: plot_bitmap_16
 Details: This function plots a 16x16 bitmap with XOR to specifically print white onto our black
 side panel for lives and possibly other details. It can be modified to print black onto white 
