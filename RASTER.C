@@ -1,5 +1,8 @@
 #include "raster.h"
 
+Purpose: A library containing routines for plotting static images like lines, shapes, and 
+bitmaps to the frame buffer
+
 /********************************************************************************************
 Function Name: plot_pixel
 Details: 
