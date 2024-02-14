@@ -42,17 +42,14 @@ void move_snake(Snake *snake)
 	clear_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*conditions to exit the spawning areas*/
-	if(snake->x < X_MIN) {
-		snake->x++;
-		}
-	else if(snake->x > X_MAX) {
-		snake->x--;
-		}
-	else if(snake->y < Y_MIN) {
-		snake->y++;
-	else if(snake->y > Y_MAX) {
-		snake->y--;
-		}
+	if(snake->x < X_MIN)
+		{snake->x++;}
+	else if(snake->x > X_MAX) 
+		{snake->x--;}
+	else if(snake->y < Y_MIN)
+		{snake->y++;}
+	else if(snake->y > Y_MAX)
+		{snake->y--;}
 	/*conditions for snake movement once in play*/
 	else {
 		x_distance = snake->x - cowbow->x
