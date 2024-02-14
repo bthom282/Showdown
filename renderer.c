@@ -8,8 +8,14 @@ Purpose:
 
 /*arrays of messages to be print in game*/
 const UINT8 score[] = {'S','C','O','R','E','\0'};
+const UINT8 p1_score_arr[] = {'0','0','0','0','0','\0'};
+const UINT8 p2_score_arr[] = {'0','0','0','0','0','\0'};
 const UINT8 lives[] = {'L','I','V','E','S','\0'};
-const UINT8 gameOver[] = {'G','A','M','E',' ','O','V','E','R','\0'};
+const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
+const UINT8 player1[] = {'P','L','A','Y','E','R',' ','1','\0'};
+const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
+const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
+const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
 /*arrays of spawn positions for snake enemies*/
 const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
