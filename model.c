@@ -200,7 +200,7 @@ Function Name: 	game_quit
 
 Details: 	This function sets the isPlaying bool to false to exit the game loop. 	
 
-Sample Call:
+Sample Call:	game_quit(isPlaying)
 
 *********************************************************************************************/
 
