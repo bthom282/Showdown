@@ -1,7 +1,7 @@
 #include "raster.h"
 /*******************************************************************************************
-Purpose: A library containing routines for plotting or clearing static images to the 
-	frame buffer.
+Purpose:	A library containing routines for plotting or clearing static images to the 
+		frame buffer.
 ____________________________________________________________________________________________
 
 Function Name: 	plot_bitmap_16
@@ -111,10 +111,10 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int
 }
 
 /********************************************************************************************
-Function Name: clear_bitmap_8
-Details: This function is used to clear a size 8 bitmap from the screen by XORing over the 
-previously plotted bitmap. This will be used for the bullets in the game as they travel across
-the screen.
+Function Name: 	clear_bitmap_8
+Details: 	This function is used to clear a size 8 bitmap from the screen by XORing over 
+		the previously plotted bitmap. This will be used for the bullets in the game 
+		as they travel across the screen.
 
 *********************************************************************************************/
 
@@ -134,9 +134,10 @@ void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned in
 }
 
 /********************************************************************************************
-Function Name: plot_char
-Details: This function is used to plot white text to the black side panel. It can be modified to print 
-black onto white by changing the "^=" to "=" if we need any text bitmaps in our play area.
+Function Name: 	plot_char
+Details: 	This function is used to plot white text to the black side panel. It can be 
+		modified to print black onto white by changing the "^=" to "=" if we need any 
+		text bitmaps in our play area.
 
 *********************************************************************************************/
 
