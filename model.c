@@ -1,7 +1,8 @@
 /******************************************************************************************
 Names: Adam Cole, Brooklyn Thomson
 
-Purpose: 
+Purpose: Implements functions for manipulating objects according to their specified 
+	 behaviours.
 
 *******************************************************************************************/
 #include "model.h"
