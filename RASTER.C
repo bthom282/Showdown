@@ -1,4 +1,6 @@
 /*******************************************************************************************
+Names:		Adam Cole, Brooklyn Thomson
+
 Purpose:	A library containing routines for plotting or clearing static images to the 
 		frame buffer.
 *******************************************************************************************/
