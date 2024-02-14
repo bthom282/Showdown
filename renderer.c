@@ -1,7 +1,9 @@
 /**************************************************************************************
 Names:		Adam Cole, Brooklyn Thomson
 
-Purpose:	
+Purpose:	Links the model with the low-level graphics library, so that it is 
+		possible to render an individual, static frame of animation based on 
+  		a static snapshot of the world.
 **************************************************************************************/
 #include "renderer.h"
 #include "BITMAPS.H"
