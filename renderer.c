@@ -43,10 +43,6 @@ while (isPlaying) {
 
 
 
-
-
-
-
 }
 
 void game_start() {
@@ -62,10 +58,10 @@ void game_start() {
 	int p1_score_value;
 	int p2_score_value;
 	
-	p1_lives_count = 10;
-	p2_lives_count = 10;
-	p1_score_value = 300;
-	p2_score_value = 5500;
+	p1_lives_count = 3;
+	p2_lives_count = 3;
+	p1_score_value = 0;
+	p2_score_value = 0;
 	
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	/*clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);*/
@@ -109,7 +105,6 @@ void game_start() {
 		
 	update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_lives);
 	update_lives ((UINT16 *) base, p1_lives_count, 252, cowgirl_lives);
-
 
 	plot_char((UINT8 *) base, 80, 300, '0');
 	plot_char((UINT8 *) base, 88, 300, '0');
