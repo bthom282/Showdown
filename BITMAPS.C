@@ -1,4 +1,6 @@
 /****************************************************
+Names:    Adam Cole, Brooklyn Thomson
+
 Purpose:  A library containing all bitmaps.
 
 ****************************************************/
