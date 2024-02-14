@@ -42,13 +42,15 @@ Size size;
 typedef struct            /* type definition for lives object */
 {
 int lives;
-Position position;        /* position coordinates */
+Position position;        /* position coordinates (player 1 lives position begins at  (80,320)
+                              player 2 lives position begins at  (80,252)) */
 } Lives;
 
 typedef struct            /* type definition for score object */
 {
 int score;
-Position position;        /* position coordinates */
+Position position;        /* position coordinates (player 1 lives position begins at  (80,300)
+                              player 2 lives position begins at  (80,232))*/
 } Score;
 
 typedef struct            /* type definition for cactus object */
