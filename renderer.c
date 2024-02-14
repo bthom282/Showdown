@@ -57,12 +57,18 @@ void game_start() {
 	UINT16 *loc = (UINT16 *) base;
 	int spawn_loc;
 	int x;
-	int lives_count;
-	int score_value;
-  	lives_count = 3;
+	int p1_lives_count;
+	int p2_lives_count;
+	int p1_score_value;
+	int p2_score_value;
+	
+	p1_lives_count = 10;
+	p2_lives_count = 10;
+	p1_score_value = 300;
+	p2_score_value = 5500;
 	
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
-	clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+	/*clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);*/
 	for(i = 0; i < 128; i += 32){
 		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT);
 		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT);
@@ -80,25 +86,40 @@ void game_start() {
 		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT);
 	}
 	
+	/*Fill side panel.*/
+	
 	for (k = 0; k < SCREEN_HEIGHT; k++){ 
 		for (j = 0; j < 16; j++) {
 			*(loc++) = -1;
 		}
 		loc += 24;
 	}
-  
-  	print_message((UINT8 *) base, lives, 32, 328);
+	
+	/*prints player 1 lives and score label*/
+	
+	print_message((UINT8 *) base, player1, 32, 280);
 	print_message((UINT8 *) base, score, 32, 300);
-  
-  	plot_bitmap_16((UINT16 *) base, 80, 320, cowboy_bitmap_16, BITMAP_HEIGHT);  
-	plot_bitmap_16((UINT16 *) base, 96, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
-	plot_bitmap_16((UINT16 *) base, 112, 320, cowboy_bitmap_16, BITMAP_HEIGHT);
+	print_message((UINT8 *) base, lives, 32, 320);
+	
+	/*if two player mode toggled, prints player 2 lives and score label*/
+	
+	print_message((UINT8 *) base, player2, 32, 212);
+	print_message((UINT8 *) base, score, 32, 232);
+	print_message((UINT8 *) base, lives, 32, 252);
+		
+	update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_lives);
+	update_lives ((UINT16 *) base, p1_lives_count, 252, cowgirl_lives);
 
-  	plot_char((UINT8 *) base, 80, 300, '0');
+
+	plot_char((UINT8 *) base, 80, 300, '0');
 	plot_char((UINT8 *) base, 88, 300, '0');
 	plot_char((UINT8 *) base, 96, 300, '0');
 	plot_char((UINT8 *) base, 104, 300, '0');
 	plot_char((UINT8 *) base, 112, 300, '0');
-  
-  
+	
+	plot_char((UINT8 *) base, 80, 232, '0');
+	plot_char((UINT8 *) base, 88, 232, '0');
+	plot_char((UINT8 *) base, 96, 232, '0');
+	plot_char((UINT8 *) base, 104, 232, '0');
+	plot_char((UINT8 *) base, 112, 232, '0');
 }
