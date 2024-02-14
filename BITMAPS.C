@@ -1,8 +1,9 @@
-#include "BITMAPS.H"
 /****************************************************
 Purpose:  A library containing all bitmaps.
 
 ****************************************************/
+#include "BITMAPS.H"
+
 
 const UINT32 cowboy_bitmap[] =
 {
