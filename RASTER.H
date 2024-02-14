@@ -16,8 +16,6 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned i
 void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height);
 void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height);
 void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height);
-void plot_pixel(char *base, int x, int y);
 void plot_char(UINT8 *base, int x, int y, char c);
-void plot_vline(char *base, int x, int s_y, int e_y);
 
 #endif
