@@ -126,7 +126,7 @@ const UINT32 cactus_bitmap[] =
 };
 
 /*lives bitmaps for player 1*/
-const UINT16 cowboy_bitmap_16[BITMAP_HEIGHT] =
+const UINT16 cowboy_lives[BITMAP_HEIGHT] =
 {
 0x0760, 0x0890, 0x2814, 0x581A,
 0x4002, 0x2004, 0x1FF8, 0x1A58,
@@ -135,7 +135,7 @@ const UINT16 cowboy_bitmap_16[BITMAP_HEIGHT] =
 };
 
 /*lives bitmaps for player 2*/
-const UINT16 cowgirl_bitmap_16[BITMAP_HEIGHT] =
+const UINT16 cowgirl_lives[BITMAP_HEIGHT] =
 {
 0x03C0, 0x0420, 0x2814, 0x581A,
 0x4002, 0x2004, 0x1FF8, 0x1A58,
