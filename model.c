@@ -53,19 +53,19 @@ void move_snake(Snake *snake)
 		{snake->y--;}
 	/*conditions for snake movement once in play*/
 	else {
-		x_distance = snake->x - cowbow->x
+		x_distance = snake->x - cowbow->x;
 		
 		if (x_distance > 0)
 			{snake->x--;}
 		if (x_distance < 0)
-			{snake->x++}
+			{snake->x++;}
 		
-		y_distance = snake->y - cowbow->y
+		y_distance = snake->y - cowbow->y;
 		
 		if (y_distance > 0)
 			{snake->y--;}
 		if (y_distance < 0)
-			{snake->y++}
+			{snake->y++;}
 	}	
 	/*replot snake bitmap at new coordinates*/
 	plot_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
