@@ -65,7 +65,7 @@ void move_snake(Snake *snake)
 			{snake->y--;}
 		if (y_distance < 0)
 			{snake->y++}
-		
+	}	
 	/*replot snake bitmap at new coordinates*/
 	plot_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
