@@ -1,9 +1,10 @@
-#include "raster.h"
 /*******************************************************************************************
 Purpose:	A library containing routines for plotting or clearing static images to the 
 		frame buffer.
-____________________________________________________________________________________________
+*******************************************************************************************/
+#include "raster.h"
 
+/*******************************************************************************************
 Function Name: 	plot_bitmap_16
 
 Details: 	This function plots a 16x16 bitmap with XOR to specifically print white onto our black
