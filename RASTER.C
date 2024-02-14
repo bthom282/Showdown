@@ -9,9 +9,10 @@ Purpose:	A library containing routines for plotting or clearing static images to
 /*******************************************************************************************
 Function Name: 	plot_bitmap_16
 
-Details: 	This function plots a 16x16 bitmap with XOR to specifically print white onto our black
-		side panel for lives and possibly other details. It can be modified to print black 
-		onto white by changing the "^=" to "=" if we need any 16x16 bitmaps in our play area.
+Details: 	This function plots a 16x16 bitmap with XOR to specifically print white onto 
+		our black side panel for lives and possibly other details. It can be modified 
+		to print black onto white by changing the "^=" to "=" if we need any 16x16 
+		bitmaps in our play area.
 
 *********************************************************************************************/
 
@@ -28,10 +29,10 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned
 /********************************************************************************************
 Function Name: 	clear_bitmap_16
 
-Details: 	This function clearing a 16x16 bitmap with OR to specifically clear white bitmaps
-		(cowboy lives) on our black side panel for lives and possibly other details. It can 
-		be modified to clear black text on white background by changing the "|=" to "^=" if 
-		we need to clear any 16x16 bitmaps in our play area.
+Details: 	This function clearing a 16x16 bitmap with OR to specifically clear white 
+		bitmaps (cowboy lives) on our black side panel for lives and possibly other 
+		details. It can be modified to clear black text on white background by changing 
+		the "|=" to "^=" if we need to clear any 16x16 bitmaps in our play area.
 
 *********************************************************************************************/
 
