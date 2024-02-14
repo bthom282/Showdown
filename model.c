@@ -21,7 +21,7 @@ void move_bullet(Bullet *bullet)
   bullet->y += bullet->delta_y;
 	
   /*check for collision.*/
-  checkcollision(Bullet bounding box, Snake bounding box);
+  checkcollision(Bullet boundingBox, Snake boundingBox);
 }
 
 /*******************************************************************************************
@@ -73,7 +73,7 @@ void move_snake(Snake *snake)
 	plot_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*check for collision.*/
-	checkcollision(Snake bounding box, Cowboy bounding box);
+	checkcollision(Snake boundingBox, Cowboy boundingBox);
 		
 }
 
