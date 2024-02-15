@@ -86,7 +86,10 @@ Sample Call:
 
 void move_cowboy(Cowboy *cowboy)
 {
-
+if (cowboy->isMoving) {
+	clear_bitmap_32((UINT32 *) base, cowboy->x, cowboy->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+	
+	
 }
 
 /*******************************************************************************************
