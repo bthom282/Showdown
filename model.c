@@ -42,7 +42,7 @@ void move_bullet(Bullet *bullet)
 	/*[colission detection here]*/
 	int i;
 	for(i = 0; i < bullets_fill; i++) {
-		if(checkcollision(Bullet boundingBox, active_snakes[i] boundingBox)) {
+		if(checkCollision(Bullet boundingBox, active_snakes[i] boundingBox)) {
 			snake_death(active_snake[i], i);
 		}
 	}
