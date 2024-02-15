@@ -97,10 +97,10 @@ int horizontalFiringDirection;	/*fire_x = 0 & fire_y = 1 = firing down, fire_x =
 int state; 		        /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
 							           3 - moving right, 4 - moving left, 5 moving up} 
 	     						           example: cowboy_bitmap[state*32]*/
-const UINT32 bitmap = cowboy_bitmap[];
 Score score;		   /* default initial score is 00000 */
 Lives lives;		   /* default starting lives = 3 */
 BoundingBox boundingBox;
+const UINT32 bitmap = cowboy_bitmap;
 } Cowboy;
 
 typedef struct             /* type definition for snake object */
@@ -118,7 +118,7 @@ int verticalVelocity;
 Position target;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
-const UINT32 bitmap = snake_bitmap[state*32];
 BoundingBox boundingBox;
 int isDead;
+const UINT32 bitmap = snake_bitmap;
 } Snake;
