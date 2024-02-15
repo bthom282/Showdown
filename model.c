@@ -43,7 +43,7 @@ void move_bullet(Bullet *bullet)
 	int i;
 	for(i = 0; i < bullets_fill; i++) {
 		if(checkcollision(Bullet boundingBox, active_snakes[i] boundingBox)) {
-			snake_death(active_snake[i]);
+			snake_death(active_snake[i], i);
 		}
 	}
 }
@@ -59,13 +59,12 @@ Sample Call: 	delete_bullet(active_bullets[i]);
 
 *********************************************************************************************/
 
-void delete_bullet (Bullet *bullet) {
-	if (index >= 0 && index < bulletList->fill_level) {
+void delete_bullet (Bullet *bullet, int index) {
+	if (index >= 0 && index < bullet_fill) {
         	active_bullets[index] = active_bullets[bullet_fill - 1];
         	bullet_fill--;
    	 }
 }
-
 /*******************************************************************************************
 Function Name: 	move_snake
 
@@ -114,6 +113,24 @@ void move_snake(Snake *snake)
 	/*check for collision.*/
 	checkcollision(Snake boundingBox, Cowboy boundingBox);
 		
+}
+
+/*******************************************************************************************
+Function Name: 	snake_death
+
+Details: 	This function is called every time a snake is killed by a bullet and is removed
+		from play.
+
+Sample Call:
+
+*********************************************************************************************/
+
+void snake_death(Snake *snake, int index) {
+    /*possible snake death animation here*/
+    if (index >= 0 && index < snakes_fill) {
+        active_snakes[index] = active_snakes[snakes_fill - 1];
+        snakes_fill--;
+    }
 }
 
 /*******************************************************************************************
