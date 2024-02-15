@@ -33,10 +33,11 @@ int height;
 int width;
 } Size;
 
-typedef struct 
-{
-Position position;
-Size size; 
+typedef struct {
+    int top;
+    int bottom;
+    int left;
+    int right;
 } BoundingBox;
 
 typedef struct            /* type definition for lives object */
