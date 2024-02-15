@@ -23,11 +23,16 @@ Sample Call:
 
 void move_bullet(Bullet *bullet)
 {
-  bullet->x += bullet->delta_x;
-  bullet->y += bullet->delta_y;
-	
-  /*check for collision.*/
-  checkcollision(Bullet boundingBox, Snake boundingBox);
+	clear_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
+	bullet->position->x += bullet->x_dir*bullet->speed;
+  	bullet->position_y->y += bullet->y_dir*bullet->speed;
+	if ((380>=bullet->position->y>=0)||(256>=bullet->position->x>=632)) {
+		plot_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
+	}
+	/*[colission detection here]*/
+	int i;
+	for(i = 0; i < 
+	  checkcollision(Bullet boundingBox, Snake boundingBox);
 }
 
 /*******************************************************************************************
