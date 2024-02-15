@@ -54,6 +54,8 @@ Position position;        /* position coordinates (player 1 lives position begin
                               player 2 lives position begins at  (80,232))*/
 } Score;
 
+/*the cactus struct will propbably not get used as we instead set up movement boundary conditions */
+
 typedef struct            /* type definition for cactus object */
 {
 Position position;         /* position coordinates */
