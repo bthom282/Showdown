@@ -7,6 +7,8 @@
 
 void move_bullet(Bullet *bullet);
 
+void delete_bullet (Bullet *bullet, int index);
+
 void move_snake(Snake *snake);
 
 void snake_death(Snake *snake, int index);
