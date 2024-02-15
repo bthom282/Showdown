@@ -41,14 +41,14 @@ Size size;
 
 typedef struct            /* type definition for lives object */
 {
-int lives;
+int lives;		  /* default starting lives = 3 */
 Position position;        /* position coordinates (player 1 lives position begins at  (80,320)
                               player 2 lives position begins at  (80,252)) */
 } Lives;
 
 typedef struct            /* type definition for score object */
 {
-int score;
+int score;		  /* default initial score is 00000 */
 Position position;        /* position coordinates (player 1 lives position begins at  (80,300)
                               player 2 lives position begins at  (80,232))*/
 } Score;
@@ -78,6 +78,8 @@ bool isMoving;
 bool isFiring;
 int verticalFiringDirection;
 int horizontalFiringDirection;
+Score score;		   /* default initial score is 00000 */
+Lives lives;		   /* default starting lives = 3 */
 BoundingBox boundingBox;
 } Cowboy;
 
