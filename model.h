@@ -68,7 +68,7 @@ BoundingBox boundingBox;
 
 typedef struct             /* type definition for cowboy object */
 {
-Position position;        /* position coordinates */
+Position position;        /* position coordinates, 1 player cowboy's initial position is (424, 184) */
 Size size;
 int horizontalDirection;   /* direction the cowboy is facing*/
 int verticalDirection;
@@ -83,7 +83,11 @@ BoundingBox boundingBox;
 
 typedef struct             /* type definition for snake object */
 {
-Position position;          /* position coordinates */
+Position position;         /* position coordinates, snakes initially spawn in locations based on a randomizer */
+	                         /* 16 spawn coordinates = {(384,0),(416,0),(448,0),(480,0),
+								                              (256,128),(256,160),(256,192),(256,224),
+								                              (608,128),(608,160),(608,192),(608,224),
+								                              (384,352),(416,352),(448,352),(480,352)} */
 Size size;
 int horizontalDirection;    /* direction the snake is facing*/
 int verticalDirection;
