@@ -63,7 +63,8 @@ BoundingBox boundingBox;
 typedef struct             /* type definition for bullet object */
 {
 Position position;         /* position coordinates */
-int delta_x, delta_y;      /* horiz. & vert. displacement per clock tick */
+int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
+int speed;      	   /* displacement per clock tick for x and y displacement*/
 BoundingBox boundingBox;
 } Bullet;
 
