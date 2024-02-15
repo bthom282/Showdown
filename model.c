@@ -7,7 +7,10 @@ Purpose: Implements functions for manipulating objects according to their specif
 *******************************************************************************************/
 #include "model.h"
 
-
+Bullet active_bullets[20];  /*array for active bullet structs*/
+Snake active_snakes[30];    /*array for active snakes structs*/
+int bullets_fill = 0;
+int snakes_fill = 0;
 
 /*******************************************************************************************
 Function Name: 	move_bullet
