@@ -9,6 +9,8 @@ void move_bullet(Bullet *bullet);
 
 void move_snake(Snake *snake);
 
+void snake_death(Snake *snake, int index);
+
 void move_cowboy(Cowboy *cowboy);
 
 void cowboy_death (int *lives_count);
