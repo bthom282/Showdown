@@ -25,7 +25,6 @@ Sample Call:
 		for(i = 0; i < bullets_fill; i++) {
 			move_bullet(active_bullets[i]);
  		}
-
 *********************************************************************************************/
 
 void move_bullet(Bullet *bullet)
@@ -55,8 +54,6 @@ Details: 	This function is called every time a bullet leaves the play area by go
 		of bounds or by striking an enemy.
 
 Sample Call: 	delete_bullet(active_bullets[i]);
-		
-
 *********************************************************************************************/
 
 void delete_bullet (Bullet *bullet, int index) {
@@ -70,8 +67,10 @@ Function Name: 	move_snake
 
 Details: 	This function is called every cycle
 
-Sample Call:
-
+Sample Call:	int i;
+		for(i = 0; i < snake_fill;i++) {
+  			move_snake(active_snakes[i]);
+     		}
 *********************************************************************************************/
 
 /*Need to check with Marc if we need to pass in bitmaps and bounding boxes for the move_snake function*/
@@ -121,8 +120,7 @@ Function Name: 	snake_death
 Details: 	This function is called every time a snake is killed by a bullet and is removed
 		from play.
 
-Sample Call:
-
+Sample Call:	snake_death(active_snakes[i]);
 *********************************************************************************************/
 
 void snake_death(Snake *snake, int index) {
@@ -145,8 +143,10 @@ Sample Call:
 void move_cowboy(Cowboy *cowboy)
 {
 if (cowboy->isMoving) {
-	clear_bitmap_32((UINT32 *) base, cowboy->x, cowboy->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
-	
+	clear_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+	cowboy->postion->x += cowboy->x_dir*cowboy->speed;
+	cowboy->position->y += cowboy->y_dir*cowboy->speed;
+	if 
 	
 }
 
