@@ -69,49 +69,46 @@ Details: 	This function is called every cycle
 
 Sample Call:	int i;
 		for(i = 0; i < snake_fill;i++) {
-  			move_snake(active_snakes[i]);
+  			move_snake(active_snakes[i], cowboy);
      		}
 *********************************************************************************************/
 
-/*Need to check with Marc if we need to pass in bitmaps and bounding boxes for the move_snake function*/
-
-void move_snake(Snake *snake)
+void move_snake(Snake *snake, Cowboy *cowboy)
 {
 	int x_distance;
 	int y_distance;
-	clear_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
+	clear_bitmap_32((UINT32 *) base, snake->position->x, snake->position->y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*conditions to exit the spawning areas*/
-	if(snake->x < X_MIN)
-		{snake->x++;}
-	else if(snake->x > X_MAX) 
-		{snake->x--;}
-	else if(snake->y < Y_MIN)
-		{snake->y++;}
-	else if(snake->y > Y_MAX)
-		{snake->y--;}
+	if(snake->position->x < X_MIN)
+		{snake->position->x++;}
+	else if(snake->position->x > X_MAX) 
+		{snake->position->x--;}
+	else if(snake->position->y < Y_MIN)
+		{snake->position->y++;}
+	else if(snake->position->y > Y_MAX)
+		{snake->position->y--;}
 	/*conditions for snake movement once in play*/
 	else {
-		x_distance = snake->x - cowbow->x;
+		x_distance = snake->position->x - cowbow->position->x;
 		
 		if (x_distance > 0)
-			{snake->x--;}
+			{snake->position->x--;}
 		if (x_distance < 0)
-			{snake->x++;}
+			{snake->position->x++;}
 		
 		y_distance = snake->y - cowbow->y;
 		
 		if (y_distance > 0)
-			{snake->y--;}
+			{snake->position->y--;}
 		if (y_distance < 0)
-			{snake->y++;}
+			{snake->position->y++;}
 	}	
 	/*replot snake bitmap at new coordinates*/
 	plot_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*check for collision.*/
-	checkcollision(Snake boundingBox, Cowboy boundingBox);
-		
+	checkCollision(snake->boundingBox, cowboy->boundingBox);
 }
 
 /*******************************************************************************************
@@ -146,7 +143,9 @@ if (cowboy->isMoving) {
 	clear_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	cowboy->postion->x += cowboy->x_dir*cowboy->speed;
 	cowboy->position->y += cowboy->y_dir*cowboy->speed;
-	if 
+	if (cowboy->postion->x > X_MAX)
+		cowboy->postion->x = X_MAX;
+	
 	
 }
 
