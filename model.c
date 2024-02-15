@@ -15,9 +15,16 @@ int snakes_fill = 0;
 /*******************************************************************************************
 Function Name: 	move_bullet
 
-Details: 		
+Details: 	This function is called every cycle to move any active bullets at their constant
+		speed in the direction they were fired. After the movement is calculated, if checks
+  		to see if the bullet is out of bounds, and therefore not replotted, or if there is a 
+    		collision with a snake. 
 
-Sample Call:
+Sample Call: 
+		int i;
+		for(i = 0; i < bullets_fill; i++) {
+			move_bullet(active_bullets[i]);
+ 		}
 
 *********************************************************************************************/
 
@@ -28,6 +35,9 @@ void move_bullet(Bullet *bullet)
   	bullet->position_y->y += bullet->y_dir*bullet->speed;
 	if ((380>=bullet->position->y>=0)||(256>=bullet->position->x>=632)) {
 		plot_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
+	}
+	else {
+		delete_bullet(bullet);
 	}
 	/*[colission detection here]*/
 	int i;
@@ -41,7 +51,7 @@ void move_bullet(Bullet *bullet)
 /*******************************************************************************************
 Function Name: 	move_snake
 
-Details: 	This function 	
+Details: 	This function is called every cycle
 
 Sample Call:
 
