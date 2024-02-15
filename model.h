@@ -2,6 +2,9 @@
 #define X_MAX 576
 #define Y_MIN 32
 #define Y_MAX 320
+#define NULL 0
+#define TRUE 1
+#define FALSE 0
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
 
