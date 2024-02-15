@@ -141,7 +141,7 @@ Sample Call:	move_cowboy(cowboy);
 
 void move_cowboy(Cowboy *cowboy)
 {
-if (cowboy->isMoving) {
+if (cowboy->isMoving == TRUE) {
 	clear_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	cowboy->postion->x += cowboy->x_dir*cowboy->speed;
 	cowboy->position->y += cowboy->y_dir*cowboy->speed;
@@ -235,8 +235,8 @@ Details: 	This function is triggered when the player has run out of lives. It wi
 Sample Call:
 
 *********************************************************************************************/
-
-void game_over((UINT8 *)base, bool isPlaying) {
+/*
+void game_over((UINT8 *)base, int *isPlaying) {
 	int i,j;
 	for (i = 0; i < 284; i += 12) {
 		for (j = 0; j < 200; j += 80) {
@@ -262,7 +262,7 @@ void game_over((UINT8 *)base, bool isPlaying) {
 		game_quit(isPlaying)
 	}
 }
-
+*/
 /*******************************************************************************************
 Function Name: 	game_quit
 
@@ -271,12 +271,12 @@ Details: 	This function sets the isPlaying bool to false to exit the game loop.
 Sample Call:	game_quit(isPlaying)
 
 *********************************************************************************************/
-
-void game_quit(bool *isPlaying)
+/*
+void game_quit(int *isPlaying)
 {
 	isPlaying = FALSE;
 }
-
+*/
 /*******************************************************************************************
 Function Name: 	print_message
 
