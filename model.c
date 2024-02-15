@@ -144,8 +144,14 @@ if (cowboy->isMoving) {
 	cowboy->postion->x += cowboy->x_dir*cowboy->speed;
 	cowboy->position->y += cowboy->y_dir*cowboy->speed;
 	if (cowboy->postion->x > X_MAX)
-		cowboy->postion->x = X_MAX;
-	
+		{cowboy->postion->x = X_MAX;}
+	if (cowboy->postion->x < X_MIN)
+		{cowboy->postion->x = X_MIN;}
+	if (cowboy->postion->y > Y_MAX)
+		{cowboy->postion->y = Y_MAX;}
+	if (cowboy->postion->y > X_MIN)
+		{cowboy->postion->y = X_MIN;}
+	plot_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	
 }
 
