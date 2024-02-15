@@ -66,7 +66,9 @@ typedef struct             /* type definition for bullet object */
 {
 Position position;         /* position coordinates */
 int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
-int speed;      	   /* displacement per clock tick for x and y displacement*/
+			   /* x = -1 (traveling left), x = 1 (traveling right),
+      			      y = -1 (traveling up), y = 1 (traveling down) */
+int speed = 3;      	   /* displacement per clock tick for x and y displacement*/
 BoundingBox boundingBox;
 } Bullet;
 
@@ -74,17 +76,24 @@ typedef struct             /* type definition for cowboy object */
 {
 Position position;        /* position coordinates, 1 player cowboy's initial position is (424, 184) */
 Size size;
-int horizontalDirection;   /* direction the cowboy is facing*/
+int horizontalDirection;   
 int verticalDirection;
+int y_dir, x_dir;	   /* direction the cowboy is facing for displacement */
+			   /* x = -1 (traveling left), x = 1 (traveling right),
+      			      y = -1 (traveling up), y = 1 (traveling down) */
+int speed = 2;		   /* displacement per clock tick for x and y displacement*/
 int horizontalVelocity;    /* horiz. & vert. displacement per clock tick */
 int verticalVelocity;
 bool isMoving;
 bool isFiring;
-int verticalFiringDirection;
-int horizontalFiringDirection;
-int state; 		   /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
-							      3 - moving right, 4 - moving left, 5 moving up} */
-const UINT32 bitmap = cowboy_bitmap[state*32];
+int verticalFiringDirection;	/*fire_x = 1 & fire_y = 0 = firing right, fire_x = 1 & fire_y = 1 = firing 45 degree angle towards bottom right */
+int horizontalFiringDirection;	/*fire_x = 0 & fire_y = 1 = firing down, fire_x = -1 & fire_y = 1 = firing 45 degree angle towards bottom left */
+				/*fire_x = -1 & fire_y = 0 = firing left, fire_x = -1 & fire_y = -1 = firing 45 degree angle towards top left*/
+    				/*fire_x = 0 & fire_y = -1 = firing up, fire_x = 1 & fire_y = -1 = firing 45 degree angle towards top right */
+int state; 		        /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
+							           3 - moving right, 4 - moving left, 5 moving up} 
+	     						           example: cowboy_bitmap[state*32]*/
+const UINT32 bitmap = cowboy_bitmap[];
 Score score;		   /* default initial score is 00000 */
 Lives lives;		   /* default starting lives = 3 */
 BoundingBox boundingBox;
