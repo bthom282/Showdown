@@ -7,6 +7,8 @@ Purpose: Implements functions for manipulating objects according to their specif
 *******************************************************************************************/
 #include "model.h"
 
+
+
 /*******************************************************************************************
 Function Name: 	move_bullet
 
