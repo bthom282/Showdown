@@ -105,7 +105,7 @@ Details: 	This function updates the lives count, called the update lives functio
   		calling the game_over function. If lives remaining, triggers the respawn
     		function.
 
-Sample Call:
+Sample Call:	cowboy_death (*cowboy->lives_count);	
 
 *********************************************************************************************/
 
@@ -160,8 +160,7 @@ Sample Call:	respawn(player1);
 
 void respawn(Cowboy *cowboy) {
 	player->x = 424;
-	player->y = 184
-	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT;
+	player->y = 184;
 	/* invulnerability frames code here, asking Marc */
 }
 
