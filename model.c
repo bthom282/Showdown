@@ -49,6 +49,24 @@ void move_bullet(Bullet *bullet)
 }
 
 /*******************************************************************************************
+Function Name: 	delete_bullet
+
+Details: 	This function is called every time a bullet leaves the play area by going out 
+		of bounds or by striking an enemy.
+
+Sample Call: 	delete_bullet(active_bullets[i]);
+		
+
+*********************************************************************************************/
+
+void delete_bullet (Bullet *bullet) {
+	if (index >= 0 && index < bulletList->fill_level) {
+        	active_bullets[index] = active_bullets[bullet_fill - 1];
+        	bullet_fill--;
+   	 }
+}
+
+/*******************************************************************************************
 Function Name: 	move_snake
 
 Details: 	This function is called every cycle
