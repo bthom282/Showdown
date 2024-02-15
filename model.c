@@ -131,9 +131,11 @@ void snake_death(Snake *snake, int index) {
 /*******************************************************************************************
 Function Name: 	move_cowboy
 
-Details: 	This function 	
+Details: 	This function uis called every cycle to check is the cowboy isMoving, the move
+		them the appropriate in the correct direction based on direction and speed. It
+  		also checks the play boundaries and won't allow them to exit the play area.
 
-Sample Call:
+Sample Call:	move_cowboy(cowboy);
 
 *********************************************************************************************/
 
@@ -278,7 +280,9 @@ void game_quit(bool *isPlaying)
 /*******************************************************************************************
 Function Name: 	print_message
 
-Details: 	 	
+Details: 	This function takes in a character array and prints it to the screen starting 
+		at the designated area. It advances automatically to print the full message,
+  		while using the provided font.c file for each character's bitmap.
 
 Sample Call:
 
