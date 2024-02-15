@@ -163,6 +163,7 @@ void respawn(Cowboy *cowboy) {
 	player->y = 184
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT;
 	/* invulnerability frames code here, asking Marc */
+}
 
 /*******************************************************************************************
 Function Name: 	game_over
