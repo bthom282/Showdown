@@ -203,4 +203,56 @@ void cowboy_death (int *lives_count) {
 		respawn();
 	}
 
+/*******************************************************************************************
+Function Name: 	game_over
 
+Details: 	This function is triggered when the player has run out of lives. It will 
+		print "game over" many times, then indicate the final score somehow, fill
+  		the screen black, then print a message promting the user to either continue
+    		or quit. 	
+
+Sample Call:
+
+*********************************************************************************************/
+/*
+void game_over((UINT8 *)base, int *isPlaying) {
+	int i,j;
+	for (i = 0; i < 284; i += 12) {
+		for (j = 0; j < 200; j += 80) {
+			print_message((UINT8 *) base, gameover, j, i);
+		}
+	}
+	
+	/* flash score a few times (clear, print, 5-times)*/
+	
+	/* clear screen */
+	
+	/* wait a few seconds */
+	
+	/* print message based on score */
+	
+	/* Ask player if they want to continue */
+	
+	print_message((UINT8 *) base, continue, [x], [y]);
+	if (y pressed) {
+		game_start();
+	}
+	if (n pressed) {
+		game_quit(isPlaying)
+	}
+}
+*/
+/*******************************************************************************************
+Function Name: 	game_quit
+
+Details: 	This function sets the isPlaying bool to false to exit the game loop. 	
+
+Sample Call:	game_quit(isPlaying)
+
+*********************************************************************************************/
+/*
+void game_quit(int *isPlaying)
+{
+	isPlaying = FALSE;
+}
+*/
