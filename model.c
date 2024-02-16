@@ -107,23 +107,6 @@ void move_snake(struct Snake *snake, struct Cowboy *cowboy)
 }
 
 /*******************************************************************************************
-Function Name: 	snake_death
-
-Details: 	This function is called every time a snake is killed by a bullet and is removed
-		from play.
-
-Sample Call:	snake_death(active_snakes[i]);
-*********************************************************************************************/
-
-void snake_death(struct Snake *snake, int index) {
-    /*possible snake death animation here*/
-    if (index >= 0 && index < snakes_fill) {
-        active_snakes[index] = active_snakes[snakes_fill - 1];
-        snakes_fill--;
-    }
-}
-
-/*******************************************************************************************
 Function Name: 	move_cowboy
 
 Details: 	This function is called every cycle to check is the cowboy isMoving, the move
@@ -152,31 +135,6 @@ void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32)
 		plot_bitmap_32((UINT32 *) base, cowboy->position->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	}
 }
-
-/*******************************************************************************************
-Function Name: 	cowboy_death
-
-Details: 	This function updates the lives count, called the update lives function, then
-		checks if there are lives remaining. If none, trigger game over sequence by 
-  		calling the game_over function. If lives remaining, triggers the respawn
-    		function.
-
-Sample Call:	cowboy_death (*cowboy->lives_count);	
-
-*********************************************************************************************/
-
-void cowboy_death (int *lives_count) {
-	/* possible death animation here */
-	if (lives_count == 1) {
-		lives_count--;
-		update_lives(lives);
-		gameover();
-	}
-	else {
-		lives_count--;
-		update_lives(lives);
-		respawn();
-	}
 
 /*******************************************************************************************
 Function Name: 	update_lives
