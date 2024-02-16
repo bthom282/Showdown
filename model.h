@@ -32,6 +32,8 @@ void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
 unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max);
 
+void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int snakes_fill, int *seed);
+
 typedef struct Model
 {
 Bullet bullet[MAX_BULLETS];
