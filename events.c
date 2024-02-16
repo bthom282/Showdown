@@ -6,6 +6,20 @@ Purpose:  Implements event-handling functions for each of the specified asynchro
 *******************************************************************************************/
 #include "events.h"
 
+Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
+Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
+int bullets_fill = 0;
+int snakes_fill = 0;
+UINT32 seed = 12345;
+
+/*******************************************************************************************
+Function Name: 	checkCollision
+
+Details: 	This function will compare bounding boxs of object to see if there is a collision.
+
+Sample Call:	
+*********************************************************************************************/
+
 int checkCollision(BoundingBox box1, BoundingBox box2) {
     /* Calculate the sides of the first box */
     int left1 = box1.position.x;
