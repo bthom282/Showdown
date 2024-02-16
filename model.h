@@ -107,6 +107,5 @@ struct Position target;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
 struct BoundingBox boundingBox;
-int isDead;
 const UINT32 bitmap = snake_bitmap;
 };
