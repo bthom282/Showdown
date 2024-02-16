@@ -77,35 +77,35 @@ void move_snake(struct Snake *snake, struct Cowboy *cowboy)
 {
 	int x_distance;
 	int y_distance;
-	clear_bitmap_32((UINT32 *) base, snake->position->x, snake->position->y, snake_bitmap_32, BITMAP_32_HEIGHT);
+	clear_bitmap_32((UINT32 *) base, snake->position.x, snake->position.y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*conditions to exit the spawning areas*/
-	if(snake->position->x < X_MIN)
-		{snake->position->x++;}
-	else if(snake->position->x > X_MAX) 
-		{snake->position->x--;}
-	else if(snake->position->y < Y_MIN)
-		{snake->position->y++;}
-	else if(snake->position->y > Y_MAX)
-		{snake->position->y--;}
+	if(snake->position.x < X_MIN)
+		{snake->position.x++;}
+	else if(snake->position.x > X_MAX) 
+		{snake->position.x--;}
+	else if(snake->position.y < Y_MIN)
+		{snake->position.y++;}
+	else if(snake->position.y > Y_MAX)
+		{snake->position.y--;}
 	/*conditions for snake movement once in play*/
 	else {
-		x_distance = snake->position->x - cowbow->position->x;
+		x_distance = snake->position.x - cowbow->position.x;
 		
 		if (x_distance > 0)
-			{snake->position->x--;}
+			{snake->position.x--;}
 		if (x_distance < 0)
-			{snake->position->x++;}
+			{snake->position.x++;}
 		
-		y_distance = snake->y - cowbow->y;
+		y_distance = snake->position.y - cowbow->position.y;
 		
 		if (y_distance > 0)
-			{snake->position->y--;}
+			{snake->position.y--;}
 		if (y_distance < 0)
-			{snake->position->y++;}
+			{snake->position.y++;}
 	}	
 	/*replot snake bitmap at new coordinates*/
-	plot_bitmap_32((UINT32 *) base, snake->x, snake->y, snake_bitmap_32, BITMAP_32_HEIGHT);
+	plot_bitmap_32((UINT32 *) base, snake->position.x, snake->position.y, snake_bitmap_32, BITMAP_32_HEIGHT);
 	
 	/*check for collision.*/
 	checkCollision(snake->boundingBox, cowboy->boundingBox);
