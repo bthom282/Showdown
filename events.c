@@ -29,6 +29,19 @@ int checkCollision(BoundingBox box1, BoundingBox box2) {
     }
 }
 
+/*******************************************************************************************
+Function Name: 	shooting
+
+Details: 	This function uses to fire bullets if the isFiring bool is true. It checks the
+		shooting direction of the player's avatar, and creates an instance of a bullet
+  		in the active_bullets struct array, then it plot its bitmap in the appropriate
+    		location around the avatar.
+
+Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
+		cowboy1.xFireDir = 0;
+		shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
+*********************************************************************************************/
+
 void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8, 
 				struct Bullet *active_bullets, int *bullets_fill) {
 	if (cowboy->isFiring == TRUE && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
@@ -76,6 +89,40 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
 	}
 }
 
+/*******************************************************************************************
+Function Name: 	randInRange
+
+Details: 	Given a range and a seed value, this function will return a pseudo-random 
+		number in the given range. This will be used for the random snake spawning
+  		during enemy waves.
+
+Sample Call:
+*********************************************************************************************/
+
+unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max) {
+    const unsigned long a = 1664525;
+    const unsigned long c = 1013904223;
+    const unsigned long m = 4294967295; /* 2^32-1 */
+	unsigned int scaled; 
+
+    *seed = (a * (*seed) + c) % m; /* Update the seed value */
+
+    /* Scale the generated value to fit within the range [min, max] */
+
+    scaled = (unsigned int)((double)(*seed) / (double)m * (max - min + 1) + min);
+    return scaled;
+}
+
+/*******************************************************************************************
+Function Name: 	snake_spawn
+
+Details: 	This function uses the randInRange function to spawn new snake enemies in the
+		play area. A new instance of snake is created and slotted into the active_snakes 
+  		struct array.
+
+Sample Call:	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
+*********************************************************************************************/
+
 void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
 	int spawn_loc;
 
@@ -96,3 +143,5 @@ void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int 
 		}
 	(*snakes_fill)++;
 }
+
+
