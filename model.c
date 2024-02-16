@@ -131,7 +131,7 @@ void snake_death(Snake *snake, int index) {
 /*******************************************************************************************
 Function Name: 	move_cowboy
 
-Details: 	This function uis called every cycle to check is the cowboy isMoving, the move
+Details: 	This function is called every cycle to check is the cowboy isMoving, the move
 		them the appropriate in the correct direction based on direction and speed. It
   		also checks the play boundaries and won't allow them to exit the play area.
 
