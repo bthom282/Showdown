@@ -14,8 +14,6 @@ void move_snake(struct Snake *snake);
 
 void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
 
-void cowboy_death (int *lives_count);
-
 void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
