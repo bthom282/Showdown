@@ -12,6 +12,9 @@ Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 int bullets_fill = 0;
 int snakes_fill = 0;
 UINT32 seed = 12345;
+/*arrays of spawn positions for snake enemies*/
+const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
+const int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
 
 /*******************************************************************************************
 Function Name: 	move_bullet
