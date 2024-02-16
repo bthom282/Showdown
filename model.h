@@ -96,7 +96,7 @@ int xFireDir;	/*fire_x = 0 & fire_y = 1 = firing down, fire_x = -1 & fire_y = 1 
 		/*fire_x = -1 & fire_y = 0 = firing left, fire_x = -1 & fire_y = -1 = firing 45 degree angle towards top left*/
     		/*fire_x = 0 & fire_y = -1 = firing up, fire_x = 1 & fire_y = -1 = firing 45 degree angle towards top right */
 int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
-														3 - moving right, 4 - moving left, 5 moving up} */
+							    3 - moving right, 4 - moving left, 5 moving up} */
 int score;		   /* default initial score is 00000 */
 int lives;		   /* default starting lives = 3 */
 struct BoundingBox boundingBox;
