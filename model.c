@@ -299,3 +299,27 @@ void print_message(UINT8 *base, char message[], int x_pos, int y_pos) {
 		}
 	}
 }
+
+/*******************************************************************************************
+Function Name: 	randInRange
+
+Details: 	Given a range and a seed value, this function will return a pseudo-random 
+		number in the given range. This will be used for the random snake spawning
+  		during enemy waves.
+
+Sample Call:
+*********************************************************************************************/
+
+unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max) {
+    const unsigned long a = 1664525;
+    const unsigned long c = 1013904223;
+    const unsigned long m = 4294967295; /* 2^32-1 */
+	unsigned int scaled; 
+
+    *seed = (a * (*seed) + c) % m; /* Update the seed value */
+
+    /* Scale the generated value to fit within the range [min, max] */
+
+    scaled = (unsigned int)((double)(*seed) / (double)m * (max - min + 1) + min);
+    return scaled;
+}
