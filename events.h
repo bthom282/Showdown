@@ -14,3 +14,7 @@ void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int 
 void snake_death(struct Snake *snake, int index);
 
 void cowboy_death (int *lives_count);
+
+/*void game_over((UINT8 *)base, int *isPlaying);*/
+
+/*void game_quit(int *isPlaying);*/
