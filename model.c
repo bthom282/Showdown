@@ -11,6 +11,7 @@ Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 int bullets_fill = 0;
 int snakes_fill = 0;
+UINT32 seed = 12345;
 
 /*******************************************************************************************
 Function Name: 	move_bullet
@@ -323,3 +324,13 @@ unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max
     scaled = (unsigned int)((double)(*seed) / (double)m * (max - min + 1) + min);
     return scaled;
 }
+
+/*******************************************************************************************
+Function Name: 	spawn_snakes
+
+Details: 	This function
+
+Sample Call:
+*********************************************************************************************/
+void spawn_snakes(Snake *active_snakes[], int snakes_fill, int *seed, int low_range, int high_range) {
+	active_snake[fill_level] = 
