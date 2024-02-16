@@ -75,3 +75,24 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
 		(*bullets_fill)++;
 	}
 }
+
+void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
+	int spawn_loc;
+
+	spawn_loc = randInRange(seed, 0, 15);
+	active_snakes[*snakes_fill].position.x = spawn_x[spawn_loc];
+	active_snakes[*snakes_fill].position.y = spawn_y[spawn_loc];
+	if (spawn_loc >= 0 && spawn_loc <= 3) {
+		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], front_snake_bitmap, BITMAP_32_HEIGHT);
+		}
+	else if (spawn_loc >= 4 && spawn_loc <= 7) {
+		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], right_snake_bitmap, BITMAP_32_HEIGHT);
+		}
+	else if (spawn_loc >= 8 && spawn_loc <= 11) {
+		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], left_snake_bitmap, BITMAP_32_HEIGHT);
+		}
+	else {
+		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], backwards_snake_bitmap, BITMAP_32_HEIGHT);
+		}
+	(*snakes_fill)++;
+}
