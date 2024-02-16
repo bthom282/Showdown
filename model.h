@@ -10,7 +10,7 @@ void move_bullet(struct Bullet *bullet);
 
 void delete_bullet (struct Bullet *bullet, int index);
 
-void move_snake(struct Snake *snake);
+void move_snake(struct Snake *snake, struct Cowboy *cowboy);
 
 void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
 
@@ -24,9 +24,7 @@ void respawn();
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
-unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max);
-
-/*void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, int *seed);*/
+void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed);
 
 typedef struct Model
 {
