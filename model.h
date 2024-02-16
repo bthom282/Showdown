@@ -18,48 +18,48 @@ void respawn();
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
-typedef struct Model
+struct 
 {
 struct Bullet bullet[MAX_BULLETS];
 struct Cowboy cowboy;
 struct Snake snake[MAX_SNAKES];
 struct Score score;
 struct Lives lives;
-};
+} Model;
 
-typedef struct Position
+struct Position
 {
 unsigned int x;
 unsigned int y;
 };
 
-typedef struct Size
+struct Size
 {
 int height;
 int width;
 };
 
-typedef struct BoundingBox
+struct BoundingBox
 {
 struct Size size;
 struct Position position;
 };
 
-typedef struct Lives          /* type definition for lives object */
+struct Lives          /* type definition for lives object */
 {
 int lives;		  /* default starting lives = 3 */
 struct Position position;        /* position coordinates (player 1 lives position begins at  (80,320)
                               player 2 lives position begins at  (80,252)) */
 };
 
-typedef struct Score          /* type definition for score object */
+struct Score          /* type definition for score object */
 {
 int score;		  /* default initial score is 00000 */
 struct Position position;        /* position coordinates (player 1 lives position begins at  (80,300)
                               player 2 lives position begins at  (80,232))*/
 };
 
-typedef struct Bullet           /* type definition for bullet object */
+struct Bullet           /* type definition for bullet object */
 {
 struct Position position;         /* position coordinates */
 int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
@@ -69,7 +69,7 @@ int speed;      	   /* displacement per clock tick for x and y displacement*/
 struct BoundingBox boundingBox;
 };
 
-typedef struct Cowboy         /* type definition for cowboy object */
+struct Cowboy         /* type definition for cowboy object */
 {
 struct Position position;	/* position coordinates, 1 player cowboy's initial position is (424, 184) */
 struct 	Size size;
@@ -91,7 +91,7 @@ struct BoundingBox boundingBox;
 UINT32 bitmap;
 };
 
-typedef struct Snake           /* type definition for snake object */
+struct Snake           /* type definition for snake object */
 {
 struct Position position;         /* position coordinates, snakes initially spawn in locations based on a randomizer */
 	                         /* 16 spawn coordinates = {(384,0),(416,0),(448,0),(480,0),
