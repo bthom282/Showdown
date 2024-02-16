@@ -19,10 +19,6 @@ const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
 const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
 const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
-/*arrays of spawn positions for snake enemies*/
-const int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
-const int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
-
 int 1st_x_start;
 int 1st_y_start;
 int 2nd_x_start;
