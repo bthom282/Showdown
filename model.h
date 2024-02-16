@@ -30,6 +30,8 @@ void respawn();
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
+unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max);
+
 typedef struct Model
 {
 Bullet bullet[MAX_BULLETS];
