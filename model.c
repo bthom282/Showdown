@@ -135,26 +135,27 @@ Details: 	This function uis called every cycle to check is the cowboy isMoving, 
 		them the appropriate in the correct direction based on direction and speed. It
   		also checks the play boundaries and won't allow them to exit the play area.
 
-Sample Call:	move_cowboy(cowboy);
+Sample Call:	move_cowboy((UINT32 *)base, cowboy1, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 
 *********************************************************************************************/
 
-void move_cowboy(Cowboy *cowboy)
+void move_cowboy(UINT32 *base, Cowboy *cowboy, const UINT32 *bitmap32)
 {
-if (cowboy->isMoving == TRUE) {
-	clear_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
-	cowboy->postion->x += cowboy->x_dir*cowboy->speed;
-	cowboy->position->y += cowboy->y_dir*cowboy->speed;
-	if (cowboy->postion->x > X_MAX)
-		{cowboy->postion->x = X_MAX;}
-	if (cowboy->postion->x < X_MIN)
-		{cowboy->postion->x = X_MIN;}
-	if (cowboy->postion->y > Y_MAX)
-		{cowboy->postion->y = Y_MAX;}
-	if (cowboy->postion->y > X_MIN)
-		{cowboy->postion->y = X_MIN;}
-	plot_bitmap_32((UINT32 *) base, cowboy->postion->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
-	
+	if ((cowboy->isMoving) == TRUE) {
+		Vsync();
+		clear_bitmap_32((UINT32 *) base, cowboy->x_pos, cowboy->y_pos, blank, BITMAP_32_HEIGHT);
+		(cowboy->x_pos) += (cowboy->x_dir)*(cowboy->speed);
+		(cowboy->y_pos) += (cowboy->y_dir)*(cowboy->speed);
+		if ((cowboy->x_pos) > X_MAX)
+			{cowboy->x_pos = X_MAX;}
+		if ((cowboy->x_pos) < X_MIN)
+			{cowboy->x_pos = X_MIN;}
+		if ((cowboy->y_pos) > Y_MAX)
+			{cowboy->y_pos = Y_MAX;}
+		if ((cowboy->y_pos) > X_MIN)
+			{cowboy->y_pos = X_MIN;}
+		plot_bitmap_32((UINT32 *) base, cowboy->x_pos, cowboy->y_pos, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+	}
 }
 
 /*******************************************************************************************
