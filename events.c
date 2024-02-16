@@ -178,4 +178,29 @@ void snake_death(struct Snake *snake, int index) {
     }
 }
 
+/*******************************************************************************************
+Function Name: 	cowboy_death
+
+Details: 	This function updates the lives count, called the update lives function, then
+		checks if there are lives remaining. If none, trigger game over sequence by 
+  		calling the game_over function. If lives remaining, triggers the respawn
+    		function.
+
+Sample Call:	cowboy_death (*cowboy->lives_count);	
+
+*********************************************************************************************/
+
+void cowboy_death (int *lives_count) {
+	/* possible death animation here */
+	if (lives_count == 1) {
+		lives_count--;
+		update_lives(lives);
+		gameover();
+	}
+	else {
+		lives_count--;
+		update_lives(lives);
+		respawn();
+	}
+
 
