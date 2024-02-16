@@ -30,10 +30,10 @@ Sample Call:
 void move_bullet(struct Bullet *bullet)
 {
 	clear_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
-	bullet->position->x += bullet->x_dir*bullet->speed;
-  	bullet->position_y->y += bullet->y_dir*bullet->speed;
-	if ((380>=bullet->position->y>=0)||(256>=bullet->position->x>=632)) {
-		plot_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
+	bullet->position.x += bullet->x_dir*bullet->speed;
+  	bullet->position.y += bullet->y_dir*bullet->speed;
+	if ((380>=bullet->position.y>=0)||(256>=bullet->positio.x>=632)) {
+		plot_bitmap_8((UINT8 *) base, bullet->position.x, bullet->position.y, bullet_bitmap, BITMAP_8_HEIGHT);
 	}
 	else {
 		delete_bullet(bullet);
