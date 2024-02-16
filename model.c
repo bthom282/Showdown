@@ -335,7 +335,7 @@ Details: 	This function
 
 Sample Call:	spawn_snakes(active_snakes[], spawn_x[], spawn_y[], &snakes_fill, &seed) 
 *********************************************************************************************/
-void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, int *seed) {
+/*void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, int *seed) {
 	int spawn_loc;
 	active_snakes[fill_level] = struct Snake snake;
 	snakes_fill++;
@@ -354,6 +354,6 @@ void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *sna
 	else {
 		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], backwards_snake_bitmap, BITMAP_32_HEIGHT);
 		}
-}
+}*/
 	
 	
