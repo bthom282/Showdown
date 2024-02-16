@@ -8,15 +8,15 @@
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
 
-void move_bullet(Bullet *bullet);
+void move_bullet(struct Bullet *bullet);
 
-void delete_bullet (Bullet *bullet, int index);
+void delete_bullet (struct Bullet *bullet, int index);
 
-void move_snake(Snake *snake);
+void move_snake(struct Snake *snake);
 
 void snake_death(Snake *snake, int index);
 
-void move_cowboy(Cowboy *cowboy);
+void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
 
 void cowboy_death (int *lives_count);
 
@@ -24,9 +24,9 @@ void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
 
-void game_over((UINT8 *)base, bool isPlaying);
+void game_over((UINT8 *)base, int *isPlaying);
 
-void game_quit(bool *isPlaying);
+void game_quit(int *isPlaying);
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
