@@ -31,7 +31,7 @@ void game_quit(bool *isPlaying);
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
 typedef struct Model
-{ /* to be continued...*/
+{
 Bullet bullet[MAX_BULLETS];
 Cowboy cowboy;
 Snake snake[MAX_SNAKES];
