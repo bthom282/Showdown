@@ -27,7 +27,7 @@ Sample Call:
  		}
 *********************************************************************************************/
 
-void move_bullet(Bullet *bullet)
+void move_bullet(struct Bullet *bullet)
 {
 	clear_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
 	bullet->position->x += bullet->x_dir*bullet->speed;
@@ -56,7 +56,7 @@ Details: 	This function is called every time a bullet leaves the play area by go
 Sample Call: 	delete_bullet(active_bullets[i]);
 *********************************************************************************************/
 
-void delete_bullet (Bullet *bullet, int index) {
+void delete_bullet (struct Bullet *bullet, int index) {
 	if (index >= 0 && index < bullet_fill) {
         	active_bullets[index] = active_bullets[bullet_fill - 1];
         	bullet_fill--;
@@ -73,7 +73,7 @@ Sample Call:	int i;
      		}
 *********************************************************************************************/
 
-void move_snake(Snake *snake, Cowboy *cowboy)
+void move_snake(struct Snake *snake, struct Cowboy *cowboy)
 {
 	int x_distance;
 	int y_distance;
@@ -120,7 +120,7 @@ Details: 	This function is called every time a snake is killed by a bullet and i
 Sample Call:	snake_death(active_snakes[i]);
 *********************************************************************************************/
 
-void snake_death(Snake *snake, int index) {
+void snake_death(struct Snake *snake, int index) {
     /*possible snake death animation here*/
     if (index >= 0 && index < snakes_fill) {
         active_snakes[index] = active_snakes[snakes_fill - 1];
@@ -135,11 +135,11 @@ Details: 	This function is called every cycle to check is the cowboy isMoving, t
 		them the appropriate in the correct direction based on direction and speed. It
   		also checks the play boundaries and won't allow them to exit the play area.
 
-Sample Call:	move_cowboy((UINT32 *)base, cowboy1, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+Sample Call:	move_cowboy((UINT32 *)base, &cowboy1, cowboy_bitmap_32);
 
 *********************************************************************************************/
 
-void move_cowboy(UINT32 *base, Cowboy *cowboy, const UINT32 *bitmap32)
+void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32)
 {
 	if ((cowboy->isMoving) == TRUE) {
 		Vsync();
