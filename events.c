@@ -161,4 +161,21 @@ void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int 
 	(*snakes_fill)++;
 }
 
+/*******************************************************************************************
+Function Name: 	snake_death
+
+Details: 	This function is called every time a snake is killed by a bullet and is removed
+		from play.
+
+Sample Call:	snake_death(active_snakes[i]);
+*********************************************************************************************/
+
+void snake_death(struct Snake *snake, int index) {
+    /*possible snake death animation here*/
+    if (index >= 0 && index < snakes_fill) {
+        active_snakes[index] = active_snakes[snakes_fill - 1];
+        snakes_fill--;
+    }
+}
+
 
