@@ -5,8 +5,6 @@
 #define NULL 0
 #define TRUE 1
 #define FALSE 0
-#define MAX_BULLETS 20
-#define MAX_SNAKES 30
 
 void move_bullet(struct Bullet *bullet);
 
