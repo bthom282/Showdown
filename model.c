@@ -333,7 +333,7 @@ Function Name: 	spawn_snakes
 
 Details: 	This function
 
-Sample Call:	spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], &snakes_fill, &seed) 
+Sample Call:	spawn_snakes(active_snakes[], spawn_x[], spawn_y[], &snakes_fill, &seed) 
 *********************************************************************************************/
 void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, int *seed) {
 	int spawn_loc;
