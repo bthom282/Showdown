@@ -260,13 +260,12 @@ Details: 	This function
 
 Sample Call:	spawn_snakes(active_snakes[], spawn_x[], spawn_y[], &snakes_fill, &seed) 
 *********************************************************************************************/
-/*void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, int *seed) {
+void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
 	int spawn_loc;
-	active_snakes[fill_level] = struct Snake snake;
-	snakes_fill++;
-	spawn_loc = randInRange(&seed, 0, 15);
-	active_snakes[spawn_loc].position.x = spawn_x[spawn_loc];
-	active_snakes[spawn_loc].position.y = spawn_y[spawn_loc];
+
+	spawn_loc = randInRange(seed, 0, 15);
+	active_snakes[*snakes_fill].position.x = spawn_x[spawn_loc];
+	active_snakes[*snakes_fill].position.y = spawn_y[spawn_loc];
 	if (spawn_loc >= 0 && spawn_loc <= 3) {
 		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], front_snake_bitmap, BITMAP_32_HEIGHT);
 		}
@@ -279,6 +278,7 @@ Sample Call:	spawn_snakes(active_snakes[], spawn_x[], spawn_y[], &snakes_fill, &
 	else {
 		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], backwards_snake_bitmap, BITMAP_32_HEIGHT);
 		}
-}*/
+	(*snakes_fill)++;
+}
 	
 	
