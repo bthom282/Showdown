@@ -8,8 +8,6 @@
 
 void move_bullet(struct Bullet *bullet);
 
-void delete_bullet (struct Bullet *bullet, int index);
-
 void move_snake(struct Snake *snake, struct Cowboy *cowboy);
 
 void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
