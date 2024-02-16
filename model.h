@@ -35,6 +35,8 @@ typedef struct Model
 Bullet bullet[MAX_BULLETS];
 Cowboy cowboy;
 Snake snake[MAX_SNAKES];
+Score score;
+Lives lives;
 };
 
 typedef struct Position
