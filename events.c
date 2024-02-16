@@ -36,6 +36,7 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
         active_bullets[*bullets_fill].position.y = cowboy->position.y;
 		active_bullets[*bullets_fill].x_dir = cowboy->xFireDir;
 		active_bullets[*bullets_fill].y_dir = cowboy->yFireDir;
+		active_bullets[*bullets_fill].speed = 3;
 		
 		if (cowboy->yFireDir == -1 && cowboy->xFireDir == -1) {
 			active_bullets[*bullets_fill].position.x -= 2;
