@@ -30,6 +30,11 @@ void game_quit(bool *isPlaying);
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
+typedef struct Model
+{
+
+};
+
 typedef struct Position
 {
 unsigned int x;
