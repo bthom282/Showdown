@@ -24,9 +24,9 @@ void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
 
-void game_over((UINT8 *)base, int *isPlaying);
+/*void game_over((UINT8 *)base, int *isPlaying);*/
 
-void game_quit(int *isPlaying);
+/*void game_quit(int *isPlaying);*/
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
 
