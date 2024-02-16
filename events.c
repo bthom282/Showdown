@@ -107,6 +107,22 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
 }
 
 /*******************************************************************************************
+Function Name: 	delete_bullet
+
+Details: 	This function is called every time a bullet leaves the play area by going out 
+		of bounds or by striking an enemy.
+
+Sample Call: 	delete_bullet(active_bullets[i]);
+*********************************************************************************************/
+
+void delete_bullet (struct Bullet *bullet, int index) {
+	if (index >= 0 && index < bullet_fill) {
+        	active_bullets[index] = active_bullets[bullet_fill - 1];
+        	bullet_fill--;
+   	 }
+}
+
+/*******************************************************************************************
 Function Name: 	randInRange
 
 Details: 	Given a range and a seed value, this function will return a pseudo-random 
