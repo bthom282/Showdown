@@ -332,5 +332,7 @@ Details: 	This function
 
 Sample Call:
 *********************************************************************************************/
-void spawn_snakes(Snake *active_snakes[], int snakes_fill, int *seed, int low_range, int high_range) {
-	active_snake[fill_level] = 
+void spawn_snakes(Snake *active_snakes[], int spawn_x[], int spawn_y[], int snakes_fill, int *seed, int low_range, int high_range) {
+	active_snake[fill_level] = struct Snake snake;
+	fill_level++;
+	
