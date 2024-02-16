@@ -35,7 +35,7 @@ int 2nd_score_value;
 
 bool isPlaying = TRUE;
 
-while (isPlaying) {
+while (isPlaying == TRUE) {
 
 	if(player_num == 1) {
 		1st_x_start = 424;
