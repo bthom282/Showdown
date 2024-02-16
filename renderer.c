@@ -42,9 +42,6 @@ while (isPlaying == TRUE) {
 		1st_y_start = 184;
 	
   	game_start();
-
-
-
 }
 
 void render(const Model *model, UINT32 *base)
