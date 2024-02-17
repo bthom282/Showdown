@@ -76,7 +76,7 @@ Details: 	This function is used to clear a size 32 bitmap from the screen by XOR
 
 *********************************************************************************************/
 
-void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
+void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
 {
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
 		int i;
