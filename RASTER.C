@@ -196,7 +196,7 @@ Function Name: 	fill_rec
 Details: 	This function fills a rectangular section of bytes on the screen by taking in
 		the starting coordinates, the height, and width in bytes.
 *********************************************************************************************/
-void clear_screen(UINT32 *base,int x, int y, int height, int width) {
+void fill_rec(UINT32 *base,int x, int y, int height, int width) {
 	UINT16 *loc = base;
 	for (y = 0; y < height; y++){ 
 		for (x = 0; x < width; x++) {
