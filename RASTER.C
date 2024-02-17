@@ -166,7 +166,7 @@ Details: 	This function fills the entire screen to white if o is passed in, blac
 void fill_screen(UINT32 *base, char pattern)
 {
 	int i = 0;
-	long *loc = base;
+	UINT32 *loc = base;
 
 	while (i++ < LONGS_PER_SCREEN)
 		*(loc++) = pattern;
@@ -187,6 +187,22 @@ void clear_screen(UINT32 *base)
 		{
 			*(base + j + (i * 20)) = CLEAR32;
 		}
+	}
+	return;
+}
+
+/********************************************************************************************
+Function Name: 	fill_rec
+Details: 	This function fills a rectangular section of bytes on the screen by taking in
+		the starting coordinates, the height, and width in bytes.
+*********************************************************************************************/
+void clear_screen(UINT32 *base,int x, int y, int height, int width) {
+	UINT16 *loc = base;
+	for (y = 0; y < height; y++){ 
+		for (x = 0; x < width; x++) {
+			*(loc++) = -1;
+		}
+		loc += (40-width);
 	}
 	return;
 }
