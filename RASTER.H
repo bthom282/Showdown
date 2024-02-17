@@ -21,5 +21,6 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int
 void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height);
 void plot_char(UINT8 *base, int x, int y, char c);
 void fill_screen(UINT32 *base, char pattern);
+void clear_screen(UINT32 *base);
 
 #endif
