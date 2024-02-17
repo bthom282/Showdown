@@ -16,8 +16,6 @@ void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
 
-void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
-
 struct 
 {
 struct Bullet bullet[MAX_BULLETS];
