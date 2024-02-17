@@ -3,12 +3,12 @@
 
 #include "types.h"
 
-#define INVADER_HEIGHT 16
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
 #define BITMAP_HEIGHT 16
 #define BITMAP_8_HEIGHT 8
 #define BITMAP_32_HEIGHT 32
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 400
+#define CLEAR32 0x00000000
 
 void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height);
 void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned int height);
