@@ -161,26 +161,4 @@ void respawn(Cowboy *cowboy) {
 	player->x = 424;
 	player->y = 184;
 	/* invulnerability frames code here, asking Marc */
-}
-
-/*******************************************************************************************
-Function Name: 	print_message
-
-Details: 	This function takes in a character array and prints it to the screen starting 
-		at the designated area. It advances automatically to print the full message,
-  		while using the provided font.c file for each character's bitmap.
-
-Sample Call:
-
-*********************************************************************************************/
-
-void print_message(UINT8 *base, char message[], int x_pos, int y_pos) {
-	int i = 0;
-	if (x_pos >= 0 && x_pos < SCREEN_WIDTH && y_pos >= 0 && y_pos < SCREEN_HEIGHT) {
-		while (message[i] != '\0') {
-			plot_char((UINT8 *) base, x_pos, y_pos, message[i]);
-			x_pos += 8;
-			i++;
-		}
-	}
 }	
