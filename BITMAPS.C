@@ -5,7 +5,7 @@ Purpose:  A library containing all bitmaps.
 
 ****************************************************/
 #include "BITMAPS.H"
-
+#include "types.h"
 
 const UINT32 cowboy_bitmap[] =
 {
