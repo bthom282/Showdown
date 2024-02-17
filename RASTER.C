@@ -155,3 +155,11 @@ void plot_char(UINT8 *base, int x, int y, char c) {
 		*(base + (y*80) + (x >> 3) + (i*80)) ^= font[charIndex+i];
 	}
 }
+
+/********************************************************************************************
+Function Name: 	clear_screen
+Details: 	This function clears the entire screen to white.
+
+*********************************************************************************************/
+
+
