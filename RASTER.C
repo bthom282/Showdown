@@ -157,9 +157,36 @@ void plot_char(UINT8 *base, int x, int y, char c) {
 }
 
 /********************************************************************************************
+Function Name: 	fill_screen
+Details: 	This function fills the entire screen to white if o is passed in, black if 
+		-1 is passed in. It can also make various vertical patterns with different
+		values passed in.
+*********************************************************************************************/
+
+void fill_screen(UINT32 *base, char pattern)
+{
+	int i = 0;
+	long *loc = base;
+
+	while (i++ < LONGS_PER_SCREEN)
+		*(loc++) = pattern;
+}
+
+/********************************************************************************************
 Function Name: 	clear_screen
 Details: 	This function clears the entire screen to white.
 
 *********************************************************************************************/
+void clear_screen(UINT32 *base)
+{
+	int i, j;
 
-
+	for (i = 0; i < SCREEN_HEIGHT; i++)
+	{
+		for (j = 0; j < 20; j++)
+		{
+			*(base + j + (i * 20)) = CLEAR32;
+		}
+	}
+	return;
+}
