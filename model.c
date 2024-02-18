@@ -11,9 +11,8 @@ Purpose: Implements functions for manipulating objects according to their specif
 Function Name: 	move_bullet
 
 Details: 	This function is called every cycle to move any active bullets at their constant
-		speed in the direction they were fired. After the movement is calculated, if checks
-  		to see if the bullet is out of bounds, and therefore not replotted, or if there is a 
-    		collision with a snake. 
+		speed in the direction they were fired. After the movement is calculated, it checks
+  		to see if the bullet is out of bounds. If out of bounds, bullet is deleted.
 
 Sample Call: 
 		int i;
@@ -26,7 +25,11 @@ void move_bullet(struct Bullet *bullet)
 {
 	bullet->position.x += bullet->x_dir*bullet->speed;
   	bullet->position.y += bullet->y_dir*bullet->speed;
+
+	if (bullet->position.y<=0||bullet->position.y>=380||bullet->position.x<=256||bullet->position.x>=632) {
+		delete_bullet(bullet);
 	}
+}
 
 /*******************************************************************************************
 Function Name: 	move_snake
