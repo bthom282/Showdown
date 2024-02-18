@@ -6,7 +6,7 @@
 #define TRUE 1
 #define FALSE 0
 
-void move_bullet(struct Bullet *bullet);
+void move_bullets(struct Bullet *bullet,struct Bullet *active_bullets, int *bullets_fill);
 
 void move_snake(struct Snake *snake, struct Cowboy *cowboy);
 
