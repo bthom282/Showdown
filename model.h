@@ -52,7 +52,7 @@ struct Position position;
 
 struct Lives          /* type definition for lives object */
 {
-int lives;		  /* default starting lives = 3 */
+int lives_left;		  /* default starting lives = 3 */
 struct Position position;        /* position coordinates (player 1 lives position begins at  (80,320)
                               player 2 lives position begins at  (80,252)) */
 };
