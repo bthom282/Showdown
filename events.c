@@ -193,17 +193,14 @@ Sample Call:	cowboy_death (*cowboy->lives_count);
 
 *********************************************************************************************/
 
-void cowboy_death (int *lives_count) {
+void cowboy_death (struct Cowboy *cowboy) {
 	/* possible death animation here */
-	if (lives_count == 1) {
-		lives_count--;
-		update_lives(lives);
+	decrement_lives(cowboy);
+	if (cowboy->lives == 0) {
 		/*gameover();*/
 		respawn(); /*temporary*/
 	}
 	else {
-		lives_count--;
-		update_lives(lives);
 		respawn();
 	}
 
