@@ -19,7 +19,7 @@ void increase_score(struct Scoreboard *scoreboard,int value);
 
 void wave_bonus(struct Scoreboard *scoreboard);
 
-void update_lives (UINT8 *base, int lives_count);
+void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
 
