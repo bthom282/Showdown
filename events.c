@@ -112,7 +112,7 @@ Function Name: 	delete_bullet
 Details: 	This function is called every time a bullet leaves the play area by going out 
 		of bounds or by striking an enemy.
 
-Sample Call: 	delete_bullet(active_bullets[i]);
+Sample Call: 	delete_bullet(active_bullets[i], i);
 *********************************************************************************************/
 
 void delete_bullet (struct Bullet *bullet, int index) {
@@ -123,16 +123,16 @@ void delete_bullet (struct Bullet *bullet, int index) {
 }
 
 /*******************************************************************************************
-Function Name: 	randInRange
+Function Name: 	rand_in_range
 
 Details: 	Given a range and a seed value, this function will return a pseudo-random 
 		number in the given range. This will be used for the random snake spawning
   		during enemy waves.
 
-Sample Call:
+Sample Call:	spawn_loc = rand_in_range(seed, 0, 15);
 *********************************************************************************************/
 
-unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max) {
+unsigned int rand_in_range(unsigned long *seed, unsigned int min, unsigned int max) {
     const unsigned long a = 1664525;
     const unsigned long c = 1013904223;
     const unsigned long m = 4294967295; /* 2^32-1 */
@@ -149,31 +149,19 @@ unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max
 /*******************************************************************************************
 Function Name: 	snake_spawn
 
-Details: 	This function uses the randInRange function to spawn new snake enemies in the
-		play area. A new instance of snake is created and slotted into the active_snakes 
-  		struct array.
+Details: 	This function uses the rand_in_range function to "spawn" a new snake struct is 
+		created and slotted into the active_snakes struct array.
 
-Sample Call:	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
+Sample Call:	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
 *********************************************************************************************/
 
-void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
+void spawn_snakes(struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
 	int spawn_loc;
 
-	spawn_loc = randInRange(seed, 0, 15);
+	spawn_loc = rand_in_range(seed, 0, 15);
 	active_snakes[*snakes_fill].position.x = spawn_x[spawn_loc];
 	active_snakes[*snakes_fill].position.y = spawn_y[spawn_loc];
-	if (spawn_loc >= 0 && spawn_loc <= 3) {
-		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], front_snake_bitmap, BITMAP_32_HEIGHT);
-		}
-	else if (spawn_loc >= 4 && spawn_loc <= 7) {
-		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], right_snake_bitmap, BITMAP_32_HEIGHT);
-		}
-	else if (spawn_loc >= 8 && spawn_loc <= 11) {
-		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], left_snake_bitmap, BITMAP_32_HEIGHT);
-		}
-	else {
-		plot_bitmap_32((UINT32 *) base, spawn_x[spawn_loc], spawn_y[spawn_loc], backwards_snake_bitmap, BITMAP_32_HEIGHT);
-		}
+
 	(*snakes_fill)++;
 }
 
@@ -187,7 +175,7 @@ Sample Call:	snake_death(active_snakes[i]);
 *********************************************************************************************/
 
 void snake_death(struct Snake *snake, int index) {
-    /*possible snake death animation here*/
+    /*possible call to snake death animation here*/
     if (index >= 0 && index < snakes_fill) {
         active_snakes[index] = active_snakes[snakes_fill - 1];
         snakes_fill--;
