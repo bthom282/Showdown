@@ -125,6 +125,20 @@ void increase_score(struct Scoreboard *scoreboard,int value) {
 }
 
 /*******************************************************************************************
+Function Name: 	wave_bonus
+
+Details: 	This function is called every time a wave is successfully completed to give
+		the player's score a bonus.
+
+Sample Call:	wave_bonus(cowboy1.scoreboard);
+
+*********************************************************************************************/
+
+void wave_bonus(struct Scoreboard scoreboard) {
+	increase_score(scoreboard, 1000);
+}
+
+/*******************************************************************************************
 Function Name: 	update_lives
 
 Details: 	This function is called when the player dies to update the lives shown on the 
