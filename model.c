@@ -113,12 +113,12 @@ Function Name: 	increase_score
 Details: 	This function is called every time a snake dies through the snake_death
 		function. It increases the score value inside the scorebaord struct.
 
-Sample Call:	move_snake(active_snakes, snakes_fill, cowboy);
+Sample Call:	increase_score(cowboy1.scoreboard, 100);
 
 *********************************************************************************************/
 
-void increase_score(Struct Scoreboard scoreboard) {
-	scoreboard->score += 100;
+void increase_score(Struct Scoreboard scoreboard,int value) {
+	scoreboard->score += value;
 	scoreboard->digit3 = (scoreboard->score%1000)/100;
 	scoreboard->digit4 = (scoreboard->score%10000)/1000;
 	scoreboard->digit5 = (scoreboard->score/10000;
