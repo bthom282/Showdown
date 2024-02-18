@@ -60,11 +60,7 @@ struct Position position;        /* position coordinates (player 1 lives positio
 struct Scoreboard          /* type definition for score object */
 {
 int score;		  /* default initial score is 00000 */
-int digit1;		
-int digit2;
-int digit3;
-int digit4;
-int digit5;
+int digit[5];		
 struct Position position;        /* position coordinates (player 1 score position begins at  (80,300)
                               player 2 score position begins at  (80,232))*/
 };
