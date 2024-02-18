@@ -10,9 +10,11 @@ Purpose: Implements functions for manipulating objects according to their specif
 /*******************************************************************************************
 Function Name: 	move_bullet
 
-Details: 	This function is called every cycle to move any active bullets at their constant
-		speed in the direction they were fired. After the movement is calculated, it checks
-  		to see if the bullet is out of bounds. If out of bounds, bullet is deleted.
+Details: 	This function is called every cycle to move any active bullets int the active_
+		bullets array at their constant speed in the direction they were fired. After 
+  		the new position is calculated, it checks to see if the bullet is out of bounds. 
+    		If out of bounds, bullet is deleted from the array by calling the delete_bullet
+      		function.
 
 Sample Call: 	move_bullet(active_bullets, bullets_fill);
 
@@ -35,7 +37,9 @@ void move_bullets(struct Bullet *active_bullets[], int *bullets_fill)
 /*******************************************************************************************
 Function Name: 	move_snake
 
-Details: 	This function is called every cycle
+Details: 	This function is called every cycle to move any active snakes in the active_
+		snakes array. If a particular snake is still in the spawning area, it will first
+  		move them into the play area.
 
 Sample Call:	move_snake(active_snakes, snakes_fill, cowboy);
 
@@ -82,26 +86,24 @@ Details: 	This function is called every cycle to check is the cowboy isMoving, t
 		them the appropriate in the correct direction based on direction and speed. It
   		also checks the play boundaries and won't allow them to exit the play area.
 
-Sample Call:	move_cowboy((UINT32 *)base, &cowboy1, cowboy_bitmap_32);
+Sample Call:	move_cowboy(cowboy1);
 
 *********************************************************************************************/
 
-void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32)
+void move_cowboy(struct Cowboy *cowboy)
 {
 	if ((cowboy->isMoving) == TRUE) {
-		Vsync();
-		clear_bitmap_32((UINT32 *) base, cowboy->xposition->x, cowboy->position->y, blank, BITMAP_32_HEIGHT);
 		(cowboy->position->x) += (cowboy->x_dir)*(cowboy->speed);
 		(cowboy->position->y) += (cowboy->y_dir)*(cowboy->speed);
+		/*conditions keeping the cowboy in the play area*/
 		if ((cowboy->position->x) > X_MAX)
-			{cowboy->position->xs = X_MAX;}
+			{cowboy->position->x = X_MAX;}
 		if ((cowboy->position->x) < X_MIN)
 			{cowboy->position->x = X_MIN;}
 		if ((cowboy->position->y) > Y_MAX)
 			{cowboy->position->y = Y_MAX;}
-		if ((cowboy->position->y) > X_MIN)
-			{cowboy->position->y = X_MIN;}
-		plot_bitmap_32((UINT32 *) base, cowboy->position->x, cowboy->position->y, cowboy_bitmap_32, BITMAP_32_HEIGHT);
+		if ((cowboy->position->y) < Y_MIN)
+			{cowboy->position->y = Y_MIN;}
 	}
 }
 
