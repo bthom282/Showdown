@@ -35,7 +35,7 @@ void move_bullets(struct Bullet *active_bullets[], int *bullets_fill)
 }
 
 /*******************************************************************************************
-Function Name: 	move_snake
+Function Name: 	move_snakes
 
 Details: 	This function is called every cycle to move any active snakes in the active_
 		snakes array. If a particular snake is still in the spawning area, it will first
@@ -45,7 +45,7 @@ Sample Call:	move_snake(active_snakes, snakes_fill, cowboy);
 
 *********************************************************************************************/
 
-void move_snake(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
+void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
 {
 	int x_distance;
 	int y_distance;
