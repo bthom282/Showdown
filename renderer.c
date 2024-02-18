@@ -60,13 +60,22 @@ void render_snake(const *Snake, UINT32 *base)
 
 }
 
-void render_score{UINT8 *base, struct Scoreboard *scoreboard)
-{
-	int i;
-	for (i = 4; i >= 0; i--) {
-		plot_char((base, scoreboard->position.x, scoreboard->position.y, scoreboard.digit[i]);
-	}
+/********************************************************************************************
+Function Name: 	render_score
 
+Details: 	Takes the score from a cowboy struct and prints it to the scoreboard.
+
+*********************************************************************************************/
+
+void render_score(UINT8 *base, struct Scoreboard *scoreboard)
+{
+	int i, x, y;
+	x = scoreboard->position.x;
+	y = scoreboard->position.y;
+	for (i = 4; i >= 0; i--) {
+		plot_char(base, x, y, '0' + scoreboard->digit[i]);
+		x += 8;
+	}
 }
 
 void render_lives{const *Lives, UINT16 *base)
