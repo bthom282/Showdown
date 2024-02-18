@@ -1,3 +1,6 @@
+#ifndef MODEL_H
+#define MODEL_H
+
 #define X_MIN 288
 #define X_MAX 576
 #define Y_MIN 32
@@ -116,3 +119,5 @@ int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 
 struct BoundingBox boundingBox;
 const UINT32 bitmap = snake_bitmap;
 };
+
+#endif
