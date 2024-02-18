@@ -1,5 +1,5 @@
 #ifndef RENDERER_H
-#define REDERER_H
+#define RENDERER_H
 
 void game_start();
 
