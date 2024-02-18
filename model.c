@@ -134,7 +134,7 @@ Sample Call:	wave_bonus(cowboy1.scoreboard);
 
 *********************************************************************************************/
 
-void wave_bonus(struct Scoreboard scoreboard) {
+void wave_bonus(struct Scoreboard *scoreboard) {
 	increase_score(scoreboard, 1000);
 }
 
