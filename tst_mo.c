@@ -1,4 +1,4 @@
-#include "raster.h"
+#include "model.h"
 
 int main()
 {
