@@ -14,22 +14,19 @@ Details: 	This function is called every cycle to move any active bullets at thei
 		speed in the direction they were fired. After the movement is calculated, it checks
   		to see if the bullet is out of bounds. If out of bounds, bullet is deleted.
 
-Sample Call: 
-		int i;
-		for(i = 0; i < bullets_fill; i++) {
-			move_bullet(active_bullets[i]);
- 		}
+Sample Call: 	move_bullet(active_bullets, bullets_fill);
+
 *********************************************************************************************/
 
-void move_bullets(struct Bullet *bullet,struct Bullet *active_bullets, int *bullets_fill)
+void move_bullets(struct Bullet *active_bullets[], int *bullets_fill)
 {
 	int i;
 	for (i = 0; i < (*bullets_fill); i++) {
-		active_bullets[i].position.x += active_bullets[i].speed*active_bullets[i].x_dir;
-  		active_bullets[i].position.y += active_bullets[i].speed*active_bullets[i].y_dir;
+		active_bullets[i]->position.x += active_bullets[i]->speed*active_bullets[i]->x_dir;
+  		active_bullets[i]->position.y += active_bullets[i]->speed*active_bullets[i]->y_dir;
 
-		if (active_bullets[i].position.y<=0||active_bullets[i].position.y>=380||
-		    active_bullets[i].position.x<=256||active_bullets[i].position.x>=632) {
+		if (active_bullets[i]->position.y<=0||active_bullets[i]->position.y>=380||
+		    active_bullets[i]->position.x<=256||active_bullets[i]->position.x>=632) {
 			delete_bullet(active_bullets[i], i);
 		}
 	}
@@ -40,48 +37,42 @@ Function Name: 	move_snake
 
 Details: 	This function is called every cycle
 
-Sample Call:	int i;
-		for(i = 0; i < snake_fill;i++) {
-  			move_snake(active_snakes[i], cowboy);
-     		}
+Sample Call:	move_snake(active_snakes, snakes_fill, cowboy);
+
 *********************************************************************************************/
 
-void move_snake(struct Snake *snake, struct Cowboy *cowboy)
+void move_snake(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
 {
 	int x_distance;
 	int y_distance;
-	clear_bitmap_32((UINT32 *) base, snake->position.x, snake->position.y, snake_bitmap_32, BITMAP_32_HEIGHT);
-	
-	/*conditions to exit the spawning areas*/
-	if(snake->position.x < X_MIN)
-		{snake->position.x++;}
-	else if(snake->position.x > X_MAX) 
-		{snake->position.x--;}
-	else if(snake->position.y < Y_MIN)
-		{snake->position.y++;}
-	else if(snake->position.y > Y_MAX)
-		{snake->position.y--;}
-	/*conditions for snake movement once in play*/
-	else {
-		x_distance = snake->position.x - cowbow->position.x;
+	int i;
+	for (i = 0; i < (*snakes_fill); i++) {
+		/*conditions to exit the spawning areas*/
+		if(active_snakes[i]->position.x < X_MIN)
+			{active_snakes[i]->position.x++;}
+		else if(active_snakes[i]->position.x > X_MAX) 
+			{active_snakes[i]->position.x--;}
+		else if(active_snakes[i]->position.y < Y_MIN)
+			{active_snakes[i]->position.y++;}
+		else if(active_snakes[i]->position.y > Y_MAX)
+			{active_snakes[i]->position.y--;}
+		/*conditions for snake movement once in play*/
+		else {
+			x_distance = active_snakes[i]->position.x - cowboy->position.x;
 		
-		if (x_distance > 0)
-			{snake->position.x--;}
-		if (x_distance < 0)
-			{snake->position.x++;}
+			if (x_distance > 0)
+				{active_snakes[i]->position.x--;}
+			if (x_distance < 0)
+				{active_snakes[i]->position.x++;}
 		
-		y_distance = snake->position.y - cowbow->position.y;
+			y_distance = active_snakes[i]->position.y - cowboy->position.y;
 		
-		if (y_distance > 0)
-			{snake->position.y--;}
-		if (y_distance < 0)
-			{snake->position.y++;}
-	}	
-	/*replot snake bitmap at new coordinates*/
-	plot_bitmap_32((UINT32 *) base, snake->position.x, snake->position.y, snake_bitmap_32, BITMAP_32_HEIGHT);
-	
-	/*check for collision.*/
-	checkCollision(snake->boundingBox, cowboy->boundingBox);
+			if (y_distance > 0)
+				{active_snakes[i]->position.y--;}
+			if (y_distance < 0)
+				{active_snakes[i]->position.y++;}
+		}
+	}		
 }
 
 /*******************************************************************************************
