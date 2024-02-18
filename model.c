@@ -117,7 +117,7 @@ Sample Call:	increase_score(cowboy1.scoreboard, 100);
 
 *********************************************************************************************/
 
-void increase_score(Struct Scoreboard scoreboard,int value) {
+void increase_score(struct Scoreboard *scoreboard,int value) {
 	scoreboard->score += value;
 	scoreboard->digit3 = (scoreboard->score%1000)/100;
 	scoreboard->digit4 = (scoreboard->score%10000)/1000;
