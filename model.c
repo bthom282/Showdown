@@ -139,28 +139,17 @@ void wave_bonus(struct Scoreboard *scoreboard) {
 }
 
 /*******************************************************************************************
-Function Name: 	update_lives
+Function Name: 	decrement_lives
 
 Details: 	This function is called when the player dies to update the lives shown on the 
 		side panel display.
 
-Sample Call:	lives_count--;
-		update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_bitmap_16);
+Sample Call:	decrement_lives (cowboy1);
 
 *********************************************************************************************/
 	
-void update_lives (UINT8 *base, int lives_count, int y, const UINT16 *bitmap16) {
-	int i, x;
-	x = 80;
-	for (i = 0; i < (lives_count+1); i++) {
-		clear_bitmap_16((UINT16 *) base, x, y, bitmap16, BITMAP_HEIGHT);
-		x += 16;
-	}
-	x = 80;
-	for (i = 0; i < lives_count; i++) {
-		plot_bitmap_16((UINT16 *) base, x, y, bitmap16, BITMAP_HEIGHT);
-		x += 16;
-	}
+void decrement_lives (struct Cowboy *cowboy) {
+	cowboy->lives_count--;
 }
 
 /*******************************************************************************************
