@@ -174,12 +174,13 @@ Details: 	This function is called every time a snake is killed by a bullet and i
 Sample Call:	snake_death(active_snakes[i]);
 *********************************************************************************************/
 
-void snake_death(struct Snake *snake, int index) {
+void snake_death(struct Snake *snake, int index, struct Scoreboard scoreboard) {
     /*possible call to snake death animation here*/
-    if (index >= 0 && index < snakes_fill) {
-        active_snakes[index] = active_snakes[snakes_fill - 1];
-        snakes_fill--;
-    }
+    	if (index >= 0 && index < snakes_fill) {
+       		active_snakes[index] = active_snakes[snakes_fill - 1];
+        	snakes_fill--;
+    	}
+	increase_score(scoreboard);
 }
 
 /*******************************************************************************************
@@ -199,7 +200,8 @@ void cowboy_death (int *lives_count) {
 	if (lives_count == 1) {
 		lives_count--;
 		update_lives(lives);
-		gameover();
+		/*gameover();*/
+		respawn(); /*temporary*/
 	}
 	else {
 		lives_count--;
