@@ -60,8 +60,12 @@ void render_snake(const *Snake, UINT32 *base)
 
 }
 
-void render_score{const *Score, UINT8 *base)
+void render_score{UINT8 *base, struct Scoreboard *scoreboard)
 {
+	int i;
+	for (i = 4; i >= 0; i--) {
+		plot_char((base, scoreboard->position.x, scoreboard->position.y, scoreboard.digit[i]);
+	}
 
 }
 
