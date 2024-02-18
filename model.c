@@ -24,23 +24,9 @@ Sample Call:
 
 void move_bullet(struct Bullet *bullet)
 {
-	clear_bitmap_8((UINT8 *) base, bullet->position->x, bullet->position->y, bullet_bitmap, BITMAP_8_HEIGHT);
 	bullet->position.x += bullet->x_dir*bullet->speed;
   	bullet->position.y += bullet->y_dir*bullet->speed;
-	if ((380>=bullet->position.y>=0)||(256>=bullet->position.x>=632)) {
-		plot_bitmap_8((UINT8 *) base, bullet->position.x, bullet->position.y, bullet_bitmap, BITMAP_8_HEIGHT);
 	}
-	else {
-		delete_bullet(bullet);
-	}
-	/*[colission detection here]*/
-	int i;
-	for(i = 0; i < bullets_fill; i++) {
-		if(checkCollision(Bullet boundingBox, active_snakes[i] boundingBox)) {
-			snake_death(active_snake[i], i);
-		}
-	}
-}
 
 /*******************************************************************************************
 Function Name: 	move_snake
