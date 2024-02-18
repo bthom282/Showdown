@@ -11,7 +11,7 @@
 
 void move_bullets(struct Bullet *bullet,struct Bullet *active_bullets, int *bullets_fill);
 
-void move_snake(struct Snake *snake, struct Cowboy *cowboy);
+void move_snakes(struct Snake *snake, struct Cowboy *cowboy);
 
 void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
 
