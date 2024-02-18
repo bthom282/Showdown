@@ -1,2 +1,6 @@
-#include "RASTER.H"
-#include "types.h"
+#include "raster.h"
+
+int main()
+{
+  return 0;
+}
