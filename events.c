@@ -60,10 +60,10 @@ Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
 *********************************************************************************************/
 
 void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8, 
-				struct Bullet *active_bullets, int *bullets_fill) {
+		struct Bullet *active_bullets, int *bullets_fill) {
 	if (cowboy->isFiring == TRUE && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
 		active_bullets[*bullets_fill].position.x = cowboy->position.x;
-        active_bullets[*bullets_fill].position.y = cowboy->position.y;
+        	active_bullets[*bullets_fill].position.y = cowboy->position.y;
 		active_bullets[*bullets_fill].x_dir = cowboy->xFireDir;
 		active_bullets[*bullets_fill].y_dir = cowboy->yFireDir;
 		active_bullets[*bullets_fill].speed = 3;
@@ -100,8 +100,6 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
 			active_bullets[*bullets_fill].position.x -= 2;
 			active_bullets[*bullets_fill].position.y += 12;
 		}
-		plot_bitmap_8((UINT8 *) base, (int)active_bullets[*bullets_fill].position.x, 
-		(int)active_bullets[*bullets_fill].position.y, bitmap8, BITMAP_8_HEIGHT);
 		(*bullets_fill)++;
 	}
 }
@@ -180,7 +178,7 @@ void snake_death(struct Snake *snake, int index, struct Scoreboard scoreboard) {
        		active_snakes[index] = active_snakes[snakes_fill - 1];
         	snakes_fill--;
     	}
-	increase_score(scoreboard);
+	increase_score(scoreboard,100);
 }
 
 /*******************************************************************************************
