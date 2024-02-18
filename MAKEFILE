@@ -1,34 +1,34 @@
 all: tst_rast tst_mo tst_ren
 
-tst_rast: tst_rast.o raster.o
-    cc68x -g tst_rast.o raster.o -o tst_rast
+tst_rast: tst_rast.o raster.o font.o
+	cc68x -g tst_rast.o raster.o font.o -o tst_rast
 
 tst_rast.o: tst_rast.c raster.h types.h
-    cc68x -g -c tst_rast.c
+	cc68x -g -c tst_rast.c
 
 font.o: font.c font.h types.h
-    cc68x -g -c font.c
+	cc68x -g -c font.c
 
 bitmaps.o: bitmaps.c bitmaps.h types.h
-    cc68x -g -c bitmaps.c
+	cc68x -g -c bitmaps.c
 
 raster.o: raster.c raster.h types.h font.h
-    cc68x -g -c raster.c
+	cc68x -g -c raster.c
 
 tst_mo: tst_mo.o model.o
-    cc68x -g tst_mo.o model.o -o tst_mo
+	cc68x -g tst_mo.o model.o -o tst_mo
 
 tst_mo.o: tst_mo.c model.h
-    cc68x -g -c tst_mo.c
+	cc68x -g -c tst_mo.c
 
 model.o: model.c model.h
-    cc68x -g -c model.c
+	cc68x -g -c model.c
 
 tst_ren: tst_ren.o renderer.o
-    cc68x -g tst_ren.o renderer.o raster.o -o tst_ren
+	cc68x -g tst_ren.o renderer.o raster.o -o tst_ren
 
 renderer.o: renderer.c renderer.h raster.h
-    cc68x -g -c renderer.c
+	cc68x -g -c renderer.c
 
 tst_ren.o: tst_ren.c renderer.h raster.h
-    cc68x -g -c tst_ren.c
+	cc68x -g -c tst_ren.c
