@@ -50,11 +50,16 @@ struct Position position;        /* position coordinates (player 1 lives positio
                               player 2 lives position begins at  (80,252)) */
 };
 
-struct Score          /* type definition for score object */
+struct Scoreboard          /* type definition for score object */
 {
 int score;		  /* default initial score is 00000 */
-struct Position position;        /* position coordinates (player 1 lives position begins at  (80,300)
-                              player 2 lives position begins at  (80,232))*/
+int digit1;		
+int digit2;
+int digit3;
+int digit4;
+int digit5;
+struct Position position;        /* position coordinates (player 1 score position begins at  (80,300)
+                              player 2 score position begins at  (80,232))*/
 };
 
 struct Bullet           /* type definition for bullet object */
