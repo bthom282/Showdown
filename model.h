@@ -14,6 +14,8 @@ void move_cowboy(UINT32 *base, struct Cowboy *cowboy, const UINT32 *bitmap32);
 
 void increase_score(struct Scoreboard *scoreboard,int value);
 
+void wave_bonus(struct Scoreboard *scoreboard);
+
 void update_lives (UINT8 *base, int lives_count);
 
 void respawn();
