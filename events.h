@@ -1,3 +1,5 @@
+#ifndef EVENTS_H
+#define EVENTS_H
 
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
@@ -20,3 +22,5 @@ void cowboy_death (int *lives_count);
 /*void game_over((UINT8 *)base, int *isPlaying);*/
 
 /*void game_quit(int *isPlaying);*/
+
+#endif
