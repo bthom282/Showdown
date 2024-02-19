@@ -114,17 +114,18 @@ Sample Call:	move_cowboy(cowboy1);
 void move_cowboy(struct Cowboy *cowboy)
 {
 	if ((cowboy->isMoving) == TRUE) {
-		(cowboy->position->x) += (cowboy->x_dir)*(cowboy->speed);
-		(cowboy->position->y) += (cowboy->y_dir)*(cowboy->speed);
+		(cowboy->position.x) += cowboy->x_dir*cowboy->speed;
+		(cowboy->position.y) += cowboy->y_dir*cowboy->speed;
+		
 		/*conditions keeping the cowboy in the play area*/
-		if ((cowboy->position->x) > X_MAX)
-			{cowboy->position->x = X_MAX;}
-		if ((cowboy->position->x) < X_MIN)
-			{cowboy->position->x = X_MIN;}
-		if ((cowboy->position->y) > Y_MAX)
-			{cowboy->position->y = Y_MAX;}
-		if ((cowboy->position->y) < Y_MIN)
-			{cowboy->position->y = Y_MIN;}
+		if ((cowboy->position.x) > X_MAX)
+			{cowboy->position.x = X_MAX;}
+		if ((cowboy->position.x) < X_MIN)
+			{cowboy->position.x = X_MIN;}
+		if ((cowboy->position.y) > Y_MAX)
+			{cowboy->position.y = Y_MAX;}
+		if ((cowboy->position.y) < Y_MIN)
+			{cowboy->position.y = Y_MIN;}
 	}
 }
 
