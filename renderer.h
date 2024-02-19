@@ -17,8 +17,8 @@ void render_level1(UINT16 *base, const UINT32 *bitmap);
 
 void render_side_text(UINT8 *base, int players);
 
-void render_score(const *Score, UINT8 *base);
+void render_score(UINT8 *base, struct Scoreboard *scoreboard);
 
-void render_lives(const *Lives, UINT16 *base);
+void render_lives(UINT16 *base, struct *Lives, const UINT16 *bitmap16);
 
 #endif
