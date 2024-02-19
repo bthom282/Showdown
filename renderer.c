@@ -17,8 +17,6 @@ const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
 const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
 const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
-int players = 1;
-
 void render(const Model *model, UINT32 *base)
 {
 	
@@ -175,6 +173,7 @@ void game_start() {
   	char *base = Physbase();
 	unsigned long seed = 300;
 	UINT16 *loc = (UINT16 *) base;
+	int players = 1;
 	
 	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1;
@@ -196,5 +195,18 @@ void game_start() {
 	cowboy1.lives = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
-	render_cowboy((UINT32 *) base, cowboy1)
+	render_side_panel((UINT16 *) base);
+	render_side_text((UINT8 *) base, players);
+	render_score((UINT8 *) base, cowboy.scoreboard);
+	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_level((UINT32 *) base, cactus_bitmap);
+	render_cowboy((UINT32 *) base, cowboy1);
+	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
+
+	cnecin(); /* wait for key press to continue */
+
+	
+
+	
 }
