@@ -17,7 +17,7 @@ const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
 const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
 const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
-void render(const Model *model, UINT32 *base)
+void render(struct Model *model, UINT32 *base)
 {
 	
 }
