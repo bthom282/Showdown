@@ -42,7 +42,7 @@ void render_snakes(UINT32 *base, struct Snake *active_snakes, int snakes_fill)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, active_snakes[i].bitmap[, BITMAP_32_HEIGHT, active_snakes[i].state);
+		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, active_snakes[i].bitmap, BITMAP_32_HEIGHT, active_snakes[i].state);
 	}
 }
 }
