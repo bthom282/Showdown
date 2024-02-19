@@ -21,12 +21,15 @@ const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
 void render(const Model *model, UINT32 *base)
 {
-
+	
 }
 
-void render_bullets(struct *Bullet, UINT8 *base)
+void render_bullets(struct Bullet *active_bullets, UINT8 *base, const UINT8 *bitmap8, int bullets_fill)
 {
-
+	int i;
+	for (i = 0; i < bullets_fill; i++) {
+		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap8, BITMAP_8_HEIGHT);
+	}
 }
 
 void render_cowboy(struct *Cowboy cowboy, UINT32 *base)
