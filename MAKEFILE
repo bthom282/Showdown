@@ -18,11 +18,14 @@ raster.o: raster.c raster.h types.h font.h
 tst_mo: tst_mo.o model.o
 	cc68x -g tst_mo.o model.o -o tst_mo
 
-tst_mo.o: tst_mo.c model.h
+tst_mo.o: tst_mo.c model.h events.h
 	cc68x -g -c tst_mo.c
 
 model.o: model.c model.h
 	cc68x -g -c model.c
+
+events.o: events.c events.h
+	cc68x -g -c events.c
 
 tst_ren: tst_ren.o renderer.o
 	cc68x -g tst_ren.o renderer.o raster.o -o tst_ren
