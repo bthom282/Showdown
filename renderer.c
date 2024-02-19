@@ -10,8 +10,6 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 
 /*arrays of messages to be print in game*/
 const UINT8 score[] = {'S','C','O','R','E','\0'};
-const UINT8 p1_score_arr[] = {'0','0','0','0','0','\0'};
-const UINT8 p2_score_arr[] = {'0','0','0','0','0','\0'};
 const UINT8 lives[] = {'L','I','V','E','S','\0'};
 const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
 const UINT8 player1[] = {'P','L','A','Y','E','R',' ','1','\0'};
@@ -24,13 +22,12 @@ void render(const Model *model, UINT32 *base)
 	
 }
 
-void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill)
-{
-	int i;
-	for (i = 0; i < bullets_fill; i++) {
-		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap8, BITMAP_8_HEIGHT);
-	}
-}
+/********************************************************************************************
+Function Name: 	render_cowboy
+
+Details: 	renders the cowboy using his x and y position from the cowboy struct.
+
+*********************************************************************************************/
 
 void render_cowboy(UINT32 *base, struct Cowboy cowboy)
 {
@@ -38,12 +35,102 @@ void render_cowboy(UINT32 *base, struct Cowboy cowboy)
 	return;
 }
 
+/********************************************************************************************
+Function Name: 	render_bullets
+
+Details: 	renders all of the active bullets.
+
+*********************************************************************************************/
+
+void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill)
+{
+	int i;
+	for (i = 0; i < bullets_fill; i++) {
+		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap8, BITMAP_8_HEIGHT);
+	}
+	return;
+}
+
+/********************************************************************************************
+Function Name: 	render_snakes
+
+Details: 	renders all of the active snakes.
+
+*********************************************************************************************/
+
 void render_snakes(UINT32 *base, struct Snake *active_snakes, int snakes_fill)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
 		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, active_snakes[i].bitmap, BITMAP_32_HEIGHT, active_snakes[i].state);
 	}
+	return;
+}
+
+/********************************************************************************************
+Function Name: 	render_side_panel
+
+Details: 	Fills side panel in black.
+
+*********************************************************************************************/
+
+void render_side_panel(UINT32 *base, const UINT32 *bitmap)
+{
+	UINT16 *loc = (UINT16 *) base;
+	int k, j;
+	for (k = 0; k < SCREEN_HEIGHT; k++){ 
+		for (j = 0; j < 16; j++) {
+			*(loc++) = -1;
+		}
+		loc += 24;
+	}
+
+/********************************************************************************************
+Function Name: 	render_level1
+
+Details: 	renders the cowboy using his x and y position from the cowboy struct.
+
+*********************************************************************************************/
+
+void render_level1(UINT32 *base, const UINT32 *bitmap)
+{
+	int i;
+	for(i = 0; i < 128; i += 32){
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT, 0);
+	}
+	for(i = 256; i < SCREEN_HEIGHT-32; i += 32){
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT, 0);
+	}
+	for(i = 256; i < 384; i += 32){
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT, 0);
+	}
+	for(i = 512; i < 640; i += 32){
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT, 0);
+	}
+	return;
+}
+
+/********************************************************************************************
+Function Name: 	render_side_text
+
+Details: 	prints the initial text based on number of players.
+
+*********************************************************************************************/
+void render_side_text(UINT8 *base, int players) {
+	print_message(base, player1, 32, 280);
+	print_message(base, score, 32, 300);
+	print_message(base, lives, 32, 320);
+	
+	if (players == 2) {
+	print_message(base, player2, 32, 212);
+	print_message(base, score, 32, 232);
+	print_message(base, lives, 32, 252);
+	}
+		return;
 }
 
 /********************************************************************************************
@@ -97,46 +184,11 @@ void game_start() {
 	cowboy1.scoreboard.position.y = 424;
 	cowboy1.lives = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
+
+	render_cowboy((UINT32 *) base, cowboy1)
+
 	
-	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
-	/*clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);*/
-	for(i = 0; i < 128; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT);
-	}
-	for(i = 256; i < SCREEN_HEIGHT-32; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT);
-	}
-	for(i = 256; i < 384; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT);
-	}
-	for(i = 512; i < 640; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT);
-	}
-	
-	/*Fill side panel.*/
-	
-	for (k = 0; k < SCREEN_HEIGHT; k++){ 
-		for (j = 0; j < 16; j++) {
-			*(loc++) = -1;
-		}
-		loc += 24;
-	}
-	
-	/*prints player 1 lives and score label*/
-	
-	print_message((UINT8 *) base, player1, 32, 280);
-	print_message((UINT8 *) base, score, 32, 300);
-	print_message((UINT8 *) base, lives, 32, 320);
-	
-	/*if two player mode toggled, prints player 2 lives and score label*/
-	
-	print_message((UINT8 *) base, player2, 32, 212);
-	print_message((UINT8 *) base, score, 32, 232);
-	print_message((UINT8 *) base, lives, 32, 252);
+
 		
 	update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_lives);
 	update_lives ((UINT16 *) base, p1_lives_count, 252, cowgirl_lives);
