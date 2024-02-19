@@ -76,7 +76,7 @@ Details: 	Fills side panel in black.
 
 *********************************************************************************************/
 
-void render_side_panel(UINT32 *base)
+void render_side_panel(UINT16 *base)
 {
 	UINT16 *loc = (UINT16 *) base;
 	int k, j;
