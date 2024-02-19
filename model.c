@@ -55,7 +55,7 @@ void move_bullets(struct Bullet *active_bullets[], int *bullets_fill)
 
 			if (active_bullets[i]->position.y<=0||active_bullets[i]->position.y>=380||
 				active_bullets[i]->position.x<=256||active_bullets[i]->position.x>=632) {
-				delete_bullet(active_bullets[i], i);
+				delete_bullet(active_bullets[i], bullets_fill, i);
 			}
 		}
 	}
