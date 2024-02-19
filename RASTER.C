@@ -54,12 +54,12 @@ Details: 	This function is used to plot a size 32 bitmap to the screen by ORing.
 
 *********************************************************************************************/
 
-void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
+void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height, int state)
 {
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x/32) + y * 20;
-		for(i = 0; i < height; i++)
+		for(i = state * height; i < state * height + height; i++)
 		{
 			*base |= bitmap32[i] >> x % 32;
 			*(base + 1) |= bitmap32[i] << 32 - (x % 32);
