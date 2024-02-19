@@ -192,7 +192,7 @@ void game_start() {
 	cowboy1.scoreboard.score = 0;
 	cowboy1.scoreboard.position.x = 80;
 	cowboy1.scoreboard.position.y = 232;
-	cowboy1.lives = 3;
+	cowboy1.lives.lives_left = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
 	render_side_panel((UINT16 *) base);
