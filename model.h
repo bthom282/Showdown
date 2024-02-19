@@ -9,15 +9,6 @@
 #define TRUE 1
 #define FALSE 0
 
-struct Model
-{
-struct Bullet bullet[MAX_BULLETS];
-struct Cowboy cowboy;
-struct Snake snake[MAX_SNAKES];
-struct Score score;
-struct Lives lives;
-};
-
 struct Position
 {
 UINT16 x;
@@ -100,6 +91,15 @@ int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 
 							      2 - moving right, 3 - moving up} */
 struct BoundingBox boundingBox;
 const UINT32 bitmap = snake_bitmap;
+};
+
+struct Model
+{
+struct Bullet bullet[MAX_BULLETS];
+struct Cowboy cowboy;
+struct Snake snake[MAX_SNAKES];
+struct Score score;
+struct Lives lives;
 };
 
 void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
