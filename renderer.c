@@ -121,14 +121,14 @@ Details: 	prints the initial text based on number of players.
 
 *********************************************************************************************/
 void render_side_text(UINT8 *base, int players) {
-	print_message(base, player1, 32, 280);
-	print_message(base, score, 32, 300);
-	print_message(base, lives, 32, 320);
+	print_message((UINT8 *)base, player1, 32, 280);
+	print_message((UINT8 *)base, score, 32, 300);
+	print_message((UINT8 *)base, lives, 32, 320);
 	
 	if (players == 2) {
-	print_message(base, player2, 32, 212);
-	print_message(base, score, 32, 232);
-	print_message(base, lives, 32, 252);
+	print_message((UINT8 *)base, player2, 32, 212);
+	print_message((UINT8 *)base, score, 32, 232);
+	print_message((UINT8 *)base, lives, 32, 252);
 	}
 	return;
 }
