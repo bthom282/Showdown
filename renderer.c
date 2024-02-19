@@ -130,7 +130,7 @@ void render_side_text(UINT8 *base, int players) {
 	print_message(base, score, 32, 232);
 	print_message(base, lives, 32, 252);
 	}
-		return;
+	return;
 }
 
 /********************************************************************************************
@@ -151,9 +151,14 @@ void render_score(UINT8 *base, struct Scoreboard *scoreboard)
 	}
 }
 
-void render_lives{const *Lives, UINT16 *base)
+void render_lives(UINT16 *base, struct *Lives, const UINT16 *bitmap16)
 {
-
+	int i, x;
+	x = 80;
+	for (i = 0; i < Lives.lives; i++) {
+		plot_bitmap_16((UINT16 *) base, x, 252, bitmap16, BITMAP_HEIGHT);
+		x += 16;
+	}
 }
 
 void game_start() {
@@ -186,22 +191,7 @@ void game_start() {
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
 	render_cowboy((UINT32 *) base, cowboy1)
-
-	
-
 		
 	update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_lives);
 	update_lives ((UINT16 *) base, p1_lives_count, 252, cowgirl_lives);
-
-	plot_char((UINT8 *) base, 80, 300, '0');
-	plot_char((UINT8 *) base, 88, 300, '0');
-	plot_char((UINT8 *) base, 96, 300, '0');
-	plot_char((UINT8 *) base, 104, 300, '0');
-	plot_char((UINT8 *) base, 112, 300, '0');
-	
-	plot_char((UINT8 *) base, 80, 232, '0');
-	plot_char((UINT8 *) base, 88, 232, '0');
-	plot_char((UINT8 *) base, 96, 232, '0');
-	plot_char((UINT8 *) base, 104, 232, '0');
-	plot_char((UINT8 *) base, 112, 232, '0');
 }
