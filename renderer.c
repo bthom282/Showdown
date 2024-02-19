@@ -234,11 +234,11 @@ void game_start() {
 
 	cowboy1.scoreboard.score = 400;
 
-	active_bullets[0] = struct Bullet bullet;
-	active_bullets[0].position.x = 360;
-	active_bullets[0].position.y = 170;
-	active_bullets[0].speed = 3;
-	active_bullets[0].x_dir = 1;
+	active_bullets[bullets_fill].position.x = 360;
+	active_bullets[bullets_fill].position.y = 170;
+	active_bullets[bullets_fill].speed = 3;
+	active_bullets[bullets_fill].x_dir = 1;
+	bullets_fill++;
 	cowboy1.position.x = 350; 
 	cowboy1.position.y = 100;
 	cowboy1.isMoving = TRUE;
