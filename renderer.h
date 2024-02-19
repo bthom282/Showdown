@@ -15,8 +15,8 @@ void render_side_panel(UINT32 *base);
 
 void render_level1(UINT16 *base, const UINT32 *bitmap);
 
-void render_score{const *Score, UINT8 *base);
+void render_score(const *Score, UINT8 *base);
 
-void render_lives{const *Lives, UINT16 *base);
+void render_lives(const *Lives, UINT16 *base);
 
 #endif
