@@ -31,8 +31,8 @@ void render_bullets(struct *Bullet, UINT8 *base)
 
 void render_cowboy(struct *Cowboy cowboy, UINT32 *base)
 {
-	plot_bitmap_32((UINT32 *) base, cowboy->position.x, cowboy->position.y, cowboy->bitmap[cowboy->state], BITMAP_32_HEIGHT);
-
+	plot_bitmap_32((UINT32 *) base, cowboy->position.x, cowboy->position.y, cowboy->bitmap[cowboy->state], BITMAP_32_HEIGHT, cowboy->state);
+	return;
 }
 
 void render_snakes(const *Snake, UINT32 *base)
