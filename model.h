@@ -104,7 +104,7 @@ struct Lives lives;
 
 void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
 
-void move_bullets(struct Bullet *bullet,struct Bullet *active_bullets, int *bullets_fill);
+void move_bullets(struct Bullet *active_bullets[], int *bullets_fill);
 
 void move_snakes(struct Snake *snake, struct Cowboy *cowboy);
 
