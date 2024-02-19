@@ -121,7 +121,7 @@ void increase_score(struct Scoreboard *scoreboard,int value) {
 	scoreboard->score += value;
 	scoreboard->digit[2] = (scoreboard->score%1000)/100;
 	scoreboard->digit[3] = (scoreboard->score%10000)/1000;
-	scoreboard->digit[4] = (scoreboard->score/10000;
+	scoreboard->digit[4] = (scoreboard->score/10000);
 }
 
 /*******************************************************************************************
