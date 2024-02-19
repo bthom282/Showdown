@@ -3,7 +3,7 @@
 
 void game_start();
 
-void render(struct Model *model, UINT32 *base);
+void render(UINT32 *base, struct Model *model);
 
 void render_cowboy(UINT32 *base, struct Cowboy cowboy);
 
