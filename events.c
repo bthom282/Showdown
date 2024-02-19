@@ -198,10 +198,10 @@ void cowboy_death (struct Cowboy *cowboy) {
 	decrement_lives(cowboy);
 	if (cowboy->lives.lives_left == 0) {
 		/*gameover();*/
-		respawn(); /*temporary*/
+		respawn(cowboy); /*temporary*/
 	}
 	else {
-		respawn();
+		respawn(cowboy);
 	}
 
 /*******************************************************************************************
