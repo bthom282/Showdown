@@ -49,12 +49,14 @@ void move_bullets(struct Bullet *active_bullets[], int *bullets_fill)
 {
 	int i;
 	for (i = 0; i < (*bullets_fill); i++) {
-		active_bullets[i]->position.x += active_bullets[i]->speed*active_bullets[i]->x_dir;
-  		active_bullets[i]->position.y += active_bullets[i]->speed*active_bullets[i]->y_dir;
+		if (active_bullets[i] != NULL) {
+			active_bullets[i]->position.x += active_bullets[i]->speed * active_bullets[i]->x_dir;
+			active_bullets[i]->position.y += active_bullets[i]->speed * active_bullets[i]->y_dir;
 
-		if (active_bullets[i]->position.y<=0||active_bullets[i]->position.y>=380||
-		    active_bullets[i]->position.x<=256||active_bullets[i]->position.x>=632) {
-			delete_bullet(active_bullets[i], i);
+			if (active_bullets[i]->position.y<=0||active_bullets[i]->position.y>=380||
+				active_bullets[i]->position.x<=256||active_bullets[i]->position.x>=632) {
+				delete_bullet(active_bullets[i], i);
+			}
 		}
 	}
 }
