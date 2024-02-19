@@ -229,7 +229,7 @@ void game_start() {
 	cowboy1.state = 4;
 	active_snakes[0].position.x = 370;
 	active_snakes[0].position.y = 160;
-	active_snake[0].state = 1;
+	active_snakes[0].state = 1;
 	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
 
 	cowboy1.scoreboard.score = 400;
