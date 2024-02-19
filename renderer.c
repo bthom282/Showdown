@@ -8,15 +8,6 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 #include "renderer.h"
 #include "BITMAPS.H"
 
-/*arrays of messages to be print in game*/
-const UINT8 score[] = {'S','C','O','R','E','\0'};
-const UINT8 lives[] = {'L','I','V','E','S','\0'};
-const UINT8 gameover[] = {'G','A','M','E',' ','O','V','E','R','\0'};
-const UINT8 player1[] = {'P','L','A','Y','E','R',' ','1','\0'};
-const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
-const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
-const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
-
 void render(UINT32 *base, struct Model *model)
 {
 	
@@ -121,15 +112,16 @@ Function Name: 	render_side_text
 Details: 	prints the initial text based on number of players.
 
 *********************************************************************************************/
-void render_side_text(UINT8 *base, int players) {
-	print_message((UINT8 *)base, player1, 32, 280);
-	print_message((UINT8 *)base, score, 32, 300);
-	print_message((UINT8 *)base, lives, 32, 320);
+void render_side_text(UINT8 *base, int players) 
+{
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", 32, 280);
+	print_message((UINT8 *)base, (UINT8 *)"SCORE", 32, 300);
+	print_message((UINT8 *)base, (UINT8 *)"LIVES", 32, 320);
 	
 	if (players == 2) {
-	print_message((UINT8 *)base, player2, 32, 212);
-	print_message((UINT8 *)base, score, 32, 232);
-	print_message((UINT8 *)base, lives, 32, 252);
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", 32, 212);
+	print_message((UINT8 *)base, (UINT8 *)"SCORE", 32, 232);
+	print_message((UINT8 *)base, (UINT8 *)"LIVES", 32, 252);
 	}
 	return;
 }
@@ -164,7 +156,7 @@ void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16)
 	int i, x;
 	x = 80;
 	for (i = 0; i < lives.lives_left; i++) {
-		plot_bitmap_16((UINT16 *) base, x, 252, bitmap16, BITMAP_HEIGHT);
+		plot_bitmap_16((UINT16 *) base, x, lives.position.y, bitmap16, BITMAP_HEIGHT);
 		x += 16;
 	}
 }
