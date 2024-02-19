@@ -97,20 +97,20 @@ void render_level1(UINT32 *base, const UINT32 *bitmap)
 {
 	int i;
 	for(i = 0; i < 128; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
 	}
 	for(i = 256; i < SCREEN_HEIGHT-32; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_32, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
 	}
 	for(i = 256; i < 384; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT, 0);
 	}
 	for(i = 512; i < 640; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_32, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_32, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT, 0);
 	}
 	return;
 }
