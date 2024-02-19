@@ -19,27 +19,6 @@ const UINT8 player2[] = {'P','L','A','Y','E','R',' ','2','\0'};
 const UINT8 cont[] = {'C','O','N','T','I','N','U','E','?','\0'};
 const UINT8 yesno[] = {'P','R','E','S','S',' ','y',' ','O','R',' ','n'};
 
-int 1st_x_start;
-int 1st_y_start;
-int 2nd_x_start;
-int 2nd_y_start;
-int player_num;
-int 1st_lives_count;
-int 2nd_lives_count;
-int 1st_score_value;
-int 2nd_score_value;
-
-bool isPlaying = TRUE;
-
-while (isPlaying == TRUE) {
-
-	if(player_num == 1) {
-		1st_x_start = 424;
-		1st_y_start = 184;
-	
-  	game_start();
-}
-
 void render(const Model *model, UINT32 *base)
 {
 
@@ -92,10 +71,6 @@ void game_start() {
 	UINT16 *loc = (UINT16 *) base;
 	int spawn_loc;
 	int x;
-	int p1_lives_count;
-	int p2_lives_count;
-	int p1_score_value;
-	int p2_score_value;
 	
 	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1;
@@ -112,8 +87,8 @@ void game_start() {
 	cowboy1.xFireDir = 0;
 	cowboy1.state = 0;
 	cowboy1.scoreboard.score = 0;
-	cowboy1.scoreboard.position.x = 80;
-	cowboy1.scoreboard.position.y = 300;
+	cowboy1.scoreboard.position.x = 184;
+	cowboy1.scoreboard.position.y = 424;
 	cowboy1.lives = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 	
