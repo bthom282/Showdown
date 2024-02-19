@@ -16,6 +16,34 @@ Details: 	This function is called every cycle to move any active bullets int the
     		If out of bounds, bullet is deleted from the array by calling the delete_bullet
       		function.
 
+Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
+
+*********************************************************************************************/
+
+void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed) {
+    // Check if there is space in the array to add a new bullet
+    if (*bullets_fill < MAX_BULLETS) {
+        active_bullets[*bullets_fill].position.x = initial_x;
+        active_bullets[*bullets_fill].position.y = initial_y;
+        active_bullets[*bullets_fill].x_dir = initial_x_dir;
+        active_bullets[*bullets_fill].y_dir = initial_y_dir;
+        active_bullets[*bullets_fill].speed = initial_speed;
+
+        (*bullets_fill)++;
+    } else {
+        printf("Error: No space to add a new bullet!\n");
+    }
+}
+
+/*******************************************************************************************
+Function Name: 	move_bullet
+
+Details: 	This function is called every cycle to move any active bullets int the active_
+		bullets array at their constant speed in the direction they were fired. After 
+  		the new position is calculated, it checks to see if the bullet is out of bounds. 
+    		If out of bounds, bullet is deleted from the array by calling the delete_bullet
+      		function.
+
 Sample Call: 	move_bullet(active_bullets, bullets_fill);
 
 *********************************************************************************************/
