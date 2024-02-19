@@ -195,10 +195,10 @@ void game_start() {
 	cowboy1.lives.lives_left = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
-	render_side_panel((UINT16 *) base);
+	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_score((UINT8 *) base, &cowboy1->scoreboard);
+	render_lives((UINT16 *) base, &(cowboy1->lives.lives_left), cowboy_lives);
 	render_level((UINT32 *) base, cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1);
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
@@ -211,10 +211,10 @@ void game_start() {
 	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
 	cowboy1.scoreboard.score = 200;
 
-	render_side_panel((UINT16 *) base);
+	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_score((UINT8 *) base, &cowboy1->scoreboard);
+	render_lives((UINT16 *) base, &(cowboy1->lives.lives_left), cowboy_lives);
 	render_level((UINT32 *) base, cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1);
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
@@ -248,10 +248,10 @@ void game_start() {
 	cowboy1.state = 3;
 	shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
 
-	render_side_panel((UINT16 *) base);
+	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_score((UINT8 *) base, &cowboy1->scoreboard);
+	render_lives((UINT16 *) base, &(cowboy1->lives.lives_left), cowboy_lives);
 	render_level((UINT32 *) base, cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1);
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
@@ -265,10 +265,10 @@ void game_start() {
 	cowboy1.position.y = 184;
 	cowboy1.state = 0;
 
-	render_side_panel((UINT16 *) base);
+	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_score((UINT8 *) base, &cowboy1->scoreboard);
+	render_lives((UINT16 *) base, &(cowboy1->lives.lives_left), cowboy_lives);
 	render_level((UINT32 *) base, cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1);
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
