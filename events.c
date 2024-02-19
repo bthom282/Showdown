@@ -203,6 +203,7 @@ void cowboy_death (struct Cowboy *cowboy) {
 	else {
 		respawn(cowboy);
 	}
+}
 
 /*******************************************************************************************
 Function Name: 	game_over
