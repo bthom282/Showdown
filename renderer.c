@@ -24,14 +24,14 @@ void render(const Model *model, UINT32 *base)
 
 }
 
-void render_bullets(const *Bullet, UINT8 *base)
+void render_bullets(struct *Bullet, UINT8 *base)
 {
 
 }
 
-void render_cowboy(const *Cowboy, UINT32 *base)
+void render_cowboy(struct *Cowboy cowboy, UINT32 *base)
 {
-	
+	plot_bitmap_32((UINT32 *) base, cowboy->position.x, cowboy->position.y, cowboy->bitmap[cowboy->state], BITMAP_32_HEIGHT);
 
 }
 
