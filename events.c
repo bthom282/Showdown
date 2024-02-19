@@ -222,7 +222,7 @@ void game_over((UINT8 *)base, int *isPlaying) {
 		for (j = 0; j < 200; j += 80) {
 			print_message((UINT8 *) base, gameover, j, i);
 		}
-	}
+	}*/
 	
 	/* flash score a few times (clear, print, 5-times)*/
 	
@@ -234,7 +234,7 @@ void game_over((UINT8 *)base, int *isPlaying) {
 	
 	/* Ask player if they want to continue */
 	
-	print_message((UINT8 *) base, continue, [x], [y]);
+/*	print_message((UINT8 *) base, continue, [x], [y]);
 	if (y pressed) {
 		game_start();
 	}
