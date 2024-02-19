@@ -223,7 +223,10 @@ void game_start() {
 	cnecin(); /* wait for key press to continue */
 
 	fill_screen((UINT32 *) base, 0); /* clear full screen */
-
+	
+	cowboy1.position.x = 390; 
+	cowboy1.position.y = 140;
+	cowboy1.state = 4;
 	active_snakes[0].position.x = 370;
 	active_snakes[0].position.y = 160;
 	active_snake[0].state = 1;
@@ -255,5 +258,20 @@ void game_start() {
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 
 	cnecin(); /* wait for key press to continue */
+	fill_screen((UINT32 *) base, 0); /* clear full screen */
+
+	cowboy1.lives = 2;
+	cowboy1.position.x = 424; 
+	cowboy1.position.y = 184;
+	cowboy1.state = 0;
+
+	render_side_panel((UINT16 *) base);
+	render_side_text((UINT8 *) base, players);
+	render_score((UINT8 *) base, cowboy.scoreboard);
+	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_level((UINT32 *) base, cactus_bitmap);
+	render_cowboy((UINT32 *) base, cowboy1);
+	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 	
 }
