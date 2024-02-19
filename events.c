@@ -176,7 +176,7 @@ void snake_death(struct Snake *active_snakes[], int index, int snakes_fill, stru
     /*possible call to snake death animation here*/
     	if (index >= 0 && index < snakes_fill) {
        		active_snakes[index] = active_snakes[snakes_fill - 1];
-        	snakes_fill-struct Snake *active_snakes[]-;
+        	snakes_fill--;
     	}
 	increase_score(scoreboard,100);
 }
