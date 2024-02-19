@@ -113,10 +113,10 @@ Details: 	This function is called every time a bullet leaves the play area by go
 Sample Call: 	delete_bullet(active_bullets[i], i);
 *********************************************************************************************/
 
-void delete_bullet (struct Bullet *bullet, int index) {
-	if (index >= 0 && index < bullet_fill) {
-        	active_bullets[index] = active_bullets[bullet_fill - 1];
-        	bullet_fill--;
+void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index) {
+	if (index >= 0 && index < *bullet_fill) {
+        	active_bullets[index] = active_bullets[*bullet_fill - 1];
+        	(*bullet_fill)--;
    	 }
 }
 
