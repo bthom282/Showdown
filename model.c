@@ -171,7 +171,7 @@ Sample Call:	decrement_lives (cowboy1);
 *********************************************************************************************/
 	
 void decrement_lives (struct Cowboy *cowboy) {
-	cowboy->Lives.lives_left--;
+	cowboy->lives.lives_left--;
 }
 
 /*******************************************************************************************
