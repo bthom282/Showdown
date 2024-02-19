@@ -52,6 +52,7 @@ void render_bullet(const *Bullet, UINT8 *base)
 
 void render_cowboy(const *Cowboy, UINT32 *base)
 {
+	
 
 }
 
@@ -96,10 +97,25 @@ void game_start() {
 	int p1_score_value;
 	int p2_score_value;
 	
-	p1_lives_count = 3;
-	p2_lives_count = 3;
-	p1_score_value = 0;
-	p2_score_value = 0;
+	/*initializing the player1 cowboy*/
+	struct Cowboy cowboy1;
+	cowboy1.position.x = 350; 
+	cowboy1.position.y = 100;
+    	cowboy1.size.height = 16; 
+	cowboy1.size.width = 16;
+	cowboy1.x_dir = 0;
+	cowboy1.y_dir = 0;
+	cowboy1.speed = 2;
+	cowboy1.isMoving = FALSE;
+	cowboy1.isFiring = FALSE;
+	cowboy1.yFireDir = 0;
+	cowboy1.xFireDir = 0;
+	cowboy1.state = 0;
+	cowboy1.scoreboard.score = 0;
+	cowboy1.scoreboard.position.x = 80;
+	cowboy1.scoreboard.position.y = 300;
+	cowboy1.lives = 3;
+	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 	
 	plot_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);
 	/*clear_bitmap_32((UINT32 *) base, 424, 184, cowboy_bitmap_32, BITMAP_32_HEIGHT);*/
