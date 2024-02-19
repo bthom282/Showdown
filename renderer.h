@@ -9,7 +9,7 @@ void render_cowboy(UINT32 *base, struct *Cowboy);
 
 void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill);
 
-void render_snakes(UINT32 *base, );
+void render_snakes(UINT32 *base, struct Snake *active_snakes, int snakes_fill);
 
 void render_side_panel(UINT32 *base);
 
