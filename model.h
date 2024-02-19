@@ -20,14 +20,14 @@ struct Lives lives;
 
 struct Position
 {
-unsigned int x;
-unsigned int y;
+UINT16 x;
+UINT16 y;
 };
 
 struct Size
 {
-int height;
-int width;
+UINT16 height;
+UINT16 width;
 };
 
 struct BoundingBox
@@ -45,7 +45,7 @@ struct Position position;        /* position coordinates (player 1 lives positio
 
 struct Scoreboard          /* type definition for score object */
 {
-int score;		  /* default initial score is 00000 */
+UINT16 score;		  /* default initial score is 00000 */
 char digit[5];		
 struct Position position;        /* position coordinates (player 1 score position begins at  (80,300)
                               player 2 score position begins at  (80,232))*/
