@@ -143,10 +143,10 @@ Details: 	Takes the score from a cowboy struct and prints it to the scoreboard.
 void render_score(UINT8 *base, struct Scoreboard *scoreboard)
 {
 	int i, x, y;
-	x = scoreboard->position.x;
-	y = scoreboard->position.y;
+	x = scoreboard.position.x;
+	y = scoreboard.position.y;
 	for (i = 4; i >= 0; i--) {
-		plot_char(base, x, y, '0' + scoreboard->digit[i]);
+		plot_char(base, x, y, '0' + scoreboard.digit[i]);
 		x += 8;
 	}
 }
@@ -162,7 +162,7 @@ void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16)
 {
 	int i, x;
 	x = 80;
-	for (i = 0; i < lives->lives_left; i++) {
+	for (i = 0; i < lives.lives_left; i++) {
 		plot_bitmap_16((UINT16 *) base, x, 252, bitmap16, BITMAP_HEIGHT);
 		x += 16;
 	}
