@@ -98,7 +98,7 @@ struct Model
 struct Bullet bullet[MAX_BULLETS];
 struct Cowboy cowboy;
 struct Snake snake[MAX_SNAKES];
-struct Score score;
+struct Scoreboard score;
 struct Lives lives;
 };
 
