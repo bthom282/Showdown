@@ -5,7 +5,7 @@ void game_start();
 
 void render(struct Model *model, UINT32 *base);
 
-void render_cowboy(UINT32 *base, struct *Cowboy);
+void render_cowboy(UINT32 *base, struct Cowboy cowboy);
 
 void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill);
 
