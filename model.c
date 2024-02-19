@@ -8,13 +8,10 @@ Purpose: Implements functions for manipulating objects according to their specif
 #include "model.h"
 
 /*******************************************************************************************
-Function Name: 	move_bullet
+Function Name: 	init_bullet
 
-Details: 	This function is called every cycle to move any active bullets int the active_
-		bullets array at their constant speed in the direction they were fired. After 
-  		the new position is calculated, it checks to see if the bullet is out of bounds. 
-    		If out of bounds, bullet is deleted from the array by calling the delete_bullet
-      		function.
+Details: 	This function initializes a bullet in the active_bullets array, set values
+		as enter in the parameters.
 
 Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
 
@@ -36,7 +33,7 @@ void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_
 }
 
 /*******************************************************************************************
-Function Name: 	move_bullet
+Function Name: 	move_bullets
 
 Details: 	This function is called every cycle to move any active bullets int the active_
 		bullets array at their constant speed in the direction they were fired. After 
