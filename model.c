@@ -18,7 +18,7 @@ Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
 *********************************************************************************************/
 
 void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed) {
-    // Check if there is space in the array to add a new bullet
+    
     if (*bullets_fill < MAX_BULLETS) {
         active_bullets[*bullets_fill].position.x = initial_x;
         active_bullets[*bullets_fill].position.y = initial_y;
