@@ -24,7 +24,7 @@ void render(const Model *model, UINT32 *base)
 	
 }
 
-void render_bullets(struct Bullet *active_bullets, UINT8 *base, const UINT8 *bitmap8, int bullets_fill)
+void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill)
 {
 	int i;
 	for (i = 0; i < bullets_fill; i++) {
@@ -32,13 +32,13 @@ void render_bullets(struct Bullet *active_bullets, UINT8 *base, const UINT8 *bit
 	}
 }
 
-void render_cowboy(struct *Cowboy cowboy, UINT32 *base)
+void render_cowboy(UINT32 *base, struct *Cowboy cowboy)
 {
 	plot_bitmap_32((UINT32 *) base, cowboy->position.x, cowboy->position.y, cowboy->bitmap[cowboy->state], BITMAP_32_HEIGHT, cowboy->state);
 	return;
 }
 
-void render_snakes(const *Snake, UINT32 *base)
+void render_snakes(struct Snake *active_snakes, UINT32 *base)
 {
 
 }
