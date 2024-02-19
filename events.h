@@ -13,9 +13,9 @@ void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index
 
 unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max);
 
-void spawn_snakes(UINT32 *base, struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed);
+void spawn_snakes(struct Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed);
 
-void snake_death(struct Snake *snake, int index);
+void snake_death(struct Snake *snake, int index, struct Scoreboard scoreboard);
 
 void cowboy_death (int *lives_count);
 
