@@ -196,7 +196,7 @@ Sample Call:	cowboy_death (*cowboy->lives_count);
 void cowboy_death (struct Cowboy *cowboy) {
 	/* possible death animation here */
 	decrement_lives(cowboy);
-	if (cowboy->lives == 0) {
+	if (cowboy->lives.lives_left == 0) {
 		/*gameover();*/
 		respawn(); /*temporary*/
 	}
