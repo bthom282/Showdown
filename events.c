@@ -23,7 +23,7 @@ Details: 	This function will compare bounding boxs of object to see if there is 
 Sample Call:	
 *********************************************************************************************/
 
-int checkCollision(BoundingBox box1, BoundingBox box2) {
+int checkCollision(struct BoundingBox box1, struct BoundingBox box2) {
     /* Calculate the sides of the first box */
     int left1 = box1.position.x;
     int right1 = box1.position.x + box1.size.width;
