@@ -164,11 +164,8 @@ void render_lives(UINT16 *base, struct *Lives, const UINT16 *bitmap16)
 void game_start() {
 
   	char *base = Physbase();
-	int i,j,k;
 	unsigned long seed = 300;
 	UINT16 *loc = (UINT16 *) base;
-	int spawn_loc;
-	int x;
 	
 	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1;
@@ -191,7 +188,4 @@ void game_start() {
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
 	render_cowboy((UINT32 *) base, cowboy1)
-		
-	update_lives ((UINT16 *) base, p1_lives_count, 320, cowboy_lives);
-	update_lives ((UINT16 *) base, p1_lives_count, 252, cowgirl_lives);
 }
