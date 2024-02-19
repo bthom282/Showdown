@@ -158,11 +158,11 @@ Details: 	Takes the lives from a cowboy struct and prints them to the side panel
 
 *********************************************************************************************/
 
-void render_lives(UINT16 *base, struct *Lives, const UINT16 *bitmap16)
+void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16)
 {
 	int i, x;
 	x = 80;
-	for (i = 0; i < Lives.lives; i++) {
+	for (i = 0; i < lives->lives_left; i++) {
 		plot_bitmap_16((UINT16 *) base, x, 252, bitmap16, BITMAP_HEIGHT);
 		x += 16;
 	}
