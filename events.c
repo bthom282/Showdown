@@ -153,12 +153,12 @@ Details: 	This function uses the rand_in_range function to "spawn" a new snake s
 Sample Call:	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
 *********************************************************************************************/
 
-void spawn_snakes(struct Snake *active_snakes, int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
+void spawn_snakes(struct Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
 	int spawn_loc;
 
 	spawn_loc = rand_in_range(seed, 0, 15);
-	active_snakes[*snakes_fill].position.x = spawn_x[spawn_loc];
-	active_snakes[*snakes_fill].position.y = spawn_y[spawn_loc];
+	active_snakes[*snakes_fill]->position.x = spawn_x[spawn_loc];
+	active_snakes[*snakes_fill]->position.y = spawn_y[spawn_loc];
 
 	(*snakes_fill)++;
 }
