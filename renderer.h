@@ -11,7 +11,7 @@ void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bit
 
 void render_snakes(UINT32 *base, struct Snake *active_snakes, int snakes_fill);
 
-void render_side_panel(UINT32 *base);
+void render_side_panel(UINT16 *base);
 
 void render_level1(UINT16 *base, const UINT32 *bitmap);
 
