@@ -177,8 +177,8 @@ void game_start() {
 	
 	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1;
-	cowboy1.position.x = 350; 
-	cowboy1.position.y = 100;
+	cowboy1.position.x = 424; 
+	cowboy1.position.y = 184;
     	cowboy1.size.height = 16; 
 	cowboy1.size.width = 16;
 	cowboy1.x_dir = 0;
@@ -190,8 +190,8 @@ void game_start() {
 	cowboy1.xFireDir = 0;
 	cowboy1.state = 0;
 	cowboy1.scoreboard.score = 0;
-	cowboy1.scoreboard.position.x = 184;
-	cowboy1.scoreboard.position.y = 424;
+	cowboy1.scoreboard.position.x = 80;
+	cowboy1.scoreboard.position.y = 232;
 	cowboy1.lives = 3;
 	cowboy1.bitmap = cowboy_bitmap_32[cowboy1.state];
 
@@ -208,7 +208,52 @@ void game_start() {
 
 	fill_screen((UINT32 *) base, 0); /* clear full screen */
 
-	
+	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
+	cowboy1.scoreboard.score = 200;
 
+	render_side_panel((UINT16 *) base);
+	render_side_text((UINT8 *) base, players);
+	render_score((UINT8 *) base, cowboy.scoreboard);
+	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_level((UINT32 *) base, cactus_bitmap);
+	render_cowboy((UINT32 *) base, cowboy1);
+	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
+	
+	cnecin(); /* wait for key press to continue */
+
+	fill_screen((UINT32 *) base, 0); /* clear full screen */
+
+	active_snakes[0].position.x = 370;
+	active_snakes[0].position.y = 160;
+	active_snake[0].state = 1;
+	spawn_snakes((UINT32 *) base, active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
+
+	cowboy1.scoreboard.score = 400;
+
+	active_bullets[0] = struct Bullet bullet;
+	active_bullets[0].position.x = 360;
+	active_bullets[0].position.y = 170;
+	active_bullets[0].speed = 3;
+	active_bullets[0].x_dir = 1;
+	cowboy1.position.x = 350; 
+	cowboy1.position.y = 100;
+	cowboy1.isMoving = TRUE;
+	cowboy1.isFiring = TRUE;
+	cowboy1.yFireDir = 1;
+	cowboy1.xFireDir = -1;
+	cowboy1.state = 3;
+	shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
+
+	render_side_panel((UINT16 *) base);
+	render_side_text((UINT8 *) base, players);
+	render_score((UINT8 *) base, cowboy.scoreboard);
+	render_lives((UINT16 *) base, cowboy1.lives.lives_left, cowboy_lives);
+	render_level((UINT32 *) base, cactus_bitmap);
+	render_cowboy((UINT32 *) base, cowboy1);
+	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
+
+	cnecin(); /* wait for key press to continue */
 	
 }
