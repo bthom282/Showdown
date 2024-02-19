@@ -260,7 +260,7 @@ void game_start() {
 	Cnecin(); /* wait for key press to continue */
 	fill_screen((UINT32 *) base, 0); /* clear full screen */
 
-	cowboy1.lives = 2;
+	cowboy1.lives.lives_left = 2;
 	cowboy1.position.x = 424; 
 	cowboy1.position.y = 184;
 	cowboy1.state = 0;
