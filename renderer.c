@@ -153,6 +153,13 @@ void render_score(UINT8 *base, struct Scoreboard *scoreboard)
 	}
 }
 
+/********************************************************************************************
+Function Name: 	render_lives
+
+Details: 	Takes the lives from a cowboy struct and prints them to the side panel.
+
+*********************************************************************************************/
+
 void render_lives(UINT16 *base, struct *Lives, const UINT16 *bitmap16)
 {
 	int i, x;
