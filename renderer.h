@@ -13,7 +13,7 @@ void render_snakes(UINT32 *base, );
 
 void render_side_panel(UINT32 *base);
 
-void render_level1(UINT32 *base, const UINT32 *bitmap);
+void render_level1(UINT16 *base, const UINT32 *bitmap);
 
 void render_score{const *Score, UINT8 *base);
 
