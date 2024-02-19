@@ -47,8 +47,6 @@ Sample Call:	move_snake(active_snakes, &snakes_fill, &cowboy1);
 
 void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
 {
-	int x_distance;
-	int y_distance;
 	int i;
 	for (i = 0; i < (*snakes_fill); i++) {
 		/*conditions to exit the spawning areas*/
@@ -62,19 +60,15 @@ void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy 
 			{active_snakes[i]->position.y--;}
 		/*conditions for snake movement once in play*/
 		else {
-			x_distance = active_snakes[i]->position.x - cowboy->position.x;
-		
-			if (x_distance > 0)
-				{active_snakes[i]->position.x--;}
-			if (x_distance < 0)
-				{active_snakes[i]->position.x++;}
-		
-			y_distance = active_snakes[i]->position.y - cowboy->position.y;
-		
-			if (y_distance > 0)
-				{active_snakes[i]->position.y--;}
-			if (y_distance < 0)
-				{active_snakes[i]->position.y++;}
+			if (active_snakes[i]->position.x < cowboy->position.x)
+                		{ active_snakes[i]->position.x++; }
+            		else if (active_snakes[i]->position.x > cowboy->position.x)
+                		{ active_snakes[i]->position.x--; }
+            
+           		if (active_snakes[i]->position.y < cowboy->position.y)
+                		{ active_snakes[i]->position.y++; }
+            		else if (active_snakes[i]->position.y > cowboy->position.y)
+                		{ active_snakes[i]->position.y--; }
 		}
 	}		
 }
@@ -163,8 +157,8 @@ Sample Call:	respawn(player1);
 
 *********************************************************************************************/
 
-void respawn(Cowboy *cowboy) {
-	player->x = 424;
-	player->y = 184;
+void respawn(struct Cowboy *cowboy) {
+	cowboy->position.x = 424;
+	cowboy->position.y = 184;
 	/* invulnerability frames code here, asking Marc */
 }	
