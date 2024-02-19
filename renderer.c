@@ -206,6 +206,8 @@ void game_start() {
 
 	cnecin(); /* wait for key press to continue */
 
+	fill_screen((UINT32 *) base, 0); /* clear full screen */
+
 	
 
 	
