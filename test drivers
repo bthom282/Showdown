@@ -49,7 +49,7 @@
 
 	Cnecin(); 
 
-/* series of snapshots, press any key to move cowboy */
+/* series of snapshots, press any key to move cowboy. Score and lives changes as well as the cowboys posotion */
 
 	char *base = Physbase();
 	UINT32 seed = 12345;
