@@ -32,7 +32,6 @@ struct Cowboy initializeCowboy() {
     cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
     cowboy.boundingBox.left = cowboy.position.x;
     cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-	cowboy.bitmap = cowboy_bitmap;
 
 	return cowboy;
 }
