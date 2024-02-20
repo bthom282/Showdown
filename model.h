@@ -1,30 +1,58 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+/******CONSTANTS******/
+
+#define BITMAP_HEIGHT 16
+#define BITMAP_8_HEIGHT 8
+#define BITMAP_32_HEIGHT 32
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
 #define X_MIN 288
-#define X_MAX 576
+#define X_MAX 575
 #define Y_MIN 32
 #define Y_MAX 320
 #define NULL 0
 #define TRUE 1
 #define FALSE 0
+#define MAX_BULLETS 20
+#define MAX_SNAKES 30
+#define MAX_SPAWN_LOC 16
+#define TEXT_X 32
+#define ONE_SCORE_Y 232
+#define TWO_SCORE_Y 300
+#define TWO_LIVES_Y 252
+#define TWO_LIVES_Y 320
+#define ONE_Y 212
+#define TWO_Y 280
+#define MAX_BULLETS 20
+#define MAX_SNAKES 30
+#define BYTES_PER_SCREEN 32000
+#define WORDS_PER_SCREEN 16000
+#define LONGS_PER_SCREEN 8000
+#define BITMAP_HEIGHT 16
+#define BITMAP_8_HEIGHT 8
+#define BITMAP_32_HEIGHT 32
+#define CLEAR32 0x00000000
 
 struct Position
 {
-UINT16 x;
-UINT16 y;
+int x;
+int y;
 };
 
 struct Size
 {
-UINT16 height;
-UINT16 width;
+int height;
+int width;
 };
 
 struct BoundingBox
 {
-struct Size size;
-struct Position position;
+    int top;
+    int bottom;
+    int left;
+    int right;
 };
 
 struct Lives          /* type definition for lives object */
@@ -36,10 +64,9 @@ struct Position position;        /* position coordinates (player 1 lives positio
 
 struct Scoreboard          /* type definition for score object */
 {
-UINT16 score;		  /* default initial score is 00000 */
+int score;		  /* default initial score is 00000 */
 char digit[5];		
-struct Position position;        /* position coordinates (player 1 score position begins at  (80,300)
-                              player 2 score position begins at  (80,232))*/
+struct Position position;
 };
 
 struct Bullet           /* type definition for bullet object */
@@ -71,38 +98,8 @@ int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternat
 struct Scoreboard scoreboard;		  
 struct Lives lives;		   
 struct BoundingBox boundingBox;
-const UINT32* bitmap;
+const unsigned long bitmap;
 };
-
-struct Cowboy initializeCowboy() {
-    struct Cowboy cowboy; 
-
-    cowboy.position.x = 424;
-    cowboy.position.y = 184;
-    cowboy.size.height = 16;
-    cowboy.size.width = 16;
-    cowboy.y_dir = 0;
-    cowboy.x_dir = 0;
-    cowboy.speed = 2;
-    cowboy.isMoving = FALSE;
-    cowboy.isFiring = FALSE;
-    cowboy.yFireDir = 0;
-    cowboy.xFireDir = 0;
-    cowboy.state = 0;
-	cowboy.scoreboard.score = 0;
-    cowboy.scoreboard.position.x = 80;
-    cowboy.scoreboard.position.y = 300;
-	cowboy.lives.lives_left = 3;
-    cowboy.lives.position.x = 80;
-    cowboy.lives.position.y = 320;
-	cowboy.boundingBox.top = cowboy.position.y;
-    cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
-    cowboy.boundingBox.left = cowboy.position.x;
-    cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-	cowboy.bitmap = cowboy_bitmap;
-
-	return cowboy;
-}
 
 struct Snake           /* type definition for snake object */
 {
@@ -120,7 +117,7 @@ struct Position target;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
 struct BoundingBox boundingBox;
-const UINT32* bitmap;
+const unsigned long *bitmap;
 };
 
 struct Model
