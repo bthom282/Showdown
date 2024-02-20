@@ -117,5 +117,5 @@
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill); 
 	
 	cowboy1.y_dir = 0;
-    cowboy1.x_dir = 1;
+    	cowboy1.x_dir = 1;
 	cowboy1.isMoving = TRUE;
