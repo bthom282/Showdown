@@ -1,4 +1,5 @@
 #include "model.h"
+#include "osbind.h"
 
 int main()
 {
