@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "osbind.h"
 
 int main()
 {
