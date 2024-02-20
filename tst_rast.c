@@ -1,5 +1,5 @@
+#include <osbind.h>
 #include "raster.h"
-#inlcude "osbind.h"
 
 int main()
 {
