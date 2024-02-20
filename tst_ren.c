@@ -25,7 +25,7 @@ int main()
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 
-  fill_screen((UINT32 *) base, 0);
+ 	fill_screen((UINT32 *) base, 0);
 
 	increase_score(&cowboy1.scoreboard, 100);
 	cowboy1.lives.lives_left = 2;
@@ -70,7 +70,7 @@ int main()
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill); 
 	
 	cowboy1.y_dir = 0;
-  cowboy1.x_dir = 1;
+  	cowboy1.x_dir = 1;
 	cowboy1.isMoving = TRUE;
   
   return 0;
