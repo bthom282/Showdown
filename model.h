@@ -135,6 +135,8 @@ void move_bullets(struct Bullet *active_bullets[], int *bullets_fill);
 
 void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy);
 
+struct Cowboy initializeCowboy();
+
 void move_cowboy(struct Cowboy *cowboy);
 
 void increase_score(struct Scoreboard *scoreboard,int value);
