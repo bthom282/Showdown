@@ -5,9 +5,9 @@
 #include "events.h"
 #include "renderer.h"
 #include "raster.h"
-#include "font.h"
 #include "bitmaps.h"
 
+/*
 struct Cowboy initializeCowboy() {
     struct Cowboy cowboy;
 
@@ -33,10 +33,10 @@ struct Cowboy initializeCowboy() {
     cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
     cowboy.boundingBox.left = cowboy.position.x;
     cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-	cowboy.bitmap = cowboy_bitmap;
 
 	return cowboy;
 }
+*/
 
 int main()
 {
