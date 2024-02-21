@@ -1,6 +1,9 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
+#include "model.h"
+#include "TYPES.H"
+
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
 
@@ -15,7 +18,7 @@ unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max
 
 void spawn_snakes(struct Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed);
 
-void snake_death(struct Snake *snake, int index, int snakes_fill, struct Scoreboard *scoreboard);
+void snake_death(struct Snake *snake[], int index, int snakes_fill, struct Scoreboard *scoreboard);
 
 void cowboy_death (struct Cowboy *cowboy);
 
