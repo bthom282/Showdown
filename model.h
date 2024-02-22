@@ -129,8 +129,6 @@ struct Scoreboard score;
 struct Lives lives;
 };
 
-void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
-
 void move_bullets(struct Bullet *active_bullets[], int *bullets_fill);
 
 void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy);
@@ -146,5 +144,11 @@ void wave_bonus(struct Scoreboard *scoreboard);
 void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
+
+struct Cowboy initializeCowboy();
+
+struct Snake initializeSnake(int x, int y);
+
+struct init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
 
 #endif
