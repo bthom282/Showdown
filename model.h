@@ -131,7 +131,7 @@ struct Lives lives;
 
 void move_bullets(struct Bullet *active_bullets[], int *bullets_fill);
 
-void move_snakes(struct Snake *active_snakes[], int *snakes_fill, struct Cowboy *cowboy);
+void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy);
 
 struct Cowboy initializeCowboy();
 
