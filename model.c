@@ -7,60 +7,6 @@ Purpose: Implements functions for manipulating objects according to their specif
 *******************************************************************************************/
 #include "model.h"
 
-struct Cowboy initializeCowboy() {
-    struct Cowboy cowboy; 
-
-    cowboy.position.x = 424;
-    cowboy.position.y = 184;
-    cowboy.size.height = 16;
-    cowboy.size.width = 16;
-    cowboy.y_dir = 0;
-    cowboy.x_dir = 0;
-    cowboy.speed = 2;
-    cowboy.isMoving = FALSE;
-    cowboy.isFiring = FALSE;
-    cowboy.yFireDir = 0;
-    cowboy.xFireDir = 0;
-    cowboy.state = 0;
-	cowboy.scoreboard.score = 0;
-    cowboy.scoreboard.position.x = 80;
-    cowboy.scoreboard.position.y = 300;
-	cowboy.lives.lives_left = 3;
-    cowboy.lives.position.x = 80;
-    cowboy.lives.position.y = 320;
-	cowboy.boundingBox.top = cowboy.position.y;
-    cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
-    cowboy.boundingBox.left = cowboy.position.x;
-    cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-
-	return cowboy;
-}
-
-/*******************************************************************************************
-Function Name: 	init_bullet
-
-Details: 	This function initializes a bullet in the active_bullets array, set values
-		as enter in the parameters.
-
-Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
-
-*********************************************************************************************/
-
-void init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed) {
-    
-    if (*bullets_fill < MAX_BULLETS) {
-        active_bullets[*bullets_fill].position.x = initial_x;
-        active_bullets[*bullets_fill].position.y = initial_y;
-        active_bullets[*bullets_fill].x_dir = initial_x_dir;
-        active_bullets[*bullets_fill].y_dir = initial_y_dir;
-        active_bullets[*bullets_fill].speed = initial_speed;
-
-        (*bullets_fill)++;
-    } else {
-        printf("Error: No space to add a new bullet!\n");
-    }
-}
-
 /*******************************************************************************************
 Function Name: 	move_bullets
 
@@ -221,7 +167,7 @@ void respawn(struct Cowboy *cowboy) {
 }	
 
 /*******************************************************************************************
-Function Name: 	initializeCowboy()
+Function Name: 	init_Cowboy()
 
 Details: 	This function initializes the Cowboy struct to it's default starting values.
 
@@ -229,37 +175,37 @@ Sample Call:	cowboy1 = initializeCowboy();
 
 *********************************************************************************************/
 
-struct Cowboy initializeCowboy() {
-    struct Cowboy cowboy; 
+struct Cowboy init_Cowboy() {
+    	struct Cowboy cowboy; 
 
-    cowboy.position.x = 424;
-    cowboy.position.y = 184;
-    cowboy.size.height = 32;
-    cowboy.size.width = 32;
-    cowboy.y_dir = 0;
-    cowboy.x_dir = 0;
-    cowboy.speed = 2;
-    cowboy.isMoving = FALSE;
-    cowboy.isFiring = FALSE;
-    cowboy.yFireDir = 0;
-    cowboy.xFireDir = 0;
-    cowboy.state = 0;
+    	cowboy.position.x = 424;
+    	cowboy.position.y = 184;
+    	cowboy.size.height = 32;
+    	cowboy.size.width = 32;
+    	cowboy.y_dir = 0;
+    	cowboy.x_dir = 0;
+    	cowboy.speed = 2;
+    	cowboy.isMoving = FALSE;
+    	cowboy.isFiring = FALSE;
+    	cowboy.yFireDir = 0;
+    	cowboy.xFireDir = 0;
+    	cowboy.state = 0;
 	cowboy.scoreboard.score = 0;
-    cowboy.scoreboard.position.x = 80;
-    cowboy.scoreboard.position.y = 300;
+    	cowboy.scoreboard.position.x = 80;
+    	cowboy.scoreboard.position.y = 300;
 	cowboy.lives.lives_left = 3;
-    cowboy.lives.position.x = 80;
-    cowboy.lives.position.y = 320;
+    	cowboy.lives.position.x = 80;
+    	cowboy.lives.position.y = 320;
 	cowboy.boundingBox.top = cowboy.position.y;
-    cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
-    cowboy.boundingBox.left = cowboy.position.x;
-    cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
+    	cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
+    	cowboy.boundingBox.left = cowboy.position.x;
+    	cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
 
 	return cowboy;
 }
 
 /*******************************************************************************************
-Function Name: 	initializeSnake()
+Function Name: 	init_Snake()
 
 Details: 	This function initializes the Snake struct to it's default spawning values.
 
@@ -267,7 +213,7 @@ Sample Call:	cowboy1 = initializeCowboy();
 
 *********************************************************************************************/
 
-struct Snake initializeSnake() {
+struct Snake init_Snake() {
 	struct Snake snake;
 	
 	snake.position.x = 384;   
@@ -278,9 +224,34 @@ struct Snake initializeSnake() {
 	snake.x_dir = 0;
 	snake.state = 0;
 	snake.boundingBox.top = snake.position.y;
-    snake.boundingBox.bottom = snake.position.y + snake.size.height;
-    snake.boundingBox.left = snake.position.x;
-    snake.boundingBox.right = snake.position.x + snake.size.width;
+    	snake.boundingBox.bottom = snake.position.y + snake.size.height;
+    	snake.boundingBox.left = snake.position.x;
+    	snake.boundingBox.right = snake.position.x + snake.size.width;
 	
 	return snake;
+}
+
+/*******************************************************************************************
+Function Name: 	init_Bullet
+
+Details: 	This function initializes a bullet in the active_bullets array, set values
+		as enter in the parameters.
+
+Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
+
+*********************************************************************************************/
+
+void init_Bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed) {
+    
+    if (*bullets_fill < MAX_BULLETS) {
+        active_bullets[*bullets_fill].position.x = initial_x;
+        active_bullets[*bullets_fill].position.y = initial_y;
+        active_bullets[*bullets_fill].x_dir = initial_x_dir;
+        active_bullets[*bullets_fill].y_dir = initial_y_dir;
+        active_bullets[*bullets_fill].speed = initial_speed;
+
+        (*bullets_fill)++;
+    } else {
+        printf("Error: No space to add a new bullet!\n");
+    }
 }
