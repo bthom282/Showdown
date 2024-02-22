@@ -241,17 +241,12 @@ Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
 
 *********************************************************************************************/
 
-void init_Bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed) {
+struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir, int initial_speed) {
     
-    if (*bullets_fill < MAX_BULLETS) {
-        active_bullets[*bullets_fill].position.x = initial_x;
-        active_bullets[*bullets_fill].position.y = initial_y;
-        active_bullets[*bullets_fill].x_dir = initial_x_dir;
-        active_bullets[*bullets_fill].y_dir = initial_y_dir;
-        active_bullets[*bullets_fill].speed = initial_speed;
-
-        (*bullets_fill)++;
-    } else {
-        printf("Error: No space to add a new bullet!\n");
+       	bullet.position.x = x_pos;
+        bullet.position.y = y_pos;
+        bullet.x_dir = x_dir;
+        bullet.y_dir = y_dir;
+        bullet.speed = BULLET_SPEED;
     }
 }
