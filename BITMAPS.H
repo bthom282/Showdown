@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern const UINT32 cowboy_bitmap[][];
-extern const UINT32 snake_bitmap[];
+extern const UINT32 snake_bitmap[][];
 extern const UINT32 cactus_bitmap[];
 extern const UINT16 cowboy_lives[];
 extern const UINT16 cowgirl_lives[];
