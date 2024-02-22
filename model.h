@@ -34,6 +34,7 @@
 #define BITMAP_8_HEIGHT 8
 #define BITMAP_32_HEIGHT 32
 #define CLEAR32 0x00000000
+#define BULLET_SPEED 3
 
 struct Position
 {
@@ -149,6 +150,6 @@ struct Cowboy init_Cowboy();
 
 struct Snake init_Snake(int x, int y);
 
-struct Bullet init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
+struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir);
 
 #endif
