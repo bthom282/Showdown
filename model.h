@@ -145,10 +145,10 @@ void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
 
-struct Cowboy initializeCowboy();
+struct Cowboy init_Cowboy();
 
-struct Snake initializeSnake(int x, int y);
+struct Snake init_Snake(int x, int y);
 
-struct init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
+struct Bullet init_bullet(struct Bullet active_bullets[], int *bullets_fill, int initial_x, int initial_y, int initial_x_dir, int initial_y_dir, int initial_speed);
 
 #endif
