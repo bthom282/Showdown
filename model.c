@@ -241,7 +241,7 @@ Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
 
 *********************************************************************************************/
 
-struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir, int initial_speed) {
+struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir) {
     
        	bullet.position.x = x_pos;
         bullet.position.y = y_pos;
