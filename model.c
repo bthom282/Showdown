@@ -43,7 +43,7 @@ Details: 	This function is called every cycle to move any active snakes in the a
 		snakes array. If a particular snake is still in the spawning area, it will first
   		move them into the play area.
 
-Sample Call:	move_snake(active_snakes, &snakes_fill, &cowboy1);
+Sample Call:	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 
 *********************************************************************************************/
 
