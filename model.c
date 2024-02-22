@@ -167,11 +167,11 @@ void respawn(struct Cowboy *cowboy) {
 }	
 
 /*******************************************************************************************
-Function Name: 	init_Cowboy()
+Function Name: 	init_Cowboy
 
 Details: 	This function initializes the Cowboy struct to it's default starting values.
 
-Sample Call:	cowboy1 = initializeCowboy();
+Sample Call:	cowboy1 = init_Cowboy();
 
 *********************************************************************************************/
 
@@ -205,11 +205,11 @@ struct Cowboy init_Cowboy() {
 }
 
 /*******************************************************************************************
-Function Name: 	init_Snake()
+Function Name: 	init_Snake
 
 Details: 	This function initializes the Snake struct to it's default spawning values.
 
-Sample Call:	cowboy1 = initializeCowboy(spawn_x, spawn_y);
+Sample Call:	cowboy1 = init_Snake(spawn_x, spawn_y);
 
 *********************************************************************************************/
 
