@@ -14,9 +14,9 @@ void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8,
 
 void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index);
 
-unsigned int randInRange(unsigned long *seed, unsigned int min, unsigned int max);
+unsigned int rand_in_range(UINT32 *seed, UINT16 min, UINT16 max);
 
-void spawn_snakes(struct Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed);
+void spawn_snakes(struct Snake *active_snakes, int *snakes_fill, UINT32 *seed);
 
 void snake_death(struct Snake *snake[], int index, int snakes_fill, struct Scoreboard *scoreboard);
 
