@@ -213,7 +213,7 @@ Sample Call:	cowboy1 = init_Snake(spawn_x, spawn_y);
 
 *********************************************************************************************/
 
-struct Snake initializeSnake(int x, int y); {
+struct Snake init_Snake(int x, int y); {
 	struct Snake snake;
 	
 	snake.position.x = int x;   
