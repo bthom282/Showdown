@@ -130,10 +130,10 @@ Details: 	Given a range and a seed value, this function will return a pseudo-ran
 		number in the given range. This will be used for the random snake spawning
   		during enemy waves.
 
-Sample Call:	spawn_loc = rand_in_range(seed, 0, 15);
+Sample Call:	spawn_loc = rand_in_range((UINT32 *)seed, 0, 15);
 *********************************************************************************************/
 
-unsigned int rand_in_range(unsigned long *seed, unsigned int min, unsigned int max) {
+unsigned int rand_in_range(UINT32 *seed, UINT16 min, UINT16 max) {
     const unsigned long a = 1664525;
     const unsigned long c = 1013904223;
     const unsigned long m = 4294967295; /* 2^32-1 */
@@ -143,7 +143,7 @@ unsigned int rand_in_range(unsigned long *seed, unsigned int min, unsigned int m
 
     /* Scale the generated value to fit within the range [min, max] */
 
-    scaled = (unsigned int)((double)(*seed) / (double)m * (max - min + 1) + min);
+	scaled = (unsigned int)(((double)(*seed) / ((double)m + 1)) * (max - min + 1) + min);
     return scaled;
 }
 
@@ -153,17 +153,42 @@ Function Name: 	snake_spawn
 Details: 	This function uses the rand_in_range function to "spawn" a new snake struct is 
 		created and slotted into the active_snakes struct array.
 
-Sample Call:	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
+Sample Call:	spawn_snakes(active_snakes, &snakes_fill, &seed);
 *********************************************************************************************/
 
-void spawn_snakes(struct Snake *active_snakes[], int spawn_x[], int spawn_y[], int *snakes_fill, UINT32 *seed) {
-	int spawn_loc;
+void spawn_snakes(struct Snake *active_snakes, int *snakes_fill, UINT32 *seed) {
+    int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
+    int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
+    int y_dir;
+    int x_dir;
+    int state;
+    unsigned int spawn_loc;
 
-	spawn_loc = rand_in_range(seed, 0, 15);
-	active_snakes[*snakes_fill]->position.x = spawn_x[spawn_loc];
-	active_snakes[*snakes_fill]->position.y = spawn_y[spawn_loc];
+    if (*snakes_fill >= MAX_SNAKES) {
+        return;
+    }
 
-	(*snakes_fill)++;
+    spawn_loc = rand_in_range((UINT32 *)seed, 0, 15);
+	
+    if (spawn_loc < 4) {
+        y_dir = 1;
+        x_dir = 0;
+        state = 0;
+    } else if (spawn_loc < 8) {
+        y_dir = 0;
+        x_dir = 1;
+        state = 2;
+    } else if (spawn_loc < 12) {
+        y_dir = 0;
+        x_dir = -1;
+        state = 1;
+    } else {
+        y_dir = -1;
+        x_dir = 0;
+        state = 3;
+    }
+    active_snakes[*snakes_fill] = init_Snake(spawn_x[spawn_loc], spawn_y[spawn_loc], y_dir, x_dir, state);
+    (*snakes_fill)++;
 }
 
 /*******************************************************************************************
