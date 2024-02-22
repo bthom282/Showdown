@@ -20,10 +20,13 @@ Details: 	renders the cowboy using his x and y position from the cowboy struct.
 
 *********************************************************************************************/
 
-void render_cowboy(UINT32 *base, struct Cowboy cowboy)
+void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 *bitmap)
 {
-	plot_bitmap_32((UINT32 *) base, cowboy.position.x, cowboy.position.y, cowboy.bitmap, BITMAP_32_HEIGHT, cowboy.state);
-	return;
+		plot_bitmap_32((UINT32 *) base, cowboy.position.x, 
+						cowboy.position.y, 
+						cowboy_bitmap[cowboy.state], 
+						BITMAP_32_HEIGHT);
+		return;
 }
 
 /********************************************************************************************
@@ -49,11 +52,11 @@ Details: 	renders all of the active snakes.
 
 *********************************************************************************************/
 
-void render_snakes(UINT32 *base, struct Snake *active_snakes, int snakes_fill)
+void render_snakes(UINT32 *base, const struct Snake *active_snakes, int snakes_fill)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, active_snakes[i].bitmap, BITMAP_32_HEIGHT, active_snakes[i].state);
+		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, snake_bitmap[active_snakes[i].state], BITMAP_32_HEIGHT);
 	}
 	return;
 }
