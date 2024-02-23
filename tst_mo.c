@@ -7,6 +7,9 @@
 #include "raster.h"
 #include "bitmaps.h"
 
+/* printf's are key!! */
+
+
 /*
 struct Cowboy initializeCowboy() {
     struct Cowboy cowboy;
