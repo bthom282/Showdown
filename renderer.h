@@ -4,6 +4,7 @@
 #include "TYPES.H"
 #include "model.h"
 #include "BITMAPS.H"
+#include "RASTER.H"
 
 void game_start();
 
