@@ -208,24 +208,24 @@ Function Name: 	init_Snake
 
 Details: 	This function initializes the Snake struct to it's default spawning values.
 
-Sample Call:	cowboy1 = init_Snake(spawn_x, spawn_y);
+Sample Call:	snake1 = init_Snake(spawn_x[spawn_loc], spawn_y[spawn_loc], y_dir, x_dir, state);
 
 *********************************************************************************************/
 
-struct Snake init_Snake(int x, int y) {
+struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	struct Snake snake;
 	
-	snake.position.x = int x;   
-	snake.position.y = int y; 	
+	snake.position.x = x_p;   
+	snake.position.y = y_p; 	
 	snake.size.height = 32;
 	snake.size.width = 32;
-	snake.y_dir = 0;    		
-	snake.x_dir = 0;
-	snake.state = 0;
+	snake.y_dir = x_d;    		
+	snake.x_dir = y_d;
+	snake.state = s;
 	snake.boundingBox.top = snake.position.y;
-    	snake.boundingBox.bottom = snake.position.y + snake.size.height;
-    	snake.boundingBox.left = snake.position.x;
-    	snake.boundingBox.right = snake.position.x + snake.size.width;
+    snake.boundingBox.bottom = snake.position.y + snake.size.height;
+    snake.boundingBox.left = snake.position.x;
+    snake.boundingBox.right = snake.position.x + snake.size.width;
 	
 	return snake;
 }
