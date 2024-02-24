@@ -9,38 +9,6 @@
 
 /* printf's are key!! */
 
-
-/*
-struct Cowboy initializeCowboy() {
-    struct Cowboy cowboy;
-
-    cowboy.position.x = 424;
-    cowboy.position.y = 184;
-    cowboy.size.height = 16;
-    cowboy.size.width = 16;
-    cowboy.y_dir = 0;
-    cowboy.x_dir = 0;
-    cowboy.speed = 2;
-    cowboy.isMoving = FALSE;
-    cowboy.isFiring = FALSE;
-    cowboy.yFireDir = 0;
-    cowboy.xFireDir = 0;
-    cowboy.state = 0;
-	cowboy.scoreboard.score = 0;
-    cowboy.scoreboard.position.x = 80;
-    cowboy.scoreboard.position.y = 300;
-	cowboy.lives.lives_left = 3;
-    cowboy.lives.position.x = 80;
-    cowboy.lives.position.y = 320;
-	cowboy.boundingBox.top = cowboy.position.y;
-    cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
-    cowboy.boundingBox.left = cowboy.position.x;
-    cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-
-	return cowboy;
-}
-*/
-
 int main()
 {
 /* black screen displaying cowboy movement, press any key to move cowboy */
@@ -55,7 +23,7 @@ int main()
 	int i;
 	char buffer[20];
 
-	struct Cowboy cowboy1 = initializeCowboy();
+	struct Cowboy cowboy1 = init_Cowboy();
 
 	fill_screen((UINT32 *) base, -1);
 	
