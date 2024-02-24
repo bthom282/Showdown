@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "TYPES.H"
+
 void game_start();
 
 void render(UINT32 *base, struct Model *model);
