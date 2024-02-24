@@ -24,7 +24,7 @@ void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 *bitmap)
 		plot_bitmap_32((UINT32 *) base, cowboy.position.x, 
 						cowboy.position.y, 
 						cowboy_bitmap[cowboy.state], 
-						BITMAP_32_HEIGHT);
+						BITMAP_32_HEIGHT, cowboy.state);
 		return;
 }
 
