@@ -6,6 +6,7 @@ Purpose: Implements functions for manipulating objects according to their specif
 
 *******************************************************************************************/
 #include "model.h"
+#include "events.h"
 
 /*******************************************************************************************
 Function Name: 	move_bullets
@@ -211,7 +212,7 @@ Sample Call:	cowboy1 = init_Snake(spawn_x, spawn_y);
 
 *********************************************************************************************/
 
-struct Snake init_Snake(int x, int y); {
+struct Snake init_Snake(int x, int y) {
 	struct Snake snake;
 	
 	snake.position.x = int x;   
