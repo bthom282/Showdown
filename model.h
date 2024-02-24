@@ -148,7 +148,7 @@ void respawn();
 
 struct Cowboy init_Cowboy();
 
-struct Snake init_Snake(int x, int y);
+struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s);
 
 struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir);
 
