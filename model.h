@@ -104,21 +104,13 @@ const unsigned long bitmap;
 
 struct Snake           /* type definition for snake object */
 {
-struct Position position;         /* position coordinates, snakes initially spawn in locations based on a randomizer */
-	                         /* 16 spawn coordinates = {(384,0),(416,0),(448,0),(480,0),
-								                              (256,128),(256,160),(256,192),(256,224),
-								                              (608,128),(608,160),(608,192),(608,224),
-								                              (384,352),(416,352),(448,352),(480,352)} */
+struct Position position;         
 struct Size size;
-int horizontalDirection;    /* direction the snake is facing*/
-int verticalDirection;
-int horizontalVelocity;    /* horiz. & vert. displacement per clock tick */
-int verticalVelocity;
-struct Position target;
+int y_dir;    		
+int x_dir;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
 struct BoundingBox boundingBox;
-const unsigned long *bitmap;
 };
 
 struct Model
