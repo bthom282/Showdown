@@ -6,7 +6,6 @@ Purpose:	Links the model with the low-level graphics library, so that it is
   		a static snapshot of the world.
 **************************************************************************************/
 #include "renderer.h"
-#include "BITMAPS.H"
 
 void render(UINT32 *base, struct Model *model)
 {
