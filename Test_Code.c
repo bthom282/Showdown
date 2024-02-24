@@ -30,21 +30,21 @@ int main() {
 	
 	/*show snake movement*/
 	
-	for (i = 0; i < snakes_fill: i++) {
+	for (i = 0; i < snakes_fill; i++) {
 		printf("Snakes position x: %d\n", active_snakes[i].position.x);
 		printf("Snakes position y: %d\n", active_snakes[i].position.y);
 	}
 	
 	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 	
-	for (i = 0; i < snakes_fill: i++) {
+	for (i = 0; i < snakes_fill; i++) {
 		printf("Snakes position x: %d\n", active_snakes[i].position.x);
 		printf("Snakes position y: %d\n", active_snakes[i].position.y);
 	}
 	
 	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 	
-	for (i = 0; i < snakes_fill: i++) {
+	for (i = 0; i < snakes_fill; i++) {
 		printf("Snake position x: %d\n", active_snakes[i].position.x);
 		printf("Snake position y: %d\n", active_snakes[i].position.y);
 	}
@@ -77,7 +77,7 @@ int main() {
     cowboy1.xFireDir = 0;
 	shooting((UINT8 *) base, cowboy1, bullet_bitmap, active_bullets, &bullets_fill);
 
-	for (i = 0; i < bullets_fill: i++) {
+	for (i = 0; i < bullets_fill; i++) {
 		printf("Bullet position x: %d\n", active_bullets[i].position.x);
 		printf("Bullet position y: %d\n", active_bullets[i].position.y);
 	}
@@ -89,7 +89,7 @@ int main() {
 	move_bullets(&active_bullets[0], &bullets_fill);
 	move_bullets(&active_bullets[0], &bullets_fill);
 	move_bullets(&active_bullets[0], &bullets_fill);
-	for (i = 0; i < bullets_fill: i++) {
+	for (i = 0; i < bullets_fill; i++) {
 		printf("Bullet position x: %d\n", active_bullets[i].position.x);
 		printf("Bullet position y: %d\n", active_bullets[i].position.y);
 	}
