@@ -110,7 +110,7 @@ Function Name: 	delete_bullet
 Details: 	This function is called every time a bullet leaves the play area by going out 
 		of bounds or by striking an enemy.
 
-Sample Call: 	delete_bullet(active_bullets[i], i);
+Sample Call: 	delete_bullet(&active_bullets[0], bullets_fill, i);
 *********************************************************************************************/
 
 void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index) {
