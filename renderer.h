@@ -2,6 +2,8 @@
 #define RENDERER_H
 
 #include "TYPES.H"
+#include "model.h"
+#include "BITMAPS.H"
 
 void game_start();
 
