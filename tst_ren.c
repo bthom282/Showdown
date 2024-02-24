@@ -4,7 +4,7 @@
 int main()
 {
   /* series of snapshots, press any key to move cowboy. Score and lives changes as well as the cowboys position */
-
+#ifdef FOO
 	char *base = Physbase();
 	UINT32 seed = 12345;
 	int players = 1;
@@ -73,6 +73,6 @@ int main()
 	cowboy1.y_dir = 0;
   	cowboy1.x_dir = 1;
 	cowboy1.isMoving = TRUE;
-  
+  #endif
   return 0;
 }
