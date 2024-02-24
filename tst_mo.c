@@ -33,7 +33,7 @@ int main()
 	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 360);
 	
 	cowboy1.y_dir = 0;
-    cowboy1.x_dir = 1;
+    	cowboy1.x_dir = 1;
 	cowboy1.isMoving = TRUE;
 	
 	Cnecin(); 
