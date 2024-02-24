@@ -223,9 +223,9 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	snake.x_dir = y_d;
 	snake.state = s;
 	snake.boundingBox.top = snake.position.y;
-    snake.boundingBox.bottom = snake.position.y + snake.size.height;
-    snake.boundingBox.left = snake.position.x;
-    snake.boundingBox.right = snake.position.x + snake.size.width;
+    	snake.boundingBox.bottom = snake.position.y + snake.size.height;
+    	snake.boundingBox.left = snake.position.x;
+    	snake.boundingBox.right = snake.position.x + snake.size.width;
 	
 	return snake;
 }
