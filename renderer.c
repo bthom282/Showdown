@@ -90,20 +90,20 @@ void render_level1(UINT32 *base, const UINT32 *bitmap)
 {
 	int i;
 	for(i = 0; i < 128; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT);
 	}
 	for(i = 256; i < SCREEN_HEIGHT-32; i += 32){
-		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, 256, i, cactus_bitmap, BITMAP_32_HEIGHT);
+		plot_bitmap_32((UINT32 *) base, 608, i, cactus_bitmap, BITMAP_32_HEIGHT);
 	}
 	for(i = 256; i < 384; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT);
 	}
 	for(i = 512; i < 640; i += 32){
-		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT, 0);
-		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT, 0);
+		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT);
+		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT);
 	}
 	return;
 }
@@ -163,14 +163,13 @@ void render_lives(UINT16 *base, struct Lives lives, const UINT16 *bitmap16)
 	}
 }
 
-void game_start() {
+/*void game_start() {
 
   	char *base = Physbase();
 	unsigned long seed = 300;
 	UINT16 *loc = (UINT16 *) base;
 	int players = 1;
 	
-	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1;
 	cowboy1.position.x = 424; 
 	cowboy1.position.y = 184;
@@ -198,9 +197,9 @@ void game_start() {
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 
-	Cnecin(); /* wait for key press to continue */
+	Cnecin(); 
 
-	fill_screen((UINT32 *) base, 0); /* clear full screen */
+	fill_screen((UINT32 *) base, 0); 
 
 	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
 	cowboy1.scoreboard.score = 200;
@@ -214,9 +213,9 @@ void game_start() {
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 	
-	Cnecin(); /* wait for key press to continue */
+	Cnecin(); 
 
-	fill_screen((UINT32 *) base, 0); /* clear full screen */
+	fill_screen((UINT32 *) base, 0); 
 	
 	cowboy1.position.x = 390; 
 	cowboy1.position.y = 140;
@@ -251,8 +250,8 @@ void game_start() {
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 
-	Cnecin(); /* wait for key press to continue */
-	fill_screen((UINT32 *) base, 0); /* clear full screen */
+	Cnecin(); 
+	fill_screen((UINT32 *) base, 0); 
 
 	cowboy1.lives.lives_left = 2;
 	cowboy1.position.x = 424; 
@@ -268,4 +267,4 @@ void game_start() {
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 	
-}
+}*/
