@@ -59,7 +59,7 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x/32) + y * 20;
-		for(i = state * height; i < state * height + height; i++)
+		for(i = 0; i < 32; i++)
 		{
 			*base |= bitmap32[i] >> x % 32;
 			*(base + 1) |= bitmap32[i] << 32 - (x % 32);
