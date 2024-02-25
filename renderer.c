@@ -24,7 +24,7 @@ void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 *bitmap)
 		plot_bitmap_32((UINT32 *) base, cowboy.position.x, 
 						cowboy.position.y, 
 						cowboy_bitmap[cowboy.state], 
-						BITMAP_32_HEIGHT, cowboy.state);
+						BITMAP_32_HEIGHT);
 		return;
 }
 
@@ -138,10 +138,10 @@ Details: 	Takes the score from a cowboy struct and prints it to the scoreboard.
 void render_score(UINT8 *base, struct Scoreboard *scoreboard)
 {
 	int i, x, y;
-	x = scoreboard.position.x;
-	y = scoreboard.position.y;
+	x = scoreboard->position.x;
+	y = scoreboard->position.y;
 	for (i = 4; i >= 0; i--) {
-		plot_char(base, x, y, '0' + scoreboard.digit[i]);
+		plot_char(base, x, y, '0' + scoreboard->digit[i]);
 		x += 8;
 	}
 }
@@ -153,7 +153,7 @@ Details: 	Takes the lives from a cowboy struct and prints them to the side panel
 
 *********************************************************************************************/
 
-void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16)
+void render_lives(UINT16 *base, struct Lives lives, const UINT16 *bitmap16)
 {
 	int i, x;
 	x = 80;
