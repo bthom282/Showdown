@@ -27,10 +27,10 @@ model.o: model.c model.h
 events.o: events.c events.h
 	cc68x -g -c events.c
 
-tst_ren: tst_ren.o renderer.o
-	cc68x -g tst_ren.o renderer.o raster.o -o tst_ren
+tst_ren: tst_ren.o renderer.o font.o
+	cc68x -g tst_ren.o renderer.o raster.o font.o -o tst_ren
 
-renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h
+renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h 
 	cc68x -g -c renderer.c
 
 tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h
