@@ -83,11 +83,10 @@ void render_side_panel(UINT16 *base)
 /********************************************************************************************
 Function Name: 	render_level1
 
-Details: 	renders the cowboy using his x and y position from the cowboy struct.
-
+Details: 	renders level background.
 *********************************************************************************************/
 
-void render_level1(UINT32 *base, const UINT32 *bitmap)
+void render_level1(UINT32 *base, const UINT32 *cacuts_bitmap)
 {
 	int i;
 	for(i = 0; i < 128; i += 32){
