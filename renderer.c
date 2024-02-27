@@ -23,7 +23,7 @@ void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 *bitmap)
 {
 		plot_bitmap_32((UINT32 *) base, cowboy.position.x, 
 						cowboy.position.y, 
-						cowboy_bitmap[cowboy.state], 
+						(UINT32 *) bitmap[cowboy.state], 
 						BITMAP_32_HEIGHT);
 		return;
 }
@@ -35,11 +35,11 @@ Details: 	renders all of the active bullets.
 
 *********************************************************************************************/
 
-void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap8, int bullets_fill)
+void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap, int bullets_fill)
 {
 	int i;
 	for (i = 0; i < bullets_fill; i++) {
-		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap8, BITMAP_8_HEIGHT);
+		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap, BITMAP_8_HEIGHT);
 	}
 	return;
 }
@@ -51,11 +51,12 @@ Details: 	renders all of the active snakes.
 
 *********************************************************************************************/
 
-void render_snakes(UINT32 *base, const struct Snake *active_snakes, int snakes_fill)
+void render_snakes(UINT32 *base, const struct Snake *active_snakes, const UINT32 *bitmap, int snakes_fill)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, snake_bitmap[active_snakes[i].state], BITMAP_32_HEIGHT);
+		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, 
+					(UINT32 *) bitmap[active_snakes[i].state], BITMAP_32_HEIGHT);
 	}
 	return;
 }
