@@ -125,7 +125,7 @@ int main() {
 	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_snakes((UINT32 *) base, active_snakes, (UINT32 *) snake_bitmap, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 	
 	/*test rendering of different cowboy bitmaps*/
@@ -138,7 +138,7 @@ int main() {
 	spawn_snakes(active_snakes, &snakes_fill, &seed);
 	spawn_snakes(active_snakes, &snakes_fill, &seed);
 
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_snakes((UINT32 *) base, active_snakes, (UINT32 *) snake_bitmap, snakes_fill);
 	
 	/*show snake movement*/
 	
@@ -154,7 +154,7 @@ int main() {
 	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
+	render_snakes((UINT32 *) base, active_snakes, (UINT32 *) snake_bitmap, snakes_fill);
 	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
 	
 	/*shows cowboy firing in all directions*/
