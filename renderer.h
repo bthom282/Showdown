@@ -18,7 +18,7 @@ void render_snakes(UINT32 *base, const struct Snake *active_snakes, const UINT32
 
 void render_side_panel(UINT16 *base);
 
-void render_level1(UINT32 *base, const UINT32 *bitmap);
+void render_level1(UINT32 *base, const UINT32 *cactus_bitmap);
 
 void render_side_text(UINT8 *base, int players);
 
