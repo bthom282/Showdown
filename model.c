@@ -62,7 +62,7 @@ Sample Call:	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 
 *********************************************************************************************/
 
-void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy)
+/*void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
@@ -88,7 +88,42 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
                 		{ active_snakes[i].position.y--; }
 		}
 	}	
+}*/
+
+void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy)
+{
+	int i;
+	for (i = 0; i < snakes_fill; i++) {
+		move_snake(active_snakes[i], cowboy);
+	}
 }
+
+void move_snake(struct Snake *snake, const struct Cowboy cowboy)
+{
+	/*conditions to exit the spawning areas*/
+	if(active_snakes[i].position.x < X_MIN)
+		{ snake->position.x++; }
+	else if(snake->position.x > X_MAX) 
+		{ snake->position.x--; }
+	else if(snake->position.y < Y_MIN)
+		{ snake->position.y++; }
+	else if(snake->position.y > Y_MAX)
+		{ snake->position.y--; }
+	/*conditions for snake movement once in play*/
+	else {
+		if (snake->position.x < cowboy.position.x)
+			{ snake->position.x++; }
+        else if (snake->position.x > cowboy.position.x)
+            { snake->position.x--; }
+            
+        if (snake->position.y < cowboy.position.y)
+            { snake->position.y++; }
+		else if (snake->position.y > cowboy.position.y)
+            { snake->position.y--; }
+	}
+	
+	/* check for collisions */
+}	
 
 /*******************************************************************************************
 Function Name: 	move_cowboy
