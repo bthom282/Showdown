@@ -8,7 +8,17 @@
 #include "bitmaps.h"
 
 /* printf's are key!! */
+/*
+struct Model testSnapshot = {
 
+	{300, 350, },
+	{},
+	{},
+	{},
+	{3, 370, 300}
+
+};
+*/
 int main()
 {
 /* black screen displaying cowboy movement, press any key to move cowboy */

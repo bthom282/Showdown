@@ -48,7 +48,7 @@ int height;
 int width;
 };
 
-struct BoundingBox
+struct BoundingBox /* might not need this*/
 {
     int top;
     int bottom;
@@ -78,6 +78,8 @@ int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
       			      y = -1 (traveling up), y = 1 (traveling down) */
 int speed;      	   /* displacement per clock tick for x and y displacement*/
 struct BoundingBox boundingBox;
+
+/* just have a postion and velocity, compute the bounding box and not have speed*/
 };
 
 struct Cowboy         /* type definition for cowboy object */
@@ -123,6 +125,8 @@ struct Lives lives;
 };
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill);
+
+void move_bullet(struct Bullet *bullet);
 
 void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy);
 

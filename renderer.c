@@ -9,7 +9,11 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 
 void render(UINT32 *base, struct Model *model)
 {
-	
+	/*
+	render_bullets((UINT8 *) base, &model->bullet, bullet_bitmap);
+	render_cowboy(*base, &model->cowboy, cowboy_bitmap);
+*/
+	return;
 }
 
 /********************************************************************************************
@@ -83,10 +87,11 @@ void render_side_panel(UINT16 *base)
 /********************************************************************************************
 Function Name: 	render_level1
 
-Details: 	renders level background.
+Details: 	renders the cowboy using his x and y position from the cowboy struct.
+
 *********************************************************************************************/
 
-void render_level1(UINT32 *base, const UINT32 *cacuts_bitmap)
+void render_level1(UINT32 *base, const UINT32 *cactus_bitmap)
 {
 	int i;
 	for(i = 0; i < 128; i += 32){

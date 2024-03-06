@@ -20,7 +20,7 @@ Details: 	This function is called every cycle to move any active bullets int the
 Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 
 *********************************************************************************************/
-
+/*
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 {
 	int i;
@@ -33,6 +33,22 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 			delete_bullet(&active_bullets[0], bullets_fill, i);
 		}
 	}
+}
+*/
+
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
+{
+	int i;
+	for (i = 0; i < *bullets_fill; i++)
+		move_bullet(&active_bullets[i]);
+}
+
+void move_bullet(struct Bullet *bullet)
+{
+	bullet->position.x += bullet->x_dir;
+	bullet->position.y += bullet->y_dir;
+
+	/* check for collisions */
 }
 
 /*******************************************************************************************
@@ -223,9 +239,9 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	snake.x_dir = y_d;
 	snake.state = s;
 	snake.boundingBox.top = snake.position.y;
-    	snake.boundingBox.bottom = snake.position.y + snake.size.height;
-    	snake.boundingBox.left = snake.position.x;
-    	snake.boundingBox.right = snake.position.x + snake.size.width;
+    snake.boundingBox.bottom = snake.position.y + snake.size.height;
+    snake.boundingBox.left = snake.position.x;
+    snake.boundingBox.right = snake.position.x + snake.size.width;
 	
 	return snake;
 }
