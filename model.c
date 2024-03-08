@@ -66,7 +66,7 @@ Sample Call:	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		/*conditions to exit the spawning areas*/
+		/*conditions to exit the spawning areas* /
 		if(active_snakes[i].position.x < X_MIN)
 			{active_snakes[i].position.x++;}
 		else if(active_snakes[i].position.x > X_MAX) 
@@ -75,7 +75,7 @@ Sample Call:	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
 			{active_snakes[i].position.y++;}
 		else if(active_snakes[i].position.y > Y_MAX)
 			{active_snakes[i].position.y--;}
-		/*conditions for snake movement once in play*/
+		/*conditions for snake movement once in play* /
 		else {
 			if (active_snakes[i].position.x < cowboy->position.x)
                 		{ active_snakes[i].position.x++; }
