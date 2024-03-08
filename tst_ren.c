@@ -59,11 +59,16 @@ int main()
 
 	/*show snake movement*/
 	
-	/*for (i = 0; i < 20; i++)  {
-		move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
+	cowboy1.isMoving = TRUE;
+	cowboy1.y_dir = -1;
+    cowboy1.x_dir = 1;
+	
+	for (i = 0; i < 40; i++)  {
+		move_snakes(active_snakes, snakes_fill, cowboy1);
+		move_cowboy(&cowboy1);
 	}
 
-	fill_screen((UINT32 *) base, -1);
+	fill_screen((UINT32 *) base, 0);
 	
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
@@ -73,44 +78,44 @@ int main()
 	cowboy1.state = 11;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill, (UINT32 *) snake_bitmap);
-	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);*/
+	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	
 	/*shows cowboy firing in all directions*/
-	/*
+	
 	cowboy1.isFiring = TRUE;
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 0;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = 0;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 0;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = 0;
-	shooting((UINT8 *) base, cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
-	*/
+	
 	
 	/*to show bullet movement*/
 	/*move_bullets(&active_bullets[0], &bullets_fill);
