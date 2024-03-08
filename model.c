@@ -20,21 +20,6 @@ Details: 	This function is called every cycle to move any active bullets int the
 Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 
 *********************************************************************************************/
-/*
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
-{
-	int i;
-	for (i = 0; i < (*bullets_fill); i++) {
-		active_bullets[i].position.x += BULLET_SPEED * active_bullets[i].x_dir;
-		active_bullets[i].position.y += BULLET_SPEED * active_bullets[i].y_dir;
-
-		if (active_bullets[i].position.y<=0||active_bullets[i].position.y>=380||
-			active_bullets[i].position.x<=256||active_bullets[i].position.x>=632) {
-			delete_bullet(&active_bullets[0], bullets_fill, i);
-		}
-	}
-}
-*/
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 {
@@ -48,7 +33,7 @@ void move_bullet(struct Bullet *bullet)
 	bullet->position.x += bullet->x_dir;
 	bullet->position.y += bullet->y_dir;
 
-	/* check for collisions */
+	/* check for collisions */           /*call this in move_bullets?*/
 }
 
 /*******************************************************************************************
@@ -95,6 +80,7 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	}
 	
 	/* check for collisions */
+	checkCollision(&cowboy, snake); /* should i be calling this in move_snakes? so that I have active_snakes*/
 }
 
 /*******************************************************************************************

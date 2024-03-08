@@ -20,7 +20,7 @@ Details: 	This function will compare bounding boxs of object to see if there is 
 Sample Call:	
 *********************************************************************************************/
 
-int checkCollision(struct BoundingBox box1, struct BoundingBox box2) {
+int checkCollision(struct Cowboy *cowboy, struct Snake snake[]) {
 #ifdef FOO
     /* Calculate the sides of the first box */
     int left1 = box1.position.x;
@@ -43,7 +43,13 @@ int checkCollision(struct BoundingBox box1, struct BoundingBox box2) {
         return 1;
     }
 #endif
-	return 0;
+	int collision_flag = 0;
+
+	if (cowboy->position.x < snake->position.x + SNAKE_WIDTH && cowboy->position.x + COWBOY_WIDTH > snake->position.x)
+		if(cowboy->position.y < snake->position.y + SNAKE_HEIGHT || cowboy->position.y + COWBOY_HEIGHT > snake->position.y)
+			collision_flag = 1;
+
+	return collision_flag;
 }
 
 /*******************************************************************************************
