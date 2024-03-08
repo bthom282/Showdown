@@ -77,6 +77,7 @@ int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
 			   /* x = -1 (traveling left), x = 1 (traveling right),
       			      y = -1 (traveling up), y = 1 (traveling down) */
 int speed;      	   /* displacement per clock tick for x and y displacement*/
+struct Size size;
 struct BoundingBox boundingBox;
 
 /* just have a postion and velocity, compute the bounding box and not have speed*/
