@@ -36,8 +36,13 @@ int main()
 
 	/*test rendering of different cowboy bitmaps*/
 	
+	Cnecin(); 
+	
 	clear_bitmap_32((UINT32 *) base, cowboy1.position.x, cowboy1.position.y, blank, BITMAP_32_HEIGHT);
 	cowboy1.state = 9;
+	
+	Cnecin(); 
+	
 	fill_screen((UINT32 *) base, 0);
 	
 	render_side_panel((UINT16 *)base);
@@ -67,6 +72,8 @@ int main()
 		move_snakes(active_snakes, snakes_fill, cowboy1);
 		move_cowboy(&cowboy1);
 	}
+	
+	Cnecin(); 
 
 	fill_screen((UINT32 *) base, 0);
 	
@@ -118,13 +125,25 @@ int main()
 	
 	
 	/*to show bullet movement*/
-	/*move_bullets(&active_bullets[0], &bullets_fill);
-	move_bullets(&active_bullets[0], &bullets_fill);
-	move_bullets(&active_bullets[0], &bullets_fill);
-	move_bullets(&active_bullets[0], &bullets_fill);
-	move_bullets(&active_bullets[0], &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill);
+	
+	Cnecin(); 
+
+	fill_screen((UINT32 *) base, 0);
+	
+	render_side_panel((UINT16 *)base);
+	render_side_text((UINT8 *) base, players);
+	render_score((UINT8 *) base, &cowboy1.scoreboard);
+	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
+	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
+	cowboy1.state = 1;
+	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
+	render_snakes((UINT32 *) base, active_snakes, snakes_fill, (UINT32 *) snake_bitmap);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
-*/
 
 #ifdef FOO
 	char *base = Physbase();
