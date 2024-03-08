@@ -94,14 +94,14 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		move_snake(active_snakes[i], cowboy);
+		move_snake(&active_snakes[i], cowboy);
 	}
 }
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 {
 	/*conditions to exit the spawning areas*/
-	if(active_snakes[i].position.x < X_MIN)
+	if(snake->position.x < X_MIN)
 		{ snake->position.x++; }
 	else if(snake->position.x > X_MAX) 
 		{ snake->position.x--; }
