@@ -10,11 +10,11 @@ void game_start();
 
 void render(UINT32 *base, struct Model *model);
 
-void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 *bitmap);
+void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 bitmap[][BITMAP_32_HEIGHT]);
 
 void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap, int bullets_fill);
 
-void render_snakes(UINT32 *base, const struct Snake *active_snakes, const UINT32 *bitmap, int snakes_fill);
+void render_snakes(UINT32 *base, const struct Snake active_snakes[], int snakes_fill, const UINT32 bitmap[][BITMAP_32_HEIGHT]);
 
 void render_side_panel(UINT16 *base);
 

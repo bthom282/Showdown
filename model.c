@@ -58,37 +58,9 @@ Details: 	This function is called every cycle to move any active snakes in the a
 		snakes array. If a particular snake is still in the spawning area, it will first
   		move them into the play area.
 
-Sample Call:	move_snakes(&active_snakes[0], snakes_fill, &cowboy1);
+Sample Call:	move_snakes(&active_snakes[0], snakes_fill, cowboy1);
 
 *********************************************************************************************/
-
-/*void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy)
-{
-	int i;
-	for (i = 0; i < snakes_fill; i++) {
-		/*conditions to exit the spawning areas* /
-		if(active_snakes[i].position.x < X_MIN)
-			{active_snakes[i].position.x++;}
-		else if(active_snakes[i].position.x > X_MAX) 
-			{active_snakes[i].position.x--;}
-		else if(active_snakes[i].position.y < Y_MIN)
-			{active_snakes[i].position.y++;}
-		else if(active_snakes[i].position.y > Y_MAX)
-			{active_snakes[i].position.y--;}
-		/*conditions for snake movement once in play* /
-		else {
-			if (active_snakes[i].position.x < cowboy->position.x)
-                		{ active_snakes[i].position.x++; }
-            else if (active_snakes[i].position.x > cowboy->position.x)
-                		{ active_snakes[i].position.x--; }
-            
-           	if (active_snakes[i].position.y < cowboy->position.y)
-                		{ active_snakes[i].position.y++; }
-            else if (active_snakes[i].position.y > cowboy->position.y)
-                		{ active_snakes[i].position.y--; }
-		}
-	}	
-}*/
 
 void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy)
 {
@@ -123,7 +95,7 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	}
 	
 	/* check for collisions */
-}	
+}
 
 /*******************************************************************************************
 Function Name: 	move_cowboy
