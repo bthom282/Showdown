@@ -42,9 +42,10 @@ int main()
 	cowboy1.state = 9;
 	
 	Cnecin(); 
-	
+
 	fill_screen((UINT32 *) base, 0);
-	
+
+	increase_score(&cowboy1.scoreboard, 100);	
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
@@ -76,6 +77,8 @@ int main()
 	Cnecin(); 
 
 	fill_screen((UINT32 *) base, 0);
+	
+	cowboy1.lives.lives_left = 2;
 	
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
@@ -132,7 +135,9 @@ int main()
 	move_bullets(active_bullets, &bullets_fill);
 	
 	Cnecin(); 
-
+	
+	cowboy1.lives.lives_left = 1;
+	wave_bonus(&cowboy1.scoreboard);
 	fill_screen((UINT32 *) base, 0);
 	
 	render_side_panel((UINT16 *)base);
