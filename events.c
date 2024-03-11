@@ -20,33 +20,17 @@ Details: 	This function will compare bounding boxs of object to see if there is 
 Sample Call:	
 *********************************************************************************************/
 
-int checkCollision(struct Cowboy *cowboy, struct Snake snake[]) {
-#ifdef FOO
-    /* Calculate the sides of the first box */
-    int left1 = box1.position.x;
-    int right1 = box1.position.x + box1.size.width;
-    int top1 = box1.position.y;
-    int bottom1 = box1.position.y + box1.size.height;
+int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2) {
 
-    /* Calculate the sides of the second box*/
-    int left2 = box2.position.x;
-    int right2 = box2.position.x + box2.size.width;
-    int top2 = box2.position.y;
-    int bottom2 = box2.position.y + box2.size.height;
-
-    /*Check for intersection*/ 
-    if (bottom1 < top2 || top1 > bottom2 || right1 < left2 || left1 > right2) {
-        /*No intersection*/ 
-        return 0;
-    } else {
-        /*Intersection*/ 
-        return 1;
-    }
-#endif
 	int collision_flag = 0;
-
+#ifdef FOO
 	if (cowboy->position.x < snake->position.x + SNAKE_WIDTH && cowboy->position.x + COWBOY_WIDTH > snake->position.x)
 		if(cowboy->position.y < snake->position.y + SNAKE_HEIGHT || cowboy->position.y + COWBOY_HEIGHT > snake->position.y)
+			collision_flag = 1;
+#endif
+
+	if (x2 < x1 + width1 && x2 + width2 > x1)
+		if(y2 < y1 + height1 || y2 + height2 > y1)
 			collision_flag = 1;
 
 	return collision_flag;

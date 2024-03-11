@@ -6,6 +6,12 @@
 #define BITMAP_HEIGHT 16
 #define BITMAP_8_HEIGHT 8
 #define BITMAP_32_HEIGHT 32
+#define COWBOY_HEIGHT 32
+#define COWBOY_WIDTH 30
+#define SNAKE_HEIGHT 30
+#define SNAKE_WIDTH 28
+#define BULLET_HEIGHT 4
+#define BULLET_WIDTH 4
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 #define X_MIN 288
@@ -122,9 +128,9 @@ struct Scoreboard score;
 struct Lives lives;
 };
 
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill);
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake);
 
-void move_bullet(struct Bullet *bullet);
+void move_bullet(struct Bullet *bullet, int *bullets_fill, struct Snake *snake);
 
 void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy);
 

@@ -6,14 +6,8 @@
 
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
-#define COWBOY_HEIGHT 32
-#define COWBOY_WIDTH 30
-#define SNAKE_HEIGHT 30
-#define SNAKE_WIDTH 28
-#define BULLET_HEIGHT 4
-#define BULLET_WIDTH 4
 
-int checkCollision(struct Cowboy *cowboy, struct Snake snake[]);
+int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2);
 
 void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8, 
 				struct Bullet *active_bullets, int *bullets_fill);
