@@ -7,9 +7,9 @@
 #define MAX_BULLETS 20
 #define MAX_SNAKES 30
 
-int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2);
+int checkCollision(struct BoundingBox box1, struct BoundingBox box2);
 
-void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8, 
+void shooting(UINT8 *base, struct Cowboy *cowboy,  
 				struct Bullet *active_bullets, int *bullets_fill);
 
 void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index);

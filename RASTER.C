@@ -83,8 +83,8 @@ void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigne
 		base += (x/32) + y * 20;
 		for(i = 0; i < height; i++)
 		{
-			*base ^= bitmap32[i] >> x % 32;
-			*(base + 1) ^= bitmap32[i] << 32 - (x % 32);
+			*base = bitmap32[i] >> x % 32;
+			*(base + 1) = bitmap32[i] << 32 - (x % 32);
 			base += 20;
 		}
 	}

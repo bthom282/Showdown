@@ -20,29 +20,35 @@ Details: 	This function is called every cycle to move any active bullets int the
 Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 
 *********************************************************************************************/
+/*
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
+{
+	int i;
+	for (i = 0; i < (*bullets_fill); i++) {
+		active_bullets[i].position.x += BULLET_SPEED * active_bullets[i].x_dir;
+		active_bullets[i].position.y += BULLET_SPEED * active_bullets[i].y_dir;
 
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake)
+		if (active_bullets[i].position.y<=0||active_bullets[i].position.y>=380||
+			active_bullets[i].position.x<=256||active_bullets[i].position.x>=632) {
+			delete_bullet(&active_bullets[0], bullets_fill, i);
+		}
+	}
+}
+*/
+
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 {
 	int i;
 	for (i = 0; i < *bullets_fill; i++)
-		move_bullet(&active_bullets[i], bullets_fill, snake);
+		move_bullet(&active_bullets[i]);
 }
 
-void move_bullet(struct Bullet *bullet, int *bullets_fill, struct Snake *snake)
+void move_bullet(struct Bullet *bullet)
 {
-	int collision;
 	bullet->position.x += bullet->x_dir;
 	bullet->position.y += bullet->y_dir;
 
-	/* check for collisions */    
-
-	collision = checkCollision(bullet->position.x, bullet->position.y, BULLET_WIDTH, BULLET_HEIGHT, 
-								snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT);
-/*
-	if(collision == 1){
-		delete_bullet(bullet, bullets_fill, )
-		}*/
-
+	/* check for collisions */
 }
 
 /*******************************************************************************************
@@ -66,7 +72,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 {
-	int collision;
 	/*conditions to exit the spawning areas*/
 	if(snake->position.x < X_MIN)
 		{ snake->position.x++; }
@@ -90,12 +95,6 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	}
 	
 	/* check for collisions */
-
-	collision = checkCollision(snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT, 
-								cowboy.position.x, cowboy.position.y, COWBOY_WIDTH, COWBOY_HEIGHT);
-
-	if(collision == 1)
-		cowboy_death(&cowboy);
 }
 
 /*******************************************************************************************
@@ -207,7 +206,7 @@ struct Cowboy init_Cowboy() {
     	cowboy.size.width = 32;
     	cowboy.y_dir = 0;
     	cowboy.x_dir = 0;
-    	cowboy.speed = 2;
+    	cowboy.speed = 4;
     	cowboy.isMoving = FALSE;
     	cowboy.isFiring = FALSE;
     	cowboy.yFireDir = 0;
