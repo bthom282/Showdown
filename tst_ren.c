@@ -21,11 +21,12 @@ int main()
 	int state;
     int spawn_loc;
 	/*initializing the player1 cowboy*/
+
 	struct Cowboy cowboy1 = init_Cowboy();
 
 	struct Model model = {
 
-	{424, 184, 32, 32, 0, 0, 4, FALSE, FALSE, 0, 0, 6, 0, 0, 0, 0, 0, 0, 80, 300, 3, 80, 320},
+	{424, 184, 0, 0, 4, FALSE, FALSE, 0, 0, 6, 0, 0, 0, 0, 0, 0, 80, 300, 3, 80, 320}
 
 	};
 		

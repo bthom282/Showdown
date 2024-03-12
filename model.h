@@ -45,19 +45,21 @@ int x;
 int y;
 };
 
-struct Size
+/*struct Size
 {
 int height;
 int width;
 };
 
-struct BoundingBox /* might not need this*/
+
+struct BoundingBox /* might not need this* /
 {
     int top;
     int bottom;
     int left;
     int right;
 };
+*/
 
 struct Lives          /* type definition for lives object */
 {
@@ -80,8 +82,6 @@ int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
 			   /* x = -1 (traveling left), x = 1 (traveling right),
       			      y = -1 (traveling up), y = 1 (traveling down) */
 int speed;      	   /* displacement per clock tick for x and y displacement*/
-struct Size size;
-struct BoundingBox boundingBox;
 
 /* just have a postion and velocity, compute the bounding box and not have speed*/
 };
@@ -89,7 +89,6 @@ struct BoundingBox boundingBox;
 struct Cowboy         /* type definition for cowboy object */
 {
 struct Position position;	/* position coordinates, 1 player cowboy's initial position is (424, 184) */
-struct 	Size size;
 int y_dir; 	   		/* direction the cowboy is facing for displacement */
 int x_dir;			/* x = -1 (traveling left), x = 1 (traveling right),
 				y = -1 (traveling up), y = 1 (traveling down) */
@@ -104,19 +103,15 @@ int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternat
 							    3 - moving right, 4 - moving left, 5 moving up} */
 struct Scoreboard scoreboard;		  
 struct Lives lives;		   
-/*struct BoundingBox boundingBox;
-const unsigned long bitmap;*/
 };
 
 struct Snake           /* type definition for snake object */
 {
 struct Position position;         
-struct Size size;
 int y_dir;    		
 int x_dir;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
-struct BoundingBox boundingBox;
 };
 
 struct Model
