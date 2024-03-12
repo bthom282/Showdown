@@ -128,11 +128,11 @@ int main()
 	
 	
 	/*to show bullet movement*/
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
 	
 	Cnecin(); 
 	
