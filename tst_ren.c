@@ -95,44 +95,44 @@ int main()
 	cowboy1.isFiring = TRUE;
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 0;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = -1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = 0;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 1;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = 0;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = 1;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	cowboy1.yFireDir = -1;
     cowboy1.xFireDir = 0;
-	shooting((UINT8 *) base, &cowboy1, active_bullets, &bullets_fill);
+	shooting((UINT8 *) base, &cowboy1, (UINT8 *) bullet_bitmap, active_bullets, &bullets_fill);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 	
 	
 	/*to show bullet movement*/
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
-	move_bullets(active_bullets, &bullets_fill);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
+	move_bullets(active_bullets, &bullets_fill, active_snakes);
 	
 	Cnecin(); 
 	
