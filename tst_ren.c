@@ -1,5 +1,6 @@
 #include <osbind.h>
 #include <stdio.h>
+#include "model.h"
 #include "renderer.h"
 #include "events.h"
 
@@ -21,9 +22,17 @@ int main()
     int spawn_loc;
 	/*initializing the player1 cowboy*/
 	struct Cowboy cowboy1 = init_Cowboy();
+
+	struct Model model = {
+
+	{424, 184, 32, 32, 0, 0, 4, FALSE, FALSE, 0, 0, 6, 0, 0, 0, 0, 0, 0, 80, 300, 3, 80, 320},
+
+	};
 		
 	/*render initial state*/
-	
+
+	render((UINT32 *)base, &model, players, snakes_fill, bullets_fill);
+	/*
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
@@ -31,6 +40,7 @@ int main()
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	cowboy1.state = 6;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
+	*/
 	render_snakes((UINT32 *) base, active_snakes, snakes_fill, (UINT32 *) snake_bitmap);
 	render_bullets((UINT8 *) base, active_bullets, (UINT8 *) bullet_bitmap, bullets_fill);
 

@@ -104,8 +104,8 @@ int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternat
 							    3 - moving right, 4 - moving left, 5 moving up} */
 struct Scoreboard scoreboard;		  
 struct Lives lives;		   
-struct BoundingBox boundingBox;
-const unsigned long bitmap;
+/*struct BoundingBox boundingBox;
+const unsigned long bitmap;*/
 };
 
 struct Snake           /* type definition for snake object */
@@ -121,11 +121,11 @@ struct BoundingBox boundingBox;
 
 struct Model
 {
-struct Bullet bullet[MAX_BULLETS];
 struct Cowboy cowboy;
+/*struct Bullet bullet[MAX_BULLETS];
 struct Snake snake[MAX_SNAKES];
-struct Scoreboard score;
-struct Lives lives;
+struct Scoreboard scoreboard;
+struct Lives lives; */
 };
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake);

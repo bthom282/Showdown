@@ -39,7 +39,7 @@ void move_bullet(struct Bullet *bullet, int *bullets_fill, struct Snake *snake)
 	collision = checkCollision(bullet->position.x, bullet->position.y, BULLET_WIDTH, BULLET_HEIGHT, 
 								snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT);
 /*
-	if(collision == 1){
+	if(collision == TRUE){
 		delete_bullet(bullet, bullets_fill, )
 		}*/
 
@@ -94,7 +94,7 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	collision = checkCollision(snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT, 
 								cowboy.position.x, cowboy.position.y, COWBOY_WIDTH, COWBOY_HEIGHT);
 
-	if(collision == 1)
+	if(collision == TRUE)
 		cowboy_death(&cowboy);
 }
 
@@ -219,11 +219,11 @@ struct Cowboy init_Cowboy() {
 	cowboy.lives.lives_left = 3;
     	cowboy.lives.position.x = 80;
     	cowboy.lives.position.y = 320;
-	cowboy.boundingBox.top = cowboy.position.y;
+	/*cowboy.boundingBox.top = cowboy.position.y;
     	cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
     	cowboy.boundingBox.left = cowboy.position.x;
     	cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-
+	*/
 	return cowboy;
 }
 
@@ -246,10 +246,10 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	snake.y_dir = x_d;    		
 	snake.x_dir = y_d;
 	snake.state = s;
-	snake.boundingBox.top = snake.position.y;
+	/*snake.boundingBox.top = snake.position.y;
     snake.boundingBox.bottom = snake.position.y + snake.size.height;
     snake.boundingBox.left = snake.position.x;
-    snake.boundingBox.right = snake.position.x + snake.size.width;
+    snake.boundingBox.right = snake.position.x + snake.size.width;*/
 	
 	return snake;
 }

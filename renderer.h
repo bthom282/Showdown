@@ -8,7 +8,7 @@
 
 void game_start();
 
-void render(UINT32 *base, struct Model *model);
+void render(UINT32 *base, struct Model *model, int players, int snakes_fill, int bullets_fill);
 
 void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 bitmap[][BITMAP_32_HEIGHT]);
 
