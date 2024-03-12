@@ -44,8 +44,7 @@ Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
 		shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
 *********************************************************************************************/
 
-void shooting(UINT8 *base, struct Cowboy *cowboy, const UINT8 *bitmap8, 
-		struct Bullet *active_bullets, int *bullets_fill) {
+void shooting(UINT8 *base, struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill) {
 	if (cowboy->isFiring == TRUE && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
 		active_bullets[*bullets_fill].position.x = cowboy->position.x;
         	active_bullets[*bullets_fill].position.y = cowboy->position.y;
