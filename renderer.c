@@ -8,11 +8,7 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 #include "renderer.h"
 
 void render(UINT32 *base, struct Model *model)
-{ /*
-, int players, int snakes_fill, int bullets_fill
-	render_bullets((UINT8 *) base, &model->bullet, bullet_bitmap);
-	render_cowboy(*base, &model->cowboy, cowboy_bitmap);*/
-
+{ 
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, model->players);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
