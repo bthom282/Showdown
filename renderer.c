@@ -7,20 +7,20 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 **************************************************************************************/
 #include "renderer.h"
 
-void render(UINT32 *base, struct Model *model, int players, int snakes_fill, int bullets_fill)
+void render(UINT32 *base, struct Model *model)
 { /*
+, int players, int snakes_fill, int bullets_fill
 	render_bullets((UINT8 *) base, &model->bullet, bullet_bitmap);
 	render_cowboy(*base, &model->cowboy, cowboy_bitmap);*/
 
 	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
+	render_side_text((UINT8 *) base, model->players);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
 	render_lives((UINT16 *) base, model->cowboy.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
-	/*render_snakes((UINT32 *) base, model->snake, snakes_fill, (UINT32 *) snake_bitmap);
-	render_bullets((UINT8 *) base, model->bullet, bullet_bitmap, bullets_fill); 
-	*/
+	render_snakes((UINT32 *) base, model->active_snakes, model->snakes_fill, (UINT32 *) snake_bitmap);
+	render_bullets((UINT8 *) base, model->active_bullets, bullet_bitmap, model->bullets_fill);
 }
 
 /********************************************************************************************
@@ -32,12 +32,11 @@ Details: 	renders the cowboy using his x and y position from the cowboy struct.
 
 void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 bitmap[][BITMAP_32_HEIGHT])
 {
-		plot_bitmap_32((UINT32 *) base, 
-						cowboy.position.x, 
-						cowboy.position.y, 
-						bitmap[cowboy.state], 
-						BITMAP_32_HEIGHT);
-		return;
+	plot_bitmap_32((UINT32 *) base, 
+					cowboy.position.x, 
+					cowboy.position.y, 
+					bitmap[cowboy.state], 
+					BITMAP_32_HEIGHT);
 }
 
 /********************************************************************************************
@@ -118,7 +117,6 @@ void render_level1(UINT32 *base, const UINT32 *cactus_bitmap)
 		plot_bitmap_32((UINT32 *) base, i, 0, cactus_bitmap, BITMAP_32_HEIGHT);
 		plot_bitmap_32((UINT32 *) base, i, 352, cactus_bitmap, BITMAP_32_HEIGHT);
 	}
-	return;
 }
 
 /********************************************************************************************
@@ -138,7 +136,6 @@ void render_side_text(UINT8 *base, int players)
 	print_message((UINT8 *)base, (UINT8 *)"SCORE", 32, 232);
 	print_message((UINT8 *)base, (UINT8 *)"LIVES", 32, 252);
 	}
-	return;
 }
 
 /********************************************************************************************

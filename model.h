@@ -116,11 +116,12 @@ int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 
 
 struct Model
 {
+int players;
+int bullets_fill;
+int snakes_fill;
 struct Cowboy cowboy;
-/*struct Bullet bullet[MAX_BULLETS];
-struct Snake snake[MAX_SNAKES];
-struct Scoreboard scoreboard;
-struct Lives lives; */
+struct Snake active_snakes[MAX_SNAKES];
+struct Bullet active_bullets[MAX_BULLETS];
 };
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake);
@@ -131,8 +132,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy);
 
-struct Cowboy initializeCowboy();
-
 void move_cowboy(struct Cowboy *cowboy);
 
 void increase_score(struct Scoreboard *scoreboard,int value);
@@ -142,6 +141,8 @@ void wave_bonus(struct Scoreboard *scoreboard);
 void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
+
+struct Model init_Model();
 
 struct Cowboy init_Cowboy();
 

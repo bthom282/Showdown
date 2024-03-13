@@ -190,6 +190,29 @@ void respawn(struct Cowboy *cowboy) {
 }	
 
 /*******************************************************************************************
+Function Name: 	init_model
+
+Details: 	This function initializes the model struct to it's default starting values.
+
+Sample Call:	model = init_model();
+
+*********************************************************************************************/
+
+struct Model init_Model() {	
+	
+	struct Model model;
+
+	model.players = 1;
+	model.bullets_fill;
+	model.snakes_fill;
+	model.cowboy = init_Cowboy();
+	model.active_bullets;
+	model.active_snakes;
+
+	return model;
+}
+
+/*******************************************************************************************
 Function Name: 	init_Cowboy
 
 Details: 	This function initializes the Cowboy struct to it's default starting values.
@@ -199,29 +222,25 @@ Sample Call:	cowboy1 = init_Cowboy();
 *********************************************************************************************/
 
 struct Cowboy init_Cowboy() {
-    	struct Cowboy cowboy; 
+	struct Cowboy cowboy; 
 
-    	cowboy.position.x = 424;
-    	cowboy.position.y = 184;
-    	cowboy.y_dir = 0;
-    	cowboy.x_dir = 0;
-    	cowboy.speed = 4;
-    	cowboy.isMoving = FALSE;
-    	cowboy.isFiring = FALSE;
-    	cowboy.yFireDir = 0;
-    	cowboy.xFireDir = 0;
-    	cowboy.state = 0;
+	cowboy.position.x = 424;
+	cowboy.position.y = 184;
+	cowboy.y_dir = 0;
+	cowboy.x_dir = 0;
+	cowboy.speed = 4;
+	cowboy.isMoving = FALSE;
+	cowboy.isFiring = FALSE;
+	cowboy.yFireDir = 0;
+	cowboy.xFireDir = 0;
+	cowboy.state = 0;
 	cowboy.scoreboard.score = 0;
-    	cowboy.scoreboard.position.x = 80;
-    	cowboy.scoreboard.position.y = 300;
+	cowboy.scoreboard.position.x = 80;
+	cowboy.scoreboard.position.y = 300;
 	cowboy.lives.lives_left = 3;
-    	cowboy.lives.position.x = 80;
-    	cowboy.lives.position.y = 320;
-	/*cowboy.boundingBox.top = cowboy.position.y;
-    	cowboy.boundingBox.bottom = cowboy.position.y + cowboy.size.height;
-    	cowboy.boundingBox.left = cowboy.position.x;
-    	cowboy.boundingBox.right = cowboy.position.x + cowboy.size.width;
-	*/
+	cowboy.lives.position.x = 80;
+	cowboy.lives.position.y = 320;
+	
 	return cowboy;
 }
 
@@ -242,10 +261,6 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	snake.y_dir = x_d;    		
 	snake.x_dir = y_d;
 	snake.state = s;
-	/*snake.boundingBox.top = snake.position.y;
-    snake.boundingBox.bottom = snake.position.y + snake.size.height;
-    snake.boundingBox.left = snake.position.x;
-    snake.boundingBox.right = snake.position.x + snake.size.width;*/
 	
 	return snake;
 }
@@ -263,11 +278,11 @@ Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
 struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir) {
     
 	struct Bullet bullet;
-    	bullet.position.x = x_pos;
-    	bullet.position.y = y_pos;
-    	bullet.x_dir = x_dir;
-    	bullet.y_dir = y_dir;
-    	bullet.speed = BULLET_SPEED;
+	bullet.position.x = x_pos;
+	bullet.position.y = y_pos;
+	bullet.x_dir = x_dir;
+	bullet.y_dir = y_dir;
+	bullet.speed = BULLET_SPEED;
 	
 	return bullet;
 }

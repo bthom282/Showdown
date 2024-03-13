@@ -47,7 +47,7 @@ Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
 void shooting(UINT8 *base, struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill) {
 	if (cowboy->isFiring == TRUE && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
 		active_bullets[*bullets_fill].position.x = cowboy->position.x;
-        	active_bullets[*bullets_fill].position.y = cowboy->position.y;
+        active_bullets[*bullets_fill].position.y = cowboy->position.y;
 		active_bullets[*bullets_fill].x_dir = cowboy->xFireDir;
 		active_bullets[*bullets_fill].y_dir = cowboy->yFireDir;
 		active_bullets[*bullets_fill].speed = 3;
