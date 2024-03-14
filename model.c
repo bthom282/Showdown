@@ -20,29 +20,52 @@ Details: 	This function is called every cycle to move any active bullets int the
 Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 
 *********************************************************************************************/
-
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake)
+/*
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 {
 	int i;
-	for (i = 0; i < *bullets_fill; i++)
-		move_bullet(&active_bullets[i], bullets_fill, snake);
+	for (i = 0; i < (*bullets_fill); i++) {
+		active_bullets[i].position.x += BULLET_SPEED * active_bullets[i].x_dir;
+		active_bullets[i].position.y += BULLET_SPEED * active_bullets[i].y_dir;
+
+		if (active_bullets[i].position.y<=0||active_bullets[i].position.y>=380||
+			active_bullets[i].position.x<=256||active_bullets[i].position.x>=632) {
+			delete_bullet(&active_bullets[0], bullets_fill, i);
+		}
+	}
+}
+*/
+
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
+	int *snakes_fill, const struct Cowboy cowboy)
+{
+	int i,j;
+	for (i = 0; i < *bullets_fill; i++) {
+		move_bullet(&active_bullets[i], active_bullets, i, bullets_fill);
+		for (j = 0; j < *snakes_fill ; j++) {
+			if (checkCollision(active_bullets[i].position.x, active_bullets[i].position.y, 
+				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
+				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
+			{
+				snake_death(&active_snakes, j, snakes_fill);
+				delete_bullet (&active_bullets, bullets_fill, i);
+				increase_score(&cowboy.scoreboard,100);
+			}
+		}
+	}
+	
 }
 
-void move_bullet(struct Bullet *bullet, int *bullets_fill, struct Snake *snake)
+void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill)
 {
-	int collision;
 	bullet->position.x += bullet->x_dir;
 	bullet->position.y += bullet->y_dir;
+	
+	if (bullet->position.x <= 256 || bullet->position.x >= 632 ||
+		bullet->position.y <= 0 || bullet->position.y >= 380)
+		{delete_bullet (active_bullets, bullets_fill, index);}
 
-	/* check for collisions */    
-
-	collision = checkCollision(bullet->position.x, bullet->position.y, BULLET_WIDTH, BULLET_HEIGHT, 
-								snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT);
-/*
-	if(collision == TRUE){
-		delete_bullet(bullet, bullets_fill, )
-		}*/
-
+	/* check for collisions */
 }
 
 /*******************************************************************************************
@@ -66,7 +89,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 {
-	int collision;
 	/*conditions to exit the spawning areas*/
 	if(snake->position.x < X_MIN)
 		{ snake->position.x++; }
@@ -90,12 +112,6 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	}
 	
 	/* check for collisions */
-
-	collision = checkCollision(snake->position.x, snake->position.y, SNAKE_WIDTH, SNAKE_HEIGHT, 
-								cowboy.position.x, cowboy.position.y, COWBOY_WIDTH, COWBOY_HEIGHT);
-
-	if(collision == TRUE)
-		cowboy_death(&cowboy);
 }
 
 /*******************************************************************************************
@@ -190,29 +206,6 @@ void respawn(struct Cowboy *cowboy) {
 }	
 
 /*******************************************************************************************
-Function Name: 	init_model
-
-Details: 	This function initializes the model struct to it's default starting values.
-
-Sample Call:	model = init_model();
-
-*********************************************************************************************/
-
-struct Model init_Model() {	
-	
-	struct Model model;
-
-	model.players = 1;
-	model.bullets_fill;
-	model.snakes_fill;
-	model.cowboy = init_Cowboy();
-	model.active_bullets;
-	model.active_snakes;
-
-	return model;
-}
-
-/*******************************************************************************************
 Function Name: 	init_Cowboy
 
 Details: 	This function initializes the Cowboy struct to it's default starting values.
@@ -222,25 +215,27 @@ Sample Call:	cowboy1 = init_Cowboy();
 *********************************************************************************************/
 
 struct Cowboy init_Cowboy() {
-	struct Cowboy cowboy; 
+    	struct Cowboy cowboy; 
 
-	cowboy.position.x = 424;
-	cowboy.position.y = 184;
-	cowboy.y_dir = 0;
-	cowboy.x_dir = 0;
-	cowboy.speed = 4;
-	cowboy.isMoving = FALSE;
-	cowboy.isFiring = FALSE;
-	cowboy.yFireDir = 0;
-	cowboy.xFireDir = 0;
-	cowboy.state = 0;
-	cowboy.scoreboard.score = 0;
-	cowboy.scoreboard.position.x = 80;
-	cowboy.scoreboard.position.y = 300;
-	cowboy.lives.lives_left = 3;
-	cowboy.lives.position.x = 80;
-	cowboy.lives.position.y = 320;
-	
+    	cowboy.position.x = 424;
+    	cowboy.position.y = 184;
+    	cowboy.size.height = 32;
+    	cowboy.size.width = 32;
+    	cowboy.y_dir = 0;
+    	cowboy.x_dir = 0;
+    	cowboy.speed = 4;
+    	cowboy.isMoving = FALSE;
+    	cowboy.isFiring = FALSE;
+    	cowboy.yFireDir = 0;
+    	cowboy.xFireDir = 0;
+    	cowboy.state = 0;
+		cowboy.scoreboard.score = 0;
+    	cowboy.scoreboard.position.x = 80;
+    	cowboy.scoreboard.position.y = 300;
+		cowboy.lives.lives_left = 3;
+    	cowboy.lives.position.x = 80;
+    	cowboy.lives.position.y = 320;
+
 	return cowboy;
 }
 
@@ -258,6 +253,8 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	
 	snake.position.x = x_p;   
 	snake.position.y = y_p; 	
+	snake.size.height = 32;
+	snake.size.width = 32;
 	snake.y_dir = x_d;    		
 	snake.x_dir = y_d;
 	snake.state = s;
@@ -271,18 +268,18 @@ Function Name: 	init_Bullet
 Details: 	This function initializes a bullet in the active_bullets array, set values
 		as enter in the parameters.
 
-Sample Call: 	init_bullet(active_bullets, &bullets_fill, 360, 170, 1, 0, 3);
+Sample Call: 	init_bullet(360, 170, 1, 0);
 
 *********************************************************************************************/
 
-struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir) {
+struct Bullet init_Bullet(int x_pos, int y_pos, int x_dir, int y_dir) {
     
 	struct Bullet bullet;
-	bullet.position.x = x_pos;
-	bullet.position.y = y_pos;
-	bullet.x_dir = x_dir;
-	bullet.y_dir = y_dir;
-	bullet.speed = BULLET_SPEED;
+    	bullet.position.x = x_pos;
+    	bullet.position.y = y_pos;
+    	bullet.x_dir = x_dir;
+    	bullet.y_dir = y_dir;
+    	bullet.speed = BULLET_SPEED;
 	
 	return bullet;
 }

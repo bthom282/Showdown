@@ -9,8 +9,7 @@
 
 int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2);
 
-void shooting(UINT8 *base, struct Cowboy *cowboy,  
-				struct Bullet *active_bullets, int *bullets_fill);
+void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill);
 
 void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index);
 
@@ -18,7 +17,7 @@ unsigned int rand_in_range(UINT32 *seed, UINT16 min, UINT16 max);
 
 void spawn_snakes(struct Snake active_snakes[], int *snakes_fill, UINT32 *seed);
 
-void snake_death(struct Snake *snake[], int index, int snakes_fill, struct Scoreboard *scoreboard);
+void snake_death(struct Snake active_snakes[], int index, int *snakes_fill);
 
 void cowboy_death (struct Cowboy *cowboy);
 

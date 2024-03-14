@@ -16,19 +16,21 @@ UINT32 seed = 12345;
 Function Name: 	checkCollision
 
 Details: 	This function will compare bounding boxs of object to see if there is a collision.
+			It's purposedly coded to short circuit the comparisons for quickness which is why
+			there are multiple return statements.
 
 Sample Call:	
 *********************************************************************************************/
 
 int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2) {
 
-	int collision_flag = FALSE;
+	if ((x1 + width1) < x2 || x1 > (x2 + width2))
+	{return FALSE;}
 
-	if (x2 < x1 + width1 && x2 + width2 > x1)
-		if(y2 < y1 + height1 || y2 + height2 > y1)
-			collision_flag = 1;
+	if((y1 + height1) < y2 || y1 > (y2 + height2))
+	{return FALSE;}
 
-	return collision_flag;
+	return TRUE;
 }
 
 /*******************************************************************************************
@@ -44,46 +46,43 @@ Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
 		shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
 *********************************************************************************************/
 
-void shooting(UINT8 *base, struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill) {
-	if (cowboy->isFiring == TRUE && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
-		active_bullets[*bullets_fill].position.x = cowboy->position.x;
-        active_bullets[*bullets_fill].position.y = cowboy->position.y;
-		active_bullets[*bullets_fill].x_dir = cowboy->xFireDir;
-		active_bullets[*bullets_fill].y_dir = cowboy->yFireDir;
-		active_bullets[*bullets_fill].speed = 3;
+void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill) {
+	if (cowboy->isFiring && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
+		int x_shift, y_shift;
 		
 		if (cowboy->yFireDir == -1 && cowboy->xFireDir == -1) {
-			active_bullets[*bullets_fill].position.x -= 2;
-			active_bullets[*bullets_fill].position.y -= 2;
+			x_shift = -2;
+			y_shift = -2;
 		}
 		else if (cowboy->yFireDir == -1 && cowboy->xFireDir == 0) {
-			active_bullets[*bullets_fill].position.x += 12;
-			active_bullets[*bullets_fill].position.y -= 6;
+			x_shift = 12;
+			y_shift = -6;
 		}
 		else if (cowboy->yFireDir == -1 && cowboy->xFireDir == 1) {
-			active_bullets[*bullets_fill].position.x += 26;
-			active_bullets[*bullets_fill].position.y -= 2;
+			x_shift = 26;
+			y_shift = -2;
 		}
 		else if (cowboy->yFireDir == 0 && cowboy->xFireDir == 1) {
-			active_bullets[*bullets_fill].position.x += 26;
-			active_bullets[*bullets_fill].position.y += 12;
+			x_shift = 26;
+			y_shift = 12;
 		}
 		else if (cowboy->yFireDir == 1 && cowboy->xFireDir == 1) {
-			active_bullets[*bullets_fill].position.x += 26;
-			active_bullets[*bullets_fill].position.y += 26;
+			x_shift = 26;
+			y_shift = 26;
 		}
 		else if (cowboy->yFireDir == 1 && cowboy->xFireDir == 0) {
-			active_bullets[*bullets_fill].position.x += 12;
-			active_bullets[*bullets_fill].position.y += 30;
+			x_shift = 12;
+			y_shift = 30;
 		}
 		else if (cowboy->yFireDir == 1 && cowboy->xFireDir == -1) {
-			active_bullets[*bullets_fill].position.x -= 2;
-			active_bullets[*bullets_fill].position.y += 26;
+			x_shift = -2;
+			y_shift = 26;
 		}
 		else if (cowboy->yFireDir == 0 && cowboy->xFireDir == -1) {
-			active_bullets[*bullets_fill].position.x -= 2;
-			active_bullets[*bullets_fill].position.y += 12;
+			x_shift = -2;
+			y_shift = 12;
 		}
+		active_bullets[*bullets_fill] = init_Bullet(cowboy->position.x + x_shift, cowboy->position.y + y_shift, cowboy->xFireDir, cowboy->yFireDir);
 		(*bullets_fill)++;
 	}
 }
@@ -138,8 +137,8 @@ Sample Call:	spawn_snakes(active_snakes, &snakes_fill, &seed);
 *********************************************************************************************/
 
 void spawn_snakes(struct Snake active_snakes[], int *snakes_fill, UINT32 *seed) {
-    int spawn_x[16] = {384,416,448,480,256,256,256,256,608,608,608,608,384,416,448,480};
-    int spawn_y[16] = {0,0,0,0,128,160,192,224,128,160,192,224,352,352,352,352};
+    int spawn_x[16] = {384,416,448,480,259,259,259,259,605,605,605,605,384,416,448,480};
+    int spawn_y[16] = {3,3,3,3,128,160,192,224,128,160,192,224,349,349,349,349};
     int y_dir;
     int x_dir;
     int state;
@@ -181,13 +180,12 @@ Details: 	This function is called every time a snake is killed by a bullet and i
 Sample Call:	snake_death(active_snakes[i], i, snakes_fill, &cowboy1.scoreboard);
 *********************************************************************************************/
 
-void snake_death(struct Snake *active_snakes[], int index, int snakes_fill, struct Scoreboard *scoreboard) {
+void snake_death(struct Snake active_snakes[], int index, int *snakes_fill) {
     /*possible call to snake death animation here*/
-    	if (index >= 0 && index < snakes_fill) {
-       		active_snakes[index] = active_snakes[snakes_fill - 1];
-        	snakes_fill--;
-    	}
-	increase_score(scoreboard,100);
+    if (index >= 0 && index < *snakes_fill) {
+       	active_snakes[*snakes_fill - 1] = active_snakes[index];
+        snakes_fill--;
+    }
 }
 
 /*******************************************************************************************

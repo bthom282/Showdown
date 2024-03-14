@@ -6,12 +6,6 @@
 #define BITMAP_HEIGHT 16
 #define BITMAP_8_HEIGHT 8
 #define BITMAP_32_HEIGHT 32
-#define COWBOY_HEIGHT 32
-#define COWBOY_WIDTH 30
-#define SNAKE_HEIGHT 30
-#define SNAKE_WIDTH 28
-#define BULLET_HEIGHT 4
-#define BULLET_WIDTH 4
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 #define X_MIN 288
@@ -36,8 +30,17 @@
 #define BYTES_PER_SCREEN 32000
 #define WORDS_PER_SCREEN 16000
 #define LONGS_PER_SCREEN 8000
+#define BITMAP_HEIGHT 16
+#define BITMAP_8_HEIGHT 8
+#define BITMAP_32_HEIGHT 32
 #define CLEAR32 0x00000000
-#define BULLET_SPEED 3
+#define BULLET_SPEED 6
+#define SNAKE_WIDTH 32
+#define SNAKE_HEIGHT 32
+#define COWBOY_WIDTH 32
+#define COWBOY_HEIGHT 32
+#define BULLET_WIDTH 4
+#define BULLET_HEIGHT 4
 
 struct Position
 {
@@ -45,21 +48,19 @@ int x;
 int y;
 };
 
-/*struct Size
+struct Size
 {
 int height;
 int width;
 };
 
-
-struct BoundingBox /* might not need this* /
+struct BoundingBox /* might not need this*/
 {
     int top;
     int bottom;
     int left;
     int right;
 };
-*/
 
 struct Lives          /* type definition for lives object */
 {
@@ -82,6 +83,7 @@ int y_dir, x_dir;	   /* horiz. & vert. direction for displacement */
 			   /* x = -1 (traveling left), x = 1 (traveling right),
       			      y = -1 (traveling up), y = 1 (traveling down) */
 int speed;      	   /* displacement per clock tick for x and y displacement*/
+struct BoundingBox boundingBox;
 
 /* just have a postion and velocity, compute the bounding box and not have speed*/
 };
@@ -89,6 +91,7 @@ int speed;      	   /* displacement per clock tick for x and y displacement*/
 struct Cowboy         /* type definition for cowboy object */
 {
 struct Position position;	/* position coordinates, 1 player cowboy's initial position is (424, 184) */
+struct 	Size size;
 int y_dir; 	   		/* direction the cowboy is facing for displacement */
 int x_dir;			/* x = -1 (traveling left), x = 1 (traveling right),
 				y = -1 (traveling up), y = 1 (traveling down) */
@@ -103,34 +106,40 @@ int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternat
 							    3 - moving right, 4 - moving left, 5 moving up} */
 struct Scoreboard scoreboard;		  
 struct Lives lives;		   
+struct BoundingBox boundingBox;
+const unsigned long bitmap;
 };
 
 struct Snake           /* type definition for snake object */
 {
 struct Position position;         
+struct Size size;
 int y_dir;    		
 int x_dir;
 int state; 		   /* state used for bitmap printing {0 - not moving/ moving down, 1 - moving left
 							      2 - moving right, 3 - moving up} */
+struct BoundingBox boundingBox;
 };
 
 struct Model
 {
-int players;
-int bullets_fill;
-int snakes_fill;
+struct Bullet bullet[MAX_BULLETS];
 struct Cowboy cowboy;
-struct Snake active_snakes[MAX_SNAKES];
-struct Bullet active_bullets[MAX_BULLETS];
+struct Snake snake[MAX_SNAKES];
+struct Scoreboard score;
+struct Lives lives;
 };
 
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake *snake);
+void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
+	int *snakes_fill, const struct Cowboy cowboy);
 
-void move_bullet(struct Bullet *bullet, int *bullets_fill, struct Snake *snake);
+void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill);
 
 void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy);
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy);
+
+struct Cowboy initializeCowboy();
 
 void move_cowboy(struct Cowboy *cowboy);
 
@@ -142,12 +151,10 @@ void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
 
-struct Model init_Model();
-
 struct Cowboy init_Cowboy();
 
 struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s);
 
-struct Bullet init_Bullet(int *bullets_fill, int x_pos, int y_pos, int x_dir, int y_dir);
+struct Bullet init_Bullet(int x_pos, int y_pos, int x_dir, int y_dir);
 
 #endif
