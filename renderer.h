@@ -10,6 +10,8 @@ void game_start();
 
 void render(UINT32 *base, struct Model *model);
 
+void update_render(UINT32 *base, struct Model *model);
+
 void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 bitmap[][BITMAP_32_HEIGHT]);
 
 void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bitmap, int bullets_fill);

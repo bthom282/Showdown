@@ -32,17 +32,12 @@ int main() {
 	char ch = NULL;
 	int count_sec = 0;
 
-	/*initializing the player1 cowboy*/
-	struct Cowboy cowboy1 = init_Cowboy();
-	
-	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, &cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
-	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
-	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
-	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
-	
+	/*initializing the model*/
+
+	struct Model model = init_Model();
+
+	render((UINT32 *)base, &model);
+
 	while(!quit) {
 		time_then = get_time();
 		while (ch != 'q') {
@@ -53,97 +48,97 @@ int main() {
 
 			if (ch == 'w')
 			{
-				cowboy1.isMoving = TRUE;
-				if (cowboy1.state != 10)
-				{cowboy1.state = 10;}
+				model.cowboy.isMoving = TRUE;
+				if (model.cowboy.state != 10)
+				{model.cowboy.state = 10;}
 				else
-				{cowboy1.state = 11;}
-				cowboy1.y_dir = -1;
-				cowboy1.x_dir = 0;	
+				{model.cowboy.state = 11;}
+				model.cowboy.y_dir = -1;
+				model.cowboy.x_dir = 0;	
 			}
 			if (ch == 'a')
 			{
-				cowboy1.isMoving = TRUE;
-				if (cowboy1.state != 4)
-				{cowboy1.state = 4;}
+				model.cowboy.isMoving = TRUE;
+				if (model.cowboy.state != 4)
+				{model.cowboy.state = 4;}
 				else
-				{cowboy1.state = 5;}
-				cowboy1.y_dir = 0;
-				cowboy1.x_dir = -1;	
+				{model.cowboy.state = 5;}
+				model.cowboy.y_dir = 0;
+				model.cowboy.x_dir = -1;	
 			}
 			if (ch == 's')
 			{
-				cowboy1.isMoving = TRUE;
-				if (cowboy1.state != 1)
-				{cowboy1.state = 1;}
+				model.cowboy.isMoving = TRUE;
+				if (model.cowboy.state != 1)
+				{model.cowboy.state = 1;}
 				else
-				{cowboy1.state = 2;}
-				cowboy1.y_dir = 1;
-				cowboy1.x_dir = 0;	
+				{model.cowboy.state = 2;}
+				model.cowboy.y_dir = 1;
+				model.cowboy.x_dir = 0;	
 			}
 			if (ch == 'd')
 			{
-				cowboy1.isMoving = TRUE;
-				if (cowboy1.state != 7)
-				{cowboy1.state = 7;}
+				model.cowboy.isMoving = TRUE;
+				if (model.cowboy.state != 7)
+				{model.cowboy.state = 7;}
 				else
-				{cowboy1.state = 8;}
-				cowboy1.y_dir = 0;
-				cowboy1.x_dir = 1;	
+				{model.cowboy.state = 8;}
+				model.cowboy.y_dir = 0;
+				model.cowboy.x_dir = 1;	
 			}	
 	
 			if (ch == '8')
 			{
-				cowboy1.isFiring = TRUE;
+				model.cowboy.isFiring = TRUE;
 				y_dir = -1;
 				x_dir = 0;	
 			}
 			if (ch == '4')
 			{
-				cowboy1.isFiring = TRUE;
+				model.cowboy.isFiring = TRUE;
 				y_dir = 0;
 				x_dir = -1;	
 			}
 			if (ch == '2')
 			{
-				cowboy1.isFiring = TRUE;
+				model.cowboy.isFiring = TRUE;
 				y_dir = 1;
 				x_dir = 0;	
 			}
 			if (ch == '6')
 			{
-				cowboy1.isFiring = TRUE;
+				model.cowboy.isFiring = TRUE;
 				y_dir = 0;
 				x_dir = 1;	
 			}	
-			cowboy1.yFireDir = y_dir;
-			cowboy1.xFireDir = x_dir;
-			shooting(&cowboy1, active_bullets, &bullets_fill);
+			model.cowboy.yFireDir = y_dir;
+			model.cowboy.xFireDir = x_dir;
+			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
-			render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
+			update_render((UINT32 *)base, &model); 
 			for (i = 0; i < bullets_fill; i++) {
-			clear_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
 			}
-			move_bullets(active_bullets, &bullets_fill, active_snakes, &snakes_fill, cowboy1);
+			move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, model.cowboy);
 			for (i = 0; i < snakes_fill; i++) {
-			clear_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+			clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
 			}
-			render_snakes((UINT32 *) base, active_snakes, snakes_fill, (UINT32 *) snake_bitmap);
+			update_render((UINT32 *)base, &model); 
 			time_now = get_time();
 			time_delta = time_now - time_then;
-			clear_bitmap_32((UINT32 *) base, cowboy1.position.x, cowboy1.position.y, blank, BITMAP_32_HEIGHT);
-			move_cowboy(&cowboy1);
-			render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
-			/*move_snakes(active_snakes, snakes_fill, cowboy1);*/
-			cowboy1.isMoving = FALSE;
-			cowboy1.isFiring = FALSE;
+			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
+			move_cowboy(&model.cowboy);
+			update_render((UINT32 *)base, &model); 
+			/*move_snakes(model.active_snakes, model.snakes_fill, model.cowboy);*/
+			model.cowboy.isMoving = FALSE;
+			model.cowboy.isFiring = FALSE;
 			
 			if(ch!='q')
 				ch = NULL;
 			
 			if(time_delta >= 210) {
 				if (count_sec < 30) {
-					spawn_snakes(active_snakes, &snakes_fill, &seed);
+					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
 				} 
 				time_then = time_now;
 			}
@@ -152,8 +147,8 @@ int main() {
 				/* wave complete */
 				/* cowboy special move */
 				/*count_sec = 0;
-			}*/
-
+			}
+*/
 			Vsync();
 				}
 		quit = TRUE; 
