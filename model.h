@@ -47,21 +47,21 @@ struct Position
 int x;
 int y;
 };
-
+/*
 struct Size
 {
 int height;
 int width;
 };
 
-struct BoundingBox /* might not need this*/
+struct BoundingBox /* might not need this* /
 {
     int top;
     int bottom;
     int left;
     int right;
 };
-
+*/
 struct Lives          /* type definition for lives object */
 {
 int lives_left;		  /* default starting lives = 3 */
@@ -123,11 +123,12 @@ struct BoundingBox boundingBox;
 
 struct Model
 {
-struct Bullet bullet[MAX_BULLETS];
+int players;
+int bullets_fill;
+int snakes_fill;
 struct Cowboy cowboy;
-struct Snake snake[MAX_SNAKES];
-struct Scoreboard score;
-struct Lives lives;
+struct Snake active_snakes[MAX_SNAKES];
+struct Bullet active_bullets[MAX_BULLETS];
 };
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
@@ -139,8 +140,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy);
 
-struct Cowboy initializeCowboy();
-
 void move_cowboy(struct Cowboy *cowboy);
 
 void increase_score(struct Scoreboard *scoreboard,int value);
@@ -150,6 +149,8 @@ void wave_bonus(struct Scoreboard *scoreboard);
 void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
+
+struct Model init_Model();
 
 struct Cowboy init_Cowboy();
 
