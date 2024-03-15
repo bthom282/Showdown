@@ -242,8 +242,6 @@ struct Cowboy init_Cowboy() {
 
     	cowboy.position.x = 424;
     	cowboy.position.y = 184;
-    	cowboy.size.height = 32;
-    	cowboy.size.width = 32;
     	cowboy.y_dir = 0;
     	cowboy.x_dir = 0;
     	cowboy.speed = 4;
@@ -276,8 +274,6 @@ struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s) {
 	
 	snake.position.x = x_p;   
 	snake.position.y = y_p; 	
-	snake.size.height = 32;
-	snake.size.width = 32;
 	snake.y_dir = x_d;    		
 	snake.x_dir = y_d;
 	snake.state = s;
