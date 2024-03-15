@@ -206,6 +206,29 @@ void respawn(struct Cowboy *cowboy) {
 }	
 
 /*******************************************************************************************
+Function Name: 	init_model
+
+Details: 	This function initializes the model struct to it's default starting values.
+
+Sample Call:	model = init_model();
+
+*********************************************************************************************/
+
+struct Model init_Model() {	
+	
+	struct Model model;
+
+	model.players = 1;
+	model.bullets_fill;
+	model.snakes_fill;
+	model.cowboy = init_Cowboy();
+	model.active_bullets;
+	model.active_snakes;
+
+	return model;
+}
+
+/*******************************************************************************************
 Function Name: 	init_Cowboy
 
 Details: 	This function initializes the Cowboy struct to it's default starting values.
