@@ -1,16 +1,11 @@
-#include <stdio.h>
-#include <osbind.h>
-#include "types.h"
-#include "model.h"
-#include "events.h"
-#include "renderer.h"
-#include "raster.h"
-#include "bitmaps.h"
+#include "showdown.h"
 
 const UINT32 * const timer = (UINT32 *)0x462;
-UINT32 time_now, time_then, time_delta;
+const UINT8 buffer2[32256]; /* used for double buffering */
 
-UINT32 get_time();
+UINT32 time_now, time_then, time_delta;
+const UINT8 buffer2[32256]; 
+const UINT8 snapshotBuffer[32000];
 
 int main() {
 	
@@ -174,4 +169,25 @@ UINT32 get_time()
 	Super(old_ssp);
 
 	return time;
+}
+
+/********************************************************************************************
+Function Name: 	get_buffer
+
+Details: 	Using supervisor mode, this function gets the current clock time.
+
+*********************************************************************************************/
+
+UINT32* get_buffer()
+{
+	UINT32 *base;
+	UINT32 buff2Addr;
+	UINT32 align;
+
+	/* initializes the back buffer to be 256 aligned */
+	buff2Addr = (UINT32)buffer2;
+	align = buff2Addr % 256;
+	base = (UINT32 *)(buffer2 + (256 - align));
+
+	return base;
 }
