@@ -11,10 +11,8 @@
 #include "types.h"
 #include "raster.h"
 
+UINT32 get_time();
 
-
-UINT32 getTime();
-
-UINT32* getBuffer();
+UINT32* get_buffer();
 
 #endif
