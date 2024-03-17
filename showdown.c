@@ -25,12 +25,12 @@ int main() {
     int spawn_loc;
 	int quit = FALSE;
 	char ch = NULL;
-	int count_sec = 0;
+	int count = 0;
 
 	/*initializing the model*/
 
 	struct Model model = init_Model();
-
+	fill_screen((UINT32 *) base, 0);
 	render((UINT32 *)base, &model);
 
 	while(!quit) {
@@ -111,29 +111,34 @@ int main() {
 			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
 			update_render((UINT32 *)base, &model); 
+
 			for (i = 0; i < bullets_fill; i++) {
-			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_blank, BITMAP_8_HEIGHT);
 			}
-			move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, model.cowboy);
+			move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy);
+
+			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
 			for (i = 0; i < snakes_fill; i++) {
-			clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+				clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
 			}
-			update_render((UINT32 *)base, &model); 
+			move_cowboy(&model.cowboy);
+			move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
+
 			time_now = get_time();
 			time_delta = time_now - time_then;
-			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-			move_cowboy(&model.cowboy);
+			
 			update_render((UINT32 *)base, &model); 
-			/*move_snakes(model.active_snakes, model.snakes_fill, model.cowboy);*/
+
 			model.cowboy.isMoving = FALSE;
 			model.cowboy.isFiring = FALSE;
 			
 			if(ch!='q')
 				ch = NULL;
 			
-			if(time_delta >= 210) {
-				if (count_sec < 30) {
+			if(time_delta >= 70) {
+				if (count < 15) {
 					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+					count++;
 				} 
 				time_then = time_now;
 			}
@@ -148,7 +153,6 @@ int main() {
 				}
 		quit = TRUE; 
 	}
-	
 	
 	return 0;
 }
@@ -174,7 +178,7 @@ UINT32 get_time()
 /********************************************************************************************
 Function Name: 	get_buffer
 
-Details: 	Using supervisor mode, this function gets the current clock time.
+Details: 	This function gets the back buffer and aligns it to a multiple of 256.
 
 *********************************************************************************************/
 

@@ -1,6 +1,8 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+
+
 /******CONSTANTS******/
 
 #define BITMAP_HEIGHT 16
@@ -34,7 +36,8 @@
 #define BITMAP_8_HEIGHT 8
 #define BITMAP_32_HEIGHT 32
 #define CLEAR32 0x00000000
-#define BULLET_SPEED 6
+#define BULLET_SPEED 20
+#define COWBOY_SPEED 10
 #define SNAKE_WIDTH 32
 #define SNAKE_HEIGHT 32
 #define COWBOY_WIDTH 32
@@ -47,21 +50,7 @@ struct Position
 int x;
 int y;
 };
-/*
-struct Size
-{
-int height;
-int width;
-};
 
-struct BoundingBox /* might not need this* /
-{
-    int top;
-    int bottom;
-    int left;
-    int right;
-};
-*/
 struct Lives          /* type definition for lives object */
 {
 int lives_left;		  /* default starting lives = 3 */
@@ -74,6 +63,7 @@ struct Scoreboard          /* type definition for score object */
 int score;		  /* default initial score is 00000 */
 char digit[5];		
 struct Position position;
+int isRendered;
 };
 
 struct Bullet           /* type definition for bullet object */
@@ -126,11 +116,11 @@ struct Bullet active_bullets[MAX_BULLETS];
 };
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
-	int *snakes_fill, const struct Cowboy cowboy);
+	int *snakes_fill, const struct Cowboy *cowboy);
 
 void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill);
 
-void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy);
+void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy);
 
 void move_snake(struct Snake *snake, const struct Cowboy cowboy);
 

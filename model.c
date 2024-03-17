@@ -6,7 +6,9 @@ Purpose: Implements functions for manipulating objects according to their specif
 
 *******************************************************************************************/
 #include "model.h"
+
 #include "events.h"
+#include "types.h"
 
 /*******************************************************************************************
 Function Name: 	move_bullets
@@ -37,7 +39,7 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
 */
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
-	int *snakes_fill, const struct Cowboy cowboy)
+	int *snakes_fill, const struct Cowboy *cowboy)
 {
 	int i,j;
 	for (i = 0; i < *bullets_fill; i++) {
@@ -47,19 +49,18 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snak
 				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
 				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
 			{
-				snake_death(&active_snakes, j, snakes_fill);
-				delete_bullet (&active_bullets, bullets_fill, i);
-				increase_score(&cowboy.scoreboard,100);
+				snake_death(active_snakes, j, snakes_fill);
+				delete_bullet (active_bullets, bullets_fill, i);
+				increase_score(&(cowboy->scoreboard),100);
 			}
 		}
 	}
-	
 }
 
 void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill)
 {
-	bullet->position.x += bullet->x_dir;
-	bullet->position.y += bullet->y_dir;
+	bullet->position.x += bullet->x_dir*BULLET_SPEED;
+	bullet->position.y += bullet->y_dir*BULLET_SPEED;
 	
 	if (bullet->position.x <= 256 || bullet->position.x >= 632 ||
 		bullet->position.y <= 0 || bullet->position.y >= 380)
@@ -79,11 +80,17 @@ Sample Call:	move_snakes(&active_snakes[0], snakes_fill, cowboy1);
 
 *********************************************************************************************/
 
-void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy cowboy)
+void move_snakes(struct Snake active_snakes[], int snakes_fill, struct Cowboy *cowboy)
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		move_snake(&active_snakes[i], cowboy);
+		move_snake(&active_snakes[i], *cowboy);
+		if (checkCollision(active_snakes[i].position.x, active_snakes[i].position.y, 
+				SNAKE_WIDTH, SNAKE_HEIGHT, (*cowboy).position.x, 
+				(*cowboy).position.y, COWBOY_WIDTH, COWBOY_HEIGHT))
+		{
+			cowboy_death(cowboy);
+		}
 	}
 }
 
@@ -158,6 +165,7 @@ void increase_score(struct Scoreboard *scoreboard,int value) {
 	scoreboard->digit[2] = (scoreboard->score%1000)/100;
 	scoreboard->digit[3] = (scoreboard->score%10000)/1000;
 	scoreboard->digit[4] = (scoreboard->score/10000);
+	scoreboard->isRendered = FALSE;
 }
 
 /*******************************************************************************************
@@ -172,6 +180,7 @@ Sample Call:	wave_bonus(cowboy1.scoreboard);
 
 void wave_bonus(struct Scoreboard *scoreboard) {
 	increase_score(scoreboard, 1000);
+	scoreboard->isRendered = FALSE;
 }
 
 /*******************************************************************************************
@@ -185,7 +194,7 @@ Sample Call:	decrement_lives (cowboy1);
 *********************************************************************************************/
 	
 void decrement_lives (struct Cowboy *cowboy) {
-	cowboy->lives.lives_left--;
+	(cowboy->lives.lives_left)--;
 }
 
 /*******************************************************************************************
@@ -202,7 +211,6 @@ Sample Call:	respawn(player1);
 void respawn(struct Cowboy *cowboy) {
 	cowboy->position.x = 424;
 	cowboy->position.y = 184;
-	/* invulnerability frames code here, asking Marc */
 }	
 
 /*******************************************************************************************
@@ -219,8 +227,8 @@ struct Model init_Model() {
 	struct Model model;
 
 	model.players = 1;
-	model.bullets_fill;
-	model.snakes_fill;
+	model.bullets_fill = 0;
+	model.snakes_fill = 0;
 	model.cowboy = init_Cowboy();
 	model.active_bullets;
 	model.active_snakes;
@@ -244,7 +252,7 @@ struct Cowboy init_Cowboy() {
     	cowboy.position.y = 184;
     	cowboy.y_dir = 0;
     	cowboy.x_dir = 0;
-    	cowboy.speed = 4;
+    	cowboy.speed = COWBOY_SPEED;
     	cowboy.isMoving = FALSE;
     	cowboy.isFiring = FALSE;
     	cowboy.yFireDir = 0;

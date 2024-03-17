@@ -19,6 +19,7 @@ void render(UINT32 *base, struct Model *model)
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, model->players);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
+	model->cowboy.scoreboard.isRendered = TRUE;
 	render_lives((UINT16 *) base, model->cowboy.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
@@ -35,6 +36,7 @@ Details: 	updates the render of any moving object
 
 void update_render(UINT32 *base, struct Model *model)
 {
+	/*if(&model->cowboy.scoreboard.isRendered == FALSE)*/
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
 	render_lives((UINT16 *) base, model->cowboy.lives, cowboy_lives);
 	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);

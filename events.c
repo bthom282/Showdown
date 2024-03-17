@@ -8,9 +8,6 @@ Purpose:  Implements event-handling functions for each of the specified asynchro
 
 struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
-int bullets_fill = 0;
-int snakes_fill = 0;
-UINT32 seed = 12345;
 
 /*******************************************************************************************
 Function Name: 	checkCollision
@@ -128,7 +125,7 @@ unsigned int rand_in_range(UINT32 *seed, UINT16 min, UINT16 max) {
 }
 
 /*******************************************************************************************
-Function Name: 	snake_spawn
+Function Name: 	spawn_snakes
 
 Details: 	This function uses the rand_in_range function to "spawn" a new snake struct is 
 		created and slotted into the active_snakes struct array.
@@ -184,7 +181,7 @@ void snake_death(struct Snake active_snakes[], int index, int *snakes_fill) {
     /*possible call to snake death animation here*/
     if (index >= 0 && index < *snakes_fill) {
        	active_snakes[*snakes_fill - 1] = active_snakes[index];
-        snakes_fill--;
+        (*snakes_fill)--;
     }
 }
 
@@ -203,6 +200,7 @@ Sample Call:	cowboy_death (*cowboy->lives_count);
 void cowboy_death (struct Cowboy *cowboy) {
 	/* possible death animation here */
 	decrement_lives(cowboy);
+
 	if (cowboy->lives.lives_left == 0) {
 		/*gameover();*/
 		respawn(cowboy); /*temporary*/
