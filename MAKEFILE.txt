@@ -1,0 +1,46 @@
+all: tst_rast tst_mo tst_ren showdown
+
+tst_rast: tst_rast.o raster.o font.o
+	cc68x -g tst_rast.o raster.o font.o -o tst_rast
+
+tst_rast.o: tst_rast.c raster.h types.h
+	cc68x -g -c tst_rast.c
+
+font.o: font.c font.h types.h
+	cc68x -g -c font.c
+
+bitmaps.o: bitmaps.c bitmaps.h types.h
+	cc68x -g -c bitmaps.c
+
+raster.o: raster.c raster.h types.h font.h
+	cc68x -g -c raster.c
+
+tst_mo: tst_mo.o model.o raster.o font.o events.o
+	cc68x -g tst_mo.o model.o raster.o font.o events.o -o tst_mo
+
+tst_mo.o: tst_mo.c model.h events.h
+	cc68x -g -c tst_mo.c
+
+model.o: model.c model.h
+	cc68x -g -c model.c
+
+events.o: events.c events.h
+	cc68x -g -c events.c
+
+splash.o: splash.c splash.h
+	cc68x -g -c splash.c
+
+tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o
+	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o -o tst_ren
+
+renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h
+	cc68x -g -c renderer.c
+
+tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h
+	cc68x -g -c tst_ren.c
+
+showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o
+	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o -o showdown
+
+showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h
+	cc68x -g -c showdown.c
