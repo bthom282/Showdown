@@ -210,7 +210,7 @@ Details: 	Changes the shape and duration of the sound envelope in the PSG.
 
 void set_envelope(int shape, unsigned int sustain)
 {
-	writre_psg(ENV_FINE, sustain);
+	write_psg(ENV_FINE, sustain);
 	write_psg(ENV_COARSE, sustain);
 	write_psg(ENV_SHAPE, shape);
 	

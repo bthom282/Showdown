@@ -5,8 +5,13 @@
 #includes "types.h"
 
 #define REST 0
+#define C3 130
+#define C4 261
+#define F3 174
+#define E4 349
+#define A4 440
+#define C5 523
 
-/*define the rest of notes needed*/
 
 void start_music();
 

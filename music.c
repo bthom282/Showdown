@@ -1,10 +1,23 @@
 #include "music.h"
 #include <stdio.h>
 
-int splash_song[] = {
+int splash_song_bass[] = {
+	
+};
+int splash_song_treble[] = {
+	C3, REST, F3, REST, 
+	F3, REST, F3, REST, 
+	F3, REST, F3, REST, 
+	F3, REST, F3, REST, 
+	REST, REST, REST, REST
 };
 
 int main_song[] = {
+	C4, REST, REST, E4,
+	REST, E4, REST, E4,
+	REST, E4, REST, E4,
+	REST, E4, REST, E4,
+	A4, C5, C5, C5
 };
 
 /********************************************************************************************
@@ -16,12 +29,18 @@ Details: 	Uses the PSG module to starts the music.
 
 void start_music()
 {
+	/* begin bass */
 	enable_channel(CH_A,1,0);
 	set_envelope(4,10);
 	set_volume(CH_A,8)
+		
+	/* begin treble */
+	enable_channel(CH_B,1,0);
+	set_envelope(4,10);
+	set_volume(CH_B,8)
+	
 	return;
 }
-
 
 /********************************************************************************************
 Function Name: 	update_music
