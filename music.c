@@ -1,23 +1,26 @@
 #include "music.h"
 #include <stdio.h>
 
-int splash_song_bass[] = {
-	
-};
-int splash_song_treble[] = {
+int splash_song_bass[SPLASH_SONG_LENGTH] = {
 	C3, REST, F3, REST, 
 	F3, REST, F3, REST, 
 	F3, REST, F3, REST, 
 	F3, REST, F3, REST, 
 	REST, REST, REST, REST
+	
 };
-
-int main_song[] = {
+int splash_song_treble[SPLASH_SONG_LENGTH] = {
 	C4, REST, REST, E4,
 	REST, E4, REST, E4,
 	REST, E4, REST, E4,
 	REST, E4, REST, E4,
 	A4, C5, C5, C5
+};
+
+int main_song_bass[MAIN_SONG_LENGTH] = {
+};
+
+int main_song_trebel[MAIN_SONG_LENGTH] = {
 };
 
 /********************************************************************************************
@@ -49,14 +52,15 @@ Details: 	Changes the note in the music.
 
 *********************************************************************************************/
 
-int update_music(UINT32 time_elapsed, int last_note, int song_length)
+int update_music(UINT32 time_elapsed, int last_note, int bass[], int treble[],  int song_length)
 {
 	if(time_elapsed >= 35)
 	{
 		if(last_note == song_length)
 			last_note = 0;
 		
-		set_tone(CH_A, song[last_note];
+		set_tone(CH_A, bass[last_note];
+		set_tone(CH_B, treble[last_note];
 		last_note++;
 	}
 	retuen last_note;

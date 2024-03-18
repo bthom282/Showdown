@@ -12,6 +12,9 @@
 #define A4 440
 #define C5 523
 
+#define SPLASH_SONG_LENGTH 20
+#define MAIN_SONG_LENGTH 48
+
 
 void start_music();
 
