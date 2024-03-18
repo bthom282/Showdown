@@ -229,3 +229,20 @@ void print_message(UINT8 *base, char message[], int x_pos, int y_pos) {
 		}
 	}
 }
+
+void plotBitmap640(UINT32 *base, int height, const UINT32 *bitmap)
+{
+	int i, ii, index;
+	index = 0;
+
+	for (i = 0; i < height; i++)
+	{
+		for (ii = 0; ii < 20; ii ++)
+		{
+		*(base + ii + (i * 20)) = bitmap[index];
+		index++;
+		}
+	}
+
+	return;
+}

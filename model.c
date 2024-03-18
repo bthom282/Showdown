@@ -230,8 +230,8 @@ struct Model init_Model() {
 	model.bullets_fill = 0;
 	model.snakes_fill = 0;
 	model.cowboy = init_Cowboy();
-	model.active_bullets;
-	model.active_snakes;
+	model.active_bullets[MAX_BULLETS];
+	model.active_snakes[MAX_SNAKES];
 
 	return model;
 }

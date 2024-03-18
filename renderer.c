@@ -36,8 +36,8 @@ Details: 	updates the render of any moving object
 
 void update_render(UINT32 *base, struct Model *model)
 {
-	/*if(&model->cowboy.scoreboard.isRendered == FALSE)*/
-	render_score((UINT8 *) base, &model->cowboy.scoreboard);
+	if(model->cowboy.scoreboard.isRendered == FALSE)
+		{render_score((UINT8 *) base, &model->cowboy.scoreboard);}
 	render_lives((UINT16 *) base, model->cowboy.lives, cowboy_lives);
 	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
 	render_snakes((UINT32 *) base, model->active_snakes, model->snakes_fill, (UINT32 *) snake_bitmap);

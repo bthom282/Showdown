@@ -10,9 +10,12 @@
 #include "renderer.h"
 #include "types.h"
 #include "raster.h"
+#include "splash.h"
 
 UINT32 get_time();
 
 UINT32* get_buffer();
+
+void input_handler(char input, struct Model *model);
 
 #endif

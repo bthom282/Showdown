@@ -1,26 +1,19 @@
 #include "showdown.h"
 
 const UINT32 * const timer = (UINT32 *)0x462;
-const UINT8 buffer2[32256]; /* used for double buffering */
-
-UINT32 time_now, time_then, time_delta;
 const UINT8 buffer2[32256]; 
-const UINT8 snapshotBuffer[32000];
+const UINT8 buffer[32000];
 
 int main() {
 	
-	char *base = Physbase();
+	UINT8 *base = Physbase();
+	/*UINT8 *alt_fb = getBuffer();*/
 	UINT32 seed = 1245;
 	int players = 1;
 	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
-	int bullets_fill = 0;
-	int snakes_fill = 0;
 	int i;
-	char buffer[20];
-		
-	int y_dir;
-	int x_dir;
+	UINT32 time_now, time_then, time_delta;
 	int state;
     int spawn_loc;
 	int quit = FALSE;
@@ -31,94 +24,36 @@ int main() {
 
 	struct Model model = init_Model();
 	fill_screen((UINT32 *) base, 0);
-	render((UINT32 *)base, &model);
 
+	
+	/*plotBitmap640((UINT32 *)base, SCREEN_HEIGHT, (UINT32 *) splash_bitmap);
+	while (!Cconis()) 
+	{
+		;
+	}
+
+	fill_screen((UINT32 *) base, 0);*/
+	render((UINT32 *)base, &model);
 	while(!quit) {
 		time_then = get_time();
 		while (ch != 'q') {
 			
 			if (Cconis()){
 				ch = (char)Cnecin();
+				input_handler(ch, &model);
 			}
 
-			if (ch == 'w')
-			{
-				model.cowboy.isMoving = TRUE;
-				if (model.cowboy.state != 10)
-				{model.cowboy.state = 10;}
-				else
-				{model.cowboy.state = 11;}
-				model.cowboy.y_dir = -1;
-				model.cowboy.x_dir = 0;	
-			}
-			if (ch == 'a')
-			{
-				model.cowboy.isMoving = TRUE;
-				if (model.cowboy.state != 4)
-				{model.cowboy.state = 4;}
-				else
-				{model.cowboy.state = 5;}
-				model.cowboy.y_dir = 0;
-				model.cowboy.x_dir = -1;	
-			}
-			if (ch == 's')
-			{
-				model.cowboy.isMoving = TRUE;
-				if (model.cowboy.state != 1)
-				{model.cowboy.state = 1;}
-				else
-				{model.cowboy.state = 2;}
-				model.cowboy.y_dir = 1;
-				model.cowboy.x_dir = 0;	
-			}
-			if (ch == 'd')
-			{
-				model.cowboy.isMoving = TRUE;
-				if (model.cowboy.state != 7)
-				{model.cowboy.state = 7;}
-				else
-				{model.cowboy.state = 8;}
-				model.cowboy.y_dir = 0;
-				model.cowboy.x_dir = 1;	
-			}	
-	
-			if (ch == '8')
-			{
-				model.cowboy.isFiring = TRUE;
-				y_dir = -1;
-				x_dir = 0;	
-			}
-			if (ch == '4')
-			{
-				model.cowboy.isFiring = TRUE;
-				y_dir = 0;
-				x_dir = -1;	
-			}
-			if (ch == '2')
-			{
-				model.cowboy.isFiring = TRUE;
-				y_dir = 1;
-				x_dir = 0;	
-			}
-			if (ch == '6')
-			{
-				model.cowboy.isFiring = TRUE;
-				y_dir = 0;
-				x_dir = 1;	
-			}	
-			model.cowboy.yFireDir = y_dir;
-			model.cowboy.xFireDir = x_dir;
 			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
 			update_render((UINT32 *)base, &model); 
 
-			for (i = 0; i < bullets_fill; i++) {
-			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_blank, BITMAP_8_HEIGHT);
+			for (i = 0; i < model.bullets_fill; i++) {
+				clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_blank, BITMAP_8_HEIGHT);
 			}
 			move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy);
 
 			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-			for (i = 0; i < snakes_fill; i++) {
+			for (i = 0; i < model.snakes_fill; i++) {
 				clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
 			}
 			move_cowboy(&model.cowboy);
@@ -194,4 +129,87 @@ UINT32* get_buffer()
 	base = (UINT32 *)(buffer2 + (256 - align));
 
 	return base;
+}
+
+/********************************************************************************************
+Function Name: 	input_handler
+
+Details: 	When a keypress is sensed, the char inputted is passed to the input handler for
+			interpretation.
+
+*********************************************************************************************/
+
+void input_handler(char input, struct Model *model)
+{
+	int y_dir;
+	int x_dir;
+	char ch = input;
+	
+	if (ch == 'w')
+	{
+		model->cowboy.isMoving = TRUE;
+		if (model->cowboy.state != 10)
+		{model->cowboy.state = 10;}
+		else
+		{model->cowboy.state = 11;}
+		model->cowboy.y_dir = -1;
+		model->cowboy.x_dir = 0;	
+	}
+	if (ch == 'a')
+	{
+		model->cowboy.isMoving = TRUE;
+		if (model->cowboy.state != 4)
+		{model->cowboy.state = 4;}
+		else
+		{model->cowboy.state = 5;}
+		model->cowboy.y_dir = 0;
+		model->cowboy.x_dir = -1;	
+	}
+	if (ch == 's')
+	{
+		model->cowboy.isMoving = TRUE;
+		if (model->cowboy.state != 1)
+		{model->cowboy.state = 1;}
+		else
+		{model->cowboy.state = 2;}
+		model->cowboy.y_dir = 1;
+		model->cowboy.x_dir = 0;	
+	}
+	if (ch == 'd')
+	{
+		model->cowboy.isMoving = TRUE;
+		if (model->cowboy.state != 7)
+		{model->cowboy.state = 7;}
+		else
+		{model->cowboy.state = 8;}
+		model->cowboy.y_dir = 0;
+		model->cowboy.x_dir = 1;	
+	}	
+
+	if (ch == '8')
+	{
+		model->cowboy.isFiring = TRUE;
+		y_dir = -1;
+		x_dir = 0;	
+	}
+	if (ch == '4')
+	{
+		model->cowboy.isFiring = TRUE;
+		y_dir = 0;
+		x_dir = -1;	
+	}
+	if (ch == '2')
+	{
+		model->cowboy.isFiring = TRUE;
+		y_dir = 1;
+		x_dir = 0;	
+	}
+	if (ch == '6')
+	{
+		model->cowboy.isFiring = TRUE;
+		y_dir = 0;
+		x_dir = 1;	
+	}	
+	model->cowboy.yFireDir = y_dir;
+	model->cowboy.xFireDir = x_dir;
 }

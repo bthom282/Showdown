@@ -214,8 +214,8 @@ void cowboy_death (struct Cowboy *cowboy) {
 Function Name: 	game_over
 
 Details: 	This function is triggered when the player has run out of lives. It will 
-		print "game over" many times, then indicate the final score somehow, fill
-  		the screen black, then print a message promting the user to either continue
+			print "game over" many times, then indicate the final score somehow, fill
+			the screen black, then print a message promting the user to either continue
     		or quit. 	
 
 Sample Call:
