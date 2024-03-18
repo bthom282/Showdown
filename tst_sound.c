@@ -26,6 +26,7 @@ int main()
 	start_music();
 	while (!Cconis())     /* repeat until key press... */
 	{
+		printf("Press any key to switch to the next sound.")
 		music_timer = game_timer - last_note_change;
 		current_note = update_music(music_timer, last_note, splash_song_bass, 
 									splash_song_treble[],  SPLASH_SONG_LENGTH)
