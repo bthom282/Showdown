@@ -63,10 +63,10 @@ int main() {
 			if(ch!='q')
 				ch = NULL;
 
-			if (count < 30) {
-					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+			if (count < 3) {
+				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+				count++;
 				} 
-				time_then = time_now;
 		
 			/*if(time_delta >= 210) {
 				if (count < 30) {
