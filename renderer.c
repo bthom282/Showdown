@@ -36,8 +36,8 @@ Details: 	updates the render of any moving object
 
 void update_render(UINT32 *base, struct Model *model)
 {
-	if(model->cowboy.scoreboard.isRendered == FALSE)
-		{render_score((UINT8 *) base, &model->cowboy.scoreboard);}
+	/*if(model->cowboy.scoreboard.isRendered == FALSE)*/
+	render_score((UINT8 *) base, &model->cowboy.scoreboard);
 	render_lives((UINT16 *) base, model->cowboy.lives, cowboy_lives);
 	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
 	render_snakes((UINT32 *) base, model->active_snakes, model->snakes_fill, (UINT32 *) snake_bitmap);
@@ -194,108 +194,15 @@ void render_lives(UINT16 *base, struct Lives lives, const UINT16 *bitmap16)
 	}
 }
 
-/*void game_start() {
+/********************************************************************************************
+Function Name: 	render_splash
 
-  	char *base = Physbase();
-	unsigned long seed = 300;
-	UINT16 *loc = (UINT16 *) base;
-	int players = 1;
-	
-	struct Cowboy cowboy1;
-	cowboy1.position.x = 424; 
-	cowboy1.position.y = 184;
-    	cowboy1.size.height = 16; 
-	cowboy1.size.width = 16;
-	cowboy1.x_dir = 0;
-	cowboy1.y_dir = 0;
-	cowboy1.speed = 2;
-	cowboy1.isMoving = FALSE;
-	cowboy1.isFiring = FALSE;
-	cowboy1.yFireDir = 0;
-	cowboy1.xFireDir = 0;
-	cowboy1.state = 0;
-	cowboy1.scoreboard.score = 0;
-	cowboy1.scoreboard.position.x = 80;
-	cowboy1.scoreboard.position.y = 232;
-	cowboy1.lives.lives_left = 3;
+Details: 	Using the plot_screen function, this will render a full screen image for the game's
+			splash screen.
 
-	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
-	render_level1((UINT32 *) base, cactus_bitmap);
-	render_cowboy((UINT32 *) base, cowboy1);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
-	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
+*********************************************************************************************/
 
-	Cnecin(); 
-
-	fill_screen((UINT32 *) base, 0); 
-
-	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
-	cowboy1.scoreboard.score = 200;
-
-	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
-	render_level1((UINT32 *) base, cactus_bitmap);
-	render_cowboy((UINT32 *) base, cowboy1);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
-	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
-	
-	Cnecin(); 
-
-	fill_screen((UINT32 *) base, 0); 
-	
-	cowboy1.position.x = 390; 
-	cowboy1.position.y = 140;
-	cowboy1.state = 4;
-	active_snakes[0].position.x = 370;
-	active_snakes[0].position.y = 160;
-	active_snakes[0].state = 1;
-	spawn_snakes(active_snakes, spawn_x, spawn_y, &snakes_fill, (UINT32 *)&seed);
-
-	cowboy1.scoreboard.score = 400;
-
-	active_bullets[bullets_fill].position.x = 360;
-	active_bullets[bullets_fill].position.y = 170;
-	active_bullets[bullets_fill].speed = 3;
-	active_bullets[bullets_fill].x_dir = 1;
-	bullets_fill++;
-	cowboy1.position.x = 350; 
-	cowboy1.position.y = 100;
-	cowboy1.isMoving = TRUE;
-	cowboy1.isFiring = TRUE;
-	cowboy1.yFireDir = 1;
-	cowboy1.xFireDir = -1;
-	cowboy1.state = 3;
-	shooting((UINT8 *)base, &cowboy1, (UINT8 *)bullet_bitmap, active_bullets, &bullets_fill);
-
-	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
-	render_level1((UINT32 *) base, cactus_bitmap);
-	render_cowboy((UINT32 *) base, cowboy1);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
-	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
-
-	Cnecin(); 
-	fill_screen((UINT32 *) base, 0); 
-
-	cowboy1.lives.lives_left = 2;
-	cowboy1.position.x = 424; 
-	cowboy1.position.y = 184;
-	cowboy1.state = 0;
-
-	render_side_panel((UINT16 *)base);
-	render_side_text((UINT8 *) base, players);
-	render_score((UINT8 *) base, cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
-	render_level1((UINT32 *) base, cactus_bitmap);
-	render_cowboy((UINT32 *) base, cowboy1);
-	render_snakes((UINT32 *) base, active_snakes, snakes_fill);
-	render_bullets((UINT8 *) base, active_bullets, bullet_bitmap, bullets_fill);
-	
-}*/
+void render_splash(UINT32 *base, const UINT32 *cactus_bitmap)
+{
+	plot_splash((UINT32 *)base, SCREEN_HEIGHT, splash_bitmap);
+}

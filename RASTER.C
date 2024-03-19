@@ -230,16 +230,25 @@ void print_message(UINT8 *base, char message[], int x_pos, int y_pos) {
 	}
 }
 
-void plotBitmap640(UINT32 *base, int height, const UINT32 *bitmap)
+/*******************************************************************************************
+Function Name: 	plot_splash
+
+Details: 	This function prints a full screen image onto the screen buffer.
+
+Sample Call:	plot_splash((UINT32 *)base, SCREEN_HEIGHT, splash_bitmap);
+
+*********************************************************************************************/
+
+void plot_splash(UINT32 *base, int height, const UINT32 *bitmap)
 {
-	int i, ii, index;
+	int i, j, index;
 	index = 0;
 
 	for (i = 0; i < height; i++)
 	{
-		for (ii = 0; ii < 20; ii ++)
+		for (j = 0; j < 20; j ++)
 		{
-		*(base + ii + (i * 20)) = bitmap[index];
+		*(base + j + (i * 20)) = bitmap[index];
 		index++;
 		}
 	}

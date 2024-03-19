@@ -1,9 +1,11 @@
 #include <osbind.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "PSG.h"
 #include "music.h"
 #include "effects.h"
 #include "types.h"
+#define SOUND_DELAY_MICROSECONDS 500000
 
 UINT32 get_time();
 
@@ -29,16 +31,26 @@ int main()
 		printf("Press any key to switch to the next sound.")
 		music_timer = game_timer - last_note_change;
 		current_note = update_music(music_timer, last_note, splash_song_bass, 
-									splash_song_treble[],  SPLASH_SONG_LENGTH)
+									splash_song_treble,  SPLASH_SONG_LENGTH);
 		
-		if (currentNote != lastNote)
+		if (current_note != last_note)
 			{
-				last_note_change = gameTimer;
-				last_note = currentNote;
+				last_note_change = game_timer;
+				last_note = current_note;
 			}
 	}
+	
+	play_sound_with_delay(play_chime, "Sound 1");
+    play_sound_with_delay(play_chime, "Sound 2");
+    play_sound_with_delay(play_chime, "Sound 3");
+	play_sound_with_delay(play_pop, "Sound 4");
+    play_sound_with_delay(play_pop, "Sound 5");
+    play_sound_with_delay(play_pop, "Sound 6");
+	play_sound_with_delay(play_spawn, "Sound 7");
+    play_sound_with_delay(play_spawn, "Sound 8");
+    play_sound_with_delay(play_spawn, "Sound 9");
 		
-	stopSound();
+	stop_sound();
 	
 	return 0;
 }
@@ -52,4 +64,10 @@ UINT32 get_time()
 	Super(old_ssp);
 
 	return time;
+}
+
+void play_sound_with_delay(void (*play_sound_function)(), const char* message) {
+    play_sound_function(); 
+    printf("%s\n", message); 
+    usleep(SOUND_DELAY_MICROSECONDS); 
 }

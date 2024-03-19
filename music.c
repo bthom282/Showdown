@@ -35,12 +35,12 @@ void start_music()
 	/* begin bass */
 	enable_channel(CH_A,1,0);
 	set_envelope(4,10);
-	set_volume(CH_A,8)
+	set_volume(CH_A,8);
 		
 	/* begin treble */
 	enable_channel(CH_B,1,0);
 	set_envelope(4,10);
-	set_volume(CH_B,8)
+	set_volume(CH_B,8);
 	
 	return;
 }
@@ -59,9 +59,9 @@ int update_music(UINT32 time_elapsed, int last_note, int bass[], int treble[],  
 		if(last_note == song_length)
 			last_note = 0;
 		
-		set_tone(CH_A, bass[last_note];
-		set_tone(CH_B, treble[last_note];
+		set_tone(CH_A, bass[last_note]);
+		set_tone(CH_B, treble[last_note]);
 		last_note++;
 	}
-	retuen last_note;
+	return last_note;
 }

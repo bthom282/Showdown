@@ -19,74 +19,70 @@ int main() {
 	int quit = FALSE;
 	char ch = NULL;
 	int count = 0;
+	struct Model model = init_Model();
+	
+	render_splash((UINT32 *) base, splash_bitmap);
+
+	Cnecin(); 
 
 	/*initializing the model*/
 
-	struct Model model = init_Model();
 	fill_screen((UINT32 *) base, 0);
 
-	
-	/*plotBitmap640((UINT32 *)base, SCREEN_HEIGHT, (UINT32 *) splash_bitmap);
-	while (!Cconis()) 
-	{
-		;
-	}
 
-	fill_screen((UINT32 *) base, 0);*/
 	render((UINT32 *)base, &model);
 	while(!quit) {
 		time_then = get_time();
-		while (ch != 'q') {
+
 			
-			if (Cconis()){
-				ch = (char)Cnecin();
-				input_handler(ch, &model);
-			}
+		if (Cconis()){
+			ch = (char)Cnecin();
+			input_handler(ch, &model, &quit);
+		}
 
-			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
+		shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
-			update_render((UINT32 *)base, &model); 
+		update_render((UINT32 *)base, &model); 
 
-			for (i = 0; i < model.bullets_fill; i++) {
-				clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_blank, BITMAP_8_HEIGHT);
-			}
-			move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy);
+		for (i = 0; i < model.bullets_fill; i++) {
+			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_blank, BITMAP_8_HEIGHT);
+		}
+		move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy);
 
-			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-			for (i = 0; i < model.snakes_fill; i++) {
-				clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
-			}
-			move_cowboy(&model.cowboy);
-			move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
+		clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
+		for (i = 0; i < model.snakes_fill; i++) {
+			clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+		}
+		move_cowboy(&model.cowboy);
+		move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
 
-			time_now = get_time();
-			time_delta = time_now - time_then;
-			
-			update_render((UINT32 *)base, &model); 
+		time_now = get_time();
+		time_delta = time_now - time_then;
+		
+		update_render((UINT32 *)base, &model); 
 
-			model.cowboy.isMoving = FALSE;
-			model.cowboy.isFiring = FALSE;
-			
-			if(ch!='q')
-				ch = NULL;
-			
-			if(time_delta >= 70) {
-				if (count < 15) {
-					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-					count++;
-				} 
-				time_then = time_now;
-			}
-			/*
-			if (count_sec > 30 && snakes_fill == 0) {*/
-				/* wave complete */
-				/* cowboy special move */
-				/*count_sec = 0;
-			}
+		model.cowboy.isMoving = FALSE;
+		model.cowboy.isFiring = FALSE;
+		
+		if(ch!='q')
+			ch = NULL;
+		
+		if(time_delta >= 70) {
+			if (count < 15) {
+				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+				count++;
+			} 
+			time_then = time_now;
+		}
+		/*
+		if (count_sec > 30 && snakes_fill == 0) {*/
+			/* wave complete */
+			/* cowboy special move */
+			/*count_sec = 0;
+		}
 */
-			Vsync();
-				}
-		quit = TRUE; 
+		Vsync();
+
 	}
 	
 	return 0;
@@ -139,11 +135,16 @@ Details: 	When a keypress is sensed, the char inputted is passed to the input ha
 
 *********************************************************************************************/
 
-void input_handler(char input, struct Model *model)
+void input_handler(char input, struct Model *model, int *quit)
 {
 	int y_dir;
 	int x_dir;
 	char ch = input;
+	
+	if (ch == 'q')
+	{
+		quit = TRUE;
+	}
 	
 	if (ch == 'w')
 	{

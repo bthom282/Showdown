@@ -16,6 +16,6 @@ UINT32 get_time();
 
 UINT32* get_buffer();
 
-void input_handler(char input, struct Model *model);
+void input_handler(char input, struct Model *model, int *quit);
 
 #endif

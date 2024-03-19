@@ -36,7 +36,7 @@ UINT8 read_psg(int reg)
 	
 	old_ssp = Super(0);
 	
-	*PSG_red_select = reg;
+	*PSG_reg_select = reg;
 	value = *PSG_reg_select;
 	
 	Super(old_ssp);
@@ -62,12 +62,12 @@ void set_tone(int channel, int tuning)
 			write_psg(A_TONE_ROUGH, rough);
 			break;
 			
-		case CH_B
+		case CH_B:
 			write_psg(B_TONE_FINE, fine);
 			write_psg(B_TONE_ROUGH, rough);
 			break;
 			
-		case CH_c
+		case CH_C:
 			write_psg(C_TONE_FINE, fine);
 			write_psg(C_TONE_ROUGH, rough);
 			break;
@@ -90,11 +90,11 @@ void set_volume(int channel, int volume)
 			write_psg(A_VOLUME, volume);
 			break;
 			
-		case CH_B
+		case CH_B:
 			write_psg(B_VOLUME, volume);
 			break;
 			
-		case CH_C
+		case CH_C:
 			write_psg(C_VOLUME, volume);
 			break;
 	}
@@ -134,29 +134,29 @@ void enable_channel(int channel, int tone_on, int noise_on)
 			{
 				setting &= 0x3E;
 			}
-			if(noise == 1)
+			if(noise_on == 1)
 			{
 				setting &= 0x37;
 			}
 			break;
 			
-		case CH_B
+		case CH_B:
 			if(tone_on == 1)
 			{
 				setting &= 0x3D;
 			}
-			if(noise == 1)
+			if(noise_on == 1)
 			{
 				setting &= 0x2F;
 			}
 			break;
 			
-		case CH_C
+		case CH_C:
 			if(tone_on == 1)
 			{
 				setting &= 0x3B;
 			}
-			if(noise == 1)
+			if(noise_on == 1)
 			{
 				setting &= 0x1F;
 			}
@@ -187,11 +187,11 @@ void disable_channel(int channel)
 			setting |= 0x9;
 			break;
 			
-		case CH_B
+		case CH_B:
 			setting |= 0x12;
 			break;
 			
-		case CH_C
+		case CH_C:
 			setting |= 0x24;
 			break;
 	}

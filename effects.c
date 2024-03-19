@@ -29,6 +29,7 @@ void play_pop()
 {
 	disable_channel(CH_C);
 	enable_channel(CH_C,0,1);
+	set_tone(CH_C, 0x080);
 	set_volume(CH_C,16);
 	set_envelope(0,10);
 

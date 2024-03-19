@@ -18,6 +18,6 @@
 
 void start_music();
 
-int update_music(UINT32 time_elapsed, int last_note, int num_notes);
+int update_music(UINT32 time_elapsed, int last_note, int bass[], int treble[],  int song_length);
 
 #endif
