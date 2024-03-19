@@ -22,29 +22,15 @@ Details: 	This function is called every cycle to move any active bullets int the
 Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 
 *********************************************************************************************/
-/*
-void move_bullets(struct Bullet active_bullets[], int *bullets_fill)
-{
-	int i;
-	for (i = 0; i < (*bullets_fill); i++) {
-		active_bullets[i].position.x += BULLET_SPEED * active_bullets[i].x_dir;
-		active_bullets[i].position.y += BULLET_SPEED * active_bullets[i].y_dir;
-
-		if (active_bullets[i].position.y<=0||active_bullets[i].position.y>=380||
-			active_bullets[i].position.x<=256||active_bullets[i].position.x>=632) {
-			delete_bullet(&active_bullets[0], bullets_fill, i);
-		}
-	}
-}
-*/
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
 	int *snakes_fill, const struct Cowboy *cowboy)
 {
 	int i,j;
 	for (i = 0; i < *bullets_fill; i++) {
-		move_bullet(&active_bullets[i], active_bullets, i, bullets_fill);
-		for (j = 0; j < *snakes_fill ; j++) {
+		move_bullet(&active_bullets[i], active_bullets, i, bullets_fill, &active_snakes[0], 
+					&snakes_fill, &cowboy);
+		/*for (j = 0; j < *snakes_fill ; j++) {
 			if (checkCollision(active_bullets[i].position.x, active_bullets[i].position.y, 
 				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
 				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
@@ -53,19 +39,34 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snak
 				delete_bullet (active_bullets, bullets_fill, i);
 				increase_score(&(cowboy->scoreboard),100);
 			}
-		}
+		}*/
 	}
 }
 
-void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill)
+void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill, 
+				struct Snake active_snakes[], int *snakes_fill, const struct Cowboy *cowboy)
 {
+	int j;
+
 	bullet->position.x += bullet->x_dir*BULLET_SPEED;
 	bullet->position.y += bullet->y_dir*BULLET_SPEED;
 	
 	if (bullet->position.x <= 256 || bullet->position.x >= 632 ||
 		bullet->position.y <= 0 || bullet->position.y >= 380)
-		{delete_bullet (active_bullets, bullets_fill, index);}
-
+		{
+			delete_bullet (active_bullets, bullets_fill, index);
+		}
+	
+	for (j = 0; j < *snakes_fill ; j++) {
+			if (checkCollision(bullet->position.x, bullet->position.y, 
+				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
+				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
+			{
+				snake_death(active_snakes, j, snakes_fill);
+				delete_bullet (active_bullets, bullets_fill, index);
+				increase_score(&(cowboy->scoreboard),100);
+			}
+		}
 	/* check for collisions */
 }
 
@@ -119,6 +120,7 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 	}
 	
 	/* check for collisions */
+	
 }
 
 /*******************************************************************************************
