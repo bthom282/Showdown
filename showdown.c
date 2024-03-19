@@ -56,24 +56,28 @@ int main() {
 			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
 			move_cowboy(&model.cowboy);
 			update_render((UINT32 *)base, &model); 
-			/*move_snakes(model.active_snakes, model.snakes_fill, model.cowboy);*/
+			move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
 			model.cowboy.isMoving = FALSE;
 			model.cowboy.isFiring = FALSE;
 			
-			if(ch!='q')
-				ch = NULL;
+			if (count < 4) {
+					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+					printf("hello");
+					count++;
+				}
 
-			if (count < 3) {
-				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-				count++;
-				} 
-		
-			/*if(time_delta >= 210) {
+			/*if(ch!='q')
+				ch = NULL;
+*/
+			if(time_delta >= 210) {
 				if (count < 30) {
 					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+					printf("hello");
+					count++;
 				} 
+				printf("hello");
 				time_then = time_now;
-			}*/
+			}
 			/*
 			if (count_sec > 30 && snakes_fill == 0) {*/
 				/* wave complete */
@@ -83,6 +87,7 @@ int main() {
 */
 			Vsync();
 				
+
 		}
 	return 0;
 }

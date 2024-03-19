@@ -56,7 +56,8 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 		{
 			delete_bullet (active_bullets, bullets_fill, index);
 		}
-	
+
+	/* check for collisions */
 	for (j = 0; j < *snakes_fill ; j++) {
 			if (checkCollision(bullet->position.x, bullet->position.y, 
 				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
@@ -66,8 +67,7 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 				delete_bullet (active_bullets, bullets_fill, index);
 				increase_score(&(cowboy->scoreboard),100);
 			}
-		}
-	/* check for collisions */
+		}	
 }
 
 /*******************************************************************************************

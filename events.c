@@ -84,21 +84,7 @@ void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets
 	}
 }
 
-/*******************************************************************************************
-Function Name: 	delete_bullet
 
-Details: 	This function is called every time a bullet leaves the play area by going out 
-		of bounds or by striking an enemy.
-
-Sample Call: 	delete_bullet(&active_bullets[0], bullets_fill, i);
-*********************************************************************************************/
-
-void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index) {
-	if (index >= 0 && index < *bullet_fill) {
-        	active_bullets[index] = active_bullets[*bullet_fill - 1];
-        	(*bullet_fill)--;
-   	 }
-}
 
 /*******************************************************************************************
 Function Name: 	rand_in_range
@@ -169,6 +155,22 @@ void spawn_snakes(struct Snake active_snakes[], int *snakes_fill, UINT32 *seed) 
 }
 
 /*******************************************************************************************
+Function Name: 	delete_bullet
+
+Details: 	This function is called every time a bullet leaves the play area by going out 
+		of bounds or by striking an enemy.
+
+Sample Call: 	delete_bullet(&active_bullets[0], bullets_fill, i);
+*********************************************************************************************/
+
+void delete_bullet (struct Bullet *active_bullets[], int *bullet_fill, int index) {
+	if (index >= 0 && index < *bullet_fill) {
+        	active_bullets[index] = active_bullets[*bullet_fill - 1];
+        	(*bullet_fill)--;
+   	 }
+}
+
+/*******************************************************************************************
 Function Name: 	snake_death
 
 Details: 	This function is called every time a snake is killed by a bullet and is removed
@@ -180,7 +182,7 @@ Sample Call:	snake_death(active_snakes[i], i, snakes_fill, &cowboy1.scoreboard);
 void snake_death(struct Snake active_snakes[], int index, int *snakes_fill) {
     /*possible call to snake death animation here*/
     if (index >= 0 && index < *snakes_fill) {
-       	active_snakes[*snakes_fill - 1] = active_snakes[index];
+       	active_snakes[index] = active_snakes[*snakes_fill - 1];
         (*snakes_fill)--;
     }
 }
