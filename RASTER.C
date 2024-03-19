@@ -252,6 +252,4 @@ void plot_splash(UINT32 *base, int height, const UINT32 *bitmap)
 		index++;
 		}
 	}
-
-	return;
 }

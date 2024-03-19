@@ -202,7 +202,7 @@ Details: 	Using the plot_screen function, this will render a full screen image f
 
 *********************************************************************************************/
 
-void render_splash(UINT32 *base, const UINT32 *cactus_bitmap)
+void render_splash(UINT32 *base, const UINT32 *splash_bitmap)
 {
 	plot_splash((UINT32 *)base, SCREEN_HEIGHT, splash_bitmap);
 }

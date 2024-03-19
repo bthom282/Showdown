@@ -30,17 +30,17 @@ events.o: events.c events.h
 splash.o: splash.c splash.h
 	cc68x -g -c splash.c
 
-tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o
-	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o -o tst_ren
+tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o splash.o
+	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o -o tst_ren
 
-renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h
+renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h
 	cc68x -g -c renderer.c
 
-tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h
+tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h
 	cc68x -g -c tst_ren.c
 
 showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o
-	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o -o showdown
+	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o -o showdown
 
 showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h
 	cc68x -g -c showdown.c
