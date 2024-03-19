@@ -62,13 +62,18 @@ int main() {
 			
 			if(ch!='q')
 				ch = NULL;
-			
-			if(time_delta >= 210) {
+
+			if (count < 30) {
+					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+				} 
+				time_then = time_now;
+		
+			/*if(time_delta >= 210) {
 				if (count < 30) {
 					spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
 				} 
 				time_then = time_now;
-			}
+			}*/
 			/*
 			if (count_sec > 30 && snakes_fill == 0) {*/
 				/* wave complete */
