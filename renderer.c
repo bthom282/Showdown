@@ -73,7 +73,6 @@ void render_bullets(UINT8 *base, struct Bullet *active_bullets, const UINT8 *bit
 	for (i = 0; i < bullets_fill; i++) {
 		plot_bitmap_8((UINT8 *) base, active_bullets[i].position.x, active_bullets[i].position.y, bitmap, BITMAP_8_HEIGHT);
 	}
-	return;
 }
 
 /********************************************************************************************
@@ -90,7 +89,6 @@ void render_snakes(UINT32 *base, const struct Snake active_snakes[], int snakes_
 		plot_bitmap_32((UINT32 *) base, active_snakes[i].position.x, active_snakes[i].position.y, 
 					bitmap[active_snakes[i].state], BITMAP_32_HEIGHT);
 	}
-	return;
 }
 
 /********************************************************************************************
