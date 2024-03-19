@@ -29,7 +29,7 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snak
 	int i,j;
 	for (i = 0; i < *bullets_fill; i++) {
 		move_bullet(&active_bullets[i], active_bullets, i, bullets_fill, &active_snakes[0], 
-					&snakes_fill, &cowboy);
+					snakes_fill, cowboy);
 		/*for (j = 0; j < *snakes_fill ; j++) {
 			if (checkCollision(active_bullets[i].position.x, active_bullets[i].position.y, 
 				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
@@ -85,17 +85,17 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, struct Cowboy *c
 {
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
-		move_snake(&active_snakes[i], *cowboy);
-		if (checkCollision(active_snakes[i].position.x, active_snakes[i].position.y, 
+		move_snake(&active_snakes[i], cowboy);
+		/*if (checkCollision(active_snakes[i].position.x, active_snakes[i].position.y, 
 				SNAKE_WIDTH, SNAKE_HEIGHT, (*cowboy).position.x, 
 				(*cowboy).position.y, COWBOY_WIDTH, COWBOY_HEIGHT))
 		{
 			cowboy_death(cowboy);
-		}
+		}*/
 	}
 }
 
-void move_snake(struct Snake *snake, const struct Cowboy cowboy)
+void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 {
 	/*conditions to exit the spawning areas*/
 	if(snake->position.x < X_MIN)
@@ -108,19 +108,24 @@ void move_snake(struct Snake *snake, const struct Cowboy cowboy)
 		{ snake->position.y--; }
 	/*conditions for snake movement once in play*/
 	else {
-		if (snake->position.x < cowboy.position.x)
+		if (snake->position.x < cowboy->position.x)
 			{ snake->position.x++; }
-        else if (snake->position.x > cowboy.position.x)
+        else if (snake->position.x > cowboy->position.x)
             { snake->position.x--; }
             
-        if (snake->position.y < cowboy.position.y)
+        if (snake->position.y < cowboy->position.y)
             { snake->position.y++; }
-		else if (snake->position.y > cowboy.position.y)
+		else if (snake->position.y > cowboy->position.y)
             { snake->position.y--; }
 	}
 	
 	/* check for collisions */
-	
+	if (checkCollision(snake->position.x, snake->position.y, 
+				SNAKE_WIDTH, SNAKE_HEIGHT, cowboy->position.x, 
+				cowboy->position.y, COWBOY_WIDTH, COWBOY_HEIGHT))
+		{
+			cowboy_death(cowboy);
+		}
 }
 
 /*******************************************************************************************

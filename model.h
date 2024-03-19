@@ -123,7 +123,7 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 
 void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cowboy *cowboy);
 
-void move_snake(struct Snake *snake, const struct Cowboy cowboy);
+void move_snake(struct Snake *snake, const struct Cowboy *cowboy);
 
 void move_cowboy(struct Cowboy *cowboy);
 
