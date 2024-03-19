@@ -25,6 +25,6 @@ void fill_screen(UINT32 *base, char pattern);
 void clear_screen(UINT32 *base);
 void fill_rec(UINT32 *base,int x, int y, int height, int width);
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos);
-void plotBitmap640(UINT32 *base, int height, const UINT32 *bitmap);
+void plot_splash(UINT32 *base, int height, const UINT32 *bitmap);
 
 #endif
