@@ -1,1 +1,1 @@
-We adjusted our work to create .out files without using the makefile as we kept getting errors that we couldn’t resolve (compiles the raster and model files but stops at the renderer files).
+Stage 5 is in working condition. Stage 6 is still being worked on. We have a test file for stage 7 but we have not implemented it into the makefile. 
