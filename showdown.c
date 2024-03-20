@@ -30,37 +30,38 @@ int main() {
 
 	fill_screen((UINT32 *) base, 0);
 
-
 	render((UINT32 *)base, &model);
 	while(!quit) {
 		time_then = get_time();
 
-			
 		if (Cconis()){
 			ch = (char)Cnecin();
 			input_handler(ch, &model, &quit);
 		}
 		shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
-		update_render((UINT32 *)base, &model); 
+		/*update_render((UINT32 *)base, &model); */
 		for (i = 0; i < model.bullets_fill; i++) {
 		clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
 		}
-		move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy,);
+		/*move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy,);*/
+		/*update_movement((UINT32 *)base, &model);*/
 		for (i = 0; i < model.snakes_fill; i++) {
 		clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
 		}
-		move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
-		update_render((UINT32 *)base, &model); 
+		/*move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);*/
+		update_movement((UINT32 *)base, &model);
+		update_render((UINT32 *)base, &model);
 		time_now = get_time();
-		time_delta = time_now - time_then;
+		time_delta = time_then - time_now;
 		clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
 		move_cowboy(&model.cowboy);
+		/*update_movement((UINT32 *)base, &model);*/
 		update_render((UINT32 *)base, &model); 
 		model.cowboy.isMoving = FALSE;
 		model.cowboy.isFiring = FALSE;
 		
-		if (count < 1) {
+		if (count < 4) {
 				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
 				count++;
 		}
@@ -68,7 +69,7 @@ int main() {
 		if(ch!='q')
 			ch = NULL;
 
-		if(time_delta >= 210) {
+		/*if(time_delta >= 210) {
 			if (count < 30) {
 				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
 				printf("hello");
@@ -76,7 +77,7 @@ int main() {
 			} 
 		printf("hello");
 		time_then = time_now;
-		}
+		}*/
 			/*
 			if (count_sec > 30 && snakes_fill == 0) {*/
 				/* wave complete */
@@ -84,7 +85,7 @@ int main() {
 				/*count_sec = 0;
 			}
 */
-			Vsync();
+		Vsync();
 
 	}
 	return 0;

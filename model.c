@@ -8,7 +8,22 @@ Purpose: Implements functions for manipulating objects according to their specif
 #include "model.h"
 
 #include "events.h"
-#include "types.h"
+
+
+/********************************************************************************************
+Function Name: 	update_movement
+
+Details: 	updates the movement of moving objects
+
+*********************************************************************************************/
+
+void update_movement(UINT32 *base, struct Model *model)
+{
+	move_bullets(model->active_bullets, &model->bullets_fill, model->active_snakes, 
+				&model->snakes_fill, &model->cowboy);
+	move_snakes(model->active_snakes, model->snakes_fill, &model->cowboy);
+	/*move_cowboy(&model->cowboy);*/
+}
 
 /*******************************************************************************************
 Function Name: 	move_bullets

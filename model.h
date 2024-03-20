@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-
+#include "TYPES.H"
 
 /******CONSTANTS******/
 
@@ -134,6 +134,8 @@ void wave_bonus(struct Scoreboard *scoreboard);
 void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
+
+void update_movement(UINT32 *base, struct Model *model);
 
 struct Model init_Model();
 

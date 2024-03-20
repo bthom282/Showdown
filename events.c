@@ -84,8 +84,6 @@ void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets
 	}
 }
 
-
-
 /*******************************************************************************************
 Function Name: 	rand_in_range
 
