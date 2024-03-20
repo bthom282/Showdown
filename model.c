@@ -39,7 +39,7 @@ Sample Call: 	move_bullets(&active_bullets[0], &bullets_fill);
 *********************************************************************************************/
 
 void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snake active_snakes[], 
-	int *snakes_fill, const struct Cowboy *cowboy)
+	int *snakes_fill, struct Cowboy *cowboy)
 {
 	int i,j;
 	for (i = 0; i < *bullets_fill; i++) {
@@ -59,7 +59,7 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snak
 }
 
 void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill, 
-				struct Snake active_snakes[], int *snakes_fill, const struct Cowboy *cowboy)
+				struct Snake active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
 {
 	int j;
 

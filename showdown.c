@@ -6,19 +6,20 @@ const UINT8 buffer[32000];
 
 int main() {
 	
-	UINT8 *base = Physbase();
-	/*UINT8 *alt_fb = getBuffer();*/
+	UINT32 *start_base = Physbase();
+	UINT32 *base = Physbase();
+	UINT32 *base2 = get_buffer();
 	UINT32 seed = 1245;
 	int players = 1;
 	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	int i;
-	UINT32 time_now, time_then, time_delta;
+	UINT32 time_now, time_then, time_elapsed;
 	int state;
-    int spawn_loc;
 	int quit = FALSE;
 	char ch = NULL;
 	int count = 0;
+	int ticks;
 
 	struct Model model = init_Model();
 	
@@ -31,58 +32,53 @@ int main() {
 	fill_screen((UINT32 *) base, 0);
 
 	render((UINT32 *)base, &model);
-	while(!quit) {
-		time_then = get_time();
-
-		if (Cconis()){
-			ch = (char)Cnecin();
-			input_handler(ch, &model, &quit);
-		}
-		shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
-
-		/*update_render((UINT32 *)base, &model); */
-		for (i = 0; i < model.bullets_fill; i++) {
-		clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
-		}
-		/*move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy,);*/
-		/*update_movement((UINT32 *)base, &model);*/
-		for (i = 0; i < model.snakes_fill; i++) {
-		clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
-		}
-		/*move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);*/
-		update_movement((UINT32 *)base, &model);
-		update_render((UINT32 *)base, &model);
+	render((UINT32 *)base2, &model);
+	while(ch != 'q') {
 		time_now = get_time();
-		time_delta = time_then - time_now;
-		clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-		move_cowboy(&model.cowboy);
-		/*update_movement((UINT32 *)base, &model);*/
-		update_render((UINT32 *)base, &model); 
-		model.cowboy.isMoving = FALSE;
-		model.cowboy.isFiring = FALSE;
-		
-		if (count < 4) {
-				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-				count++;
+		time_elapsed = time_now - time_then;
+
+		if (time_elapsed > 0)
+		{
+
+			if (Cconis()){
+				ch = (char)Cnecin();
+				input_handler(ch, &model, &quit);
+			}
+			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
+
+			/*update_render((UINT32 *)base, &model); */
+			for (i = 0; i < model.bullets_fill; i++) {
+			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+			}
+			/*move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy,);*/
+			/*update_movement((UINT32 *)base, &model);*/
+			for (i = 0; i < model.snakes_fill; i++) {
+			clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+			}
+			/*move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);*/
+			update_movement((UINT32 *)base, &model);
+			update_render((UINT32 *)base, &model);
+			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
+			move_cowboy(&model.cowboy);
+			/*update_movement((UINT32 *)base, &model);*/
+			update_render((UINT32 *)base, &model); 
+			model.cowboy.isMoving = FALSE;
+			model.cowboy.isFiring = FALSE;	
 		}
 
 		if(ch!='q')
 			ch = NULL;
 
-		/*if(time_delta >= 210) {
-			if (count < 30) {
-				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-				printf("hello");
-				count++;
-			} 
-		printf("hello");
-		time_then = time_now;
-		}*/
+		if(time_elapsed >= 70 && count < 30) {
+			spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+			count++;
+			time_then = get_time();
+		}
 			/*
 			if (count_sec > 30 && snakes_fill == 0) {*/
 				/* wave complete */
 				/* cowboy special move */
-				/*count_sec = 0;
+				/*count = 0;
 			}
 */
 		Vsync();
@@ -129,6 +125,21 @@ UINT32* get_buffer()
 
 	return base;
 }
+
+/********************************************************************************************
+Function Name: 	swap_buffers
+
+Details: 	This function swaps the back buffer with the front buffer.
+
+*********************************************************************************************/
+
+void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr)
+{
+	UINT32* temp = * base32;
+	* base32 = * back_buffer_ptr;
+	* back_buffer_ptr = temp;
+}
+
 
 /********************************************************************************************
 Function Name: 	input_handler
@@ -202,7 +213,7 @@ void input_handler(char input, struct Model *model, int *quit)
 		y_dir = 0;
 		x_dir = -1;	
 	}
-	if (ch == '2')
+	if (ch == '5')
 	{
 		model->cowboy.isFiring = TRUE;
 		y_dir = 1;
