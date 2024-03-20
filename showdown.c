@@ -46,7 +46,7 @@ int main() {
 			}
 			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
-			/*update_render((UINT32 *)base, &model); */
+			update_render((UINT32 *)base, &model); 
 			for (i = 0; i < model.bullets_fill; i++) {
 			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
 			}
@@ -57,7 +57,7 @@ int main() {
 			}
 			/*move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);*/
 			update_movement((UINT32 *)base, &model);
-			update_render((UINT32 *)base, &model);
+			/*update_render((UINT32 *)base, &model);*/
 			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
 			move_cowboy(&model.cowboy);
 			/*update_movement((UINT32 *)base, &model);*/
