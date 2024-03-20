@@ -1,4 +1,4 @@
-all: tst_rast tst_mo tst_ren showdown
+all: tst_rast tst_mo tst_ren showdown PSG.o effects.o music.o
 
 tst_rast: tst_rast.o raster.o font.o
 	cc68x -g tst_rast.o raster.o font.o -o tst_rast
@@ -29,6 +29,15 @@ events.o: events.c events.h
 
 splash.o: splash.c splash.h
 	cc68x -g -c splash.c
+	
+music.o: music.c music.h types.h
+	cc68x -g -c music.c
+	
+effects.o: effects.c effects.h types.h PSG.h
+	cc68x -g -c effects.c
+	
+PSG.o: PSG.c PSG.h types.h
+	cc68x -g -c PSG.c
 
 tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o splash.o
 	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o -o tst_ren
