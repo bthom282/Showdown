@@ -17,11 +17,11 @@ int splash_song_treble[SPLASH_SONG_LENGTH] = {
 	A4, C5, C5, C5
 };
 
-int main_song_bass[MAIN_SONG_LENGTH] = {
+/*int main_song_bass[MAIN_SONG_LENGTH] = {
 };
 
 int main_song_trebel[MAIN_SONG_LENGTH] = {
-};
+};*/
 
 /********************************************************************************************
 Function Name: 	start_music

@@ -2,7 +2,7 @@
 #define MUSIC_H
 
 #include "PSG.h"
-#includes "types.h"
+#include "types.h"
 
 #define REST 0
 #define C3 130
