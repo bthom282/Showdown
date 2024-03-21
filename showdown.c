@@ -37,13 +37,13 @@ int main() {
 		time_now = get_time();
 		time_elapsed = time_now - time_then;
 
+		if (Cconis()){
+			ch = (char)Cnecin();
+			input_handler(ch, &model, &quit);
+		}
+		
 		if (time_elapsed > 0)
 		{
-
-			if (Cconis()){
-				ch = (char)Cnecin();
-				input_handler(ch, &model, &quit);
-			}
 			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 
 			update_render((UINT32 *)base, &model); 
