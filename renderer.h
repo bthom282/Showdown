@@ -27,7 +27,7 @@ void render_side_text(UINT8 *base, int players);
 
 void render_score(UINT8 *base, struct Scoreboard *scoreboard);
 
-void render_lives(UINT16 *base, struct Lives lives, const UINT16 *bitmap16);
+void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16);
 
 void render_splash(UINT32 *base, const UINT32 *splash_bitmap);
 

@@ -9,6 +9,7 @@ int main() {
 	UINT32 *start_base = Physbase();
 	UINT32 *base = Physbase();
 	UINT32 *base2 = get_buffer();
+	UINT32 *current;
 	UINT32 seed = 1245;
 	int players = 1;
 	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
@@ -19,9 +20,10 @@ int main() {
 	int quit = FALSE;
 	char ch = NULL;
 	int count = 0;
-	int ticks;
-
+	int back_buffer = FALSE;
+	
 	struct Model model = init_Model();
+	struct Model prev_model = init_Model();
 	
 	render_splash((UINT32 *) base, splash_bitmap);
 
@@ -36,54 +38,87 @@ int main() {
 	while(ch != 'q') {
 		time_now = get_time();
 		time_elapsed = time_now - time_then;
-
+		
 		if (Cconis()){
 			ch = (char)Cnecin();
 			input_handler(ch, &model, &quit);
 		}
-		
+
 		if (time_elapsed > 0)
 		{
-			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
-
-			update_render((UINT32 *)base, &model); 
-			for (i = 0; i < model.bullets_fill; i++) {
-			clear_bitmap_8((UINT8 *) base, model.active_bullets[i].position.x, model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+			/*if(back_buffer == FALSE)
+			{
+				for (i = 0; i < model.bullets_fill; i++) {
+					clear_bitmap_8((UINT8 *) base2, prev_model.active_bullets[i].position.x, 
+					prev_model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+				}
+				for (i = 0; i < model.snakes_fill; i++) {
+					clear_bitmap_32((UINT32 *) base2, prev_model.active_snakes[i].position.x, 
+					prev_model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+				}
+				clear_bitmap_32((UINT32 *) base2, prev_model.cowboy.position.x, 
+				prev_model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
+				update_render((UINT32 *)base, &model);
+				back_buffer = TRUE;
+				Setscreen (-1,base,-1);
 			}
-			/*move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy,);*/
-			/*update_movement((UINT32 *)base, &model);*/
-			for (i = 0; i < model.snakes_fill; i++) {
-			clear_bitmap_32((UINT32 *) base, model.active_snakes[i].position.x, model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
-			}
-			/*move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);*/
-			update_movement((UINT32 *)base, &model);
+			else
+			{*/
+			if (current == base2)
+				current = base;
+			else
+				current = base2;
+		
+			
+			/*fill_screen((UINT32 *) current, 0);*/
+			clear_rec(current, 8, 0, 384, 12);
+			fill_rec((UINT16 *)current, 80, 300, 64, 4);
+			update_render((UINT32 *)current, &model);
+			/*render((UINT32 *)current, &model);*/
+			update_movement(&model);
 			/*update_render((UINT32 *)base, &model);*/
-			clear_bitmap_32((UINT32 *) base, model.cowboy.position.x, model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
 			move_cowboy(&model.cowboy);
-			/*update_movement((UINT32 *)base, &model);*/
-			update_render((UINT32 *)base, &model); 
+			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 			model.cowboy.isMoving = FALSE;
-			model.cowboy.isFiring = FALSE;	
+			model.cowboy.isFiring = FALSE;
+			Setscreen (-1,current,-1);
+			/*Vsync();*/
+			
+				/*for (i = 0; i < model.bullets_fill; i++) {
+					clear_bitmap_8((UINT8 *) base2, prev_model.active_bullets[i].position.x, 
+					prev_model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
+				}
+				for (i = 0; i < model.snakes_fill; i++) {
+					clear_bitmap_32((UINT32 *) base2, prev_model.active_snakes[i].position.x, 
+					prev_model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
+				}
+				clear_bitmap_32((UINT32 *) base2, prev_model.cowboy.position.x, 
+				prev_model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
+				update_render((UINT32 *)base, &model);
+				back_buffer = FALSE;*/
+				/*Setscreen (-1,base2,-1);
+			}*/
+			/*swap_buffers(&base, &base2);*/
 		}
 
 		if(ch!='q')
 			ch = NULL;
 
-		if(time_elapsed >= 70 && count < 30) {
+		if(time_elapsed >= 70 && count < WAVE_COUNT) {
 			spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
 			count++;
 			time_then = get_time();
 		}
-			/*
-			if (count_sec > 30 && snakes_fill == 0) {*/
-				/* wave complete */
-				/* cowboy special move */
-				/*count = 0;
-			}
-*/
-		Vsync();
+			
+		if (count == WAVE_COUNT && model.snakes_fill == 0) {
+			/* wave complete */
+			wave_bonus(&model.cowboy.scoreboard);
+			/* cowboy special move */
+			count = 0;
+		}
 
 	}
+	Setscreen(-1, start_base, -1);
 	return 0;
 }
 

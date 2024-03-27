@@ -6,6 +6,7 @@ int splash_song_bass[SPLASH_SONG_LENGTH] = {
 	F3, REST, F3, REST, 
 	F3, REST, F3, REST, 
 	F3, REST, F3, REST, 
+	REST, REST, REST, REST,
 	REST, REST, REST, REST
 	
 };
@@ -14,14 +15,32 @@ int splash_song_treble[SPLASH_SONG_LENGTH] = {
 	REST, E4, REST, E4,
 	REST, E4, REST, E4,
 	REST, E4, REST, E4,
-	A4, C5, C5, C5
+	A4, C5, C5, C5,
+	REST, REST, REST, REST
 };
 
-/*int main_song_bass[MAIN_SONG_LENGTH] = {
+int main_song_bass[MAIN_SONG_LENGTH] = {
+	REST, REST, REST, REST, REST, F3 , REST, G3,
+	REST, REST, REST, REST, REST, REST, REST, REST,
+	G3, REST, REST, REST, F3, REST, REST, REST,
+	F3, REST, REST, REST, F3, REST, REST, G3,
+	REST, C3, REST, REST, REST, REST, REST, REST,
+	REST, REST, REST, REST, F3, REST, G3, REST,
+	REST, REST, REST, REST, REST, REST, G3, REST,
+	REST, REST, F3, REST, D3, REST, REST, REST,
+	G3, REST, REST, REST, REST, REST, REST, REST	
 };
-
-int main_song_trebel[MAIN_SONG_LENGTH] = {
-};*/
+int main_song_treble[MAIN_SONG_LENGTH] = {
+	E6, E6, G6, A6, A6, A6, A6, G6,
+	REST, REST, C6, D6, D6, E6, G6, E6,
+	C6, A5, REST, A5, A5, G5, A5, C6,
+	C6, A5, C6, REST, A5, C6, C6, D6,
+	D6, C6, REST, G5, G5, C6, C6, E6,
+	E6, G6, A6, A6, A6, A6, G6, REST,
+	C6, C6, D6, D6, E6, G6, E6, C6,
+	A5, REST, A5, A5, G5, E5, C6, D6,
+	E5, REST, REST, REST, REST, REST, REST, REST
+};
 
 /********************************************************************************************
 Function Name: 	start_music

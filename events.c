@@ -6,8 +6,8 @@ Purpose:  Implements event-handling functions for each of the specified asynchro
 *******************************************************************************************/
 #include "events.h"
 
-struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
-struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
+/*struct Bullet active_bullets[MAX_BULLETS];*/  /*array for active bullet structs*/
+/*struct Snake active_snakes[MAX_SNAKES];*/    /*array for active snakes structs*/
 
 /*******************************************************************************************
 Function Name: 	checkCollision
@@ -79,7 +79,8 @@ void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets
 			x_shift = -2;
 			y_shift = 12;
 		}
-		active_bullets[*bullets_fill] = init_Bullet(cowboy->position.x + x_shift, cowboy->position.y + y_shift, cowboy->xFireDir, cowboy->yFireDir);
+		active_bullets[*bullets_fill] = init_Bullet(cowboy->position.x + x_shift, 
+		cowboy->position.y + y_shift, cowboy->xFireDir, cowboy->yFireDir);
 		(*bullets_fill)++;
 	}
 }

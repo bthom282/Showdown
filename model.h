@@ -44,6 +44,7 @@
 #define COWBOY_HEIGHT 32
 #define BULLET_WIDTH 4
 #define BULLET_HEIGHT 4
+#define WAVE_COUNT 30
 
 struct Position
 {
@@ -135,7 +136,7 @@ void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
 
-void update_movement(UINT32 *base, struct Model *model);
+void update_movement(struct Model *model);
 
 struct Model init_Model();
 

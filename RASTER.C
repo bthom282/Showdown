@@ -196,17 +196,44 @@ Function Name: 	fill_rec
 Details: 	This function fills a rectangular section of bytes on the screen by taking in
 		the starting coordinates, the height, and width in bytes.
 *********************************************************************************************/
-void fill_rec(UINT32 *base,int x, int y, int height, int width) {
-	UINT32 *loc = base;
-	for (y = 0; y < height; y++){ 
-		for (x = 0; x < width; x++) {
-			*(loc++) = -1;
+void fill_rec(UINT16 *base, int x, int y, int height, int width) {
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+		int i,j;
+		base += (x/16) + y * 40;
+		for (i = 0; i < height; i++){ 
+			for (j = 0; j < width; j++) {
+				*(base++) = -1;
+			}
+			base += 36;
 		}
-		loc += (40-width);
+		return;
 	}
-	return;
 }
 
+
+void clear_rec(UINT32 *base, int x, int y, int height, int width){
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	int i,j;
+	base += x + y * 20;
+	for (i = 0; i < height; i++){ 
+		for (j = 0; j < width; j++) {
+			*(base++) = 0;
+		}
+		base += 8;
+	}
+	return;
+
+	/*UINT16 *loc = (UINT16 *) base;
+	int k, j;
+	for (k = x; k < SCREEN_HEIGHT; k++){ 
+		for (j = x; j < 16; j++) {
+			*(loc++) = 0;
+		}
+		loc += 24;
+	}
+	return*/
+}
+}
 
 /*******************************************************************************************
 Function Name: 	print_message

@@ -27,7 +27,7 @@ int main()
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	cowboy1.state = 6;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
@@ -49,7 +49,7 @@ int main()
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	cowboy1.state = 4;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
@@ -83,7 +83,7 @@ int main()
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	cowboy1.state = 11;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);
@@ -144,7 +144,7 @@ int main()
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);
 	render_score((UINT8 *) base, &cowboy1.scoreboard);
-	render_lives((UINT16 *) base, cowboy1.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &cowboy1.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
 	cowboy1.state = 1;
 	render_cowboy((UINT32 *) base, cowboy1, (UINT32 *) cowboy_bitmap);

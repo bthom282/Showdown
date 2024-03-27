@@ -17,7 +17,7 @@ Details: 	updates the movement of moving objects
 
 *********************************************************************************************/
 
-void update_movement(UINT32 *base, struct Model *model)
+void update_movement(struct Model *model)
 {
 	move_bullets(model->active_bullets, &model->bullets_fill, model->active_snakes, 
 				&model->snakes_fill, &model->cowboy);
@@ -112,6 +112,8 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, struct Cowboy *c
 
 void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 {
+	int x_distance;
+	int y_distance;
 	/*conditions to exit the spawning areas*/
 	if(snake->position.x < X_MIN)
 		{ snake->position.x++; }
@@ -121,18 +123,70 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 		{ snake->position.y++; }
 	else if(snake->position.y > Y_MAX)
 		{ snake->position.y--; }
+	
 	/*conditions for snake movement once in play*/
 	else {
 		if (snake->position.x < cowboy->position.x)
-			{ snake->position.x++; }
+			{ 
+			snake->position.x++;
+			snake->state = 2;
+			}
         else if (snake->position.x > cowboy->position.x)
-            { snake->position.x--; }
+            { 
+			snake->position.x--; 
+			snake->state = 1;
+			}
             
         if (snake->position.y < cowboy->position.y)
-            { snake->position.y++; }
+            { 
+			snake->position.y++; 
+			snake->state = 0;
+			}
 		else if (snake->position.y > cowboy->position.y)
-            { snake->position.y--; }
+            { 
+			snake->position.y--; 
+			snake->state = 3;
+			}
 	}
+	
+	/*change state for bitmap render (0 = down, 1 = left, 2 = right, 3 = up)*/
+	x_distance = snake->position.x - cowboy->position.x;
+	y_distance = snake->position.y - cowboy->position.y;
+	
+	/*if(x_distance < 0)
+	{
+		if(y_distance < 0)
+		{
+			if(y_distance < x_distance)
+				snake->state = 0;
+			else
+				snake->state = 2;
+		}
+		else
+		{
+			y_distance *= -1;
+			if(y_distance > x_distance)
+				snake->state = 0;
+			else
+				snake->state = 1;
+	}
+	else
+	{
+		if(y_distance < 0)
+		{
+			if(y_distance < x_distance)
+				snake->state = 0;
+			else
+				snake->state = 2;
+		}
+		else
+		{
+			y_distance *= -1;
+			if(y_distance > x_distance)
+				snake->state = 0;
+			else
+				snake->state = 1;
+	}*/
 	
 	/* check for collisions */
 	if (checkCollision(snake->position.x, snake->position.y, 
