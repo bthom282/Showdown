@@ -26,7 +26,39 @@ int main() {
 	struct Model prev_model = init_Model();
 	
 	render_splash((UINT32 *) base, splash_bitmap);
+	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", 272, 224);
 
+	Cnecin(); 
+	clear_rec((UINT32 *)base, 272, 224, 8, 4);
+	
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", 288, 200);
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", 288, 216);
+	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", 272, 224);
+	print_message((UINT8 *)base, (UINT8 *)"QUIT", 308, 240);
+
+	Cnecin(); 
+	
+	clear_rec((UINT32 *)base, 272, 200, 56, 5);
+	
+	print_message((UINT8 *)base, (UINT8 *)"CHOOSE A CHARACTER", 256, 224);
+	
+	plot_bitmap_64((UINT32 *)base, 338, 285, cursor, CURSOR_HEIGHT);
+	plot_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
+	
+	Cnecin(); 
+	clear_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
+	
+	print_message((UINT8 *)base, (UINT8 *)"COWBOY", 408, 308);
+	
+	Cnecin(); 
+	
+	print_message((UINT8 *)base, (UINT8 *)"COWBOY", 408, 308);
+	/*clear_rec((UINT32 *)base, 416, 308, 8, 2);*/
+	clear_bitmap_64((UINT32 *)base, 338, 285, cursor, CURSOR_HEIGHT);
+	plot_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
+	print_message((UINT8 *)base, (UINT8 *)"COWGIRL", 160, 308);
+	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", 136, 316);
+	
 	Cnecin(); 
 
 	/*initializing the model*/
@@ -46,24 +78,6 @@ int main() {
 
 		if (time_elapsed > 0)
 		{
-			/*if(back_buffer == FALSE)
-			{
-				for (i = 0; i < model.bullets_fill; i++) {
-					clear_bitmap_8((UINT8 *) base2, prev_model.active_bullets[i].position.x, 
-					prev_model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
-				}
-				for (i = 0; i < model.snakes_fill; i++) {
-					clear_bitmap_32((UINT32 *) base2, prev_model.active_snakes[i].position.x, 
-					prev_model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
-				}
-				clear_bitmap_32((UINT32 *) base2, prev_model.cowboy.position.x, 
-				prev_model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-				update_render((UINT32 *)base, &model);
-				back_buffer = TRUE;
-				Setscreen (-1,base,-1);
-			}
-			else
-			{*/
 			if (current == base2)
 				current = base;
 			else
@@ -71,7 +85,7 @@ int main() {
 		
 			
 			/*fill_screen((UINT32 *) current, 0);*/
-			clear_rec(current, 8, 0, 384, 12);
+			clear_rec(current, 256, 0, 384, 12);
 			fill_rec((UINT16 *)current, 80, 300, 64, 4);
 			update_render((UINT32 *)current, &model);
 			/*render((UINT32 *)current, &model);*/
@@ -83,22 +97,6 @@ int main() {
 			model.cowboy.isFiring = FALSE;
 			Setscreen (-1,current,-1);
 			/*Vsync();*/
-			
-				/*for (i = 0; i < model.bullets_fill; i++) {
-					clear_bitmap_8((UINT8 *) base2, prev_model.active_bullets[i].position.x, 
-					prev_model.active_bullets[i].position.y, bullet_bitmap, BITMAP_8_HEIGHT);
-				}
-				for (i = 0; i < model.snakes_fill; i++) {
-					clear_bitmap_32((UINT32 *) base2, prev_model.active_snakes[i].position.x, 
-					prev_model.active_snakes[i].position.y, blank, BITMAP_32_HEIGHT);
-				}
-				clear_bitmap_32((UINT32 *) base2, prev_model.cowboy.position.x, 
-				prev_model.cowboy.position.y, blank, BITMAP_32_HEIGHT);
-				update_render((UINT32 *)base, &model);
-				back_buffer = FALSE;*/
-				/*Setscreen (-1,base2,-1);
-			}*/
-			/*swap_buffers(&base, &base2);*/
 		}
 
 		if(ch!='q')

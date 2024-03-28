@@ -11,5 +11,6 @@ extern const UINT16 cowgirl_lives[];
 extern const UINT8 bullet_bitmap[];
 extern const UINT8 bullet_blank[];
 extern const UINT32 blank[];
+extern const UINT32 cursor[];
 
 #endif

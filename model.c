@@ -116,13 +116,13 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 	int y_distance;
 	/*conditions to exit the spawning areas*/
 	if(snake->position.x < X_MIN)
-		{ snake->position.x++; }
+		{ snake->position.x+=2; }
 	else if(snake->position.x > X_MAX) 
-		{ snake->position.x--; }
+		{ snake->position.x-=2; }
 	else if(snake->position.y < Y_MIN)
-		{ snake->position.y++; }
+		{ snake->position.y+=2; }
 	else if(snake->position.y > Y_MAX)
-		{ snake->position.y--; }
+		{ snake->position.y-=2; }
 	
 	/*conditions for snake movement once in play*/
 	else {
