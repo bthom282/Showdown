@@ -54,12 +54,12 @@ void start_music()
 	/* begin bass */
 	enable_channel(CH_A,1,0);
 	set_envelope(4,10);
-	set_volume(CH_A,8);
+	set_volume(CH_A,16);
 		
 	/* begin treble */
 	enable_channel(CH_B,1,0);
 	set_envelope(4,10);
-	set_volume(CH_B,8);
+	set_volume(CH_B,16);
 	
 	return;
 }
@@ -73,7 +73,7 @@ Details: 	Changes the note in the music.
 
 int update_music(UINT32 time_elapsed, int last_note, int bass[], int treble[],  int song_length)
 {
-	if(time_elapsed >= 35)
+	if((time_elapsed % 70) == 0)
 	{
 		if(last_note == song_length)
 			last_note = 0;

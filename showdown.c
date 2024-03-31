@@ -6,8 +6,8 @@ const UINT8 buffer[32000];
 
 int main() {
 	
-	UINT32 *start_base = Physbase();
-	UINT32 *base = Physbase();
+	UINT32 *start_base = get_video_base();
+	UINT32 *base = get_video_base();
 	UINT32 *base2 = get_buffer();
 	UINT32 *current;
 	UINT32 seed = 1245;
@@ -95,7 +95,8 @@ int main() {
 			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
 			model.cowboy.isMoving = FALSE;
 			model.cowboy.isFiring = FALSE;
-			Setscreen (-1,current,-1);
+			set_video_base(current);
+			/*Setscreen (-1,current,-1);*/
 			/*Vsync();*/
 		}
 
@@ -116,7 +117,8 @@ int main() {
 		}
 
 	}
-	Setscreen(-1, start_base, -1);
+	set_video_base(start_base);
+	/*Setscreen(-1, start_base, -1);*/
 	return 0;
 }
 

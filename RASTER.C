@@ -356,14 +356,14 @@ Sample Call:	get_video_base();
 *********************************************************************************************/
 UINT32 *get_video_base()
 {
-	UINT8 *videoHigh = VIDEO_REG_HIGH;
-	UINT8 *videoMid = VIDEO_REG_MID;
+	UINT8 *video_high = VIDEO_REG_HIGH;
+	UINT8 *video_mid = VIDEO_REG_MID;
 	UINT32 base;
 	UINT32 *basePtr;
 	long old_ssp = Super(0);
 
-	base = ( (UINT32) *videoHigh << 16);
-	base |= ( (UINT32) *videoMid << 8);
+	base = ( (UINT32) *video_high << 16);
+	base |= ( (UINT32) *video_mid << 8);
 
 	Super(old_ssp);
 
@@ -375,7 +375,8 @@ UINT32 *get_video_base()
 /*******************************************************************************************
 Function Name: 	set_video_base
 
-Details: 	This function that replaces the need for Physbase() to get the video base.
+Details: 	This function that replaces the need for Physbase() to get the video base. It
+			use a function in video.s to video_high nad video_mid at the same time.
 
 Sample Call:	set_video_base(base);
 
@@ -386,7 +387,7 @@ void set_video_base(UINT32 *base)
 	UINT16 newBase = (UINT16)shift;
 	long old_ssp = Super(0);
 
-	/*setVBase(newBase);*/
+	setVBase(newBase);
 
 	Super(old_ssp);
 
