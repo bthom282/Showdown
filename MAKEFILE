@@ -42,6 +42,9 @@ effects.o: effects.c effects.h types.h psg.h
 psg.o: psg.c psg.h types.h
 	cc68x -g -c PSG.c
 
+input.o: input.c input.h
+	cc68x -g -c input.c
+
 tst_snd: tst_snd.o music.o psg.o effects.o
 	cc68x -g tst_snd.o music.o psg.o effects.o -o tst_snd
 
@@ -57,8 +60,8 @@ renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h sp
 tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h
 	cc68x -g -c tst_ren.c
 
-showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o
-	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o -o showdown
+showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o input.o
+	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o input.o -o showdown
 
-showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h
+showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h input.h
 	cc68x -g -c showdown.c

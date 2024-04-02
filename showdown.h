@@ -11,6 +11,7 @@
 #include "types.h"
 #include "raster.h"
 #include "splash.h"
+#include "input.h"
 
 UINT32 get_time();
 
