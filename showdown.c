@@ -61,21 +61,6 @@ UINT32* get_buffer()
 }
 
 /********************************************************************************************
-Function Name: 	swap_buffers
-
-Details: 	This function swaps the back buffer with the front buffer.
-
-*********************************************************************************************/
-
-void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr)
-{
-	UINT32* temp = * base32;
-	* base32 = * back_buffer_ptr;
-	* back_buffer_ptr = temp;
-	return;
-}
-
-/********************************************************************************************
 Function Name: 	splash_menu
 
 Details: 	This function takes the user to the splash screen to choose 1 or 2 player mode and
