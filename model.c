@@ -11,14 +11,19 @@ Purpose: Implements functions for manipulating objects according to their specif
 
 
 /********************************************************************************************
-Function Name: 	update_movement
+Function Name: 	update_model
 
 Details: 	updates the movement of moving objects
 
 *********************************************************************************************/
 
-void update_movement(struct Model *model)
+void update_model(struct Model *model)
 {
+			
+	move_cowboy(&model->cowboy);
+	shooting(&model->cowboy, model->active_bullets, &model->bullets_fill);
+	model->cowboy.isMoving = FALSE;
+	model->cowboy.isFiring = FALSE;
 	move_bullets(model->active_bullets, &model->bullets_fill, model->active_snakes, 
 				&model->snakes_fill, &model->cowboy);
 	move_snakes(model->active_snakes, model->snakes_fill, &model->cowboy);

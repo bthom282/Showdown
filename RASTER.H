@@ -24,6 +24,7 @@
 #define BITMAP_32_HEIGHT 32
 #define CURSOR_HEIGHT 64
 #define CLEAR32 0x00000000
+#define START_POSITION 0
 
 /*******************************************************************************************
 

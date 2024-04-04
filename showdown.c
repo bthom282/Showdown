@@ -23,7 +23,6 @@ int main() {
 	int back_buffer = FALSE;
 	
 	struct Model model = init_Model();
-	struct Model prev_model = init_Model();
 	
 	render_splash((UINT32 *) base, splash_bitmap);
 	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", 272, 224);
@@ -63,8 +62,6 @@ int main() {
 
 	/*initializing the model*/
 
-	fill_screen((UINT32 *) base, 0);
-
 	render((UINT32 *)base, &model);
 	render((UINT32 *)base2, &model);
 	while(ch != 'q') {
@@ -73,7 +70,8 @@ int main() {
 		
 		if (Cconis()){
 			ch = (char)Cnecin();
-			input_handler(ch, &model, &quit);
+			input_handler(ch, &model, &quit);	
+			update_model(&model);	
 		}
 
 		if (time_elapsed > 0)
@@ -82,20 +80,12 @@ int main() {
 				current = base;
 			else
 				current = base2;
-		
 			
-			/*fill_screen((UINT32 *) current, 0);*/
-			clear_rec(current, 256, 0, 384, 12);
-			fill_rec((UINT16 *)current, 80, 300, 64, 4);
+			update_model(&model);
 			update_render((UINT32 *)current, &model);
-			/*render((UINT32 *)current, &model);*/
-			update_movement(&model);
-			/*update_render((UINT32 *)base, &model);*/
-			move_cowboy(&model.cowboy);
-			shooting(&model.cowboy, model.active_bullets, &model.bullets_fill);
-			model.cowboy.isMoving = FALSE;
-			model.cowboy.isFiring = FALSE;
 			set_video_base(current);
+
+			/*time_then = get_time();*/
 			/*Setscreen (-1,current,-1);*/
 			/*Vsync();*/
 		}
@@ -104,18 +94,17 @@ int main() {
 			ch = NULL;
 
 		if(time_elapsed >= 70 && count < WAVE_COUNT) {
-			spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-			count++;
-			time_then = get_time();
+				spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+				count++;
+				time_then = get_time();
 		}
-			
+
 		if (count == WAVE_COUNT && model.snakes_fill == 0) {
 			/* wave complete */
 			wave_bonus(&model.cowboy.scoreboard);
 			/* cowboy special move */
 			count = 0;
 		}
-
 	}
 	set_video_base(start_base);
 	/*Setscreen(-1, start_base, -1);*/

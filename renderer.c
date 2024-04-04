@@ -16,6 +16,7 @@ Details: 	renders a whole frame based on the current state of the model.
 
 void render(UINT32 *base, struct Model *model)
 { 
+	fill_screen((UINT32 *) base, 0);
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, model->players);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
@@ -37,6 +38,8 @@ Details: 	updates the render of any moving object
 void update_render(UINT32 *base, struct Model *model)
 {
 	/*if(model->cowboy.scoreboard.isRendered == FALSE)*/
+	clear_rec(base, 256, 0, 384, 12);
+	fill_rec((UINT16 *)base, 80, 300, 64, 4);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
 	render_lives((UINT16 *) base, &model->cowboy.lives, cowboy_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);

@@ -18,7 +18,7 @@ Details: 	This function plots a 16x16 bitmap with XOR to specifically print whit
 
 void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned int height)
 { 
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		for (i = 0; i < height; i++) {
 			*(base + (y*40) + (x >> 4) + (i*40)) ^= bitmap16[i];
@@ -38,7 +38,7 @@ Details: 	This function clearing a 16x16 bitmap with OR to specifically clear wh
 
 void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned int height)
 { 
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		for (i = 0; i < height; i++) {
 			*(base + (y*40) + (x >> 4) + (i*40)) |= bitmap16[i];
@@ -57,7 +57,7 @@ Details: 	This function is used to plot a size 32 bitmap to the screen by ORing.
 
 void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>5) + y * 20;
 		for(i = 0; i < 32; i++)
@@ -80,7 +80,7 @@ Details: 	This function is used to clear a size 32 bitmap from the screen by XOR
 
 void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>5) + y * 20;
 		for(i = 0; i < height; i++)
@@ -103,7 +103,7 @@ Details: 	This function is used to plot a size 8 bitmap to the screen by ORing. 
 
 void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>3) + y * 80;
 		for(i = 0; i < height; i++)
@@ -127,7 +127,7 @@ Details: 	This function is used to clear a size 8 bitmap from the screen by XORi
 
 void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>3) + y * 80;
 		for(i = 0; i < height; i++)
@@ -206,7 +206,7 @@ Details: 	This function fills a rectangular section of bytes on the screen by ta
 			
 *********************************************************************************************/
 void fill_rec(UINT16 *base, int x, int y, int height, int width) {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i,j;
 		base += (x>>4) + y * 40;
 		for (i = 0; i < height; i++){ 
@@ -221,7 +221,7 @@ void fill_rec(UINT16 *base, int x, int y, int height, int width) {
 
 
 void clear_rec(UINT32 *base, int x, int y, int height, int width){
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i,j;
 		base += (x>>5) + y * 20;
 		for (i = 0; i < height; i++){ 
@@ -257,7 +257,7 @@ Sample Call:	print_message((UINT8 *) base, lives, 32, 320);
 
 void print_message(UINT8 *base, char message[], int x_pos, int y_pos) {
 	int i = 0;
-	if (x_pos >= 0 && x_pos < SCREEN_WIDTH && y_pos >= 0 && y_pos < SCREEN_HEIGHT) {
+	if (x_pos >= START_POSITION && x_pos < SCREEN_WIDTH && y_pos >= START_POSITION && y_pos < SCREEN_HEIGHT) {
 		while (message[i] != '\0') {
 			plot_char((UINT8 *) base, x_pos, y_pos, message[i]);
 			x_pos += 8;
@@ -302,7 +302,7 @@ Sample Call:	plot_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
 
 void plot_bitmap_64(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>5) + y * 20;
 		for(i = 0; i < (height*2); i+=2)
@@ -330,7 +330,7 @@ Sample Call:	clear_bitmap_64((UINT32 *)base, 338, 285, cursor, CURSOR_HEIGHT);
 
 void clear_bitmap_64(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
 {
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
 		int i;
 		base += (x>>5) + y * 20;
 		for(i = 0; i < (height*2); i+=2)
