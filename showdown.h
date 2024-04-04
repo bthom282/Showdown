@@ -19,6 +19,8 @@ UINT32* get_buffer();
 
 void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr);
 
-void input_handler(char input, struct Model *model, int *quit);
+void splash_menu(UINT32 *base1, UINT32 *base2);
+
+void main_game(UINT32 *base1, UINT32 *base2, int players);
 
 #endif

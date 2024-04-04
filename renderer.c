@@ -21,9 +21,9 @@ void render(UINT32 *base, struct Model *model)
 	render_side_text((UINT8 *) base, model->players);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
 	model->cowboy.scoreboard.isRendered = TRUE;
-	render_lives((UINT16 *) base, &model->cowboy.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &model->cowboy.lives, cowgirl_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
-	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
+	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowgirl_bitmap);
 	render_snakes((UINT32 *) base, model->active_snakes, model->snakes_fill, (UINT32 *) snake_bitmap);
 	render_bullets((UINT8 *) base, model->active_bullets, bullet_bitmap, model->bullets_fill);
 }
@@ -41,9 +41,9 @@ void update_render(UINT32 *base, struct Model *model)
 	clear_rec(base, 256, 0, 384, 12);
 	fill_rec((UINT16 *)base, 80, 300, 64, 4);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
-	render_lives((UINT16 *) base, &model->cowboy.lives, cowboy_lives);
+	render_lives((UINT16 *) base, &model->cowboy.lives, cowgirl_lives);
 	render_level1((UINT32 *) base, (UINT32 *) cactus_bitmap);
-	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowboy_bitmap);
+	render_cowboy((UINT32 *) base, model->cowboy, (UINT32 *) cowgirl_bitmap);
 	render_snakes((UINT32 *) base, model->active_snakes, model->snakes_fill, (UINT32 *) snake_bitmap);
 	render_bullets((UINT8 *) base, model->active_bullets, bullet_bitmap, model->bullets_fill);
 }
