@@ -1,9 +1,9 @@
 all: tst_rast tst_mo tst_ren tst_snd showdown 
 
-tst_rast: tst_rast.o raster.o font.o video.o
-	cc68x -g tst_rast.o raster.o font.o video.o -o tst_rast
+tst_rast: tst_rast.o raster.o font.o video.o splash.o bitmaps.o
+	cc68x -g tst_rast.o raster.o font.o video.o splash.o bitmaps.o -o tst_rast
 
-tst_rast.o: tst_rast.c raster.h types.h video.h
+tst_rast.o: tst_rast.c raster.h types.h video.h splash.h bitmaps.h
 	cc68x -g -c tst_rast.c
 
 font.o: font.c font.h types.h
