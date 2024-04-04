@@ -5,9 +5,6 @@
 #include "TYPES.H"
 #include "random.h"
 
-#define MAX_BULLETS 20
-#define MAX_SNAKES 30
-
 int checkCollision(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2);
 
 void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill);

@@ -91,7 +91,6 @@ void splash_menu(UINT32 *base, UINT32 *base2)
 
 	Cnecin(); 
 	
-	
 	clear_rec((UINT32 *)base, 272, 224, 8, 4);
 	
 	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", 288, 200);

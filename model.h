@@ -5,9 +5,6 @@
 
 /******CONSTANTS******/
 
-#define BITMAP_HEIGHT 16
-#define BITMAP_8_HEIGHT 8
-#define BITMAP_32_HEIGHT 32
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 #define X_MIN 288

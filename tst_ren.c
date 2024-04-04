@@ -1,5 +1,6 @@
 #include <osbind.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "renderer.h"
 #include "events.h"
 
