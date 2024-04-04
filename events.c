@@ -6,9 +6,6 @@ Purpose:  Implements event-handling functions for each of the specified asynchro
 *******************************************************************************************/
 #include "events.h"
 
-/*struct Bullet active_bullets[MAX_BULLETS];*/  /*array for active bullet structs*/
-/*struct Snake active_snakes[MAX_SNAKES];*/    /*array for active snakes structs*/
-
 /*******************************************************************************************
 Function Name: 	checkCollision
 

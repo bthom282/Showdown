@@ -9,6 +9,10 @@ Purpose: Implements functions for manipulating objects according to their specif
 
 #include "events.h"
 
+void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill, 
+				struct Snake active_snakes[], int *snakes_fill, const struct Cowboy *cowboy);
+
+void move_snake(struct Snake *snake, const struct Cowboy *cowboy);
 
 /********************************************************************************************
 Function Name: 	update_model
@@ -27,7 +31,6 @@ void update_model(struct Model *model)
 	move_bullets(model->active_bullets, &model->bullets_fill, model->active_snakes, 
 				&model->snakes_fill, &model->cowboy);
 	move_snakes(model->active_snakes, model->snakes_fill, &model->cowboy);
-	/*move_cowboy(&model->cowboy);*/
 }
 
 /*******************************************************************************************
@@ -50,21 +53,11 @@ void move_bullets(struct Bullet active_bullets[], int *bullets_fill, struct Snak
 	for (i = 0; i < *bullets_fill; i++) {
 		move_bullet(&active_bullets[i], active_bullets, i, bullets_fill, &active_snakes[0], 
 					snakes_fill, cowboy);
-		/*for (j = 0; j < *snakes_fill ; j++) {
-			if (checkCollision(active_bullets[i].position.x, active_bullets[i].position.y, 
-				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
-				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
-			{
-				snake_death(active_snakes, j, snakes_fill);
-				delete_bullet (active_bullets, bullets_fill, i);
-				increase_score(&(cowboy->scoreboard),100);
-			}
-		}*/
 	}
 }
 
 void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill, 
-				struct Snake active_snakes[], int *snakes_fill, struct Cowboy *cowboy)
+				struct Snake active_snakes[], int *snakes_fill, const struct Cowboy *cowboy)
 {
 	int j;
 
@@ -87,7 +80,7 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 				delete_bullet (active_bullets, bullets_fill, index);
 				increase_score(&(cowboy->scoreboard),100);
 			}
-		}	
+	}	
 }
 
 /*******************************************************************************************
@@ -106,12 +99,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, struct Cowboy *c
 	int i;
 	for (i = 0; i < snakes_fill; i++) {
 		move_snake(&active_snakes[i], cowboy);
-		/*if (checkCollision(active_snakes[i].position.x, active_snakes[i].position.y, 
-				SNAKE_WIDTH, SNAKE_HEIGHT, (*cowboy).position.x, 
-				(*cowboy).position.y, COWBOY_WIDTH, COWBOY_HEIGHT))
-		{
-			cowboy_death(cowboy);
-		}*/
 	}
 }
 
@@ -128,7 +115,6 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 		{ snake->position.y+=2; }
 	else if(snake->position.y > Y_MAX)
 		{ snake->position.y-=2; }
-	
 	/*conditions for snake movement once in play*/
 	else {
 		if (snake->position.x < cowboy->position.x)
@@ -157,41 +143,6 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 	/*change state for bitmap render (0 = down, 1 = left, 2 = right, 3 = up)*/
 	x_distance = snake->position.x - cowboy->position.x;
 	y_distance = snake->position.y - cowboy->position.y;
-	
-	/*if(x_distance < 0)
-	{
-		if(y_distance < 0)
-		{
-			if(y_distance < x_distance)
-				snake->state = 0;
-			else
-				snake->state = 2;
-		}
-		else
-		{
-			y_distance *= -1;
-			if(y_distance > x_distance)
-				snake->state = 0;
-			else
-				snake->state = 1;
-	}
-	else
-	{
-		if(y_distance < 0)
-		{
-			if(y_distance < x_distance)
-				snake->state = 0;
-			else
-				snake->state = 2;
-		}
-		else
-		{
-			y_distance *= -1;
-			if(y_distance > x_distance)
-				snake->state = 0;
-			else
-				snake->state = 1;
-	}*/
 	
 	/* check for collisions */
 	if (checkCollision(snake->position.x, snake->position.y, 
