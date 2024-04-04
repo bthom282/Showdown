@@ -15,16 +15,19 @@ bitmaps.o: bitmaps.c bitmaps.h types.h
 raster.o: raster.c raster.h types.h font.h
 	cc68x -g -c raster.c
 
-tst_mo: tst_mo.o model.o raster.o font.o events.o video.o
-	cc68x -g tst_mo.o model.o raster.o font.o events.o video.o -o tst_mo
+tst_mo: tst_mo.o model.o raster.o font.o events.o video.o random.o
+	cc68x -g tst_mo.o model.o raster.o font.o events.o video.o random.o -o tst_mo
 
-tst_mo.o: tst_mo.c model.h events.h
+tst_mo.o: tst_mo.c model.h events.h random.h
 	cc68x -g -c tst_mo.c
 
-model.o: model.c model.h
+model.o: model.c model.h 
 	cc68x -g -c model.c
 
-events.o: events.c events.h
+random.o: random.c random.h
+	cc68x -g -c random.c
+
+events.o: events.c events.h random.h
 	cc68x -g -c events.c
 
 splash.o: splash.c splash.h
@@ -51,17 +54,17 @@ tst_snd: tst_snd.o music.o psg.o effects.o
 tst_snd.o: tst_snd.c music.h psg.h effects.h
 	cc68x -g -c tst_snd.c
 
-tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o
-	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o -o tst_ren
+tst_ren: tst_ren.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o random.o
+	cc68x -g tst_ren.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o random.o -o tst_ren
 
-renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h
+renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h random.h
 	cc68x -g -c renderer.c
 
-tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h
+tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h random.h
 	cc68x -g -c tst_ren.c
 
-showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o input.o
-	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o input.o -o showdown
+showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o
+	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o -o showdown
 
-showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h input.h
+showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h input.h random.h
 	cc68x -g -c showdown.c
