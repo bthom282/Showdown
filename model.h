@@ -128,7 +128,7 @@ void decrement_lives (struct Cowboy *cowboy);
 
 void respawn();
 
-void update_model(struct Model *model);
+void process_synchronous(struct Model *model);
 
 struct Model init_Model();
 

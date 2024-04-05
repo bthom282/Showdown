@@ -123,7 +123,6 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 	struct Model model = init_Model();
 	struct Model prev_model = init_Model();
 	UINT32 *current;
-	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	UINT32 time_now, time_then, time_elapsed;
 	char ch = NULL;
@@ -150,10 +149,9 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 			else
 				current = base2;
 		
-			update_model(&model);
+			process_synchronous(&model);
 			update_render((UINT32 *)current, &model);
-			/*model.cowboy.isMoving = FALSE;
-			model.cowboy.isFiring = FALSE;*/
+		
 			set_video_base(current);
 		}
 

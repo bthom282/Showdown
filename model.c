@@ -15,13 +15,13 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 void move_snake(struct Snake *snake, const struct Cowboy *cowboy);
 
 /********************************************************************************************
-Function Name: 	update_model
+Function Name: 	process_synchronous
 
 Details: 	updates the movement of moving objects
 
 *********************************************************************************************/
 
-void update_model(struct Model *model)
+void process_synchronous(struct Model *model)
 {
 			
 	move_cowboy(&model->cowboy);
