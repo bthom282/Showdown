@@ -128,8 +128,6 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 	char ch = NULL;
 	int count = 0;
 	UINT32 seed = 1245;
-	
-	fill_screen((UINT32 *) base, 0);
 
 	render((UINT32 *)base, &model);
 	render((UINT32 *)base2, &model);
