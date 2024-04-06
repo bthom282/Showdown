@@ -129,15 +129,14 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 	struct Model model = init_Model();
 	struct Model prev_model = init_Model();
 	UINT32 *current;
-	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	UINT32 time_now, time_then, time_elapsed;
 	char ch = NULL;
 	int count = 0;
 	UINT32 seed = 1245;
 	mouse_enabled = FALSE;
 
-	render((UINT32 *)base, &model);
-	render((UINT32 *)base2, &model);
+	full_render((UINT32 *)base, &model);
+	full_render((UINT32 *)base2, &model);
 	while(ch != 'q') {
 		time_now = get_time();
 		time_elapsed = time_now - time_then;
@@ -181,7 +180,7 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 				current = base2;
 		
 			process_synchronous(&model);
-			update_render((UINT32 *)current, &model);
+			render((UINT32 *)current, &model);
 		
 			set_video_base(current);
 		}

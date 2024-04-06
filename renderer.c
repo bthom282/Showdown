@@ -8,13 +8,13 @@ Purpose:	Links the model with the low-level graphics library, so that it is
 #include "renderer.h"
 
 /********************************************************************************************
-Function Name: 	render
+Function Name: 	full_render
 
 Details: 	renders a whole frame based on the current state of the model.
 
 *********************************************************************************************/
 
-void render(UINT32 *base, struct Model *model)
+void full_render(UINT32 *base, struct Model *model)
 { 
 	fill_screen((UINT32 *) base, 0);
 	render_side_panel((UINT16 *)base);
@@ -35,9 +35,8 @@ Details: 	updates the render of any moving object
 
 *********************************************************************************************/
 
-void update_render(UINT32 *base, struct Model *model)
+void render(UINT32 *base, struct Model *model)
 {
-	/*if(model->cowboy.scoreboard.isRendered == FALSE)*/
 	clear_rec(base, 256, 0, 384, 12);
 	fill_rec((UINT16 *)base, 80, 300, 64, 4);
 	render_score((UINT8 *) base, &model->cowboy.scoreboard);
