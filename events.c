@@ -43,6 +43,7 @@ Sample Call:	cowboy1.yFireDir = -1;  This will be done with key inputs.
 void shooting(struct Cowboy *cowboy, struct Bullet *active_bullets, int *bullets_fill) {
 	if (cowboy->isFiring && (cowboy->yFireDir != 0 || cowboy->xFireDir != 0)) {
 		int x_shift, y_shift;
+		play_pop();
 		
 		if (cowboy->yFireDir == -1 && cowboy->xFireDir == -1) {
 			x_shift = -2;
