@@ -1,8 +1,8 @@
 	xdef	_vbl_isr
-	xref	_vbl_isr_c
+	xref	_vblisrC
 	
 _vbl_isr:
-			movem.l	d0-d2/a0-a2, -(sp)
-			jsr		_vbl_isr_c
-			movem.l	(sp)+
+			movem.l	d0-d2/a0-a2,-(sp)
+			jsr		_vblisrC
+			movem.l	(sp)+,d0-d2/a0-a2
 			rte

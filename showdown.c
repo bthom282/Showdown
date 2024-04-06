@@ -5,7 +5,8 @@ const UINT8 buffer2[32256];
 const UINT8 buffer[32000];
 
 int quit = FALSE;
-int game_state = 0; /*states are 0 = splash, 1 = main game, 2 = game over*/
+int mouse_enabled = FALSE;
+
 /*const UINT16 *lives_tokens = cowboy_lives;
 const UINT32 avatar[][BITMAP_32_HEIGHT] = (UINT32 *) cowgirl_bitmap;*/
 
@@ -15,7 +16,11 @@ int main() {
 	UINT32 *base = get_video_base();
 	UINT32 *base2 = get_buffer();
 	
+	install_vectors();
+	
 	splash_menu(base, base2);
+	
+	remove_vectors();
 
 	set_video_base(start_base);
 	return 0;
@@ -71,6 +76,7 @@ Details: 	This function takes the user to the splash screen to choose 1 or 2 pla
 void splash_menu(UINT32 *base, UINT32 *base2)
 {
 	int players = 1;
+	mouse_enabled = TRUE;
 	render_splash((UINT32 *) base, splash_bitmap);
 	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", 272, 224);
 
@@ -128,6 +134,7 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 	char ch = NULL;
 	int count = 0;
 	UINT32 seed = 1245;
+	mouse_enabled = FALSE;
 
 	render((UINT32 *)base, &model);
 	render((UINT32 *)base2, &model);
@@ -140,8 +147,34 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 			input_handler(ch, &model, &quit);
 		}
 
-		if (time_elapsed > 0)
+		if(ch!='q')
+			ch = NULL;
+		
+		if(model.cowboy.lives.lives_left == 0)
 		{
+			gameover(base, &ch);
+		}
+
+		if(spawn_snake_request == TRUE && count < WAVE_COUNT) {
+			spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
+			play_spawn();
+			count++;
+			spawn_snake_request = FALSE;
+		}
+			
+		if (count == WAVE_COUNT && model.snakes_fill == 0) {
+			/* wave complete */
+			wave_bonus(&model.cowboy.scoreboard);
+			/*play_chime();
+			play_chime();
+			play_chime();*/
+			/* cowboy special move */
+			count = 0;
+		}
+		
+		if (render_request == TRUE)
+		{
+			render_request = FALSE;
 			if (current == base2)
 				current = base;
 			else
@@ -152,22 +185,35 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 		
 			set_video_base(current);
 		}
-
-		if(ch!='q')
-			ch = NULL;
-
-		if(time_elapsed >= 70 && count < WAVE_COUNT) {
-			spawn_snakes(model.active_snakes, &model.snakes_fill, &seed);
-			count++;
-			time_then = get_time();
-		}
-			
-		if (count == WAVE_COUNT && model.snakes_fill == 0) {
-			/* wave complete */
-			wave_bonus(&model.cowboy.scoreboard);
-			/* cowboy special move */
-			count = 0;
-		}
 	}
+	return;
+}
+
+/*******************************************************************************************
+Function Name: 	gameover
+
+Details: 	This function is triggered when the player has run out of lives. It will 
+			print "game over" many times, then indicate the final score somehow, fill
+			the screen black, then print a message promting the user to either continue
+    		or quit. 	
+
+Sample Call:
+
+*********************************************************************************************/
+
+void gameover(UINT32 *base, char *ch) {
+	int i, j;
+	int count = 0;
+	while(count != 10)
+	{
+		for (i = 0; i < 276; i += 12) {
+				for (j = 0; j < 200; j += 80) {
+					print_message((UINT8 *) base, (UINT8 *)"GAME OVER! ", j, i);
+				}
+			}
+		count++;
+	}
+	
+	ch = 'q';
 	return;
 }

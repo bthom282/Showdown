@@ -87,3 +87,53 @@ void input_handler(char input, struct Model *model, int *quit)
 	model->cowboy.yFireDir = y_dir;
 	model->cowboy.xFireDir = x_dir;
 }
+
+/********************************************************************************************
+Function Name: 	check_input
+
+Details: 	This function check to see if there is keypress input to read.
+
+*********************************************************************************************/
+
+int check_input()
+{
+	int has_input = FALSE;
+	
+	/*if (ikbd_waiting())
+		has_input = TRUE;*/
+	
+	return has_input;
+}
+
+/********************************************************************************************
+Function Name: 	get_input
+
+Details: 	This function retrieves the next input in the buffer.
+
+*********************************************************************************************/
+
+UINT32 get_input()
+{
+	UINT32 input;
+	
+	/*input = read_ikbd_buffer();*/
+	
+	return input;
+}
+
+/********************************************************************************************
+Function Name: 	check_mouse_input
+
+Details: 	This function checks to see if the user has moved the mouse.
+
+*********************************************************************************************/
+
+int check_mouse_input()
+{
+	int has_input = FALSE;
+	
+	/*if (ikbd_mouse_moved())
+		has_input = TRUE;*/
+	
+	return has_input;
+}

@@ -6,7 +6,6 @@ Purpose: Implements functions for manipulating objects according to their specif
 
 *******************************************************************************************/
 #include "model.h"
-
 #include "events.h"
 
 void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int index, int *bullets_fill, 
@@ -79,6 +78,7 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 				snake_death(active_snakes, j, snakes_fill);
 				delete_bullet (active_bullets, bullets_fill, index);
 				increase_score(&(cowboy->scoreboard),100);
+				play_chime();
 			}
 	}	
 }
@@ -212,6 +212,9 @@ Sample Call:	wave_bonus(cowboy1.scoreboard);
 
 void wave_bonus(struct Scoreboard *scoreboard) {
 	increase_score(scoreboard, 1000);
+	play_chime();
+	play_chime();
+	play_chime();
 	scoreboard->isRendered = FALSE;
 }
 

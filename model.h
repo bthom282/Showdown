@@ -2,6 +2,9 @@
 #define MODEL_H
 
 #include "TYPES.H"
+#include "effects.h"
+#include "psg.h" 
+#include "music.h"
 
 /******CONSTANTS******/
 

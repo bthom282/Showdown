@@ -6,6 +6,9 @@
 #include "renderer.h"
 #include "raster.h"
 #include "bitmaps.h"
+#include "psg.h" 
+#include "music.h" 
+#include "effects.h"
 
 /* printf's are key!! */
 /*

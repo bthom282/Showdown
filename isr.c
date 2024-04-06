@@ -1,11 +1,13 @@
 #include "isr.h"
 
-int music_timer = 0;
-int game_timer = 0;
+int music_timer;
+int game_timer;
 
-int renderRequest = TRUE;
-int renderMouseRequest = FALSE;
+int render_request = TRUE;
+int render_mouse_request = FALSE;
+int spawn_snake_request = FALSE;
 
+int game_state = 0; /*states are 0 = splash, 1 = main game, 2 = game over*/
 
 Vector vbl_vector;
 Vector ikbd_vector;
@@ -35,39 +37,44 @@ int prev_mouse_X = 0;
 int prev_mouse_Y = 0;
 
 
-void vbl_isr_c()
+void vblisrC()
 {
-  music_timer++;
-  game_timer++;
-
-  render_request = TRUE;
-  render_mouse_request = TRUE;
+	music_timer++;
+	game_timer++;
+	  
+	render_request = TRUE;
+	render_mouse_request = TRUE;
+	
+	if ((game_timer%70) == 0)
+	{
+		spawn_snake_request = TRUE;
+	}
 }
 
-void ikbd_isr_c() 
+/*void ikbd_isr_c() 
 {
   UINT8 scancode;
 
   *IKBD_Control = ENABLE;
 
-  if (*IKBD_Status & 0x1) /* Check if data was received. */
-  {
+  if (*IKBD_Status & 0x1)*/ /* Check if data was received. */
+  /*{
     scancode = *IKBD_RDR;
     if (mouse_state == MOUSE_STATE_FIRST_PACKET) 
 	{      
-      if (scancode >= MOUSE_MOVE_CODE) /* Check if scancode is mouse event. */
-	  {
+      if (scancode >= MOUSE_MOVE_CODE) *//* Check if scancode is mouse event. */
+	  /*{
         mouse_button = scancode;
         mouse_state = MOUSE_STATE_DELTA_X;
         mouse_moved = scancode == MOUSE_MOVE_CODE;
       } 
-	  else if ((scancode & 0x80) == 0x00) /* Check if it is a make code. */
-	  { 
+	  else if ((scancode & 0x80) == 0x00)*/ /* Check if it is a make code. */
+	  /*{ 
         write_ikbd_buffer(scancode);
         key_repeat = TRUE;
       } 
-	  else if ((scancode & 0x80) == 0x80) /* Check if it is a break code. */
-	  { 
+	  else if ((scancode & 0x80) == 0x80)*/ /* Check if it is a break code. */
+	  /*{ 
         key_repeat = FALSE;
       }
     } 
@@ -82,22 +89,22 @@ void ikbd_isr_c()
       mouse_delta_Y = scancode;
     }
 
-    *ISRB_MFP_Register &= MFB_BIT_6_MASK_OFF; /* Clears the 6th bit. */
-  }
+    *ISRB_MFP_Register &= MFB_BIT_6_MASK_OFF;*/ /* Clears the 6th bit. */
+  /*}
 
   *IKBD_Control = DISABLE;
-}
+}*/
 
 void install_vectors() 
 {
-  vbl_vector = install_vector(VBL_VEC, vblIsr);
-  ikbd_vector = install_vector(IKBD_VEC, ikbd_Isr);
+  vbl_vector = install_vector(VBL_VEC, vbl_isr);
+  /*ikbd_vector = install_vector(IKBD_VEC, ikbd_isr);*/
 }
 
 void remove_vectors() 
 {
   install_vector(VBL_VEC, vbl_vector);
-  install_vector(IKBD_VEC, ikbd_vector);
+  /*install_vector(IKBD_VEC, ikbd_vector);*/
 }
 
 Vector install_vector(int num, Vector vector) 
@@ -131,7 +138,7 @@ void write_ikbd_buffer(UINT8 scancode)
     buffer_tail = 0;
   }
 
-  IKBD_buffer[bufferTail] = scancode;
+  IKBD_buffer[buffer_tail] = scancode;
   buffer_tail++;
 }
 
@@ -149,7 +156,7 @@ UINT32 read_ikbd_buffer()
 
   ch = IKBD_buffer[buffer_head];
   ch = ch << 16;
-  ch = ch + *(ASCIITable + IKBDBuffer[bufferHead++]);
+  ch = ch + *(ASCIITable + IKBD_buffer[buffer_head++]);
 
   *ISRB_MFP_Register |= MFB_BIT_6_MASK_ON; /* Turns the 6th but back on. */
 

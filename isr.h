@@ -37,13 +37,14 @@ extern int music_timer;
 extern int game_timer;
 
 /* Flags that will allow rendering when they are set to true. */
-extern bool render_request;
-extern bool render_mouse_request;
+extern int render_request;
+extern int render_mouse_request;
+extern int spawn_snake_request;
 
 extern int mouse_X;
 extern int mouse_Y;
 
-extern bool mouse_left_click;
+extern int mouse_left_click;
 
 extern UINT8 mouse_button;
 extern UINT8 mouse_delta_X;
@@ -61,6 +62,8 @@ extern UINT8 repeated_key;
 extern Vector vbl_vector;
 extern Vector ikbd_vector;
 
+extern int game_state;
+
 
 /**
  * Updates timer on VBL IRQ
@@ -69,7 +72,7 @@ extern Vector ikbd_vector;
  *    • Time the playing of music.
  *    • Time any other synchronous events needed by the game.
  */
-void vbl_isr_c();
+void vblisrC();
 
 /**
  * Processes keyboard and mouse input on IKBD IRQ.
