@@ -186,6 +186,33 @@ void cowboy_death (struct Cowboy *cowboy) {
 }
 
 /*******************************************************************************************
+Function Name: 	wave_bonus
+
+Details: 	This function is called every time a wave is successfully completed to give
+		the player's score a bonus.
+
+Sample Call:	wave_bonus(cowboy1.scoreboard);
+
+*********************************************************************************************/
+
+void wave_bonus(UINT8 *base, int *game_timer, struct Scoreboard *scoreboard) {
+	
+	int count = 6;	
+	increase_score(scoreboard, 1000);
+	while(count != 0)
+		{
+			if(*game_timer%35 == 0)
+			{
+				print_message((UINT8 *) base, (UINT8 *)"WAVE BONUS! ", 104, 280);
+				/*Cowperson special here*/
+				play_chime();
+				count--;
+			}
+		}
+	scoreboard->isRendered = FALSE;
+}
+
+/*******************************************************************************************
 Function Name: 	game_over
 
 Details: 	This function is triggered when the player has run out of lives. It will 

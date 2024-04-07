@@ -1,6 +1,5 @@
 #include <osbind.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "renderer.h"
 #include "events.h"
 
@@ -139,7 +138,7 @@ int main()
 	Cnecin(); 
 	
 	cowboy1.lives.lives_left = 1;
-	wave_bonus(&cowboy1.scoreboard);
+	/*wave_bonus((UINT8 *)base, game_timer, &cowboy1.scoreboard);*/
 	fill_screen((UINT32 *) base, 0);
 	
 	render_side_panel((UINT16 *)base);
@@ -207,7 +206,7 @@ int main()
 	cowboy1.position.x = 350; 
 	cowboy1.position.y = 100;
 	cowboy1.state = 3;
-	wave_bonus(&cowboy1.scoreboard);
+	/*wave_bonus((UINT8 *)base, game_timer, &cowboy1.scoreboard);*/
 	
 	render_side_panel((UINT16 *)base);
 	render_side_text((UINT8 *) base, players);

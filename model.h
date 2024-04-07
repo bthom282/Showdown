@@ -46,6 +46,66 @@
 #define BULLET_HEIGHT 4
 #define WAVE_COUNT 30
 
+/******SPLASH CONSTANTS*****/
+
+#define LETTER_HEIGHT 8
+#define LETTER_WIDTH 8
+#define ONE_PLAYER_GAME 1
+#define TWO_PLAYER_GAME 2
+#define EXIT 3
+#define WAIT '0'
+#define MENU_CLEAR_1 4
+#define MENU_CLEAR_2 5
+#define MENU_CLEAR_X 272
+#define MENU_CLEAR_Y 200
+#define MENU_CLEAR_HEIGHT 56
+#define ANYKEY_X 272
+#define ANYKEY_Y 224
+#define ONE_X 288
+#define ONE_Y 200
+#define TWO_X 288
+#define TWO_Y 216
+#define SOON_X 272
+#define SOON_Y 224
+#define QUIT_X 308
+#define QUIT_Y 240
+#define CHOOSE_X 232
+#define CHOOSE_Y 224
+#define CURSOR_HEIGHT 64
+#define CONFIRM_X 240
+#define CONFIRM_Y 240
+#define COWBOY_CURSOR_X 338
+#define COWBOY_CURSOR_Y 285
+#define COWGIRL_CURSOR_X 241
+#define COWGIRL_CURSOR_Y 282
+
+#define COWBOY_WRITING_X 408
+#define COWBOY_WRITING_Y 308
+#define COWGIRL_WRITING_X 176
+#define COWGIRL_WRITING_Y 308
+
+#define ARROW_ONE_X 280
+#define ARROW_ONE_Y 200
+#define ARROW_TWO_X 280
+#define ARROW_TWO_Y 216
+#define ARROW_QUIT_X 292
+#define ARROW_QUIT_Y 240
+
+/*EXTRA INFO FOR MOUSE CLICK COORDINATES*/
+#define COWBOY_SPLASH_X 341
+#define COWBOY_SPLASH_Y 284
+#define COWBOY_SPLASH_HEIGHT 64
+#define COWBOY_SPLASH_WIDTH 64
+#define COWGIRL_SPLASH_X 244
+#define COWGIRL_SPLASH_Y 284
+#define COWGIRL_SPLASH_HEIGHT 64
+#define COWGIRL_SPLASH_WIDTH 64
+#define ANYKEY_LENGTH 104
+#define ONE_LENGTH 64
+#define TWO_LENGTH 64
+#define QUIT_LENGTH 40
+#define CONFIRM_LENGTH 274
+
 struct Position
 {
 int x;
@@ -94,7 +154,8 @@ int xFireDir;	/*fire_x = 0 & fire_y = 1 = firing down, fire_x = -1 & fire_y = 1 
 int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
 							    3 - moving right, 4 - moving left, 5 moving up} */
 struct Scoreboard scoreboard;		  
-struct Lives lives;		   
+struct Lives lives;	
+int avatar; /*0 = cowboy, 1 = cowgirl*/	   
 };
 
 struct Snake           /* type definition for snake object */
@@ -124,8 +185,6 @@ void move_snakes(struct Snake active_snakes[], int snakes_fill, const struct Cow
 void move_cowboy(struct Cowboy *cowboy);
 
 void increase_score(struct Scoreboard *scoreboard,int value);
-
-void wave_bonus(struct Scoreboard *scoreboard);
 
 void decrement_lives (struct Cowboy *cowboy);
 

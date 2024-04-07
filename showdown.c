@@ -22,6 +22,7 @@ int main() {
 	
 	remove_vectors();
 
+	stop_sound();
 	set_video_base(start_base);
 	return 0;
 }
@@ -75,42 +76,65 @@ Details: 	This function takes the user to the splash screen to choose 1 or 2 pla
 
 void splash_menu(UINT32 *base, UINT32 *base2)
 {
+	char input = WAIT;
+	int hasInput = FALSE;
+	/*initial screen*/
 	int players = 1;
 	mouse_enabled = TRUE;
 	render_splash((UINT32 *) base, splash_bitmap);
-	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", 272, 224);
+	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", ANYKEY_X, ANYKEY_Y);
+
+	start_music();
+	Cnecin(); 
+	
+	clear_rec((UINT32 *)base, ANYKEY_X, ANYKEY_Y, LETTER_HEIGHT, MENU_CLEAR_1);
+	
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", ONE_X, ONE_Y);
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", TWO_X, TWO_Y);
+	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", SOON_X, SOON_Y);
+	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_X, QUIT_Y);
+	
+	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	Cnecin();
+	clear_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	clear_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	
+	plot_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	plot_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	Cnecin();
+	clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	
+	plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	Cnecin();
+	clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
 
 	Cnecin(); 
 	
-	clear_rec((UINT32 *)base, 272, 224, 8, 4);
+	clear_rec((UINT32 *)base, MENU_CLEAR_X, MENU_CLEAR_Y, MENU_CLEAR_HEIGHT, MENU_CLEAR_2);
 	
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", 288, 200);
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", 288, 216);
-	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", 272, 224);
-	print_message((UINT8 *)base, (UINT8 *)"QUIT", 308, 240);
-
-	Cnecin(); 
+	print_message((UINT8 *)base, (UINT8 *)"CHOOSE A CHARACTER (<- ->)", CHOOSE_X, CHOOSE_Y);
+	print_message((UINT8 *)base, (UINT8 *)"PRESS SPACE TO CONFIRM", CONFIRM_X, CONFIRM_Y);
 	
-	clear_rec((UINT32 *)base, 272, 200, 56, 5);
-	
-	print_message((UINT8 *)base, (UINT8 *)"CHOOSE A CHARACTER (<- ->)", 232, 224);
-	print_message((UINT8 *)base, (UINT8 *)"PRESS SPACE TO CONFIRM", 240, 240);
-	
-	plot_bitmap_64((UINT32 *)base, 338, 285, cursor, CURSOR_HEIGHT);
-	plot_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
+	plot_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
+	plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
 	
 	Cnecin(); 
-	clear_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
+	clear_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
 	
-	print_message((UINT8 *)base, (UINT8 *)"COWBOY", 408, 308);
+	print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
 	
 	Cnecin(); 
 	
-	print_message((UINT8 *)base, (UINT8 *)"COWBOY", 408, 308);
-	clear_bitmap_64((UINT32 *)base, 338, 285, cursor, CURSOR_HEIGHT);
-	plot_bitmap_64((UINT32 *)base, 241, 282, cursor, CURSOR_HEIGHT);
-	print_message((UINT8 *)base, (UINT8 *)"COWGIRL", 160, 308);
-	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", 136, 316);
+	print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
+	clear_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
+	plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
+	print_message((UINT8 *)base, (UINT8 *)"COWGIRL", COWGIRL_WRITING_X, COWGIRL_WRITING_Y);
 	
 	Cnecin(); 
 	main_game(base, base2, players);
@@ -129,14 +153,20 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 	struct Model model = init_Model();
 	struct Model prev_model = init_Model();
 	UINT32 *current;
+	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	UINT32 time_now, time_then, time_elapsed;
 	char ch = NULL;
 	int count = 0;
 	UINT32 seed = 1245;
+	UINT32 music_timer;
+	UINT32 last_note_change = 0;
+	int last_note = 0;
+	int current_note;
+
 	mouse_enabled = FALSE;
 
-	full_render((UINT32 *)base, &model);
-	full_render((UINT32 *)base2, &model);
+	render((UINT32 *)base, &model);
+	render((UINT32 *)base2, &model);
 	while(ch != 'q') {
 		time_now = get_time();
 		time_elapsed = time_now - time_then;
@@ -163,16 +193,14 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 			
 		if (count == WAVE_COUNT && model.snakes_fill == 0) {
 			/* wave complete */
-			wave_bonus(&model.cowboy.scoreboard);
-			/*play_chime();
-			play_chime();
-			play_chime();*/
+			wave_bonus((UINT8 *)base, &game_timer, &model.cowboy.scoreboard);
+			
 			/* cowboy special move */
 			count = 0;
 		}
 		
 		if (render_request == TRUE)
-		{
+		{	
 			render_request = FALSE;
 			if (current == base2)
 				current = base;
@@ -180,9 +208,18 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 				current = base2;
 		
 			process_synchronous(&model);
-			render((UINT32 *)current, &model);
+			update_render((UINT32 *)current, &model);
 		
 			set_video_base(current);
+			
+		}
+		music_timer = game_timer - last_note_change;
+		current_note = update_music(music_timer, last_note, main_song_bass, main_song_treble, MAIN_SONG_LENGTH);
+
+		if (current_note != last_note)
+		{
+			last_note_change = game_timer;
+			last_note = current_note;
 		}
 	}
 	return;

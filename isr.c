@@ -23,7 +23,7 @@ unsigned int buffer_head = 0;
 unsigned int buffer_tail = 0;
 UINT8 repeated_key = 0;
 
-int mouseState = 0;
+int mouse_state = 0;
 UINT8 mouse_button;
 UINT8 mouse_delta_X;
 UINT8 mouse_delta_Y;
@@ -39,11 +39,15 @@ int prev_mouse_Y = 0;
 
 void vblisrC()
 {
-	music_timer++;
 	game_timer++;
 	  
 	render_request = TRUE;
 	render_mouse_request = TRUE;
+	
+	if ((game_timer%35) == 0)
+	{
+		music_timer++;
+	}
 	
 	if ((game_timer%70) == 0)
 	{
@@ -51,49 +55,50 @@ void vblisrC()
 	}
 }
 
-/*void ikbd_isr_c() 
+void ikbd_isr_c() 
 {
-  UINT8 scancode;
+	SCANCODE scancode;
 
-  *IKBD_Control = ENABLE;
+	*IKBD_Control = ENABLE;
 
-  if (*IKBD_Status & 0x1)*/ /* Check if data was received. */
-  /*{
-    scancode = *IKBD_RDR;
-    if (mouse_state == MOUSE_STATE_FIRST_PACKET) 
-	{      
-      if (scancode >= MOUSE_MOVE_CODE) *//* Check if scancode is mouse event. */
-	  /*{
-        mouse_button = scancode;
-        mouse_state = MOUSE_STATE_DELTA_X;
-        mouse_moved = scancode == MOUSE_MOVE_CODE;
-      } 
-	  else if ((scancode & 0x80) == 0x00)*/ /* Check if it is a make code. */
-	  /*{ 
-        write_ikbd_buffer(scancode);
-        key_repeat = TRUE;
-      } 
-	  else if ((scancode & 0x80) == 0x80)*/ /* Check if it is a break code. */
-	  /*{ 
-        key_repeat = FALSE;
-      }
-    } 
-	else if (mouseState == MOUSE_STATE_DELTA_X) 
-	{ 
-      mouse_state = MOUSE_STATE_DELTA_Y;
-      mouse_delta_X = scancode;
-    } 
-	else if (mouseState == MOUSE_STATE_DELTA_Y) 
-	{ 
-      mouse_state = MOUSE_STATE_FIRST_PACKET;
-      mouse_delta_Y = scancode;
-    }
+	if (*IKBD_Status & 0x1) /* Check if data was received. */
+	{
+		scancode = *IKBD_RDR;
+		if (mouse_state == MOUSE_STATE_FIRST_PACKET) 
+		{      
+			if (scancode >= MOUSE_MOVE_CODE) /* Check if scancode is mouse event. */
+			{
+				mouse_button = scancode;
+				mouse_state = MOUSE_STATE_DELTA_X;
+				mouse_moved = scancode == MOUSE_MOVE_CODE;
+			} 
+			else if ((scancode & 0x80) == 0x00) /* Check if it is a make code. */
+			{ 
+				write_ikbd_buffer(scancode);
+				key_repeat = TRUE;
+			} 
+			else if ((scancode & 0x80) == 0x80) /* Check if it is a break code. */
+			{ 
+				write_ikbd_buffer(scancode);
+				key_repeat = FALSE;
+			}
+		} 
+		else if (mouse_state == MOUSE_STATE_DELTA_X) 
+		{ 
+		  mouse_state = MOUSE_STATE_DELTA_Y;
+		  mouse_delta_X = scancode;
+		} 
+		else if (mouse_state == MOUSE_STATE_DELTA_Y) 
+		{ 
+		  mouse_state = MOUSE_STATE_FIRST_PACKET;
+		  mouse_delta_Y = scancode;
+		}
 
-    *ISRB_MFP_Register &= MFB_BIT_6_MASK_OFF;*/ /* Clears the 6th bit. */
-  /*}
+		*ISRB_MFP_Register &= MFB_BIT_6_MASK_OFF; /* Clears the 6th bit. */
+	}
 
-  *IKBD_Control = DISABLE;
-}*/
+	*IKBD_Control = DISABLE;
+}
 
 void install_vectors() 
 {

@@ -36,8 +36,8 @@ void process_synchronous(struct Model *model)
 Function Name: 	move_bullets
 
 Details: 	This function is called every cycle to move any active bullets int the active_
-		bullets array at their constant speed in the direction they were fired. After 
-  		the new position is calculated, it checks to see if the bullet is out of bounds. 
+			bullets array at their constant speed in the direction they were fired. After 
+			the new position is calculated, it checks to see if the bullet is out of bounds. 
     		If out of bounds, bullet is deleted from the array by calling the delete_bullet
       		function.
 
@@ -71,15 +71,15 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 
 	/* check for collisions */
 	for (j = 0; j < *snakes_fill ; j++) {
-			if (checkCollision(bullet->position.x, bullet->position.y, 
-				BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
-				active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
-			{
-				snake_death(active_snakes, j, snakes_fill);
-				delete_bullet (active_bullets, bullets_fill, index);
-				increase_score(&(cowboy->scoreboard),100);
-				play_chime();
-			}
+		if (checkCollision(bullet->position.x, bullet->position.y, 
+			BULLET_WIDTH, BULLET_HEIGHT, active_snakes[j].position.x, 
+			active_snakes[j].position.y, SNAKE_WIDTH, SNAKE_HEIGHT))
+		{
+			snake_death(active_snakes, j, snakes_fill);
+			delete_bullet (active_bullets, bullets_fill, index);
+			increase_score(&(cowboy->scoreboard),100);
+			play_chime();
+		}
 	}	
 }
 
@@ -87,8 +87,8 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 Function Name: 	move_snakes
 
 Details: 	This function is called every cycle to move any active snakes in the active_
-		snakes array. If a particular snake is still in the spawning area, it will first
-  		move them into the play area.
+			snakes array. If a particular snake is still in the spawning area, it will first
+			move them into the play area.
 
 Sample Call:	move_snakes(&active_snakes[0], snakes_fill, cowboy1);
 
@@ -115,7 +115,7 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 		{ snake->position.y+=2; }
 	else if(snake->position.y > Y_MAX)
 		{ snake->position.y-=2; }
-	/*conditions for snake movement once in play*/
+	/*conditions for snake movement once in play, state changeds = 0 = down, 1 = left, 2 = right, 3 = up*/
 	else {
 		if (snake->position.x < cowboy->position.x)
 			{ 
@@ -140,7 +140,7 @@ void move_snake(struct Snake *snake, const struct Cowboy *cowboy)
 			}
 	}
 	
-	/*change state for bitmap render (0 = down, 1 = left, 2 = right, 3 = up)*/
+	/*chases cowboy*/
 	x_distance = snake->position.x - cowboy->position.x;
 	y_distance = snake->position.y - cowboy->position.y;
 	
@@ -197,24 +197,6 @@ void increase_score(struct Scoreboard *scoreboard,int value) {
 	scoreboard->digit[2] = (scoreboard->score%1000)/100;
 	scoreboard->digit[3] = (scoreboard->score%10000)/1000;
 	scoreboard->digit[4] = (scoreboard->score/10000);
-	scoreboard->isRendered = FALSE;
-}
-
-/*******************************************************************************************
-Function Name: 	wave_bonus
-
-Details: 	This function is called every time a wave is successfully completed to give
-		the player's score a bonus.
-
-Sample Call:	wave_bonus(cowboy1.scoreboard);
-
-*********************************************************************************************/
-
-void wave_bonus(struct Scoreboard *scoreboard) {
-	increase_score(scoreboard, 1000);
-	play_chime();
-	play_chime();
-	play_chime();
 	scoreboard->isRendered = FALSE;
 }
 
