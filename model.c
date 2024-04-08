@@ -63,8 +63,8 @@ void move_bullet(struct Bullet *bullet, struct Bullet active_bullets[], int inde
 	bullet->position.x += bullet->x_dir*BULLET_SPEED;
 	bullet->position.y += bullet->y_dir*BULLET_SPEED;
 	
-	if (bullet->position.x <= 256 || bullet->position.x >= 632 ||
-		bullet->position.y <= 0 || bullet->position.y >= 380)
+	if (bullet->position.x <= BULLET_X_MIN || bullet->position.x >= BULLET_X_MAX ||
+		bullet->position.y <= BULLET_Y_MIN || bullet->position.y >= BULLET_Y_MAX)
 		{
 			delete_bullet (active_bullets, bullets_fill, index);
 		}
@@ -204,7 +204,7 @@ void increase_score(struct Scoreboard *scoreboard,int value) {
 Function Name: 	decrement_lives
 
 Details: 	This function is called when the player dies to update the lives shown on the 
-		side panel display.
+			side panel display.
 
 Sample Call:	decrement_lives (cowboy1);
 
@@ -218,16 +218,16 @@ void decrement_lives (struct Cowboy *cowboy) {
 Function Name: 	respawn
 
 Details: 	This function is passes in the player instance so it can resets the cowboy's 
-		position to the game start location (x = 424, y = 184), then reprints the 
-  		cowboy bitmap.
+			position to the game start location (x = 424, y = 184), then reprints the 
+			cowboy bitmap.
 
 Sample Call:	respawn(player1);
 
 *********************************************************************************************/
 
 void respawn(struct Cowboy *cowboy) {
-	cowboy->position.x = 424;
-	cowboy->position.y = 184;
+	cowboy->position.x = PLAYER_1_START_X;
+	cowboy->position.y = PLAYER_1_START_Y;
 }	
 
 /*******************************************************************************************
@@ -265,8 +265,8 @@ Sample Call:	cowboy1 = init_Cowboy();
 struct Cowboy init_Cowboy() {
     	struct Cowboy cowboy; 
 
-    	cowboy.position.x = 424;
-    	cowboy.position.y = 184;
+    	cowboy.position.x = PLAYER_1_START_X;
+    	cowboy.position.y = PLAYER_1_START_Y;
     	cowboy.y_dir = 0;
     	cowboy.x_dir = 0;
     	cowboy.speed = COWBOY_SPEED;
@@ -276,11 +276,11 @@ struct Cowboy init_Cowboy() {
     	cowboy.xFireDir = 0;
     	cowboy.state = 0;
 		cowboy.scoreboard.score = 0;
-    	cowboy.scoreboard.position.x = 80;
-    	cowboy.scoreboard.position.y = 300;
-		cowboy.lives.lives_left = 3;
-    	cowboy.lives.position.x = 80;
-    	cowboy.lives.position.y = 320;
+    	cowboy.scoreboard.position.x = PLAYER_1_SCORE_X;
+    	cowboy.scoreboard.position.y = PLAYER_1_SCORE_Y;
+		cowboy.lives.lives_left = START_LIVES;
+    	cowboy.lives.position.x = PLAYER_1_LIVES_X;
+    	cowboy.lives.position.y = PLAYER_1_LIVES_Y;
 
 	return cowboy;
 }

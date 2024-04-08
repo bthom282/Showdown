@@ -2,7 +2,6 @@
 
 const UINT32 * const timer = (UINT32 *)0x462;
 const UINT8 buffer2[32256]; 
-const UINT8 buffer[32000];
 
 int quit = FALSE;
 int mouse_enabled = FALSE;
@@ -20,6 +19,7 @@ int main() {
 	
 	splash_menu(base, base2);
 	
+	clear_ikbd_buffer();
 	remove_vectors();
 
 	stop_sound();
@@ -271,7 +271,7 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 			
 		}
 		music_timer = game_timer - last_note_change;
-		current_note = update_music(music_timer, last_note, main_song_bass, main_song_treble, MAIN_SONG_LENGTH);
+		current_note = update_music(&music_timer, last_note, main_song_bass, main_song_treble, MAIN_SONG_LENGTH);
 
 		if (current_note != last_note)
 		{
@@ -279,34 +279,5 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 			last_note = current_note;
 		}
 	}
-	return;
-}
-
-/*******************************************************************************************
-Function Name: 	gameover
-
-Details: 	This function is triggered when the player has run out of lives. It will 
-			print "game over" many times, then indicate the final score somehow, fill
-			the screen black, then print a message promting the user to either continue
-    		or quit. 	
-
-Sample Call:
-
-*********************************************************************************************/
-
-void gameover(UINT32 *base, char *ch) {
-	int i, j;
-	int count = 0;
-	while(count != 10)
-	{
-		for (i = 0; i < 276; i += 12) {
-				for (j = 0; j < 200; j += 80) {
-					print_message((UINT8 *) base, (UINT8 *)"GAME OVER! ", j, i);
-				}
-			}
-		count++;
-	}
-	
-	ch = 'q';
 	return;
 }

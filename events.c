@@ -213,7 +213,7 @@ void wave_bonus(UINT8 *base, int *game_timer, struct Scoreboard *scoreboard) {
 }
 
 /*******************************************************************************************
-Function Name: 	game_over
+Function Name: 	gameover
 
 Details: 	This function is triggered when the player has run out of lives. It will 
 			print "game over" many times, then indicate the final score somehow, fill
@@ -223,34 +223,23 @@ Details: 	This function is triggered when the player has run out of lives. It wi
 Sample Call:
 
 *********************************************************************************************/
-/*
-void game_over((UINT8 *)base, int *isPlaying) {
-	int i,j;
-	for (i = 0; i < 284; i += 12) {
-		for (j = 0; j < 200; j += 80) {
-			print_message((UINT8 *) base, gameover, j, i);
-		}
-	}*/
-	
-	/* flash score a few times (clear, print, 5-times)*/
-	
-	/* clear screen */
-	
-	/* wait a few seconds */
-	
-	/* print message based on score */
-	
-	/* Ask player if they want to continue */
-	
-/*	print_message((UINT8 *) base, continue, [x], [y]);
-	if (y pressed) {
-		game_start();
+
+void gameover(UINT32 *base, char *ch) {
+	int i, j;
+	int count = 0;
+	while(count != 10)
+	{
+		for (i = 0; i < 276; i += 12) {
+				for (j = 0; j < 200; j += 80) {
+					print_message((UINT8 *) base, (UINT8 *)"GAME OVER! ", j, i);
+				}
+			}
+		count++;
 	}
-	if (n pressed) {
-		game_quit(isPlaying)
-	}
+	
+	ch = 'q';
+	return;
 }
-*/
 /*******************************************************************************************
 Function Name: 	game_quit
 

@@ -14,6 +14,10 @@
 #define X_MAX 575
 #define Y_MIN 32
 #define Y_MAX 320
+#define BULLET_X_MIN 256
+#define BULLET_X_MAX 632
+#define BULLET_Y_MIN 0
+#define BULLET_Y_MAX 380
 #define NULL 0
 #define TRUE 1
 #define FALSE 0
@@ -45,6 +49,20 @@
 #define BULLET_WIDTH 4
 #define BULLET_HEIGHT 4
 #define WAVE_COUNT 30
+#define PLAYER_1_START_X 424
+#define PLAYER_1_START_Y 184
+#define PLAYER_1_SCORE_X 80
+#define PLAYER_1_SCORE_Y 300
+#define PLAYER_1_LIVES_X 80
+#define PLAYER_1_LIVES_Y 320
+#define START_LIVES 3
+#define TEXT_ALIGN 32
+#define PLAYER_1_TEXT 280
+#define PLAYER_1_SCORE_TEXT 300
+#define PLAYER_1_LIVES_TEXT 320
+#define PLAYER_2_TEXT 212
+#define PLAYER_2_SCORE_TEXT 232
+#define PLAYER_2_LIVES_TEXT 252
 
 /******SPLASH CONSTANTS*****/
 

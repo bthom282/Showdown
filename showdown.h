@@ -14,6 +14,7 @@
 #include "input.h"
 #include "video.h"
 #include "isr.h"
+#include "ikbd.h"
 #include "effects.h"
 #include "psg.h" 
 #include "music.h"
@@ -29,7 +30,5 @@ void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr);
 void splash_menu(UINT32 *base, UINT32 *base2);
 
 void main_game(UINT32 *base, UINT32 *base2, int players);
-
-void gameover(UINT32 *base, char *ch);
 
 #endif

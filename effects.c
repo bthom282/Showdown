@@ -39,7 +39,7 @@ void play_pop()
 /********************************************************************************************
 Function Name: 	play_spawn
 
-Details: 	plays white noise sound whenever a snake spawns.
+Details: 	plays rattle sound whenever a snake spawns.
 
 *********************************************************************************************/
 
@@ -49,7 +49,7 @@ void play_spawn()
 	enable_channel(CH_C,1,0);
 	set_tone(CH_C, 0x327);
 	set_volume(CH_C,16);
-	set_envelope(4,1);
+	set_envelope(10,1);
 
 	return;
 }

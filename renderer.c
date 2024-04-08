@@ -149,14 +149,14 @@ Details: 	prints the initial text based on number of players.
 *********************************************************************************************/
 void render_side_text(UINT8 *base, int players) 
 {
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", 32, 280);
-	print_message((UINT8 *)base, (UINT8 *)"SCORE", 32, 300);
-	print_message((UINT8 *)base, (UINT8 *)"LIVES", 32, 320);
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", TEXT_ALIGN, PLAYER_1_TEXT);
+	print_message((UINT8 *)base, (UINT8 *)"SCORE", TEXT_ALIGN, PLAYER_1_SCORE_TEXT);
+	print_message((UINT8 *)base, (UINT8 *)"LIVES", TEXT_ALIGN, PLAYER_1_LIVES_TEXT);
 	
 	if (players == 2) {
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", 32, 212);
-	print_message((UINT8 *)base, (UINT8 *)"SCORE", 32, 232);
-	print_message((UINT8 *)base, (UINT8 *)"LIVES", 32, 252);
+	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", TEXT_ALIGN, PLAYER_2_TEXT);
+	print_message((UINT8 *)base, (UINT8 *)"SCORE", TEXT_ALIGN, PLAYER_2_SCORE_TEXT);
+	print_message((UINT8 *)base, (UINT8 *)"LIVES", TEXT_ALIGN, PLAYER_2_LIVES_TEXT);
 	}
 }
 

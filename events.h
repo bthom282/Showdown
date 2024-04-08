@@ -20,7 +20,7 @@ void cowboy_death (struct Cowboy *cowboy);
 
 void wave_bonus(UINT8 *base, int *game_timer, struct Scoreboard *scoreboard);
 
-/*void game_over((UINT8 *)base, int *isPlaying);*/
+void gameover(UINT32 *base, char *ch);
 
 /*void game_quit(int *isPlaying);*/
 
