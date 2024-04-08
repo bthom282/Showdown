@@ -87,7 +87,7 @@
 #define SOON_Y 224
 #define QUIT_X 308
 #define QUIT_Y 240
-#define CHOOSE_X 232
+#define CHOOSE_X 208
 #define CHOOSE_Y 224
 #define CURSOR_HEIGHT 64
 #define CONFIRM_X 240
@@ -161,14 +161,14 @@ struct Cowboy         /* type definition for cowboy object */
 struct Position position;	/* position coordinates, 1 player cowboy's initial position is (424, 184) */
 int y_dir; 	   		/* direction the cowboy is facing for displacement */
 int x_dir;			/* x = -1 (traveling left), x = 1 (traveling right),
-				y = -1 (traveling up), y = 1 (traveling down) */
+					y = -1 (traveling up), y = 1 (traveling down) */
 int speed;		   /* displacement per clock tick for x and y displacement*/
 int isMoving;
 int isFiring;
-int yFireDir;	/*fire_x = 1 & fire_y = 0 = firing right, fire_x = 1 & fire_y = 1 = firing 45 degree angle towards bottom right */
-int xFireDir;	/*fire_x = 0 & fire_y = 1 = firing down, fire_x = -1 & fire_y = 1 = firing 45 degree angle towards bottom left */
-		/*fire_x = -1 & fire_y = 0 = firing left, fire_x = -1 & fire_y = -1 = firing 45 degree angle towards top left*/
-    		/*fire_x = 0 & fire_y = -1 = firing up, fire_x = 1 & fire_y = -1 = firing 45 degree angle towards top right */
+int yFireDir;	/*fire_x = 1 & fire_y = 0 = firing right*/
+int xFireDir;	/*fire_x = 0 & fire_y = 1 = firing down*/
+				/*fire_x = -1 & fire_y = 0 = firing left*/
+				/*fire_x = 0 & fire_y = -1 = firing up*/
 int state; 		 /* state used for bitmap printing {0 - not moving, 1 & 2 (alternating) - moving down
 							    3 - moving right, 4 - moving left, 5 moving up} */
 struct Scoreboard scoreboard;		  

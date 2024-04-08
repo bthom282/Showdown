@@ -221,7 +221,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 {
 	int menu_select = 1;
 	char input = WAIT;
-	while(input != 'e') {
+	while(input != ' ') {
 	
 	if (Cconis()){
 		input = (char)Cnecin();
@@ -271,7 +271,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 			}	
 			break;
 		}
-		if(input!='e')
+		if(input!=' ')
 			input = WAIT;
 	}
 }
@@ -280,15 +280,18 @@ void print_avatar_sel(UINT32 *base)
 {
 	clear_rec((UINT32 *)base, MENU_CLEAR_X, MENU_CLEAR_Y, MENU_CLEAR_HEIGHT, MENU_CLEAR_2);
 	
-	print_message((UINT8 *)base, (UINT8 *)"CHOOSE A CHARACTER (<- ->)", CHOOSE_X, CHOOSE_Y);
+	print_message((UINT8 *)base, (UINT8 *)"CHOOSE A CHARACTER (<-'a' 'd'->)", CHOOSE_X, CHOOSE_Y);
 	print_message((UINT8 *)base, (UINT8 *)"PRESS SPACE TO CONFIRM", CONFIRM_X, CONFIRM_Y);
+	print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
+	print_message((UINT8 *)base, (UINT8 *)"COWGIRL", COWGIRL_WRITING_X, COWGIRL_WRITING_Y);
 }
 
 void avatar_sel(UINT32 *base, int *avatar)
 {
 	int avatar_select = 1;
 	char input = WAIT;
-	while(input != 'e') {
+	
+	while(input != ' ') {
 	
 		if (Cconis()){
 			input = (char)Cnecin();
@@ -299,13 +302,12 @@ void avatar_sel(UINT32 *base, int *avatar)
 			case 1:
 				
 				avatar = 0;
-				print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
 				plot_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				if(input == 'a')
 				{
+					avatar_select = 2;
 					avatar = 1;
 					clear_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
-					print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
 				}
 
 				break;
@@ -313,17 +315,16 @@ void avatar_sel(UINT32 *base, int *avatar)
 			case 2:
 				
 				avatar = 1;
-				print_message((UINT8 *)base, (UINT8 *)"COWGIRL", COWGIRL_WRITING_X, COWGIRL_WRITING_Y);
 				plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				if(input == 'd')
 				{
+					avatar_select = 1;
 					avatar = 0;
 					clear_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
-					print_message((UINT8 *)base, (UINT8 *)"COWGIRL", COWGIRL_WRITING_X, COWGIRL_WRITING_Y);
 				}
 				break;
 		}
-		if(input!='e')
+		if(input!=' ')
 			input = WAIT;
 		
 	}
