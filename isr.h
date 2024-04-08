@@ -47,79 +47,39 @@ extern int mouse_Y;
 extern int mouse_left_click;
 
 extern UINT8 mouse_button;
-extern UINT8 mouse_delta_X;
-extern UINT8 mouse_delta_Y;
-extern int previous_mouse_X;
-extern int previous_mouse_Y;
-extern int key_repeat;
+extern int prev_mouse_X;
+extern int prev_mouse_Y;
 extern int mouse_moved;
 
 extern UINT8 IKBD_buffer[IKBD_BUFFER_SIZE];
 extern unsigned int buffer_head;
 extern unsigned int buffer_tail;
-extern UINT8 repeated_key;
 
 extern Vector vbl_vector;
 extern Vector ikbd_vector;
 
 extern int game_state;
 
-
-/**
- * Updates timer on VBL IRQ
- * VBL ISR does following:
- *    • Time the page flipping for double buffered graphics.
- *    • Time the playing of music.
- *    • Time any other synchronous events needed by the game.
- */
 void vblisrC();
 
-/**
- * Processes keyboard and mouse input on IKBD IRQ.
- */
-void ikbd_isr_c();
+void ikbdisrC();
 
-/**
- * Installs vector.
- */
 Vector install_vector(int num, Vector vector);
 
-/**
- * Installs vbl and ikbd vectors.
- */
 void install_vectors();
 
-/**
- * Removes vectors.
- */
 void remove_vectors();
 
-/**
- * Checks if the keyboard is waiting for input.
- */
 int ikbdWaiting();
 
-/**
- * Checks if mouse has moved.
- */
 int ikbd_mouse_moved();
 
-/**
- * Write keyboard value to the keyboard buffer.
- */
 void write_ikbd_buffer(UINT8 scancode);
 
-/**
- * Read keyboard value from the keyboard buffer.
- */
 UINT32 read_ikbd_buffer();
 
-/**
- * Clears the keyboard buffer.
- */
 void clear_ikbd_buffer();
 
-
-
+void mouse_check();
 
 #endif

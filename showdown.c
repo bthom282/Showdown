@@ -77,43 +77,100 @@ Details: 	This function takes the user to the splash screen to choose 1 or 2 pla
 void splash_menu(UINT32 *base, UINT32 *base2)
 {
 	char input = WAIT;
-	int hasInput = FALSE;
+	int has_input = FALSE;
+	int quit = FALSE;
 	/*initial screen*/
 	int players = 1;
+	int menu_select = 1;
 	mouse_enabled = TRUE;
 	render_splash((UINT32 *) base, splash_bitmap);
 	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", ANYKEY_X, ANYKEY_Y);
-
 	start_music();
-	Cnecin(); 
 	
+	/*mouse cursor test - work in progress */
+	/*while (!Cconis())
+	{
+		render_mouse((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_X, mouse_Y, mouse_cursor2);
+	}*/
+	
+	/* mode selection */
+	/*while (!has_input)
+	{
+		has_input = check_input();
+		if (has_input == TRUE)
+		{
+			input = get_input();
+		}
+	}*/
+	Cnecin();
 	clear_rec((UINT32 *)base, ANYKEY_X, ANYKEY_Y, LETTER_HEIGHT, MENU_CLEAR_1);
 	
 	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", ONE_X, ONE_Y);
 	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", TWO_X, TWO_Y);
 	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", SOON_X, SOON_Y);
 	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_X, QUIT_Y);
-	
-	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	Cnecin();
-	clear_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	clear_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	
-	plot_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	plot_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	Cnecin();
-	clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	
-	plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	Cnecin();
-	clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-	plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
-
+		
+	/*while (input != SPACE_MAKE)
+	{
+		has_input = check_input();
+		if (has_input == TRUE)
+		{
+			input = get_input();
+		}
+		
+		switch (menu_select)
+		{
+			case 1:
+				plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				if(input == DOWN_MAKE)
+				{
+					menu_select = 2;
+					clear_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+					clear_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				}
+				else if (input == SPACE_MAKE)
+				{
+					players = 1;
+				}
+				break;
+			
+			case 2:
+				plot_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				if(input == DOWN_MAKE)
+				{
+					menu_select = 3;
+					clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+					clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				}
+				else if (input == UP_MAKE)
+				{
+					menu_select = 1;
+					clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+					clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				}
+				else if (input == SPACE_MAKE)*/
+					/*players = 2;*/
+				/*break;
+			
+			case 3:
+				plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				if(input == UP_MAKE)
+				{
+					menu_select = 2;
+					clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
+					clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				}
+				else if (input = SPACE_MAKE)
+					quit == TRUE;
+				break;
+		}
+		input = WAIT;
+	}*/
+	/*}*/
+	/* avatar selection */
 	Cnecin(); 
 	
 	clear_rec((UINT32 *)base, MENU_CLEAR_X, MENU_CLEAR_Y, MENU_CLEAR_HEIGHT, MENU_CLEAR_2);
