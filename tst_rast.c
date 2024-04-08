@@ -39,7 +39,7 @@ int main()
   Cnecin();
 
   /* Test clear_bitmap_8*/
-  clear_bitmap_8((UINT8 *)base, 30, 30, bullet_blank, BITMAP_8_HEIGHT);
+  clear_bitmap_8((UINT8 *)base, 30, 30, (UINT8 *)blank, BITMAP_8_HEIGHT);
 
   Cnecin();
 
