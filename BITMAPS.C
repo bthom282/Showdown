@@ -373,7 +373,7 @@ const UINT32 cactus_bitmap[] =
 };
 
 /*lives bitmaps for player 1*/
-const UINT16 cowboy_lives[BITMAP_HEIGHT] =
+const UINT16 cowboy_lives[16] =
 {
 0x0760, 0x0890, 0x2814, 0x581A,
 0x4FF2, 0x2004, 0x1FF8, 0x1A58,
@@ -382,7 +382,7 @@ const UINT16 cowboy_lives[BITMAP_HEIGHT] =
 };
 
 /*lives bitmaps for player 2*/
-const UINT16 cowgirl_lives[BITMAP_HEIGHT] =
+const UINT16 cowgirl_lives[16] =
 {
 0x03C0, 0x0420, 0x2814, 0x581A,
 0x4FF2, 0x2004, 0x1FF8, 0x1A58,
@@ -390,19 +390,19 @@ const UINT16 cowgirl_lives[BITMAP_HEIGHT] =
 0x3208, 0x1818, 0x05A0, 0x0E70
 };
 
-const UINT8 bullet_bitmap[BITMAP_8_HEIGHT] =
+const UINT8 bullet_bitmap[8] =
 {
 0x00, 0x00, 0x18, 0x24,
 0x24, 0x18, 0x00, 0x00
 };
 
-const UINT8 blank_8[BITMAP_8_HEIGHT] =
+const UINT8 blank_8[8] =
 {
 0x0, 0x0, 0x0, 0x0,
 0x0, 0x0, 0x0, 0x0
 };
 
-const UINT32 blank[BITMAP_32_HEIGHT]=
+const UINT32 blank[32]=
 {
 0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,
 0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,
@@ -487,7 +487,7 @@ const UINT16 mouse_cursor[10] =
 };
 
 /* pistol pointing up */
-const UINT16 mouse_cursor2[BITMAP_HEIGHT] =
+const UINT16 mouse_cursor2[16] =
 {
 0x6000, 0xE000, 0x6000, 0x6000,
 0x6000, 0x6000, 0x7800, 0x7800,
@@ -497,13 +497,13 @@ const UINT16 mouse_cursor2[BITMAP_HEIGHT] =
 
 /* Menu arrow cursors */
 
-const UINT8 arrow1_cursor[BITMAP_8_HEIGHT] =
+const UINT8 arrow1_cursor[8] =
 {
 0x08, 0x0C, 0xFE, 0xFF,
 0xFE, 0x0C, 0x08, 0x00
 };
 
-const UINT8 arrow2_cursor[BITMAP_8_HEIGHT] =
+const UINT8 arrow2_cursor[8] =
 {
 0x10, 0x30, 0x7F, 0xFF,
 0x7F, 0x30, 0x10, 0x00
