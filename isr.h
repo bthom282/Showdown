@@ -33,13 +33,13 @@
 typedef void (*Vector) ();
 
 /* Timers that are used by the VBL. */
-extern int music_timer;
 extern int game_timer;
 
 /* Flags that will allow rendering when they are set to true. */
 extern int render_request;
 extern int render_mouse_request;
 extern int spawn_snake_request;
+extern int music_change;
 
 extern int mouse_X;
 extern int mouse_Y;

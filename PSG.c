@@ -124,8 +124,7 @@ Details: 	enables a channel of the PSG.
 
 void enable_channel(int channel, int tone_on, int noise_on)
 {
-	int setting;
-	setting = 0x3F;
+	int setting = 0x3F;
 	
 	switch (channel)
 	{
@@ -229,9 +228,9 @@ void stop_sound()
 	set_volume(CH_A,0);
 	set_volume(CH_B,0);
 	set_volume(CH_C,0);
-	disable_channel(CH_A);
-	disable_channel(CH_B);
-	disable_channel(CH_C);
+	enable_channel(CH_A, 0, 0);
+	enable_channel(CH_B, 0, 0);
+	enable_channel(CH_C, 0, 0);
 	
 	return;
 }

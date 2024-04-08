@@ -31,4 +31,12 @@ void splash_menu(UINT32 *base, UINT32 *base2);
 
 void main_game(UINT32 *base, UINT32 *base2, int players);
 
+void print_menu(UINT32 *base);
+
+void menu_sel(UINT32 *base, int *players, int *quit);
+
+void print_avatar_sel(UINT32 *base);
+
+void avatar_sel(UINT32 *base, int *avatar);
+
 #endif

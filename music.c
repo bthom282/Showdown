@@ -71,16 +71,13 @@ Details: 	Changes the note in the music.
 
 *********************************************************************************************/
 
-int update_music(UINT32 time_elapsed, int last_note, int bass[], int treble[],  int song_length)
+int update_music(int last_note, int bass[], int treble[],  int song_length)
 {
-	if((time_elapsed % 70) == 0)
-	{
-		if(last_note == song_length)
-			last_note = 0;
-		
-		set_tone(CH_A, bass[last_note]);
-		set_tone(CH_B, treble[last_note]);
-		last_note++;
-	}
+	if(last_note == song_length)
+		last_note = 0;
+	
+	set_tone(CH_A, bass[last_note]);
+	set_tone(CH_B, treble[last_note]);
+	last_note++;
 	return last_note;
 }

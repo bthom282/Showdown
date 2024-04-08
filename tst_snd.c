@@ -38,7 +38,7 @@ int main()
 		if (time_delta >= 35){
 			music_timer++;
 			/*music_timer = game_timer - last_note_change;*/
-			current_note = update_music(time_delta, music_timer, splash_song_bass, 
+			current_note = update_music(last_note, splash_song_bass, 
 						splash_song_treble, SPLASH_SONG_LENGTH);
 			last_note = current_note;
 			start_music();

@@ -6,6 +6,7 @@ int game_timer;
 int render_request = TRUE;
 int render_mouse_request = FALSE;
 int spawn_snake_request = FALSE;
+int music_change = FALSE;
 
 int game_state = 0; /*states are 0 = splash, 1 = main game, 2 = game over*/
 
@@ -56,7 +57,7 @@ void vblisrC()
 	
 	if ((game_timer%35) == 0)
 	{
-		music_timer++;
+		music_change = TRUE;
 	}
 	
 	if ((game_timer%70) == 0)
