@@ -48,6 +48,9 @@ psg.o: psg.c psg.h types.h
 input.o: input.c input.h
 	cc68x -g -c input.c
 	
+ikbd.o: ikbd.s ikbd.h
+	gen -L2 ikbd.s
+	
 vbl.o: vbl.s vbl.h
 	gen -L2 vbl.s
 
@@ -69,8 +72,8 @@ renderer.o: renderer.c renderer.h raster.h types.h model.h bitmaps.h events.h sp
 tst_ren.o: tst_ren.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h random.h 
 	cc68x -g -c tst_ren.c
 
-showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o vbl.o isr.o psg.o music.o effects.o
-	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o vbl.o isr.o psg.o music.o effects.o -o showdown
+showdown: showdown.o renderer.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o ikbd.o vbl.o isr.o psg.o music.o effects.o
+	cc68x -g showdown.o renderer.o raster.o font.o model.o events.o bitmaps.o splash.o video.o input.o random.o ikbd.o vbl.o isr.o psg.o music.o effects.o -o showdown
 
 showdown.o: showdown.c renderer.h raster.h types.h model.h bitmaps.h events.h splash.h video.h input.h random.h psg.h music.h effects.h
 	cc68x -g -c showdown.c

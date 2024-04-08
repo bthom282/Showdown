@@ -207,3 +207,17 @@ void render_splash(UINT32 *base, const UINT32 *splash_bitmap)
 {
 	plot_splash((UINT32 *)base, SCREEN_HEIGHT, splash_bitmap);
 }
+
+/********************************************************************************************
+Function Name: 	render_mouse
+
+Details: 	Using the plot_screen function, this will render a full screen image for the game's
+			splash screen.
+
+*********************************************************************************************/
+
+void render_mouse(UINT16 *base, int prev_mouse_X, int prev_mouse_Y, int mouse_X, int mouse_Y, const UINT16 *mouse_bitmap)
+{
+	clear_bitmap_16((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_bitmap, BITMAP_HEIGHT);
+	plot_bitmap_16((UINT16 *)base, mouse_X, mouse_Y, mouse_bitmap, BITMAP_HEIGHT);
+}

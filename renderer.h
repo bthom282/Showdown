@@ -31,4 +31,6 @@ void render_lives(UINT16 *base, struct Lives *lives, const UINT16 *bitmap16);
 
 void render_splash(UINT32 *base, const UINT32 *splash_bitmap);
 
+void render_mouse(UINT16 *base, int prev_mouse_X, int prev_mouse_Y, int mouse_X, int mouse_Y, const UINT16 *mouse_bitmap);
+
 #endif
