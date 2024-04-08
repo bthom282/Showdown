@@ -239,14 +239,14 @@ Sample Call:	model = init_model();
 
 *********************************************************************************************/
 
-struct Model init_Model() {	
+struct Model init_Model(int avatar) {	
 	
 	struct Model model;
 
 	model.players = 1;
 	model.bullets_fill = 0;
 	model.snakes_fill = 0;
-	model.cowboy = init_Cowboy();
+	model.cowboy = init_Cowboy(avatar);
 	model.active_bullets[MAX_BULLETS];
 	model.active_snakes[MAX_SNAKES];
 
@@ -262,7 +262,7 @@ Sample Call:	cowboy1 = init_Cowboy();
 
 *********************************************************************************************/
 
-struct Cowboy init_Cowboy() {
+struct Cowboy init_Cowboy(int avatar) {
     	struct Cowboy cowboy; 
 
     	cowboy.position.x = PLAYER_1_START_X;
@@ -281,6 +281,7 @@ struct Cowboy init_Cowboy() {
 		cowboy.lives.lives_left = START_LIVES;
     	cowboy.lives.position.x = PLAYER_1_LIVES_X;
     	cowboy.lives.position.y = PLAYER_1_LIVES_Y;
+		cowboy.avatar = avatar;
 
 	return cowboy;
 }

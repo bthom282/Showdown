@@ -29,7 +29,7 @@ void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr);
 
 void splash_menu(UINT32 *base, UINT32 *base2);
 
-void main_game(UINT32 *base, UINT32 *base2, int players);
+void main_game(UINT32 *base, UINT32 *base2, const int avatar);
 
 void print_menu(UINT32 *base);
 

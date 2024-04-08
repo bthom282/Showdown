@@ -6,9 +6,6 @@ const UINT8 buffer2[32256];
 int quit = FALSE;
 int mouse_enabled = FALSE;
 
-/*const UINT16 *lives_tokens = cowboy_lives;
-const UINT32 avatar[][BITMAP_32_HEIGHT] = (UINT32 *) cowgirl_bitmap;*/
-
 int main() {
 	
 	UINT32 *start_base = get_video_base();
@@ -89,12 +86,9 @@ void splash_menu(UINT32 *base, UINT32 *base2)
 	start_music();
 	
 	/*mouse cursor test - work in progress */
-	/*while (!Cconis())
-	{
-		render_mouse((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_X, mouse_Y, mouse_cursor2);
-	}*/
-	
-	/* mode selection */
+
+	render_mouse((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_X, mouse_Y, mouse_cursor2);
+
 
 	Cnecin();
 	
@@ -105,22 +99,8 @@ void splash_menu(UINT32 *base, UINT32 *base2)
 	print_avatar_sel((UINT32 *)base);
 		
 	avatar_sel((UINT32 *)base, &avatar);
-		
-	/*plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
-	
-	Cnecin(); 
-	clear_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
-	
-	print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
-	
-	Cnecin(); 
-	
-	print_message((UINT8 *)base, (UINT8 *)"COWBOY", COWBOY_WRITING_X, COWBOY_WRITING_Y);
-	clear_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
-	plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
-	print_message((UINT8 *)base, (UINT8 *)"COWGIRL", COWGIRL_WRITING_X, COWGIRL_WRITING_Y);*/
 
-	main_game(base, base2, players);
+	main_game((UINT32 *)base, (UINT32 *)base2, avatar);
 	return;
 }
 
@@ -131,10 +111,10 @@ Details: 	This function starts the game loop.
 
 *********************************************************************************************/
 
-void main_game(UINT32 *base, UINT32 *base2, int players)
+void main_game(UINT32 *base, UINT32 *base2, const int avatar)
 {
-	struct Model model = init_Model();
-	struct Model prev_model = init_Model();
+	struct Model model = init_Model(avatar);
+	struct Model prev_model = init_Model(avatar);
 	UINT32 *current;
 	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	UINT32 time_now, time_then, time_elapsed;
@@ -148,8 +128,8 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 
 	mouse_enabled = FALSE;
 
-	full_render((UINT32 *)base, &model);
-	full_render((UINT32 *)base2, &model);
+	full_render((UINT32 *)base, &model, avatar);
+	full_render((UINT32 *)base2, &model, avatar);
 	while(ch != 'q') {
 		time_now = get_time();
 		time_elapsed = time_now - time_then;
@@ -191,7 +171,7 @@ void main_game(UINT32 *base, UINT32 *base2, int players)
 				current = base2;
 		
 			process_synchronous(&model);
-			render((UINT32 *)current, &model);
+			render((UINT32 *)current, &model, avatar);
 		
 			set_video_base(current);
 			
@@ -301,25 +281,24 @@ void avatar_sel(UINT32 *base, int *avatar)
 		{
 			case 1:
 				
-				avatar = 0;
+				*avatar = 0;
 				plot_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				if(input == 'a')
 				{
 					avatar_select = 2;
-					avatar = 1;
+					*avatar = 1;
 					clear_bitmap_64((UINT32 *)base, COWBOY_CURSOR_X, COWBOY_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				}
-
 				break;
 			
 			case 2:
 				
-				avatar = 1;
+				*avatar = 1;
 				plot_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				if(input == 'd')
 				{
 					avatar_select = 1;
-					avatar = 0;
+					*avatar = 0;
 					clear_bitmap_64((UINT32 *)base, COWGIRL_CURSOR_X, COWGIRL_CURSOR_Y, cursor, CURSOR_HEIGHT);
 				}
 				break;

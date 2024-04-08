@@ -210,9 +210,9 @@ void respawn();
 
 void process_synchronous(struct Model *model);
 
-struct Model init_Model();
+struct Model init_Model(int avatar);
 
-struct Cowboy init_Cowboy();
+struct Cowboy init_Cowboy(int avatar);
 
 struct Snake init_Snake(int x_p, int y_p, int x_d, int y_d, int s);
 

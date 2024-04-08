@@ -20,7 +20,7 @@ int main()
 	int state;
     int spawn_loc;
 	/*initializing the player1 cowboy*/
-	struct Cowboy cowboy1 = init_Cowboy();
+	struct Cowboy cowboy1 = init_Cowboy(0);
 		
 	/*render initial state*/
 	

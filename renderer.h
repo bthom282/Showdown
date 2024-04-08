@@ -9,9 +9,9 @@
 
 void game_start();
 
-void full_render(UINT32 *base, struct Model *model);
+void full_render(UINT32 *base, struct Model *model, int avatar);
 
-void render(UINT32 *base, struct Model *model);
+void render(UINT32 *base, struct Model *model, int avatar);
 
 void render_cowboy(UINT32 *base, struct Cowboy cowboy, const UINT32 bitmap[][BITMAP_32_HEIGHT]);
 
