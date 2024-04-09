@@ -12,34 +12,11 @@
 #include "effects.h"
 #include "input.h"
 
-int quit = FALSE;
-
-/* printf's are key!! */
-
-/*
-struct Model testSnapshot = {
-
-	{300, 350, },
-	{},
-	{},
-	{},
-	{3, 370, 300}
-
-};
-*/
 int main()
 {
 /* black screen displaying cowboy movement, press any key to move cowboy */
 
-	char *base = Physbase();
-	UINT32 seed = 12345;
-	int avatar = 1;
-	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
-	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
-	int bullets_fill = 0;
-	int snakes_fill = 0;
-	int i;
-	char buffer[20];
+	int avatar = 0;
 
 	struct Model model = init_Model(avatar);
 
