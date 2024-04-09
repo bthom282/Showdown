@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <osbind.h>
+#include <assert.h>
 #include "types.h"
 #include "model.h"
 #include "events.h"
@@ -9,8 +10,12 @@
 #include "psg.h" 
 #include "music.h" 
 #include "effects.h"
+#include "input.h"
+
+int quit = FALSE;
 
 /* printf's are key!! */
+
 /*
 struct Model testSnapshot = {
 
@@ -28,7 +33,7 @@ int main()
 
 	char *base = Physbase();
 	UINT32 seed = 12345;
-	int players = 1;
+	int avatar = 1;
 	struct Bullet active_bullets[MAX_BULLETS];  /*array for active bullet structs*/
 	struct Snake active_snakes[MAX_SNAKES];    /*array for active snakes structs*/
 	int bullets_fill = 0;
@@ -36,44 +41,100 @@ int main()
 	int i;
 	char buffer[20];
 
-	struct Cowboy cowboy1 = init_Cowboy();
+	struct Model model = init_Model(avatar);
 
-	fill_screen((UINT32 *) base, -1);
+	printf("Stage 3 Model/Events Testing: Press any key\n\n");
 	
-	sprintf(buffer, "cowboy x = %d", cowboy1.position.x);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 340);
-	sprintf(buffer, "cowboy y = %d", cowboy1.position.y);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 360);
+	Cnecin();
 	
-	cowboy1.y_dir = 0;
-    	cowboy1.x_dir = 1;
-	cowboy1.isMoving = TRUE;
-	
-	Cnecin(); 
-	fill_screen((UINT32 *) base, -1);
-	move_cowboy(&cowboy1);
-	sprintf(buffer, "cowboy x = %d", cowboy1.position.x);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 340);
-	sprintf(buffer, "cowboy y = %d", cowboy1.position.y);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 360);
-	
-	Cnecin(); 
-	fill_screen((UINT32 *) base, -1);
-	move_cowboy(&cowboy1);
-	sprintf(buffer, "cowboy x = %d", cowboy1.position.x);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 340);
-	sprintf(buffer, "cowboy y = %d", cowboy1.position.y);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 360);
-	
-	Cnecin(); 
-	fill_screen((UINT32 *) base, -1);
-	move_cowboy(&cowboy1);
-	sprintf(buffer, "cowboy x = %d", cowboy1.position.x);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 340);
-	sprintf(buffer, "cowboy y = %d", cowboy1.position.y);
-	print_message((UINT8 *)base, (UINT8 *)buffer, 32, 360);
+	printf("No Collision detected test\n");
+	/* Print initial state */
+    printf("Initial Cowboy position: (%d, %d)\n", model.cowboy.position.x, model.cowboy.position.y);
+    printf("Initial Cowboy score: %d\n", model.cowboy.scoreboard.score);
 
-	Cnecin(); 
-  
+    /* Move cowboy */
+    model.cowboy.isMoving = TRUE;
+    model.cowboy.x_dir = 1;
+    model.cowboy.y_dir = 0;
+    process_synchronous(&model); /* Move cowboy*/
+
+    /* Print updated state */
+    printf("Updated Cowboy position: (%d, %d)\n", model.cowboy.position.x, model.cowboy.position.y);
+
+    /* Fire bullet */
+    model.cowboy.isFiring = TRUE;
+    model.cowboy.xFireDir = 0;
+    model.cowboy.yFireDir = -1;
+    process_synchronous(&model); /* Fire bullet*/
+
+    /* Print updated state */
+    printf("Active Bullets: %d\n", model.bullets_fill);
+
+    /* Move bullets */
+    move_bullets(model.active_bullets, &model.bullets_fill, model.active_snakes, &model.snakes_fill, &model.cowboy);
+
+    /* Print updated state */
+    printf("Updated Bullet position: (%d, %d)\n", model.active_bullets[0].position.x, model.active_bullets[0].position.y);
+
+    /* Move snakes */
+    move_snakes(model.active_snakes, model.snakes_fill, &model.cowboy);
+
+    /* Print updated state */
+    printf("Updated Snake position: (%d, %d)\n", model.active_snakes[0].position.x, model.active_snakes[0].position.y);
+
+    
+
+	/* Check for collision between bullet and snake */
+    if (checkCollision(model.active_bullets[0].position.x, model.active_bullets[0].position.y, BULLET_WIDTH, BULLET_HEIGHT,
+                       model.active_snakes[0].position.x, model.active_snakes[0].position.y, SNAKE_WIDTH, SNAKE_HEIGHT)) {
+        printf("Collision detected between bullet and snake!\n");
+        /* Handle collision - remove bullet and snake */
+        delete_bullet(model.active_bullets, &model.bullets_fill, 0);
+        snake_death(model.active_snakes, 0, &model.snakes_fill);
+        printf("Updated Bullet count: %d\n", model.bullets_fill);
+        printf("Updated Snake count: %d\n", model.snakes_fill);
+    } else {
+        printf("No collision detected between bullet and snake.\n\n");
+    }
+
+	/* Wait for input */
+		Cnecin();
+	printf("Collision detected test\n");
+
+	 /* Initialize snake position */
+    model.active_snakes[0] = init_Snake(300, 200, 0, 0, 0); /* Snake positioned near the cowboy's firing direction*/
+	model.active_bullets[0] = init_Bullet(300, 200, 0, 0);
+
+    /* Print initial snake position */
+    printf("Initial Snake position: (%d, %d)\n", model.active_snakes[0].position.x, model.active_snakes[0].position.y);
+
+    /* Fire bullet towards the snake */
+    model.cowboy.isFiring = TRUE;
+    model.cowboy.xFireDir = 1;
+    model.cowboy.yFireDir = 0;
+
+    /* Move cowboy and fire bullet */
+    process_synchronous(&model);
+
+    /* Print updated bullet and snake positions */
+    printf("Updated Cowboy position: (%d, %d)\n", model.cowboy.position.x, model.cowboy.position.y);
+    printf("Updated Bullet position: (%d, %d)\n", model.active_bullets[0].position.x, model.active_bullets[0].position.y);
+    printf("Updated Snake position: (%d, %d)\n", model.active_snakes[0].position.x, model.active_snakes[0].position.y);
+
+    /* Check for collision between bullet and snake */
+    if (checkCollision(model.active_bullets[0].position.x, model.active_bullets[0].position.y, BULLET_WIDTH, BULLET_HEIGHT,
+                       model.active_snakes[0].position.x, model.active_snakes[0].position.y, SNAKE_WIDTH, SNAKE_HEIGHT)) {
+        printf("Collision detected between bullet and snake!\n");
+        /* Handle collision - remove bullet and snake */
+        delete_bullet(model.active_bullets, &model.bullets_fill, 0);
+        snake_death(model.active_snakes, 0, &model.snakes_fill);
+        printf("Updated Snake count: %d\n", model.snakes_fill);
+    } else {
+        printf("No collision detected between bullet and snake.\n");
+    }
+
+	
+
   return 0;
+  
 }
