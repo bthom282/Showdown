@@ -2,10 +2,10 @@
 GEMDOS		equ	1
 SUPER		equ	$20
 
-		xdef		_enter_super
-		xdef		_exit_super
+		xdef		_superOn
+		xdef		_superOff
 
-_enter_super:
+superOn:
 		link	a6,#0
 		movem.l	d0-d2/a0-a2,-(sp)
 
@@ -19,7 +19,7 @@ _enter_super:
 		unlk	a6
 		rts	
 
-_exit_super:
+superOff:
 		link	a6,#0
 		movem.l	d0-2/a0-2,-(sp)
 
