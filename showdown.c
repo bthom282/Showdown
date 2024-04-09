@@ -25,49 +25,9 @@ int main() {
 }
 
 /********************************************************************************************
-Function Name: 	get_time
-
-Details: 	Using supervisor mode, this function gets the current clock time.
-
-*********************************************************************************************/
-
-UINT32 get_time()
-{
-	UINT32 time, old_ssp;
-
-	old_ssp = Super(0);
-	time = *timer;
-	Super(old_ssp);
-
-	return time;
-}
-
-/********************************************************************************************
-Function Name: 	get_buffer
-
-Details: 	This function gets the back buffer and aligns it to a multiple of 256.
-
-*********************************************************************************************/
-
-UINT32* get_buffer()
-{
-	UINT32 *base;
-	UINT32 buff2_addr;
-	UINT32 align;
-
-	/* initializes the back buffer to be 256 aligned */
-	buff2_addr = (UINT32)buffer2;
-	align = buff2_addr % 256;
-	base = (UINT32 *)(buffer2 + (256 - align));
-
-	return base;
-}
-
-/********************************************************************************************
 Function Name: 	splash_menu
 
-Details: 	This function takes the user to the splash screen to choose 1 or 2 player mode and
-			select an avatar.
+Details: 	This function takes the user to the splash screen.
 
 *********************************************************************************************/
 
@@ -195,6 +155,13 @@ void main_game(UINT32 *base, UINT32 *base2, const int avatar, const int players)
 	return;
 }
 
+/********************************************************************************************
+Function Name: 	print_menu
+
+Details: 	This function prints the menu choices.
+
+*********************************************************************************************/
+
 void print_menu(UINT32 *base)
 {
 	clear_rec((UINT32 *)base, ANYKEY_X, ANYKEY_Y, LETTER_HEIGHT, MENU_CLEAR_1);
@@ -205,6 +172,13 @@ void print_menu(UINT32 *base)
 	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_MENU_X, QUIT_MENU_Y);
 }
 
+/********************************************************************************************
+Function Name: 	menu_sel
+
+Details: 	This function lets the user cycle through choose 1-player, 2-player, or quit.
+
+*********************************************************************************************/
+
 void menu_sel(UINT32 *base, int *players, int *quit)
 {
 	int menu_select = 1;
@@ -213,7 +187,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 	
 	if (Cconis()){
 		input = (char)Cnecin();
-		play_chime();
+		play_pop();
 	}
 		
 	switch (menu_select)
@@ -266,6 +240,14 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 	}
 }
 
+/********************************************************************************************
+Function Name: 	print_avatar_sel
+
+Details: 	This function prints the avatar choices (cowboy or cowgirl) and lets
+			the user choose one of the other.
+
+*********************************************************************************************/
+
 void print_avatar_sel(UINT32 *base)
 {
 	clear_rec((UINT32 *)base, MENU_CLEAR_X, MENU_CLEAR_Y, MENU_CLEAR_HEIGHT, MENU_CLEAR_2);
@@ -285,7 +267,7 @@ void avatar_sel(UINT32 *base, int *avatar)
 	
 		if (Cconis()){
 			input = (char)Cnecin();
-			play_pop();
+			play_chime();
 		}
 			
 		switch (avatar_select)
@@ -318,4 +300,43 @@ void avatar_sel(UINT32 *base, int *avatar)
 			input = WAIT;
 		
 	}
+}
+
+/********************************************************************************************
+Function Name: 	get_time
+
+Details: 	Using supervisor mode, this function gets the current clock time.
+
+*********************************************************************************************/
+
+UINT32 get_time()
+{
+	UINT32 time, old_ssp;
+
+	old_ssp = Super(0);
+	time = *timer;
+	Super(old_ssp);
+
+	return time;
+}
+
+/********************************************************************************************
+Function Name: 	get_buffer
+
+Details: 	This function gets the back buffer and aligns it to a multiple of 256.
+
+*********************************************************************************************/
+
+UINT32* get_buffer()
+{
+	UINT32 *base;
+	UINT32 buff2_addr;
+	UINT32 align;
+
+	/* initializes the back buffer to be 256 aligned */
+	buff2_addr = (UINT32)buffer2;
+	align = buff2_addr % 256;
+	base = (UINT32 *)(buffer2 + (256 - align));
+
+	return base;
 }

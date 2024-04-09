@@ -21,10 +21,6 @@
 
 extern int mouse_enabled;
 
-UINT32 get_time();
-
-UINT32* get_buffer();
-
 void swap_buffers (UINT32** base32, UINT32** back_buffer_ptr);
 
 void splash_menu(UINT32 *base, UINT32 *base2);
@@ -38,5 +34,9 @@ void menu_sel(UINT32 *base, int *players, int *quit);
 void print_avatar_sel(UINT32 *base);
 
 void avatar_sel(UINT32 *base, int *avatar);
+
+UINT32 get_time();
+
+UINT32* get_buffer();
 
 #endif
