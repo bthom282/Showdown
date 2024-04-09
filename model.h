@@ -63,6 +63,10 @@
 #define PLAYER_2_TEXT 212
 #define PLAYER_2_SCORE_TEXT 232
 #define PLAYER_2_LIVES_TEXT 252
+#define QUIT_Y 20
+#define MOVE_Y 60
+#define SHOOT_Y 100
+#define 
 
 /******SPLASH CONSTANTS*****/
 

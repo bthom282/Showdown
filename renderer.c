@@ -167,16 +167,16 @@ Details: 	prints the initial play instructions and other text based on number of
 *********************************************************************************************/
 void render_side_text(UINT8 *base, int players) 
 {
-	print_message((UINT8 *)base, (UINT8 *)"QUIT", TEXT_ALIGN, 20);
+	print_message((UINT8 *)base, (UINT8 *)"QUIT", TEXT_ALIGN, QUIT_Y);
 	plot_bitmap_32_white((UINT32 *)base, 64, 10, key_Q, BITMAP_32_HEIGHT);
-	print_message((UINT8 *)base, (UINT8 *)"MOVE", TEXT_ALIGN, 60);
+	print_message((UINT8 *)base, (UINT8 *)"MOVE", TEXT_ALIGN, MOVE_Y);
 	
 	plot_bitmap_32_white((UINT32 *)base, 64, 30, key_A, BITMAP_32_HEIGHT);
 	plot_bitmap_32_white((UINT32 *)base, 96, 15, key_W, BITMAP_32_HEIGHT);
 	plot_bitmap_32_white((UINT32 *)base, 96, 30, key_S, BITMAP_32_HEIGHT);
 	plot_bitmap_32_white((UINT32 *)base, 128, 30, key_D, BITMAP_32_HEIGHT);
 	
-	print_message((UINT8 *)base, (UINT8 *)"SHOOT", TEXT_ALIGN, 100);
+	print_message((UINT8 *)base, (UINT8 *)"SHOOT", TEXT_ALIGN, SHOOT_Y);
 	
 	plot_bitmap_32_white((UINT32 *)base, 64, 55, blank_key, BITMAP_32_HEIGHT);
 	plot_bitmap_32_white((UINT32 *)base, 96, 55, key_8, BITMAP_32_HEIGHT);

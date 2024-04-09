@@ -196,8 +196,8 @@ void print_menu(UINT32 *base)
 {
 	clear_rec((UINT32 *)base, ANYKEY_X, ANYKEY_Y, LETTER_HEIGHT, MENU_CLEAR_1);
 	
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", ONE_X, ONE_Y);
-	print_message((UINT8 *)base, (UINT8 *)"PLAYER 2", TWO_X, TWO_Y);
+	print_message((UINT8 *)base, (UINT8 *)"1 PLAYER", ONE_X, ONE_Y);
+	print_message((UINT8 *)base, (UINT8 *)"2 PLAYER", TWO_X, TWO_Y);
 	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", SOON_X, SOON_Y);
 	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_X, QUIT_Y);
 }
@@ -210,6 +210,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 	
 	if (Cconis()){
 		input = (char)Cnecin();
+		play_pop();
 	}
 		
 	switch (menu_select)
@@ -251,6 +252,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 			if(input == 'w')
 			{
 				menu_select = 2;
+				*quit = FALSE;
 				clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
 				clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
 			}	
