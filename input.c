@@ -99,8 +99,8 @@ int check_input()
 {
 	int has_input = FALSE;
 	
-	/*if (ikbd_waiting())
-		has_input = TRUE;*/
+	if (ikbd_waiting())
+		has_input = TRUE;
 	
 	return has_input;
 }
@@ -116,7 +116,7 @@ UINT32 get_input()
 {
 	UINT32 input;
 	
-	/*input = read_ikbd_buffer();*/
+	input = read_ikbd_buffer();
 	
 	return input;
 }
@@ -132,8 +132,8 @@ int check_mouse_input()
 {
 	int has_input = FALSE;
 	
-	/*if (ikbd_mouse_moved())
-		has_input = TRUE;*/
+	if (ikbd_mouse_moved())
+		has_input = TRUE;
 	
 	return has_input;
 }
