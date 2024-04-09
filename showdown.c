@@ -126,7 +126,7 @@ void main_game(UINT32 *base, UINT32 *base2, const int avatar, const int players)
 			/* wave complete */
 			wave_bonus((UINT8 *)base, &game_timer, &model.cowboy.scoreboard);
 			
-			/* cowboy special move */
+			/* cowboy special move, time permitting*/
 			count = 0;
 		}
 		
