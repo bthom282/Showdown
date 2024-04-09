@@ -257,6 +257,6 @@ Details: 	Using the plot_screen function, this will render a full screen image f
 
 void render_mouse(UINT16 *base, int prev_mouse_X, int prev_mouse_Y, int mouse_X, int mouse_Y, const UINT16 *mouse_bitmap)
 {
-	clear_bitmap_16((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_bitmap, BITMAP_HEIGHT);
+	/*clear_bitmap_16((UINT16 *)base, prev_mouse_X, prev_mouse_Y, mouse_bitmap, BITMAP_HEIGHT);*/
 	plot_bitmap_16((UINT16 *)base, mouse_X, mouse_Y, mouse_bitmap, BITMAP_HEIGHT);
 }

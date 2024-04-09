@@ -76,10 +76,13 @@ void splash_menu(UINT32 *base, UINT32 *base2)
 	char input = WAIT;
 	int has_input = FALSE;
 	int quit = FALSE;
-	/*initial screen*/
 	int players = 1;
 	int avatar; /*0 = cowboy, 1 = cowgirl*/
 	mouse_enabled = TRUE;
+	prev_mouse_X = 200; 
+	prev_mouse_Y = 200; 
+	mouse_X = 20;
+	mouse_Y = 20;
 	render_splash((UINT32 *) base, splash_bitmap);
 	print_message((UINT8 *)base, (UINT8 *)"PRESS ANY KEY", ANYKEY_X, ANYKEY_Y);
 
@@ -199,7 +202,7 @@ void print_menu(UINT32 *base)
 	print_message((UINT8 *)base, (UINT8 *)"1 PLAYER", ONE_X, ONE_Y);
 	print_message((UINT8 *)base, (UINT8 *)"2 PLAYER", TWO_X, TWO_Y);
 	print_message((UINT8 *)base, (UINT8 *)"[COMING SOON]", SOON_X, SOON_Y);
-	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_X, QUIT_Y);
+	print_message((UINT8 *)base, (UINT8 *)"QUIT", QUIT_MENU_X, QUIT_MENU_Y);
 }
 
 void menu_sel(UINT32 *base, int *players, int *quit)
@@ -217,44 +220,44 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 	{
 		case 1:
 			players = 1;
-			plot_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-			plot_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+			clear_bitmap_16((UINT16 *)base, PISTOL_TWO_X, PISTOL_ONE_Y, menu_cursor_left, BITMAP_HEIGHT);
+			clear_bitmap_16((UINT16 *)base, PISTOL_ONE_X, PISTOL_ONE_Y, menu_cursor_right, BITMAP_HEIGHT);
 			if(input == 's')
 			{
 				menu_select = 2;
-				clear_bitmap_8((UINT8 *)base, ARROW_ONE_X, ARROW_ONE_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-				clear_bitmap_8((UINT8 *)base, ARROW_ONE_X + ONE_LENGTH + LETTER_WIDTH, ARROW_ONE_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_TWO_X, PISTOL_ONE_Y, menu_cursor_left, BITMAP_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_ONE_X, PISTOL_ONE_Y, menu_cursor_right, BITMAP_HEIGHT);
 			}
 			break;
 		
 		case 2:
-			/*players = 2;*/
-			plot_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-			plot_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+			players = 2;
+			clear_bitmap_16((UINT16 *)base, PISTOL_TWO_X, PISTOL_TWO_Y, menu_cursor_left, BITMAP_HEIGHT);
+			clear_bitmap_16((UINT16 *)base, PISTOL_ONE_X, PISTOL_TWO_Y, menu_cursor_right, BITMAP_HEIGHT);
 			if(input == 's')
 			{
 				menu_select = 3;
-				clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-				clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_TWO_X, PISTOL_TWO_Y, menu_cursor_left, BITMAP_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_ONE_X, PISTOL_TWO_Y, menu_cursor_right, BITMAP_HEIGHT);
 			}
 			else if (input == 'w')
 			{
 				menu_select = 1;
-				clear_bitmap_8((UINT8 *)base, ARROW_TWO_X, ARROW_TWO_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-				clear_bitmap_8((UINT8 *)base, ARROW_TWO_X + TWO_LENGTH + LETTER_WIDTH, ARROW_TWO_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_TWO_X, PISTOL_TWO_Y, menu_cursor_left, BITMAP_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_ONE_X, PISTOL_TWO_Y, menu_cursor_right, BITMAP_HEIGHT);
 			}	
 			break;
 		
 		case 3:
-			*quit = TRUE; /*quit*/
-			plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-			plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+			*quit = TRUE; 
+			clear_bitmap_16((UINT16 *)base, PISTOL_TWO_QUIT_X, PISTOL_QUIT_Y, menu_cursor_left, BITMAP_HEIGHT);
+			clear_bitmap_16((UINT16 *)base, PISTOL_ONE_QUIT_X, PISTOL_QUIT_Y, menu_cursor_right, BITMAP_HEIGHT);
 			if(input == 'w')
 			{
 				menu_select = 2;
 				*quit = FALSE;
-				clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
-				clear_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_TWO_QUIT_X, PISTOL_QUIT_Y, menu_cursor_left, BITMAP_HEIGHT);
+				plot_bitmap_16((UINT16 *)base, PISTOL_ONE_QUIT_X, PISTOL_QUIT_Y, menu_cursor_right, BITMAP_HEIGHT);
 			}	
 			break;
 		}
