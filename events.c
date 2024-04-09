@@ -227,7 +227,8 @@ Sample Call:
 void gameover(UINT32 *base, char *ch) {
 	int i, j;
 	int count = 0;
-	while(count != 10)
+	fill_rec(base, 0, 0, 250, 15);
+	while(count != 9)
 	{
 		for (i = 0; i < 276; i += 12) {
 				for (j = 0; j < 200; j += 80) {
