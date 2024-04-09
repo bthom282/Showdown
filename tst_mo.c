@@ -59,17 +59,10 @@ int main()
     /* Print updated state */
     printf("Updated Snake position: (%d, %d)\n", model.active_snakes[0].position.x, model.active_snakes[0].position.y);
 
-    
-
 	/* Check for collision between bullet and snake */
     if (checkCollision(model.active_bullets[0].position.x, model.active_bullets[0].position.y, BULLET_WIDTH, BULLET_HEIGHT,
                        model.active_snakes[0].position.x, model.active_snakes[0].position.y, SNAKE_WIDTH, SNAKE_HEIGHT)) {
         printf("Collision detected between bullet and snake!\n");
-        /* Handle collision - remove bullet and snake */
-        delete_bullet(model.active_bullets, &model.bullets_fill, 0);
-        snake_death(model.active_snakes, 0, &model.snakes_fill);
-        printf("Updated Bullet count: %d\n", model.bullets_fill);
-        printf("Updated Snake count: %d\n", model.snakes_fill);
     } else {
         printf("No collision detected between bullet and snake.\n\n");
     }
@@ -102,15 +95,9 @@ int main()
     if (checkCollision(model.active_bullets[0].position.x, model.active_bullets[0].position.y, BULLET_WIDTH, BULLET_HEIGHT,
                        model.active_snakes[0].position.x, model.active_snakes[0].position.y, SNAKE_WIDTH, SNAKE_HEIGHT)) {
         printf("Collision detected between bullet and snake!\n");
-        /* Handle collision - remove bullet and snake */
-        delete_bullet(model.active_bullets, &model.bullets_fill, 0);
-        snake_death(model.active_snakes, 0, &model.snakes_fill);
-        printf("Updated Snake count: %d\n", model.snakes_fill);
     } else {
         printf("No collision detected between bullet and snake.\n");
     }
-
-	
 
   return 0;
   
