@@ -37,6 +37,7 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigned int height);
 void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height);
 void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height);
+void plot_bitmap_32_white(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height);
 void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height);
 void clear_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap8, unsigned int height);
 void plot_char(UINT8 *base, int x, int y, char c);

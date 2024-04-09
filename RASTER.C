@@ -50,8 +50,8 @@ void clear_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap16, unsigne
 Function Name: 	plot_bitmap_32
 
 Details: 	This function is used to plot a size 32 bitmap to the screen by ORing. This will
-		be used for the cowboy, snakes, and cacti in the game as they appear and travel 
-		across the screen.
+			be used for the cowboy, snakes, and cacti in the game as they appear and travel 
+			across the screen.
 
 *********************************************************************************************/
 
@@ -74,7 +74,7 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned
 Function Name: 	clear_bitmap_32
 
 Details: 	This function is used to clear a size 32 bitmap from the screen by XORing over 
-		the previously plotted bitmap.
+			the previously plotted bitmap.
 
 *********************************************************************************************/
 
@@ -91,6 +91,24 @@ void clear_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigne
 		}
 	}
 	return;
+}
+
+/********************************************************************************************
+Function Name: 	plot_bitmap_32_white
+
+Details: 	This function is used to plot a size 32 bitmap to the black portions of the screen 
+			by XORing. This will be used for the keyboard instruction on the side panel.
+
+*********************************************************************************************/
+
+void plot_bitmap_32_white(UINT32 *base, int x, int y, const UINT32 *bitmap32, unsigned int height)
+{ 
+	if (x >= START_POSITION && x < SCREEN_WIDTH && y >= START_POSITION && y < SCREEN_HEIGHT) {
+		int i;
+		for (i = 0; i < height; i++) {
+			*(base + (y*40) + (x >> 5) + (i*20)) ^= bitmap32[i];
+		}
+	}
 }
 
 /********************************************************************************************
@@ -231,16 +249,6 @@ void clear_rec(UINT32 *base, int x, int y, int height, int width){
 			base += (20-width);
 		}
 		return;
-
-	/*UINT16 *loc = (UINT16 *) base;
-	int k, j;
-	for (k = x; k < SCREEN_HEIGHT; k++){ 
-		for (j = x; j < 16; j++) {
-			*(loc++) = 0;
-		}
-		loc += 24;
-	}
-	return*/
 	}
 }
 

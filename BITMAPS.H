@@ -17,5 +17,15 @@ extern const UINT16 mouse_cursor[];
 extern const UINT16 mouse_cursor2[];
 extern const UINT8 arrow1_cursor[];
 extern const UINT8 arrow2_cursor[];
+extern const UINT32 blank_key[];
+extern const UINT32 key_Q[];
+extern const UINT32 key_W[];
+extern const UINT32 key_A[];
+extern const UINT32 key_S[];
+extern const UINT32 key_D[];
+extern const UINT32 key_8[];
+extern const UINT32 key_5[];
+extern const UINT32 key_4[];
+extern const UINT32 key_6[];
 
 #endif

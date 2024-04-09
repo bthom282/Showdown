@@ -162,11 +162,32 @@ void render_level1(UINT32 *base, const UINT32 *cactus_bitmap)
 /********************************************************************************************
 Function Name: 	render_side_text
 
-Details: 	prints the initial text based on number of players.
+Details: 	prints the initial play instructions and other text based on number of players.
 
 *********************************************************************************************/
 void render_side_text(UINT8 *base, int players) 
 {
+	print_message((UINT8 *)base, (UINT8 *)"QUIT", TEXT_ALIGN, 20);
+	plot_bitmap_32_white((UINT32 *)base, 64, 10, key_Q, BITMAP_32_HEIGHT);
+	print_message((UINT8 *)base, (UINT8 *)"MOVE", TEXT_ALIGN, 60);
+	
+	plot_bitmap_32_white((UINT32 *)base, 64, 30, key_A, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 96, 15, key_W, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 96, 30, key_S, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 128, 30, key_D, BITMAP_32_HEIGHT);
+	
+	print_message((UINT8 *)base, (UINT8 *)"SHOOT", TEXT_ALIGN, 100);
+	
+	plot_bitmap_32_white((UINT32 *)base, 64, 55, blank_key, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 96, 55, key_8, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 128, 55, blank_key, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 64, 70, key_4, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 96, 70, key_5, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 128, 70, key_6, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 64, 85, blank_key, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 96, 85, blank_key, BITMAP_32_HEIGHT);
+	plot_bitmap_32_white((UINT32 *)base, 128, 85, blank_key, BITMAP_32_HEIGHT);
+	
 	print_message((UINT8 *)base, (UINT8 *)"PLAYER 1", TEXT_ALIGN, PLAYER_1_TEXT);
 	print_message((UINT8 *)base, (UINT8 *)"SCORE", TEXT_ALIGN, PLAYER_1_SCORE_TEXT);
 	print_message((UINT8 *)base, (UINT8 *)"LIVES", TEXT_ALIGN, PLAYER_1_LIVES_TEXT);

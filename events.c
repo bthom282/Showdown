@@ -235,22 +235,7 @@ void gameover(UINT32 *base, char *ch) {
 				}
 			}
 		count++;
-	}
-	
-	ch = 'q';
+	}	
+	*ch = 'q';
 	return;
 }
-/*******************************************************************************************
-Function Name: 	game_quit
-
-Details: 	This function sets the isPlaying bool to false to exit the game loop. 	
-
-Sample Call:	game_quit(isPlaying)
-
-*********************************************************************************************/
-/*
-void game_quit(int *isPlaying)
-{
-	isPlaying = FALSE;
-}
-*/

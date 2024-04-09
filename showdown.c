@@ -96,11 +96,14 @@ void splash_menu(UINT32 *base, UINT32 *base2)
 		
 	menu_sel((UINT32 *)base, &players, &quit);
 	
-	print_avatar_sel((UINT32 *)base);
-		
-	avatar_sel((UINT32 *)base, &avatar);
+	if(quit == FALSE)
+	{
+		print_avatar_sel((UINT32 *)base);
+			
+		avatar_sel((UINT32 *)base, &avatar);
 
-	main_game((UINT32 *)base, (UINT32 *)base2, avatar);
+		main_game((UINT32 *)base, (UINT32 *)base2, avatar, players);
+	}
 	return;
 }
 
@@ -111,7 +114,7 @@ Details: 	This function starts the game loop.
 
 *********************************************************************************************/
 
-void main_game(UINT32 *base, UINT32 *base2, const int avatar)
+void main_game(UINT32 *base, UINT32 *base2, const int avatar, const int players)
 {
 	struct Model model = init_Model(avatar);
 	struct Model prev_model = init_Model(avatar);
@@ -125,6 +128,8 @@ void main_game(UINT32 *base, UINT32 *base2, const int avatar)
 	UINT32 last_note_change = 0;
 	int last_note = 0;
 	int current_note;
+	model.players = players;
+	prev_model.players = players;
 
 	mouse_enabled = FALSE;
 
@@ -240,7 +245,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 			break;
 		
 		case 3:
-			players = 0; /*quit*/
+			*quit = TRUE; /*quit*/
 			plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X, ARROW_QUIT_Y, arrow1_cursor, BITMAP_8_HEIGHT);
 			plot_bitmap_8((UINT8 *)base, ARROW_QUIT_X + QUIT_LENGTH + LETTER_WIDTH, ARROW_QUIT_Y, arrow2_cursor, BITMAP_8_HEIGHT);
 			if(input == 'w')
