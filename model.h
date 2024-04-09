@@ -66,7 +66,6 @@
 #define QUIT_Y 20
 #define MOVE_Y 60
 #define SHOOT_Y 100
-#define 
 
 /******SPLASH CONSTANTS*****/
 

@@ -210,7 +210,7 @@ void menu_sel(UINT32 *base, int *players, int *quit)
 	
 	if (Cconis()){
 		input = (char)Cnecin();
-		play_pop();
+		play_chime();
 	}
 		
 	switch (menu_select)
@@ -282,6 +282,7 @@ void avatar_sel(UINT32 *base, int *avatar)
 	
 		if (Cconis()){
 			input = (char)Cnecin();
+			play_pop();
 		}
 			
 		switch (avatar_select)
